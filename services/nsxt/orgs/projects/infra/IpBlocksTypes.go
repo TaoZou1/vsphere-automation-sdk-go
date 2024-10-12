@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,57 +11,57 @@
 package infra
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func ipBlocksDeleteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func ipBlocksDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["ip_block_id"] = vapiBindings_.NewStringType()
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["ip_block_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["ip_block_id"] = "IpBlockId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func IpBlocksDeleteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func ipBlocksDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func ipBlocksDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func ipBlocksDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["ip_block_id"] = vapiBindings_.NewStringType()
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["ip_block_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["ip_block_id"] = "IpBlockId"
-	paramsTypeMap["ip_block_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["ipBlockId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["ip_block_id"] = bindings.NewStringType()
+	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["orgId"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
+	paramsTypeMap["ipBlockId"] = bindings.NewStringType()
 	pathParams["ip_block_id"] = "ipBlockId"
 	pathParams["project_id"] = "projectId"
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -82,56 +82,50 @@ func ipBlocksDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func ipBlocksGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func ipBlocksGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["ip_block_id"] = vapiBindings_.NewStringType()
-	fields["ignore_ipblock_usage"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["ip_block_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["ip_block_id"] = "IpBlockId"
-	fieldNameMap["ignore_ipblock_usage"] = "IgnoreIpblockUsage"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func IpBlocksGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.IpAddressBlockBindingType)
+func ipBlocksGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.IpAddressBlockBindingType)
 }
 
-func ipBlocksGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func ipBlocksGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["ip_block_id"] = vapiBindings_.NewStringType()
-	fields["ignore_ipblock_usage"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["ip_block_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["ip_block_id"] = "IpBlockId"
-	fieldNameMap["ignore_ipblock_usage"] = "IgnoreIpblockUsage"
-	paramsTypeMap["ip_block_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["ignore_ipblock_usage"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["ipBlockId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["ip_block_id"] = bindings.NewStringType()
+	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["orgId"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
+	paramsTypeMap["ipBlockId"] = bindings.NewStringType()
 	pathParams["ip_block_id"] = "ipBlockId"
 	pathParams["project_id"] = "projectId"
 	pathParams["org_id"] = "orgId"
-	queryParams["ignore_ipblock_usage"] = "ignore_ipblock_usage"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -152,17 +146,17 @@ func ipBlocksGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func ipBlocksListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func ipBlocksListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["cursor"] = "Cursor"
@@ -171,31 +165,31 @@ func ipBlocksListInputType() vapiBindings_.StructType {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func IpBlocksListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.IpAddressBlockListResultBindingType)
+func ipBlocksListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.IpAddressBlockListResultBindingType)
 }
 
-func ipBlocksListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func ipBlocksListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["cursor"] = "Cursor"
@@ -204,16 +198,16 @@ func ipBlocksListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["orgId"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
 	pathParams["project_id"] = "projectId"
 	pathParams["org_id"] = "orgId"
 	queryParams["cursor"] = "cursor"
@@ -224,7 +218,7 @@ func ipBlocksListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -245,55 +239,55 @@ func ipBlocksListRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func ipBlocksPatchInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func ipBlocksPatchInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["ip_block_id"] = vapiBindings_.NewStringType()
-	fields["ip_address_block"] = vapiBindings_.NewReferenceType(nsx_policyModel.IpAddressBlockBindingType)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["ip_block_id"] = bindings.NewStringType()
+	fields["ip_address_block"] = bindings.NewReferenceType(model.IpAddressBlockBindingType)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["ip_block_id"] = "IpBlockId"
 	fieldNameMap["ip_address_block"] = "IpAddressBlock"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func IpBlocksPatchOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func ipBlocksPatchOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func ipBlocksPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func ipBlocksPatchRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["ip_block_id"] = vapiBindings_.NewStringType()
-	fields["ip_address_block"] = vapiBindings_.NewReferenceType(nsx_policyModel.IpAddressBlockBindingType)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["ip_block_id"] = bindings.NewStringType()
+	fields["ip_address_block"] = bindings.NewReferenceType(model.IpAddressBlockBindingType)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["ip_block_id"] = "IpBlockId"
 	fieldNameMap["ip_address_block"] = "IpAddressBlock"
-	paramsTypeMap["ip_block_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["ip_address_block"] = vapiBindings_.NewReferenceType(nsx_policyModel.IpAddressBlockBindingType)
-	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["ipBlockId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["ip_block_id"] = bindings.NewStringType()
+	paramsTypeMap["ip_address_block"] = bindings.NewReferenceType(model.IpAddressBlockBindingType)
+	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["orgId"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
+	paramsTypeMap["ipBlockId"] = bindings.NewStringType()
 	pathParams["ip_block_id"] = "ipBlockId"
 	pathParams["project_id"] = "projectId"
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -314,55 +308,55 @@ func ipBlocksPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func ipBlocksUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func ipBlocksUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["ip_block_id"] = vapiBindings_.NewStringType()
-	fields["ip_address_block"] = vapiBindings_.NewReferenceType(nsx_policyModel.IpAddressBlockBindingType)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["ip_block_id"] = bindings.NewStringType()
+	fields["ip_address_block"] = bindings.NewReferenceType(model.IpAddressBlockBindingType)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["ip_block_id"] = "IpBlockId"
 	fieldNameMap["ip_address_block"] = "IpAddressBlock"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func IpBlocksUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.IpAddressBlockBindingType)
+func ipBlocksUpdateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.IpAddressBlockBindingType)
 }
 
-func ipBlocksUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func ipBlocksUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["ip_block_id"] = vapiBindings_.NewStringType()
-	fields["ip_address_block"] = vapiBindings_.NewReferenceType(nsx_policyModel.IpAddressBlockBindingType)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["ip_block_id"] = bindings.NewStringType()
+	fields["ip_address_block"] = bindings.NewReferenceType(model.IpAddressBlockBindingType)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["ip_block_id"] = "IpBlockId"
 	fieldNameMap["ip_address_block"] = "IpAddressBlock"
-	paramsTypeMap["ip_block_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["ip_address_block"] = vapiBindings_.NewReferenceType(nsx_policyModel.IpAddressBlockBindingType)
-	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["ipBlockId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["ip_block_id"] = bindings.NewStringType()
+	paramsTypeMap["ip_address_block"] = bindings.NewReferenceType(model.IpAddressBlockBindingType)
+	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["orgId"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
+	paramsTypeMap["ipBlockId"] = bindings.NewStringType()
 	pathParams["ip_block_id"] = "ipBlockId"
 	pathParams["project_id"] = "projectId"
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

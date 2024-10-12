@@ -11,10 +11,10 @@
 package introspection
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiLog_ "github.com/vmware/vsphere-automation-sdk-go/runtime/log"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/log"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
 	"reflect"
 )
 
@@ -24,36 +24,37 @@ type ServiceInfo struct {
 	Operations map[string]bool
 }
 
-func (s *ServiceInfo) GetType__() vapiBindings_.BindingType {
+func (s *ServiceInfo) GetType__() bindings.BindingType {
 	return ServiceInfoBindingType()
 }
 
-func (s *ServiceInfo) GetDataValue__() (vapiData_.DataValue, []error) {
-	typeConverter := vapiBindings_.NewTypeConverter()
+func (s *ServiceInfo) GetDataValue__() (data.DataValue, []error) {
+	typeConverter := bindings.NewTypeConverter()
+	typeConverter.SetMode(bindings.JSONRPC)
 	dataVal, err := typeConverter.ConvertToVapi(s, s.GetType__())
 	if err != nil {
-		vapiLog_.Errorf("Error in ConvertToVapi for ServiceInfo._GetDataValue method - %s",
-			vapiBindings_.VAPIerrorsToError(err).Error())
+		log.Errorf("Error in ConvertToVapi for ServiceInfo._GetDataValue method - %s",
+			bindings.VAPIerrorsToError(err).Error())
 		return nil, err
 	}
 	return dataVal, nil
 }
 
-func serviceListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func serviceListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ServiceListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewSetType(vapiBindings_.NewIdType([]string{"com.vmware.vapi.service"}, ""), reflect.TypeOf(map[string]bool{}))
+func serviceListOutputType() bindings.BindingType {
+	return bindings.NewSetType(bindings.NewIdType([]string{"com.vmware.vapi.service"}, ""), reflect.TypeOf(map[string]bool{}))
 }
 
-func serviceListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func serviceListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
@@ -61,7 +62,7 @@ func serviceListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	bodyFieldsMap := map[string]string{}
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -82,36 +83,36 @@ func serviceListRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{})
 }
 
-func serviceGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func serviceGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["id"] = vapiBindings_.NewIdType([]string{"com.vmware.vapi.service"}, "")
+	fields["id"] = bindings.NewIdType([]string{"com.vmware.vapi.service"}, "")
 	fieldNameMap["id"] = "Id"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ServiceGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(ServiceInfoBindingType)
+func serviceGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(ServiceInfoBindingType)
 }
 
-func serviceGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func serviceGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["id"] = vapiBindings_.NewIdType([]string{"com.vmware.vapi.service"}, "")
+	fields["id"] = bindings.NewIdType([]string{"com.vmware.vapi.service"}, "")
 	fieldNameMap["id"] = "Id"
-	paramsTypeMap["id"] = vapiBindings_.NewIdType([]string{"com.vmware.vapi.service"}, "")
-	paramsTypeMap["id"] = vapiBindings_.NewIdType([]string{"com.vmware.vapi.service"}, "")
+	paramsTypeMap["id"] = bindings.NewIdType([]string{"com.vmware.vapi.service"}, "")
+	paramsTypeMap["id"] = bindings.NewIdType([]string{"com.vmware.vapi.service"}, "")
 	pathParams["id"] = "id"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -132,11 +133,11 @@ func serviceGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func ServiceInfoBindingType() vapiBindings_.BindingType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func ServiceInfoBindingType() bindings.BindingType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["operations"] = vapiBindings_.NewSetType(vapiBindings_.NewIdType([]string{"com.vmware.vapi.operation"}, ""), reflect.TypeOf(map[string]bool{}))
+	fields["operations"] = bindings.NewSetType(bindings.NewIdType([]string{"com.vmware.vapi.operation"}, ""), reflect.TypeOf(map[string]bool{}))
 	fieldNameMap["operations"] = "Operations"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("com.vmware.vapi.std.introspection.service.info", fields, reflect.TypeOf(ServiceInfo{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("com.vmware.vapi.std.introspection.service.info", fields, reflect.TypeOf(ServiceInfo{}), fieldNameMap, validators)
 }

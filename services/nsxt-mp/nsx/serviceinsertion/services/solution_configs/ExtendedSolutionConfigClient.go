@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package solution_configs
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type ExtendedSolutionConfigClient interface {
 
@@ -26,19 +27,17 @@ type ExtendedSolutionConfigClient interface {
 	// @param solutionConfigIdParam (required)
 	// @param extendedSolutionConfigParam (required)
 	// @return com.vmware.nsx.model.ExtendedSolutionConfig
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Create(serviceIdParam string, solutionConfigIdParam string, extendedSolutionConfigParam nsxModel.ExtendedSolutionConfig) (nsxModel.ExtendedSolutionConfig, error)
+	Create(serviceIdParam string, solutionConfigIdParam string, extendedSolutionConfigParam model.ExtendedSolutionConfig) (model.ExtendedSolutionConfig, error)
 
 	// Deletes extended solution config information for a given solution config id.
 	//
 	// @param serviceIdParam (required)
 	// @param solutionConfigIdParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -51,13 +50,12 @@ type ExtendedSolutionConfigClient interface {
 	// @param serviceIdParam (required)
 	// @param solutionConfigIdParam (required)
 	// @return com.vmware.nsx.model.ExtendedSolutionConfig
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(serviceIdParam string, solutionConfigIdParam string) (nsxModel.ExtendedSolutionConfig, error)
+	Get(serviceIdParam string, solutionConfigIdParam string) (model.ExtendedSolutionConfig, error)
 
 	// Updates a extended solution config. Extended Solution Config are service level objects, used by the NXGI partner Service inside the SVM.
 	//
@@ -65,72 +63,70 @@ type ExtendedSolutionConfigClient interface {
 	// @param solutionConfigIdParam (required)
 	// @param extendedSolutionConfigParam (required)
 	// @return com.vmware.nsx.model.ExtendedSolutionConfig
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(serviceIdParam string, solutionConfigIdParam string, extendedSolutionConfigParam nsxModel.ExtendedSolutionConfig) (nsxModel.ExtendedSolutionConfig, error)
+	Update(serviceIdParam string, solutionConfigIdParam string, extendedSolutionConfigParam model.ExtendedSolutionConfig) (model.ExtendedSolutionConfig, error)
 }
 
 type extendedSolutionConfigClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewExtendedSolutionConfigClient(connector vapiProtocolClient_.Connector) *extendedSolutionConfigClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.serviceinsertion.services.solution_configs.extended_solution_config")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"create": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewExtendedSolutionConfigClient(connector client.Connector) *extendedSolutionConfigClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.serviceinsertion.services.solution_configs.extended_solution_config")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"create": core.NewMethodIdentifier(interfaceIdentifier, "create"),
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	eIface := extendedSolutionConfigClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &eIface
 }
 
-func (eIface *extendedSolutionConfigClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (eIface *extendedSolutionConfigClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := eIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (eIface *extendedSolutionConfigClient) Create(serviceIdParam string, solutionConfigIdParam string, extendedSolutionConfigParam nsxModel.ExtendedSolutionConfig) (nsxModel.ExtendedSolutionConfig, error) {
+func (eIface *extendedSolutionConfigClient) Create(serviceIdParam string, solutionConfigIdParam string, extendedSolutionConfigParam model.ExtendedSolutionConfig) (model.ExtendedSolutionConfig, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
-	operationRestMetaData := extendedSolutionConfigCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(extendedSolutionConfigCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(extendedSolutionConfigCreateInputType(), typeConverter)
 	sv.AddStructField("ServiceId", serviceIdParam)
 	sv.AddStructField("SolutionConfigId", solutionConfigIdParam)
 	sv.AddStructField("ExtendedSolutionConfig", extendedSolutionConfigParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.ExtendedSolutionConfig
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.ExtendedSolutionConfig
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := extendedSolutionConfigCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx.serviceinsertion.services.solution_configs.extended_solution_config", "create", inputDataValue, executionContext)
-	var emptyOutput nsxModel.ExtendedSolutionConfig
+	var emptyOutput model.ExtendedSolutionConfig
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ExtendedSolutionConfigCreateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), extendedSolutionConfigCreateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.ExtendedSolutionConfig), nil
+		return output.(model.ExtendedSolutionConfig), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
@@ -139,92 +135,89 @@ func (eIface *extendedSolutionConfigClient) Create(serviceIdParam string, soluti
 func (eIface *extendedSolutionConfigClient) Delete(serviceIdParam string, solutionConfigIdParam string) error {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
-	operationRestMetaData := extendedSolutionConfigDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(extendedSolutionConfigDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(extendedSolutionConfigDeleteInputType(), typeConverter)
 	sv.AddStructField("ServiceId", serviceIdParam)
 	sv.AddStructField("SolutionConfigId", solutionConfigIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := extendedSolutionConfigDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx.serviceinsertion.services.solution_configs.extended_solution_config", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (eIface *extendedSolutionConfigClient) Get(serviceIdParam string, solutionConfigIdParam string) (nsxModel.ExtendedSolutionConfig, error) {
+func (eIface *extendedSolutionConfigClient) Get(serviceIdParam string, solutionConfigIdParam string) (model.ExtendedSolutionConfig, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
-	operationRestMetaData := extendedSolutionConfigGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(extendedSolutionConfigGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(extendedSolutionConfigGetInputType(), typeConverter)
 	sv.AddStructField("ServiceId", serviceIdParam)
 	sv.AddStructField("SolutionConfigId", solutionConfigIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.ExtendedSolutionConfig
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.ExtendedSolutionConfig
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := extendedSolutionConfigGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx.serviceinsertion.services.solution_configs.extended_solution_config", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.ExtendedSolutionConfig
+	var emptyOutput model.ExtendedSolutionConfig
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ExtendedSolutionConfigGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), extendedSolutionConfigGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.ExtendedSolutionConfig), nil
+		return output.(model.ExtendedSolutionConfig), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (eIface *extendedSolutionConfigClient) Update(serviceIdParam string, solutionConfigIdParam string, extendedSolutionConfigParam nsxModel.ExtendedSolutionConfig) (nsxModel.ExtendedSolutionConfig, error) {
+func (eIface *extendedSolutionConfigClient) Update(serviceIdParam string, solutionConfigIdParam string, extendedSolutionConfigParam model.ExtendedSolutionConfig) (model.ExtendedSolutionConfig, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
-	operationRestMetaData := extendedSolutionConfigUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(extendedSolutionConfigUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(extendedSolutionConfigUpdateInputType(), typeConverter)
 	sv.AddStructField("ServiceId", serviceIdParam)
 	sv.AddStructField("SolutionConfigId", solutionConfigIdParam)
 	sv.AddStructField("ExtendedSolutionConfig", extendedSolutionConfigParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.ExtendedSolutionConfig
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.ExtendedSolutionConfig
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := extendedSolutionConfigUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx.serviceinsertion.services.solution_configs.extended_solution_config", "update", inputDataValue, executionContext)
-	var emptyOutput nsxModel.ExtendedSolutionConfig
+	var emptyOutput model.ExtendedSolutionConfig
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ExtendedSolutionConfigUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), extendedSolutionConfigUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.ExtendedSolutionConfig), nil
+		return output.(model.ExtendedSolutionConfig), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package members
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type TransportNodesClient interface {
 
@@ -32,48 +33,43 @@ type TransportNodesClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_policy.model.PolicyGroupMembersListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(domainIdParam string, groupIdParam string, cursorParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.PolicyGroupMembersListResult, error)
+	List(domainIdParam string, groupIdParam string, cursorParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyGroupMembersListResult, error)
 }
 
 type transportNodesClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewTransportNodesClient(connector vapiProtocolClient_.Connector) *transportNodesClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.domains.groups.members.transport_nodes")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"list": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
+func NewTransportNodesClient(connector client.Connector) *transportNodesClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.domains.groups.members.transport_nodes")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"list": core.NewMethodIdentifier(interfaceIdentifier, "list"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	tIface := transportNodesClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &tIface
 }
 
-func (tIface *transportNodesClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (tIface *transportNodesClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := tIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (tIface *transportNodesClient) List(domainIdParam string, groupIdParam string, cursorParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.PolicyGroupMembersListResult, error) {
+func (tIface *transportNodesClient) List(domainIdParam string, groupIdParam string, cursorParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyGroupMembersListResult, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	executionContext := tIface.connector.NewExecutionContext()
-	operationRestMetaData := transportNodesListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(transportNodesListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(transportNodesListInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("Cursor", cursorParam)
@@ -85,22 +81,25 @@ func (tIface *transportNodesClient) List(domainIdParam string, groupIdParam stri
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.PolicyGroupMembersListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.PolicyGroupMembersListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := transportNodesListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := tIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.domains.groups.members.transport_nodes", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.PolicyGroupMembersListResult
+	var emptyOutput model.PolicyGroupMembersListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), TransportNodesListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), transportNodesListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.PolicyGroupMembersListResult), nil
+		return output.(model.PolicyGroupMembersListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), tIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

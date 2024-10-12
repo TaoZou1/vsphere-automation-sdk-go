@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package pools
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type IpPoolsClient interface {
 
@@ -26,32 +27,29 @@ type IpPoolsClient interface {
 	// @param allocationIpAddressParam (required)
 	// @param actionParam Specifies allocate or release action (required)
 	// @return com.vmware.nsx.model.AllocationIpAddress
-	//
 	// @throws ConcurrentChange  Conflict
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Allocateorrelease(poolIdParam string, allocationIpAddressParam nsxModel.AllocationIpAddress, actionParam string) (nsxModel.AllocationIpAddress, error)
+	Allocateorrelease(poolIdParam string, allocationIpAddressParam model.AllocationIpAddress, actionParam string) (model.AllocationIpAddress, error)
 
 	// Creates a new IPv4 or IPv6 address pool. Required parameters are allocation_ranges and cidr. Optional parameters are display_name, description, dns_nameservers, dns_suffix, and gateway_ip.
 	//
 	// @param ipPoolParam (required)
 	// @return com.vmware.nsx.model.IpPool
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Create(ipPoolParam nsxModel.IpPool) (nsxModel.IpPool, error)
+	Create(ipPoolParam model.IpPool) (model.IpPool, error)
 
 	// Deletes the specified IP address pool. By default, if the IpPool is used in other configurations (such as transport node template), it won't be deleted. In such situations, pass \"force=true\" as query param to force delete the IpPool
 	//
 	// @param poolIdParam IP pool ID (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -63,13 +61,12 @@ type IpPoolsClient interface {
 	//
 	// @param poolIdParam IP pool ID (required)
 	// @return com.vmware.nsx.model.IpPool
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(poolIdParam string) (nsxModel.IpPool, error)
+	Get(poolIdParam string) (model.IpPool, error)
 
 	// Returns information about the configured IP address pools. Information includes the display name and description of the pool and the details of each of the subnets in the pool, including the DNS servers, allocation ranges, gateway, and CIDR subnet address.
 	//
@@ -79,119 +76,115 @@ type IpPoolsClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx.model.IpPoolListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsxModel.IpPoolListResult, error)
+	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IpPoolListResult, error)
 
 	// Modifies the specified IP address pool. Modifiable parameters include the description, display_name, and all subnet information.
 	//
 	// @param poolIdParam IP pool ID (required)
 	// @param ipPoolParam (required)
 	// @return com.vmware.nsx.model.IpPool
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(poolIdParam string, ipPoolParam nsxModel.IpPool) (nsxModel.IpPool, error)
+	Update(poolIdParam string, ipPoolParam model.IpPool) (model.IpPool, error)
 }
 
 type ipPoolsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewIpPoolsClient(connector vapiProtocolClient_.Connector) *ipPoolsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.pools.ip_pools")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"allocateorrelease": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "allocateorrelease"),
-		"create":            vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
-		"delete":            vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":               vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":              vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"update":            vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewIpPoolsClient(connector client.Connector) *ipPoolsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.pools.ip_pools")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"allocateorrelease": core.NewMethodIdentifier(interfaceIdentifier, "allocateorrelease"),
+		"create":            core.NewMethodIdentifier(interfaceIdentifier, "create"),
+		"delete":            core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":               core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":              core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"update":            core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	iIface := ipPoolsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &iIface
 }
 
-func (iIface *ipPoolsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (iIface *ipPoolsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := iIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (iIface *ipPoolsClient) Allocateorrelease(poolIdParam string, allocationIpAddressParam nsxModel.AllocationIpAddress, actionParam string) (nsxModel.AllocationIpAddress, error) {
+func (iIface *ipPoolsClient) Allocateorrelease(poolIdParam string, allocationIpAddressParam model.AllocationIpAddress, actionParam string) (model.AllocationIpAddress, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := ipPoolsAllocateorreleaseRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ipPoolsAllocateorreleaseInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ipPoolsAllocateorreleaseInputType(), typeConverter)
 	sv.AddStructField("PoolId", poolIdParam)
 	sv.AddStructField("AllocationIpAddress", allocationIpAddressParam)
 	sv.AddStructField("Action", actionParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.AllocationIpAddress
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.AllocationIpAddress
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ipPoolsAllocateorreleaseRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx.pools.ip_pools", "allocateorrelease", inputDataValue, executionContext)
-	var emptyOutput nsxModel.AllocationIpAddress
+	var emptyOutput model.AllocationIpAddress
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), IpPoolsAllocateorreleaseOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ipPoolsAllocateorreleaseOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.AllocationIpAddress), nil
+		return output.(model.AllocationIpAddress), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (iIface *ipPoolsClient) Create(ipPoolParam nsxModel.IpPool) (nsxModel.IpPool, error) {
+func (iIface *ipPoolsClient) Create(ipPoolParam model.IpPool) (model.IpPool, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := ipPoolsCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ipPoolsCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ipPoolsCreateInputType(), typeConverter)
 	sv.AddStructField("IpPool", ipPoolParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.IpPool
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IpPool
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ipPoolsCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx.pools.ip_pools", "create", inputDataValue, executionContext)
-	var emptyOutput nsxModel.IpPool
+	var emptyOutput model.IpPool
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), IpPoolsCreateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ipPoolsCreateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.IpPool), nil
+		return output.(model.IpPool), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
@@ -200,70 +193,64 @@ func (iIface *ipPoolsClient) Create(ipPoolParam nsxModel.IpPool) (nsxModel.IpPoo
 func (iIface *ipPoolsClient) Delete(poolIdParam string, forceParam *bool) error {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := ipPoolsDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ipPoolsDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ipPoolsDeleteInputType(), typeConverter)
 	sv.AddStructField("PoolId", poolIdParam)
 	sv.AddStructField("Force", forceParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ipPoolsDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx.pools.ip_pools", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (iIface *ipPoolsClient) Get(poolIdParam string) (nsxModel.IpPool, error) {
+func (iIface *ipPoolsClient) Get(poolIdParam string) (model.IpPool, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := ipPoolsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ipPoolsGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ipPoolsGetInputType(), typeConverter)
 	sv.AddStructField("PoolId", poolIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.IpPool
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IpPool
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ipPoolsGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx.pools.ip_pools", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.IpPool
+	var emptyOutput model.IpPool
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), IpPoolsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ipPoolsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.IpPool), nil
+		return output.(model.IpPool), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (iIface *ipPoolsClient) List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsxModel.IpPoolListResult, error) {
+func (iIface *ipPoolsClient) List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IpPoolListResult, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := ipPoolsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ipPoolsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ipPoolsListInputType(), typeConverter)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)
 	sv.AddStructField("PageSize", pageSizeParam)
@@ -271,55 +258,57 @@ func (iIface *ipPoolsClient) List(cursorParam *string, includedFieldsParam *stri
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.IpPoolListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IpPoolListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ipPoolsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx.pools.ip_pools", "list", inputDataValue, executionContext)
-	var emptyOutput nsxModel.IpPoolListResult
+	var emptyOutput model.IpPoolListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), IpPoolsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ipPoolsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.IpPoolListResult), nil
+		return output.(model.IpPoolListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (iIface *ipPoolsClient) Update(poolIdParam string, ipPoolParam nsxModel.IpPool) (nsxModel.IpPool, error) {
+func (iIface *ipPoolsClient) Update(poolIdParam string, ipPoolParam model.IpPool) (model.IpPool, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := ipPoolsUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ipPoolsUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ipPoolsUpdateInputType(), typeConverter)
 	sv.AddStructField("PoolId", poolIdParam)
 	sv.AddStructField("IpPool", ipPoolParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.IpPool
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IpPool
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ipPoolsUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx.pools.ip_pools", "update", inputDataValue, executionContext)
-	var emptyOutput nsxModel.IpPool
+	var emptyOutput model.IpPool
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), IpPoolsUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ipPoolsUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.IpPool), nil
+		return output.(model.IpPool), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

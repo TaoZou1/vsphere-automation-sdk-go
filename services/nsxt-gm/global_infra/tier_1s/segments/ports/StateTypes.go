@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,10 +11,10 @@
 package ports
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_global_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-gm/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-gm/model"
 	"reflect"
 )
 
@@ -24,54 +24,54 @@ const State_GET_SOURCE_REALTIME = "realtime"
 // Possible value for ``source`` of method State#get.
 const State_GET_SOURCE_CACHED = "cached"
 
-func stateGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func stateGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["tier1_id"] = vapiBindings_.NewStringType()
-	fields["segment_id"] = vapiBindings_.NewStringType()
-	fields["port_id"] = vapiBindings_.NewStringType()
-	fields["enforcement_point_path"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["source"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["tier1_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["port_id"] = bindings.NewStringType()
+	fields["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["source"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["port_id"] = "PortId"
 	fieldNameMap["enforcement_point_path"] = "EnforcementPointPath"
 	fieldNameMap["source"] = "Source"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func StateGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_global_policyModel.SegmentPortStateBindingType)
+func stateGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.SegmentPortStateBindingType)
 }
 
-func stateGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func stateGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["tier1_id"] = vapiBindings_.NewStringType()
-	fields["segment_id"] = vapiBindings_.NewStringType()
-	fields["port_id"] = vapiBindings_.NewStringType()
-	fields["enforcement_point_path"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["source"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["tier1_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["port_id"] = bindings.NewStringType()
+	fields["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["source"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["port_id"] = "PortId"
 	fieldNameMap["enforcement_point_path"] = "EnforcementPointPath"
 	fieldNameMap["source"] = "Source"
-	paramsTypeMap["tier1_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["port_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["enforcement_point_path"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["source"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["segment_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tier1Id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segmentId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["portId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["source"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["tier1_id"] = bindings.NewStringType()
+	paramsTypeMap["port_id"] = bindings.NewStringType()
+	paramsTypeMap["segment_id"] = bindings.NewStringType()
+	paramsTypeMap["tier1Id"] = bindings.NewStringType()
+	paramsTypeMap["segmentId"] = bindings.NewStringType()
+	paramsTypeMap["portId"] = bindings.NewStringType()
 	pathParams["segment_id"] = "segmentId"
 	pathParams["tier1_id"] = "tier1Id"
 	pathParams["port_id"] = "portId"
@@ -79,7 +79,7 @@ func stateGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 	queryParams["source"] = "source"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

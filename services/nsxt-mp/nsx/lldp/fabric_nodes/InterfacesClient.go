@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package fabric_nodes
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type InterfacesClient interface {
 
@@ -25,113 +26,109 @@ type InterfacesClient interface {
 	// @param fabricNodeIdParam ID of fabric node (required)
 	// @param interfaceNameParam Interface name to read (required)
 	// @return com.vmware.nsx.model.InterfaceNeighborProperties
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(fabricNodeIdParam string, interfaceNameParam string) (nsxModel.InterfaceNeighborProperties, error)
+	Get(fabricNodeIdParam string, interfaceNameParam string) (model.InterfaceNeighborProperties, error)
 
 	// List LLDP Neighbor Properties for all interfaces of Fabric Node
 	//
 	// @param fabricNodeIdParam ID of fabric node (required)
 	// @return com.vmware.nsx.model.InterfaceNeighborPropertyListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(fabricNodeIdParam string) (nsxModel.InterfaceNeighborPropertyListResult, error)
+	List(fabricNodeIdParam string) (model.InterfaceNeighborPropertyListResult, error)
 }
 
 type interfacesClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewInterfacesClient(connector vapiProtocolClient_.Connector) *interfacesClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.lldp.fabric_nodes.interfaces")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"get":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
+func NewInterfacesClient(connector client.Connector) *interfacesClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.lldp.fabric_nodes.interfaces")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"get":  core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list": core.NewMethodIdentifier(interfaceIdentifier, "list"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	iIface := interfacesClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &iIface
 }
 
-func (iIface *interfacesClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (iIface *interfacesClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := iIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (iIface *interfacesClient) Get(fabricNodeIdParam string, interfaceNameParam string) (nsxModel.InterfaceNeighborProperties, error) {
+func (iIface *interfacesClient) Get(fabricNodeIdParam string, interfaceNameParam string) (model.InterfaceNeighborProperties, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := interfacesGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(interfacesGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(interfacesGetInputType(), typeConverter)
 	sv.AddStructField("FabricNodeId", fabricNodeIdParam)
 	sv.AddStructField("InterfaceName", interfaceNameParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.InterfaceNeighborProperties
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.InterfaceNeighborProperties
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := interfacesGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx.lldp.fabric_nodes.interfaces", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.InterfaceNeighborProperties
+	var emptyOutput model.InterfaceNeighborProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), InterfacesGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), interfacesGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.InterfaceNeighborProperties), nil
+		return output.(model.InterfaceNeighborProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (iIface *interfacesClient) List(fabricNodeIdParam string) (nsxModel.InterfaceNeighborPropertyListResult, error) {
+func (iIface *interfacesClient) List(fabricNodeIdParam string) (model.InterfaceNeighborPropertyListResult, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := interfacesListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(interfacesListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(interfacesListInputType(), typeConverter)
 	sv.AddStructField("FabricNodeId", fabricNodeIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.InterfaceNeighborPropertyListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.InterfaceNeighborPropertyListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := interfacesListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx.lldp.fabric_nodes.interfaces", "list", inputDataValue, executionContext)
-	var emptyOutput nsxModel.InterfaceNeighborPropertyListResult
+	var emptyOutput model.InterfaceNeighborPropertyListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), InterfacesListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), interfacesListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.InterfaceNeighborPropertyListResult), nil
+		return output.(model.InterfaceNeighborPropertyListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

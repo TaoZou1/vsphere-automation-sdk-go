@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,64 +11,64 @@
 package services
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func serviceEntriesDeleteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func serviceEntriesDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["service_id"] = vapiBindings_.NewStringType()
-	fields["service_entry_id"] = vapiBindings_.NewStringType()
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["service_id"] = bindings.NewStringType()
+	fields["service_entry_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["service_id"] = "ServiceId"
 	fieldNameMap["service_entry_id"] = "ServiceEntryId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ServiceEntriesDeleteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func serviceEntriesDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func serviceEntriesDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func serviceEntriesDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["service_id"] = vapiBindings_.NewStringType()
-	fields["service_entry_id"] = vapiBindings_.NewStringType()
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["service_id"] = bindings.NewStringType()
+	fields["service_entry_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["service_id"] = "ServiceId"
 	fieldNameMap["service_entry_id"] = "ServiceEntryId"
-	paramsTypeMap["service_entry_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["service_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["serviceId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["serviceEntryId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["service_entry_id"] = bindings.NewStringType()
+	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["service_id"] = bindings.NewStringType()
+	paramsTypeMap["orgId"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
+	paramsTypeMap["serviceId"] = bindings.NewStringType()
+	paramsTypeMap["serviceEntryId"] = bindings.NewStringType()
 	pathParams["service_entry_id"] = "serviceEntryId"
 	pathParams["service_id"] = "serviceId"
 	pathParams["project_id"] = "projectId"
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -89,57 +89,57 @@ func serviceEntriesDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func serviceEntriesGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func serviceEntriesGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["service_id"] = vapiBindings_.NewStringType()
-	fields["service_entry_id"] = vapiBindings_.NewStringType()
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["service_id"] = bindings.NewStringType()
+	fields["service_entry_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["service_id"] = "ServiceId"
 	fieldNameMap["service_entry_id"] = "ServiceEntryId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ServiceEntriesGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsx_policyModel.ServiceEntryBindingType)})
+func serviceEntriesGetOutputType() bindings.BindingType {
+	return bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.ServiceEntryBindingType)}, bindings.REST)
 }
 
-func serviceEntriesGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func serviceEntriesGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["service_id"] = vapiBindings_.NewStringType()
-	fields["service_entry_id"] = vapiBindings_.NewStringType()
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["service_id"] = bindings.NewStringType()
+	fields["service_entry_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["service_id"] = "ServiceId"
 	fieldNameMap["service_entry_id"] = "ServiceEntryId"
-	paramsTypeMap["service_entry_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["service_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["serviceId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["serviceEntryId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["service_entry_id"] = bindings.NewStringType()
+	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["service_id"] = bindings.NewStringType()
+	paramsTypeMap["orgId"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
+	paramsTypeMap["serviceId"] = bindings.NewStringType()
+	paramsTypeMap["serviceEntryId"] = bindings.NewStringType()
 	pathParams["service_entry_id"] = "serviceEntryId"
 	pathParams["service_id"] = "serviceId"
 	pathParams["project_id"] = "projectId"
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -160,18 +160,18 @@ func serviceEntriesGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func serviceEntriesListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func serviceEntriesListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["service_id"] = vapiBindings_.NewStringType()
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["service_id"] = bindings.NewStringType()
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["service_id"] = "ServiceId"
@@ -181,32 +181,32 @@ func serviceEntriesListInputType() vapiBindings_.StructType {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ServiceEntriesListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.ServiceEntryListResultBindingType)
+func serviceEntriesListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.ServiceEntryListResultBindingType)
 }
 
-func serviceEntriesListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func serviceEntriesListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["service_id"] = vapiBindings_.NewStringType()
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["service_id"] = bindings.NewStringType()
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["service_id"] = "ServiceId"
@@ -216,18 +216,18 @@ func serviceEntriesListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["service_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["serviceId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["service_id"] = bindings.NewStringType()
+	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["orgId"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
+	paramsTypeMap["serviceId"] = bindings.NewStringType()
 	pathParams["service_id"] = "serviceId"
 	pathParams["project_id"] = "projectId"
 	pathParams["org_id"] = "orgId"
@@ -239,7 +239,7 @@ func serviceEntriesListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -260,62 +260,62 @@ func serviceEntriesListRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func serviceEntriesPatchInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func serviceEntriesPatchInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["service_id"] = vapiBindings_.NewStringType()
-	fields["service_entry_id"] = vapiBindings_.NewStringType()
-	fields["service_entry"] = vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsx_policyModel.ServiceEntryBindingType)})
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["service_id"] = bindings.NewStringType()
+	fields["service_entry_id"] = bindings.NewStringType()
+	fields["service_entry"] = bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.ServiceEntryBindingType)}, bindings.REST)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["service_id"] = "ServiceId"
 	fieldNameMap["service_entry_id"] = "ServiceEntryId"
 	fieldNameMap["service_entry"] = "ServiceEntry"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ServiceEntriesPatchOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func serviceEntriesPatchOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func serviceEntriesPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func serviceEntriesPatchRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["service_id"] = vapiBindings_.NewStringType()
-	fields["service_entry_id"] = vapiBindings_.NewStringType()
-	fields["service_entry"] = vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsx_policyModel.ServiceEntryBindingType)})
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["service_id"] = bindings.NewStringType()
+	fields["service_entry_id"] = bindings.NewStringType()
+	fields["service_entry"] = bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.ServiceEntryBindingType)}, bindings.REST)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["service_id"] = "ServiceId"
 	fieldNameMap["service_entry_id"] = "ServiceEntryId"
 	fieldNameMap["service_entry"] = "ServiceEntry"
-	paramsTypeMap["service_entry_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["service_entry"] = vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsx_policyModel.ServiceEntryBindingType)})
-	paramsTypeMap["service_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["serviceId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["serviceEntryId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["service_entry_id"] = bindings.NewStringType()
+	paramsTypeMap["service_entry"] = bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.ServiceEntryBindingType)}, bindings.REST)
+	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["service_id"] = bindings.NewStringType()
+	paramsTypeMap["orgId"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
+	paramsTypeMap["serviceId"] = bindings.NewStringType()
+	paramsTypeMap["serviceEntryId"] = bindings.NewStringType()
 	pathParams["service_entry_id"] = "serviceEntryId"
 	pathParams["service_id"] = "serviceId"
 	pathParams["project_id"] = "projectId"
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -336,62 +336,62 @@ func serviceEntriesPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func serviceEntriesUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func serviceEntriesUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["service_id"] = vapiBindings_.NewStringType()
-	fields["service_entry_id"] = vapiBindings_.NewStringType()
-	fields["service_entry"] = vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsx_policyModel.ServiceEntryBindingType)})
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["service_id"] = bindings.NewStringType()
+	fields["service_entry_id"] = bindings.NewStringType()
+	fields["service_entry"] = bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.ServiceEntryBindingType)}, bindings.REST)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["service_id"] = "ServiceId"
 	fieldNameMap["service_entry_id"] = "ServiceEntryId"
 	fieldNameMap["service_entry"] = "ServiceEntry"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ServiceEntriesUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsx_policyModel.ServiceEntryBindingType)})
+func serviceEntriesUpdateOutputType() bindings.BindingType {
+	return bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.ServiceEntryBindingType)}, bindings.REST)
 }
 
-func serviceEntriesUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func serviceEntriesUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["service_id"] = vapiBindings_.NewStringType()
-	fields["service_entry_id"] = vapiBindings_.NewStringType()
-	fields["service_entry"] = vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsx_policyModel.ServiceEntryBindingType)})
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["service_id"] = bindings.NewStringType()
+	fields["service_entry_id"] = bindings.NewStringType()
+	fields["service_entry"] = bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.ServiceEntryBindingType)}, bindings.REST)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["service_id"] = "ServiceId"
 	fieldNameMap["service_entry_id"] = "ServiceEntryId"
 	fieldNameMap["service_entry"] = "ServiceEntry"
-	paramsTypeMap["service_entry_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["service_entry"] = vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsx_policyModel.ServiceEntryBindingType)})
-	paramsTypeMap["service_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["serviceId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["serviceEntryId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["service_entry_id"] = bindings.NewStringType()
+	paramsTypeMap["service_entry"] = bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.ServiceEntryBindingType)}, bindings.REST)
+	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["service_id"] = bindings.NewStringType()
+	paramsTypeMap["orgId"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
+	paramsTypeMap["serviceId"] = bindings.NewStringType()
+	paramsTypeMap["serviceEntryId"] = bindings.NewStringType()
 	pathParams["service_entry_id"] = "serviceEntryId"
 	pathParams["service_id"] = "serviceId"
 	pathParams["project_id"] = "projectId"
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,41 +11,41 @@
 package global_infra
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_global_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-gm/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-gm/model"
 	"reflect"
 )
 
-func onboardingCheckCompatibilityCreateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func onboardingCheckCompatibilityCreateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["site_node_connection_info"] = vapiBindings_.NewReferenceType(nsx_global_policyModel.SiteNodeConnectionInfoBindingType)
+	fields["site_node_connection_info"] = bindings.NewReferenceType(model.SiteNodeConnectionInfoBindingType)
 	fieldNameMap["site_node_connection_info"] = "SiteNodeConnectionInfo"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func OnboardingCheckCompatibilityCreateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_global_policyModel.CompatibilityCheckResultBindingType)
+func onboardingCheckCompatibilityCreateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.CompatibilityCheckResultBindingType)
 }
 
-func onboardingCheckCompatibilityCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func onboardingCheckCompatibilityCreateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["site_node_connection_info"] = vapiBindings_.NewReferenceType(nsx_global_policyModel.SiteNodeConnectionInfoBindingType)
+	fields["site_node_connection_info"] = bindings.NewReferenceType(model.SiteNodeConnectionInfoBindingType)
 	fieldNameMap["site_node_connection_info"] = "SiteNodeConnectionInfo"
-	paramsTypeMap["site_node_connection_info"] = vapiBindings_.NewReferenceType(nsx_global_policyModel.SiteNodeConnectionInfoBindingType)
+	paramsTypeMap["site_node_connection_info"] = bindings.NewReferenceType(model.SiteNodeConnectionInfoBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

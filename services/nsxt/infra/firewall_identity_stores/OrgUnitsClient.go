@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package firewall_identity_stores
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type OrgUnitsClient interface {
 
@@ -25,68 +26,66 @@ type OrgUnitsClient interface {
 	// @param firewallIdentityStoreIdParam Firewall Identity Store identifier (required)
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)
 	// @return com.vmware.nsx_policy.model.DirectoryOrgUnitListResults
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(firewallIdentityStoreIdParam string, enforcementPointPathParam *string) (nsx_policyModel.DirectoryOrgUnitListResults, error)
+	List(firewallIdentityStoreIdParam string, enforcementPointPathParam *string) (model.DirectoryOrgUnitListResults, error)
 }
 
 type orgUnitsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewOrgUnitsClient(connector vapiProtocolClient_.Connector) *orgUnitsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.firewall_identity_stores.org_units")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"list": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
+func NewOrgUnitsClient(connector client.Connector) *orgUnitsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.firewall_identity_stores.org_units")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"list": core.NewMethodIdentifier(interfaceIdentifier, "list"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	oIface := orgUnitsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &oIface
 }
 
-func (oIface *orgUnitsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (oIface *orgUnitsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := oIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (oIface *orgUnitsClient) List(firewallIdentityStoreIdParam string, enforcementPointPathParam *string) (nsx_policyModel.DirectoryOrgUnitListResults, error) {
+func (oIface *orgUnitsClient) List(firewallIdentityStoreIdParam string, enforcementPointPathParam *string) (model.DirectoryOrgUnitListResults, error) {
 	typeConverter := oIface.connector.TypeConverter()
 	executionContext := oIface.connector.NewExecutionContext()
-	operationRestMetaData := orgUnitsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(orgUnitsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(orgUnitsListInputType(), typeConverter)
 	sv.AddStructField("FirewallIdentityStoreId", firewallIdentityStoreIdParam)
 	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.DirectoryOrgUnitListResults
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.DirectoryOrgUnitListResults
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := orgUnitsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	oIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := oIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.firewall_identity_stores.org_units", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.DirectoryOrgUnitListResults
+	var emptyOutput model.DirectoryOrgUnitListResults
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), OrgUnitsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), orgUnitsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.DirectoryOrgUnitListResults), nil
+		return output.(model.DirectoryOrgUnitListResults), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), oIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,24 +11,24 @@
 package groups
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func memberGroupsListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func memberGroupsListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["firewall_identity_store_id"] = vapiBindings_.NewStringType()
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["enforcement_point_path"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["firewall_identity_store_id"] = bindings.NewStringType()
+	fields["group_id"] = bindings.NewStringType()
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["firewall_identity_store_id"] = "FirewallIdentityStoreId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["cursor"] = "Cursor"
@@ -37,31 +37,31 @@ func memberGroupsListInputType() vapiBindings_.StructType {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func MemberGroupsListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.DirectoryGroupMemberListResultsBindingType)
+func memberGroupsListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.DirectoryGroupMemberListResultsBindingType)
 }
 
-func memberGroupsListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func memberGroupsListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["firewall_identity_store_id"] = vapiBindings_.NewStringType()
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["enforcement_point_path"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["firewall_identity_store_id"] = bindings.NewStringType()
+	fields["group_id"] = bindings.NewStringType()
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["firewall_identity_store_id"] = "FirewallIdentityStoreId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["cursor"] = "Cursor"
@@ -70,16 +70,16 @@ func memberGroupsListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["firewall_identity_store_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["group_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["enforcement_point_path"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	paramsTypeMap["firewallIdentityStoreId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["groupId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["firewall_identity_store_id"] = bindings.NewStringType()
+	paramsTypeMap["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["group_id"] = bindings.NewStringType()
+	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["firewallIdentityStoreId"] = bindings.NewStringType()
+	paramsTypeMap["groupId"] = bindings.NewStringType()
 	pathParams["group_id"] = "groupId"
 	pathParams["firewall_identity_store_id"] = "firewallIdentityStoreId"
 	queryParams["cursor"] = "cursor"
@@ -90,7 +90,7 @@ func memberGroupsListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

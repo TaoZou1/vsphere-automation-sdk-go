@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package drafts
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_global_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-gm/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-gm/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type Aggregated_with_paginationClient interface {
 
@@ -26,69 +27,67 @@ type Aggregated_with_paginationClient interface {
 	// @param requestIdParam Request identifier to track subsequent API calls (optional)
 	// @param rootPathParam Path of the root object of subtree (optional)
 	// @return com.vmware.nsx_global_policy.model.PolicyDraftPaginatedAggregatedConfigurationResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(draftIdParam string, requestIdParam *string, rootPathParam *string) (nsx_global_policyModel.PolicyDraftPaginatedAggregatedConfigurationResult, error)
+	Get(draftIdParam string, requestIdParam *string, rootPathParam *string) (model.PolicyDraftPaginatedAggregatedConfigurationResult, error)
 }
 
 type aggregated_with_paginationClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewAggregated_with_paginationClient(connector vapiProtocolClient_.Connector) *aggregated_with_paginationClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_global_policy.global_infra.drafts.aggregated_with_pagination")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"get": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
+func NewAggregated_with_paginationClient(connector client.Connector) *aggregated_with_paginationClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_global_policy.global_infra.drafts.aggregated_with_pagination")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"get": core.NewMethodIdentifier(interfaceIdentifier, "get"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	aIface := aggregated_with_paginationClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &aIface
 }
 
-func (aIface *aggregated_with_paginationClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (aIface *aggregated_with_paginationClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := aIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (aIface *aggregated_with_paginationClient) Get(draftIdParam string, requestIdParam *string, rootPathParam *string) (nsx_global_policyModel.PolicyDraftPaginatedAggregatedConfigurationResult, error) {
+func (aIface *aggregated_with_paginationClient) Get(draftIdParam string, requestIdParam *string, rootPathParam *string) (model.PolicyDraftPaginatedAggregatedConfigurationResult, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	executionContext := aIface.connector.NewExecutionContext()
-	operationRestMetaData := aggregatedWithPaginationGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(aggregatedWithPaginationGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(aggregatedWithPaginationGetInputType(), typeConverter)
 	sv.AddStructField("DraftId", draftIdParam)
 	sv.AddStructField("RequestId", requestIdParam)
 	sv.AddStructField("RootPath", rootPathParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_global_policyModel.PolicyDraftPaginatedAggregatedConfigurationResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.PolicyDraftPaginatedAggregatedConfigurationResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := aggregatedWithPaginationGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := aIface.connector.GetApiProvider().Invoke("com.vmware.nsx_global_policy.global_infra.drafts.aggregated_with_pagination", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_global_policyModel.PolicyDraftPaginatedAggregatedConfigurationResult
+	var emptyOutput model.PolicyDraftPaginatedAggregatedConfigurationResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), AggregatedWithPaginationGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), aggregatedWithPaginationGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_global_policyModel.PolicyDraftPaginatedAggregatedConfigurationResult), nil
+		return output.(model.PolicyDraftPaginatedAggregatedConfigurationResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), aIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

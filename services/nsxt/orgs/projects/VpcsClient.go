@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package projects
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type VpcsClient interface {
 
@@ -25,7 +26,6 @@ type VpcsClient interface {
 	// @param orgIdParam (required)
 	// @param projectIdParam (required)
 	// @param vpcIdParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -33,21 +33,20 @@ type VpcsClient interface {
 	// @throws NotFound  Not Found
 	Delete(orgIdParam string, projectIdParam string, vpcIdParam string) error
 
-	// Get VPC
+	// Get Vpc
 	//
 	// @param orgIdParam (required)
 	// @param projectIdParam (required)
 	// @param vpcIdParam (required)
 	// @return com.vmware.nsx_policy.model.Vpc
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(orgIdParam string, projectIdParam string, vpcIdParam string) (nsx_policyModel.Vpc, error)
+	Get(orgIdParam string, projectIdParam string, vpcIdParam string) (model.Vpc, error)
 
-	// Paginated list of VPC.
+	// Paginated list of Vpc.
 	//
 	// @param orgIdParam (required)
 	// @param projectIdParam (required)
@@ -58,13 +57,12 @@ type VpcsClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_policy.model.VpcListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(orgIdParam string, projectIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.VpcListResult, error)
+	List(orgIdParam string, projectIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.VpcListResult, error)
 
 	// If a VPC with the vpc-id is not already present, create a new VPC. If it already exists, update the VPC.
 	//
@@ -72,13 +70,12 @@ type VpcsClient interface {
 	// @param projectIdParam (required)
 	// @param vpcIdParam (required)
 	// @param vpcParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(orgIdParam string, projectIdParam string, vpcIdParam string, vpcParam nsx_policyModel.Vpc) error
+	Patch(orgIdParam string, projectIdParam string, vpcIdParam string, vpcParam model.Vpc) error
 
 	// Update the VPC.
 	//
@@ -87,114 +84,107 @@ type VpcsClient interface {
 	// @param vpcIdParam (required)
 	// @param vpcParam (required)
 	// @return com.vmware.nsx_policy.model.Vpc
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(orgIdParam string, projectIdParam string, vpcIdParam string, vpcParam nsx_policyModel.Vpc) (nsx_policyModel.Vpc, error)
+	Update(orgIdParam string, projectIdParam string, vpcIdParam string, vpcParam model.Vpc) (model.Vpc, error)
 }
 
 type vpcsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewVpcsClient(connector vapiProtocolClient_.Connector) *vpcsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.orgs.projects.vpcs")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"patch":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewVpcsClient(connector client.Connector) *vpcsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.orgs.projects.vpcs")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	vIface := vpcsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &vIface
 }
 
-func (vIface *vpcsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (vIface *vpcsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := vIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
 func (vIface *vpcsClient) Delete(orgIdParam string, projectIdParam string, vpcIdParam string) error {
 	typeConverter := vIface.connector.TypeConverter()
 	executionContext := vIface.connector.NewExecutionContext()
-	operationRestMetaData := vpcsDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(vpcsDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(vpcsDeleteInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("VpcId", vpcIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := vpcsDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := vIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.orgs.projects.vpcs", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), vIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (vIface *vpcsClient) Get(orgIdParam string, projectIdParam string, vpcIdParam string) (nsx_policyModel.Vpc, error) {
+func (vIface *vpcsClient) Get(orgIdParam string, projectIdParam string, vpcIdParam string) (model.Vpc, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	executionContext := vIface.connector.NewExecutionContext()
-	operationRestMetaData := vpcsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(vpcsGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(vpcsGetInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("VpcId", vpcIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.Vpc
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.Vpc
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := vpcsGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := vIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.orgs.projects.vpcs", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.Vpc
+	var emptyOutput model.Vpc
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), VpcsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), vpcsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.Vpc), nil
+		return output.(model.Vpc), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), vIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (vIface *vpcsClient) List(orgIdParam string, projectIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.VpcListResult, error) {
+func (vIface *vpcsClient) List(orgIdParam string, projectIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.VpcListResult, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	executionContext := vIface.connector.NewExecutionContext()
-	operationRestMetaData := vpcsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(vpcsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(vpcsListInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Cursor", cursorParam)
@@ -205,86 +195,87 @@ func (vIface *vpcsClient) List(orgIdParam string, projectIdParam string, cursorP
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.VpcListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.VpcListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := vpcsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := vIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.orgs.projects.vpcs", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.VpcListResult
+	var emptyOutput model.VpcListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), VpcsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), vpcsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.VpcListResult), nil
+		return output.(model.VpcListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), vIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (vIface *vpcsClient) Patch(orgIdParam string, projectIdParam string, vpcIdParam string, vpcParam nsx_policyModel.Vpc) error {
+func (vIface *vpcsClient) Patch(orgIdParam string, projectIdParam string, vpcIdParam string, vpcParam model.Vpc) error {
 	typeConverter := vIface.connector.TypeConverter()
 	executionContext := vIface.connector.NewExecutionContext()
-	operationRestMetaData := vpcsPatchRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(vpcsPatchInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(vpcsPatchInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("VpcId", vpcIdParam)
 	sv.AddStructField("Vpc", vpcParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := vpcsPatchRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := vIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.orgs.projects.vpcs", "patch", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), vIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (vIface *vpcsClient) Update(orgIdParam string, projectIdParam string, vpcIdParam string, vpcParam nsx_policyModel.Vpc) (nsx_policyModel.Vpc, error) {
+func (vIface *vpcsClient) Update(orgIdParam string, projectIdParam string, vpcIdParam string, vpcParam model.Vpc) (model.Vpc, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	executionContext := vIface.connector.NewExecutionContext()
-	operationRestMetaData := vpcsUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(vpcsUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(vpcsUpdateInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("VpcId", vpcIdParam)
 	sv.AddStructField("Vpc", vpcParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.Vpc
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.Vpc
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := vpcsUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := vIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.orgs.projects.vpcs", "update", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.Vpc
+	var emptyOutput model.Vpc
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), VpcsUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), vpcsUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.Vpc), nil
+		return output.(model.Vpc), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), vIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

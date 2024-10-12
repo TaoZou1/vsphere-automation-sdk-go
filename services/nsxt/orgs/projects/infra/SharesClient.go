@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package infra
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type SharesClient interface {
 
@@ -25,7 +26,6 @@ type SharesClient interface {
 	// @param orgIdParam The organization ID (required)
 	// @param projectIdParam The project ID (required)
 	// @param shareIdParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -39,13 +39,12 @@ type SharesClient interface {
 	// @param projectIdParam The project ID (required)
 	// @param shareIdParam Share ID (required)
 	// @return com.vmware.nsx_policy.model.Share
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(orgIdParam string, projectIdParam string, shareIdParam string) (nsx_policyModel.Share, error)
+	Get(orgIdParam string, projectIdParam string, shareIdParam string) (model.Share, error)
 
 	// List shares
 	//
@@ -58,13 +57,12 @@ type SharesClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_policy.model.ShareListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(orgIdParam string, projectIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.ShareListResult, error)
+	List(orgIdParam string, projectIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ShareListResult, error)
 
 	// If a Share with the given ID already exists, update the share entity.
 	//
@@ -72,13 +70,12 @@ type SharesClient interface {
 	// @param projectIdParam The project ID (required)
 	// @param shareIdParam Share ID (required)
 	// @param shareParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(orgIdParam string, projectIdParam string, shareIdParam string, shareParam nsx_policyModel.Share) error
+	Patch(orgIdParam string, projectIdParam string, shareIdParam string, shareParam model.Share) error
 
 	// If a Share with the given ID already exists, and the revision is 0, throw error
 	//
@@ -87,114 +84,107 @@ type SharesClient interface {
 	// @param shareIdParam Share ID (required)
 	// @param shareParam (required)
 	// @return com.vmware.nsx_policy.model.Share
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(orgIdParam string, projectIdParam string, shareIdParam string, shareParam nsx_policyModel.Share) (nsx_policyModel.Share, error)
+	Update(orgIdParam string, projectIdParam string, shareIdParam string, shareParam model.Share) (model.Share, error)
 }
 
 type sharesClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewSharesClient(connector vapiProtocolClient_.Connector) *sharesClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.orgs.projects.infra.shares")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"patch":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewSharesClient(connector client.Connector) *sharesClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.orgs.projects.infra.shares")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	sIface := sharesClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &sIface
 }
 
-func (sIface *sharesClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (sIface *sharesClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := sIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
 func (sIface *sharesClient) Delete(orgIdParam string, projectIdParam string, shareIdParam string) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := sharesDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(sharesDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(sharesDeleteInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("ShareId", shareIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := sharesDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.orgs.projects.infra.shares", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (sIface *sharesClient) Get(orgIdParam string, projectIdParam string, shareIdParam string) (nsx_policyModel.Share, error) {
+func (sIface *sharesClient) Get(orgIdParam string, projectIdParam string, shareIdParam string) (model.Share, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := sharesGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(sharesGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(sharesGetInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("ShareId", shareIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.Share
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.Share
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := sharesGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.orgs.projects.infra.shares", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.Share
+	var emptyOutput model.Share
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), SharesGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), sharesGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.Share), nil
+		return output.(model.Share), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (sIface *sharesClient) List(orgIdParam string, projectIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.ShareListResult, error) {
+func (sIface *sharesClient) List(orgIdParam string, projectIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ShareListResult, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := sharesListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(sharesListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(sharesListInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Cursor", cursorParam)
@@ -205,86 +195,87 @@ func (sIface *sharesClient) List(orgIdParam string, projectIdParam string, curso
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.ShareListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.ShareListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := sharesListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.orgs.projects.infra.shares", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.ShareListResult
+	var emptyOutput model.ShareListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), SharesListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), sharesListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.ShareListResult), nil
+		return output.(model.ShareListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (sIface *sharesClient) Patch(orgIdParam string, projectIdParam string, shareIdParam string, shareParam nsx_policyModel.Share) error {
+func (sIface *sharesClient) Patch(orgIdParam string, projectIdParam string, shareIdParam string, shareParam model.Share) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := sharesPatchRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(sharesPatchInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(sharesPatchInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("ShareId", shareIdParam)
 	sv.AddStructField("Share", shareParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := sharesPatchRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.orgs.projects.infra.shares", "patch", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (sIface *sharesClient) Update(orgIdParam string, projectIdParam string, shareIdParam string, shareParam nsx_policyModel.Share) (nsx_policyModel.Share, error) {
+func (sIface *sharesClient) Update(orgIdParam string, projectIdParam string, shareIdParam string, shareParam model.Share) (model.Share, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := sharesUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(sharesUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(sharesUpdateInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("ShareId", shareIdParam)
 	sv.AddStructField("Share", shareParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.Share
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.Share
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := sharesUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.orgs.projects.infra.shares", "update", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.Share
+	var emptyOutput model.Share
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), SharesUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), sharesUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.Share), nil
+		return output.(model.Share), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

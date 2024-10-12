@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,21 +9,21 @@
 package global_infra
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_global_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-gm/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-gm/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type GlobalManagersClient interface {
 
 	// Delete a particular global manager under Infra. Global Manager id 'self' is reserved and can be used for referring to local logged in Global Manager. Example - /infra/global-managers/self
 	//
 	// @param globalManagerIdParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -35,13 +35,12 @@ type GlobalManagersClient interface {
 	//
 	// @param globalManagerIdParam (required)
 	// @return com.vmware.nsx_global_policy.model.GlobalManager
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(globalManagerIdParam string) (nsx_global_policyModel.GlobalManager, error)
+	Get(globalManagerIdParam string) (model.GlobalManager, error)
 
 	// List Global Managers under Infra.
 	//
@@ -52,26 +51,24 @@ type GlobalManagersClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_global_policy.model.GlobalManagerListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_global_policyModel.GlobalManagerListResult, error)
+	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.GlobalManagerListResult, error)
 
 	// Create or patch a Global Manager under Infra. Global Manager id 'self' is reserved and can be used for referring to local logged in Global Manager. Example - /infra/global-managers/self
 	//
 	// @param globalManagerIdParam (required)
 	// @param globalManagerParam (required)
 	// @param forceParam Indciates force switchover to Active (optional)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(globalManagerIdParam string, globalManagerParam nsx_global_policyModel.GlobalManager, forceParam *bool) error
+	Patch(globalManagerIdParam string, globalManagerParam model.GlobalManager, forceParam *bool) error
 
 	// Create or fully replace Global Manager under Infra. Revision is optional for creation and required for update. Global Manager id 'self' is reserved and can be used for referring to local logged in Global Manager. Example - /infra/global-managers/self
 	//
@@ -79,110 +76,103 @@ type GlobalManagersClient interface {
 	// @param globalManagerParam (required)
 	// @param forceParam Indciates force switchover to Active (optional)
 	// @return com.vmware.nsx_global_policy.model.GlobalManager
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(globalManagerIdParam string, globalManagerParam nsx_global_policyModel.GlobalManager, forceParam *bool) (nsx_global_policyModel.GlobalManager, error)
+	Update(globalManagerIdParam string, globalManagerParam model.GlobalManager, forceParam *bool) (model.GlobalManager, error)
 }
 
 type globalManagersClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewGlobalManagersClient(connector vapiProtocolClient_.Connector) *globalManagersClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_global_policy.global_infra.global_managers")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"patch":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewGlobalManagersClient(connector client.Connector) *globalManagersClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_global_policy.global_infra.global_managers")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	gIface := globalManagersClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &gIface
 }
 
-func (gIface *globalManagersClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (gIface *globalManagersClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := gIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
 func (gIface *globalManagersClient) Delete(globalManagerIdParam string) error {
 	typeConverter := gIface.connector.TypeConverter()
 	executionContext := gIface.connector.NewExecutionContext()
-	operationRestMetaData := globalManagersDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(globalManagersDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(globalManagersDeleteInputType(), typeConverter)
 	sv.AddStructField("GlobalManagerId", globalManagerIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := globalManagersDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	gIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := gIface.connector.GetApiProvider().Invoke("com.vmware.nsx_global_policy.global_infra.global_managers", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), gIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (gIface *globalManagersClient) Get(globalManagerIdParam string) (nsx_global_policyModel.GlobalManager, error) {
+func (gIface *globalManagersClient) Get(globalManagerIdParam string) (model.GlobalManager, error) {
 	typeConverter := gIface.connector.TypeConverter()
 	executionContext := gIface.connector.NewExecutionContext()
-	operationRestMetaData := globalManagersGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(globalManagersGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(globalManagersGetInputType(), typeConverter)
 	sv.AddStructField("GlobalManagerId", globalManagerIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_global_policyModel.GlobalManager
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.GlobalManager
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := globalManagersGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	gIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := gIface.connector.GetApiProvider().Invoke("com.vmware.nsx_global_policy.global_infra.global_managers", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_global_policyModel.GlobalManager
+	var emptyOutput model.GlobalManager
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), GlobalManagersGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), globalManagersGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_global_policyModel.GlobalManager), nil
+		return output.(model.GlobalManager), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), gIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (gIface *globalManagersClient) List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_global_policyModel.GlobalManagerListResult, error) {
+func (gIface *globalManagersClient) List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.GlobalManagerListResult, error) {
 	typeConverter := gIface.connector.TypeConverter()
 	executionContext := gIface.connector.NewExecutionContext()
-	operationRestMetaData := globalManagersListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(globalManagersListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(globalManagersListInputType(), typeConverter)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IncludeMarkForDeleteObjects", includeMarkForDeleteObjectsParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)
@@ -191,84 +181,85 @@ func (gIface *globalManagersClient) List(cursorParam *string, includeMarkForDele
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_global_policyModel.GlobalManagerListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.GlobalManagerListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := globalManagersListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	gIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := gIface.connector.GetApiProvider().Invoke("com.vmware.nsx_global_policy.global_infra.global_managers", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_global_policyModel.GlobalManagerListResult
+	var emptyOutput model.GlobalManagerListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), GlobalManagersListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), globalManagersListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_global_policyModel.GlobalManagerListResult), nil
+		return output.(model.GlobalManagerListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), gIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (gIface *globalManagersClient) Patch(globalManagerIdParam string, globalManagerParam nsx_global_policyModel.GlobalManager, forceParam *bool) error {
+func (gIface *globalManagersClient) Patch(globalManagerIdParam string, globalManagerParam model.GlobalManager, forceParam *bool) error {
 	typeConverter := gIface.connector.TypeConverter()
 	executionContext := gIface.connector.NewExecutionContext()
-	operationRestMetaData := globalManagersPatchRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(globalManagersPatchInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(globalManagersPatchInputType(), typeConverter)
 	sv.AddStructField("GlobalManagerId", globalManagerIdParam)
 	sv.AddStructField("GlobalManager", globalManagerParam)
 	sv.AddStructField("Force", forceParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := globalManagersPatchRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	gIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := gIface.connector.GetApiProvider().Invoke("com.vmware.nsx_global_policy.global_infra.global_managers", "patch", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), gIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (gIface *globalManagersClient) Update(globalManagerIdParam string, globalManagerParam nsx_global_policyModel.GlobalManager, forceParam *bool) (nsx_global_policyModel.GlobalManager, error) {
+func (gIface *globalManagersClient) Update(globalManagerIdParam string, globalManagerParam model.GlobalManager, forceParam *bool) (model.GlobalManager, error) {
 	typeConverter := gIface.connector.TypeConverter()
 	executionContext := gIface.connector.NewExecutionContext()
-	operationRestMetaData := globalManagersUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(globalManagersUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(globalManagersUpdateInputType(), typeConverter)
 	sv.AddStructField("GlobalManagerId", globalManagerIdParam)
 	sv.AddStructField("GlobalManager", globalManagerParam)
 	sv.AddStructField("Force", forceParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_global_policyModel.GlobalManager
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.GlobalManager
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := globalManagersUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	gIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := gIface.connector.GetApiProvider().Invoke("com.vmware.nsx_global_policy.global_infra.global_managers", "update", inputDataValue, executionContext)
-	var emptyOutput nsx_global_policyModel.GlobalManager
+	var emptyOutput model.GlobalManager
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), GlobalManagersUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), globalManagersUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_global_policyModel.GlobalManager), nil
+		return output.(model.GlobalManager), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), gIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

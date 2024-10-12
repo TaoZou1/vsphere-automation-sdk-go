@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package orgs
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	vmcModel "github.com/vmware/vsphere-automation-sdk-go/services/vmc/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vmc/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type SddcTemplatesClient interface {
 
@@ -25,151 +26,145 @@ type SddcTemplatesClient interface {
 	// @param orgParam Organization identifier (required)
 	// @param templateIdParam SDDC Template identifier (required)
 	// @return com.vmware.vmc.model.Task
-	//
 	// @throws Unauthenticated  Unauthorized
 	// @throws Unauthorized  Forbidden
-	Delete(orgParam string, templateIdParam string) (vmcModel.Task, error)
+	Delete(orgParam string, templateIdParam string) (model.Task, error)
 
 	// Get configuration template by given template id.
 	//
 	// @param orgParam Organization identifier (required)
 	// @param templateIdParam SDDC Template identifier (required)
 	// @return com.vmware.vmc.model.SddcTemplate
-	//
 	// @throws Unauthenticated  Unauthorized
 	// @throws Unauthorized  Forbidden
 	// @throws NotFound  Cannot find the SDDC Template with given identifier
-	Get(orgParam string, templateIdParam string) (vmcModel.SddcTemplate, error)
+	Get(orgParam string, templateIdParam string) (model.SddcTemplate, error)
 
 	// List all available SDDC configuration templates in an organization
 	//
 	// @param orgParam Organization identifier (required)
-	//
 	// @throws Unauthenticated  Unauthorized
 	// @throws Unauthorized  Forbidden
-	List(orgParam string) ([]vmcModel.SddcTemplate, error)
+	List(orgParam string) ([]model.SddcTemplate, error)
 }
 
 type sddcTemplatesClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewSddcTemplatesClient(connector vapiProtocolClient_.Connector) *sddcTemplatesClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.vmc.orgs.sddc_templates")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
+func NewSddcTemplatesClient(connector client.Connector) *sddcTemplatesClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.vmc.orgs.sddc_templates")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	sIface := sddcTemplatesClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &sIface
 }
 
-func (sIface *sddcTemplatesClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (sIface *sddcTemplatesClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := sIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (sIface *sddcTemplatesClient) Delete(orgParam string, templateIdParam string) (vmcModel.Task, error) {
+func (sIface *sddcTemplatesClient) Delete(orgParam string, templateIdParam string) (model.Task, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(sddcTemplatesDeleteInputType(), typeConverter)
+	sv.AddStructField("Org", orgParam)
+	sv.AddStructField("TemplateId", templateIdParam)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput model.Task
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+	}
 	operationRestMetaData := sddcTemplatesDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(sddcTemplatesDeleteInputType(), typeConverter)
-	sv.AddStructField("Org", orgParam)
-	sv.AddStructField("TemplateId", templateIdParam)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput vmcModel.Task
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
-	}
-
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.vmc.orgs.sddc_templates", "delete", inputDataValue, executionContext)
-	var emptyOutput vmcModel.Task
+	var emptyOutput model.Task
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), SddcTemplatesDeleteOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), sddcTemplatesDeleteOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(vmcModel.Task), nil
+		return output.(model.Task), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (sIface *sddcTemplatesClient) Get(orgParam string, templateIdParam string) (vmcModel.SddcTemplate, error) {
+func (sIface *sddcTemplatesClient) Get(orgParam string, templateIdParam string) (model.SddcTemplate, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := sddcTemplatesGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(sddcTemplatesGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(sddcTemplatesGetInputType(), typeConverter)
 	sv.AddStructField("Org", orgParam)
 	sv.AddStructField("TemplateId", templateIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput vmcModel.SddcTemplate
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.SddcTemplate
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := sddcTemplatesGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.vmc.orgs.sddc_templates", "get", inputDataValue, executionContext)
-	var emptyOutput vmcModel.SddcTemplate
+	var emptyOutput model.SddcTemplate
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), SddcTemplatesGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), sddcTemplatesGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(vmcModel.SddcTemplate), nil
+		return output.(model.SddcTemplate), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (sIface *sddcTemplatesClient) List(orgParam string) ([]vmcModel.SddcTemplate, error) {
+func (sIface *sddcTemplatesClient) List(orgParam string) ([]model.SddcTemplate, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := sddcTemplatesListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(sddcTemplatesListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(sddcTemplatesListInputType(), typeConverter)
 	sv.AddStructField("Org", orgParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput []vmcModel.SddcTemplate
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput []model.SddcTemplate
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := sddcTemplatesListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.vmc.orgs.sddc_templates", "list", inputDataValue, executionContext)
-	var emptyOutput []vmcModel.SddcTemplate
+	var emptyOutput []model.SddcTemplate
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), SddcTemplatesListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), sddcTemplatesListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.([]vmcModel.SddcTemplate), nil
+		return output.([]model.SddcTemplate), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

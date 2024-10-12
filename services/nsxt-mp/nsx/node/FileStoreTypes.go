@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,48 +11,48 @@
 package node
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 	"reflect"
 )
 
-func fileStoreCopyfromremotefileInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func fileStoreCopyfromremotefileInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["file_name"] = vapiBindings_.NewStringType()
-	fields["copy_from_remote_file_properties"] = vapiBindings_.NewReferenceType(nsxModel.CopyFromRemoteFilePropertiesBindingType)
+	fields["file_name"] = bindings.NewStringType()
+	fields["copy_from_remote_file_properties"] = bindings.NewReferenceType(model.CopyFromRemoteFilePropertiesBindingType)
 	fieldNameMap["file_name"] = "FileName"
 	fieldNameMap["copy_from_remote_file_properties"] = "CopyFromRemoteFileProperties"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func FileStoreCopyfromremotefileOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.FilePropertiesBindingType)
+func fileStoreCopyfromremotefileOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.FilePropertiesBindingType)
 }
 
-func fileStoreCopyfromremotefileRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func fileStoreCopyfromremotefileRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["file_name"] = vapiBindings_.NewStringType()
-	fields["copy_from_remote_file_properties"] = vapiBindings_.NewReferenceType(nsxModel.CopyFromRemoteFilePropertiesBindingType)
+	fields["file_name"] = bindings.NewStringType()
+	fields["copy_from_remote_file_properties"] = bindings.NewReferenceType(model.CopyFromRemoteFilePropertiesBindingType)
 	fieldNameMap["file_name"] = "FileName"
 	fieldNameMap["copy_from_remote_file_properties"] = "CopyFromRemoteFileProperties"
-	paramsTypeMap["copy_from_remote_file_properties"] = vapiBindings_.NewReferenceType(nsxModel.CopyFromRemoteFilePropertiesBindingType)
-	paramsTypeMap["file_name"] = vapiBindings_.NewStringType()
-	paramsTypeMap["fileName"] = vapiBindings_.NewStringType()
+	paramsTypeMap["file_name"] = bindings.NewStringType()
+	paramsTypeMap["copy_from_remote_file_properties"] = bindings.NewReferenceType(model.CopyFromRemoteFilePropertiesBindingType)
+	paramsTypeMap["fileName"] = bindings.NewStringType()
 	pathParams["file_name"] = "fileName"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -73,41 +73,41 @@ func fileStoreCopyfromremotefileRestMetadata() vapiProtocol_.OperationRestMetada
 		map[string]int{"com.vmware.vapi.std.errors.concurrent_change": 409, "com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.timed_out": 500, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func fileStoreCopytoremotefileInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func fileStoreCopytoremotefileInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["file_name"] = vapiBindings_.NewStringType()
-	fields["copy_to_remote_file_properties"] = vapiBindings_.NewReferenceType(nsxModel.CopyToRemoteFilePropertiesBindingType)
+	fields["file_name"] = bindings.NewStringType()
+	fields["copy_to_remote_file_properties"] = bindings.NewReferenceType(model.CopyToRemoteFilePropertiesBindingType)
 	fieldNameMap["file_name"] = "FileName"
 	fieldNameMap["copy_to_remote_file_properties"] = "CopyToRemoteFileProperties"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func FileStoreCopytoremotefileOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func fileStoreCopytoremotefileOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func fileStoreCopytoremotefileRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func fileStoreCopytoremotefileRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["file_name"] = vapiBindings_.NewStringType()
-	fields["copy_to_remote_file_properties"] = vapiBindings_.NewReferenceType(nsxModel.CopyToRemoteFilePropertiesBindingType)
+	fields["file_name"] = bindings.NewStringType()
+	fields["copy_to_remote_file_properties"] = bindings.NewReferenceType(model.CopyToRemoteFilePropertiesBindingType)
 	fieldNameMap["file_name"] = "FileName"
 	fieldNameMap["copy_to_remote_file_properties"] = "CopyToRemoteFileProperties"
-	paramsTypeMap["file_name"] = vapiBindings_.NewStringType()
-	paramsTypeMap["copy_to_remote_file_properties"] = vapiBindings_.NewReferenceType(nsxModel.CopyToRemoteFilePropertiesBindingType)
-	paramsTypeMap["fileName"] = vapiBindings_.NewStringType()
+	paramsTypeMap["copy_to_remote_file_properties"] = bindings.NewReferenceType(model.CopyToRemoteFilePropertiesBindingType)
+	paramsTypeMap["file_name"] = bindings.NewStringType()
+	paramsTypeMap["fileName"] = bindings.NewStringType()
 	pathParams["file_name"] = "fileName"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -128,34 +128,34 @@ func fileStoreCopytoremotefileRestMetadata() vapiProtocol_.OperationRestMetadata
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.timed_out": 500, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func fileStoreCreateremotedirectoryInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func fileStoreCreateremotedirectoryInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["create_remote_directory_properties"] = vapiBindings_.NewReferenceType(nsxModel.CreateRemoteDirectoryPropertiesBindingType)
+	fields["create_remote_directory_properties"] = bindings.NewReferenceType(model.CreateRemoteDirectoryPropertiesBindingType)
 	fieldNameMap["create_remote_directory_properties"] = "CreateRemoteDirectoryProperties"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func FileStoreCreateremotedirectoryOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func fileStoreCreateremotedirectoryOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func fileStoreCreateremotedirectoryRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func fileStoreCreateremotedirectoryRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["create_remote_directory_properties"] = vapiBindings_.NewReferenceType(nsxModel.CreateRemoteDirectoryPropertiesBindingType)
+	fields["create_remote_directory_properties"] = bindings.NewReferenceType(model.CreateRemoteDirectoryPropertiesBindingType)
 	fieldNameMap["create_remote_directory_properties"] = "CreateRemoteDirectoryProperties"
-	paramsTypeMap["create_remote_directory_properties"] = vapiBindings_.NewReferenceType(nsxModel.CreateRemoteDirectoryPropertiesBindingType)
+	paramsTypeMap["create_remote_directory_properties"] = bindings.NewReferenceType(model.CreateRemoteDirectoryPropertiesBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -176,36 +176,36 @@ func fileStoreCreateremotedirectoryRestMetadata() vapiProtocol_.OperationRestMet
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.timed_out": 500, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func fileStoreDeleteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func fileStoreDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["file_name"] = vapiBindings_.NewStringType()
+	fields["file_name"] = bindings.NewStringType()
 	fieldNameMap["file_name"] = "FileName"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func FileStoreDeleteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func fileStoreDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func fileStoreDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func fileStoreDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["file_name"] = vapiBindings_.NewStringType()
+	fields["file_name"] = bindings.NewStringType()
 	fieldNameMap["file_name"] = "FileName"
-	paramsTypeMap["file_name"] = vapiBindings_.NewStringType()
-	paramsTypeMap["fileName"] = vapiBindings_.NewStringType()
+	paramsTypeMap["file_name"] = bindings.NewStringType()
+	paramsTypeMap["fileName"] = bindings.NewStringType()
 	pathParams["file_name"] = "fileName"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -226,36 +226,36 @@ func fileStoreDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func fileStoreGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func fileStoreGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["file_name"] = vapiBindings_.NewStringType()
+	fields["file_name"] = bindings.NewStringType()
 	fieldNameMap["file_name"] = "FileName"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func FileStoreGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.FilePropertiesBindingType)
+func fileStoreGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.FilePropertiesBindingType)
 }
 
-func fileStoreGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func fileStoreGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["file_name"] = vapiBindings_.NewStringType()
+	fields["file_name"] = bindings.NewStringType()
 	fieldNameMap["file_name"] = "FileName"
-	paramsTypeMap["file_name"] = vapiBindings_.NewStringType()
-	paramsTypeMap["fileName"] = vapiBindings_.NewStringType()
+	paramsTypeMap["file_name"] = bindings.NewStringType()
+	paramsTypeMap["fileName"] = bindings.NewStringType()
 	pathParams["file_name"] = "fileName"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -276,21 +276,21 @@ func fileStoreGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func fileStoreListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func fileStoreListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func FileStoreListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.FilePropertiesListResultBindingType)
+func fileStoreListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.FilePropertiesListResultBindingType)
 }
 
-func fileStoreListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func fileStoreListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
@@ -298,7 +298,7 @@ func fileStoreListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	bodyFieldsMap := map[string]string{}
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -319,34 +319,34 @@ func fileStoreListRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func fileStoreRetrievesshfingerprintInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func fileStoreRetrievesshfingerprintInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["ssh_fingerprint_properties"] = vapiBindings_.NewReferenceType(nsxModel.SshFingerprintPropertiesBindingType)
+	fields["ssh_fingerprint_properties"] = bindings.NewReferenceType(model.SshFingerprintPropertiesBindingType)
 	fieldNameMap["ssh_fingerprint_properties"] = "SshFingerprintProperties"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func FileStoreRetrievesshfingerprintOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.SshFingerprintPropertiesBindingType)
+func fileStoreRetrievesshfingerprintOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.SshFingerprintPropertiesBindingType)
 }
 
-func fileStoreRetrievesshfingerprintRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func fileStoreRetrievesshfingerprintRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["ssh_fingerprint_properties"] = vapiBindings_.NewReferenceType(nsxModel.SshFingerprintPropertiesBindingType)
+	fields["ssh_fingerprint_properties"] = bindings.NewReferenceType(model.SshFingerprintPropertiesBindingType)
 	fieldNameMap["ssh_fingerprint_properties"] = "SshFingerprintProperties"
-	paramsTypeMap["ssh_fingerprint_properties"] = vapiBindings_.NewReferenceType(nsxModel.SshFingerprintPropertiesBindingType)
+	paramsTypeMap["ssh_fingerprint_properties"] = bindings.NewReferenceType(model.SshFingerprintPropertiesBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

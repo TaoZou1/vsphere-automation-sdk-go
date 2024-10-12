@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package syslog
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type ExportersClient interface {
 
@@ -24,17 +25,15 @@ type ExportersClient interface {
 	//
 	// @param nodeSyslogExporterPropertiesParam (required)
 	// @return com.vmware.nsx.model.NodeSyslogExporterProperties
-	//
 	// @throws ConcurrentChange  Conflict
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Create(nodeSyslogExporterPropertiesParam nsxModel.NodeSyslogExporterProperties) (nsxModel.NodeSyslogExporterProperties, error)
+	Create(nodeSyslogExporterPropertiesParam model.NodeSyslogExporterProperties) (model.NodeSyslogExporterProperties, error)
 
 	// Removes all syslog exporter rules.
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -45,7 +44,6 @@ type ExportersClient interface {
 	// Removes a specified rule from the collection of syslog exporter rules.
 	//
 	// @param exporterNameParam Name of syslog exporter to delete (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -57,26 +55,23 @@ type ExportersClient interface {
 	//
 	// @param exporterNameParam Name of syslog exporter (required)
 	// @return com.vmware.nsx.model.NodeSyslogExporterProperties
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(exporterNameParam string) (nsxModel.NodeSyslogExporterProperties, error)
+	Get(exporterNameParam string) (model.NodeSyslogExporterProperties, error)
 
 	// Returns the collection of registered syslog exporter rules, if any. The rules specify the collector IP address and port, and the protocol to use.
 	// @return com.vmware.nsx.model.NodeSyslogExporterPropertiesListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List() (nsxModel.NodeSyslogExporterPropertiesListResult, error)
+	List() (model.NodeSyslogExporterPropertiesListResult, error)
 
 	// Collect iptables rules needed for all existing syslog exporters and verify if the existing iptables rules are the same. If not, remove the stale rules and add the new rules to make sure all exporters work properly.
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -86,62 +81,61 @@ type ExportersClient interface {
 }
 
 type exportersClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewExportersClient(connector vapiProtocolClient_.Connector) *exportersClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.node.services.syslog.exporters")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"create":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
-		"delete":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"delete_0": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete_0"),
-		"get":      vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":     vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"verify":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "verify"),
+func NewExportersClient(connector client.Connector) *exportersClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.node.services.syslog.exporters")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"create":   core.NewMethodIdentifier(interfaceIdentifier, "create"),
+		"delete":   core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"delete_0": core.NewMethodIdentifier(interfaceIdentifier, "delete_0"),
+		"get":      core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":     core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"verify":   core.NewMethodIdentifier(interfaceIdentifier, "verify"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	eIface := exportersClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &eIface
 }
 
-func (eIface *exportersClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (eIface *exportersClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := eIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (eIface *exportersClient) Create(nodeSyslogExporterPropertiesParam nsxModel.NodeSyslogExporterProperties) (nsxModel.NodeSyslogExporterProperties, error) {
+func (eIface *exportersClient) Create(nodeSyslogExporterPropertiesParam model.NodeSyslogExporterProperties) (model.NodeSyslogExporterProperties, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
-	operationRestMetaData := exportersCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(exportersCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(exportersCreateInputType(), typeConverter)
 	sv.AddStructField("NodeSyslogExporterProperties", nodeSyslogExporterPropertiesParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.NodeSyslogExporterProperties
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.NodeSyslogExporterProperties
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := exportersCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.syslog.exporters", "create", inputDataValue, executionContext)
-	var emptyOutput nsxModel.NodeSyslogExporterProperties
+	var emptyOutput model.NodeSyslogExporterProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ExportersCreateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), exportersCreateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.NodeSyslogExporterProperties), nil
+		return output.(model.NodeSyslogExporterProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
@@ -150,23 +144,22 @@ func (eIface *exportersClient) Create(nodeSyslogExporterPropertiesParam nsxModel
 func (eIface *exportersClient) Delete() error {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
-	operationRestMetaData := exportersDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(exportersDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(exportersDeleteInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := exportersDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.syslog.exporters", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
@@ -175,87 +168,84 @@ func (eIface *exportersClient) Delete() error {
 func (eIface *exportersClient) Delete0(exporterNameParam string) error {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
-	operationRestMetaData := exportersDelete0RestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(exportersDelete0InputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(exportersDelete0InputType(), typeConverter)
 	sv.AddStructField("ExporterName", exporterNameParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := exportersDelete0RestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.syslog.exporters", "delete_0", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (eIface *exportersClient) Get(exporterNameParam string) (nsxModel.NodeSyslogExporterProperties, error) {
+func (eIface *exportersClient) Get(exporterNameParam string) (model.NodeSyslogExporterProperties, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
-	operationRestMetaData := exportersGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(exportersGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(exportersGetInputType(), typeConverter)
 	sv.AddStructField("ExporterName", exporterNameParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.NodeSyslogExporterProperties
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.NodeSyslogExporterProperties
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := exportersGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.syslog.exporters", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.NodeSyslogExporterProperties
+	var emptyOutput model.NodeSyslogExporterProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ExportersGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), exportersGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.NodeSyslogExporterProperties), nil
+		return output.(model.NodeSyslogExporterProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (eIface *exportersClient) List() (nsxModel.NodeSyslogExporterPropertiesListResult, error) {
+func (eIface *exportersClient) List() (model.NodeSyslogExporterPropertiesListResult, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
-	operationRestMetaData := exportersListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(exportersListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(exportersListInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.NodeSyslogExporterPropertiesListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.NodeSyslogExporterPropertiesListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := exportersListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.syslog.exporters", "list", inputDataValue, executionContext)
-	var emptyOutput nsxModel.NodeSyslogExporterPropertiesListResult
+	var emptyOutput model.NodeSyslogExporterPropertiesListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ExportersListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), exportersListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.NodeSyslogExporterPropertiesListResult), nil
+		return output.(model.NodeSyslogExporterPropertiesListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
@@ -264,23 +254,22 @@ func (eIface *exportersClient) List() (nsxModel.NodeSyslogExporterPropertiesList
 func (eIface *exportersClient) Verify() error {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
-	operationRestMetaData := exportersVerifyRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(exportersVerifyInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(exportersVerifyInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := exportersVerifyRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.syslog.exporters", "verify", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}

@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,43 +11,43 @@
 package sha
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func dynamicPluginsDeleteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func dynamicPluginsDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["plugin_id"] = vapiBindings_.NewStringType()
+	fields["plugin_id"] = bindings.NewStringType()
 	fieldNameMap["plugin_id"] = "PluginId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func DynamicPluginsDeleteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func dynamicPluginsDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func dynamicPluginsDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func dynamicPluginsDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["plugin_id"] = vapiBindings_.NewStringType()
+	fields["plugin_id"] = bindings.NewStringType()
 	fieldNameMap["plugin_id"] = "PluginId"
-	paramsTypeMap["plugin_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["pluginId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["plugin_id"] = bindings.NewStringType()
+	paramsTypeMap["pluginId"] = bindings.NewStringType()
 	pathParams["plugin_id"] = "pluginId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -68,36 +68,36 @@ func dynamicPluginsDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func dynamicPluginsGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func dynamicPluginsGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["plugin_id"] = vapiBindings_.NewStringType()
+	fields["plugin_id"] = bindings.NewStringType()
 	fieldNameMap["plugin_id"] = "PluginId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func DynamicPluginsGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.ShaDynamicPluginBindingType)
+func dynamicPluginsGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.ShaDynamicPluginBindingType)
 }
 
-func dynamicPluginsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func dynamicPluginsGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["plugin_id"] = vapiBindings_.NewStringType()
+	fields["plugin_id"] = bindings.NewStringType()
 	fieldNameMap["plugin_id"] = "PluginId"
-	paramsTypeMap["plugin_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["pluginId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["plugin_id"] = bindings.NewStringType()
+	paramsTypeMap["pluginId"] = bindings.NewStringType()
 	pathParams["plugin_id"] = "pluginId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -118,56 +118,56 @@ func dynamicPluginsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func dynamicPluginsListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func dynamicPluginsListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["include_mark_for_delete_objects"] = "IncludeMarkForDeleteObjects"
 	fieldNameMap["included_fields"] = "IncludedFields"
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func DynamicPluginsListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.ShaDynamicPluginListResultBindingType)
+func dynamicPluginsListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.ShaDynamicPluginListResultBindingType)
 }
 
-func dynamicPluginsListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func dynamicPluginsListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["include_mark_for_delete_objects"] = "IncludeMarkForDeleteObjects"
 	fieldNameMap["included_fields"] = "IncludedFields"
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	queryParams["cursor"] = "cursor"
 	queryParams["sort_ascending"] = "sort_ascending"
 	queryParams["included_fields"] = "included_fields"
@@ -176,7 +176,7 @@ func dynamicPluginsListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -197,41 +197,41 @@ func dynamicPluginsListRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func dynamicPluginsPatchInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func dynamicPluginsPatchInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["plugin_id"] = vapiBindings_.NewStringType()
-	fields["sha_dynamic_plugin"] = vapiBindings_.NewReferenceType(nsx_policyModel.ShaDynamicPluginBindingType)
+	fields["plugin_id"] = bindings.NewStringType()
+	fields["sha_dynamic_plugin"] = bindings.NewReferenceType(model.ShaDynamicPluginBindingType)
 	fieldNameMap["plugin_id"] = "PluginId"
 	fieldNameMap["sha_dynamic_plugin"] = "ShaDynamicPlugin"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func DynamicPluginsPatchOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.ShaDynamicPluginBindingType)
+func dynamicPluginsPatchOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.ShaDynamicPluginBindingType)
 }
 
-func dynamicPluginsPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func dynamicPluginsPatchRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["plugin_id"] = vapiBindings_.NewStringType()
-	fields["sha_dynamic_plugin"] = vapiBindings_.NewReferenceType(nsx_policyModel.ShaDynamicPluginBindingType)
+	fields["plugin_id"] = bindings.NewStringType()
+	fields["sha_dynamic_plugin"] = bindings.NewReferenceType(model.ShaDynamicPluginBindingType)
 	fieldNameMap["plugin_id"] = "PluginId"
 	fieldNameMap["sha_dynamic_plugin"] = "ShaDynamicPlugin"
-	paramsTypeMap["plugin_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["sha_dynamic_plugin"] = vapiBindings_.NewReferenceType(nsx_policyModel.ShaDynamicPluginBindingType)
-	paramsTypeMap["pluginId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["plugin_id"] = bindings.NewStringType()
+	paramsTypeMap["sha_dynamic_plugin"] = bindings.NewReferenceType(model.ShaDynamicPluginBindingType)
+	paramsTypeMap["pluginId"] = bindings.NewStringType()
 	pathParams["plugin_id"] = "pluginId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -252,41 +252,41 @@ func dynamicPluginsPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func dynamicPluginsUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func dynamicPluginsUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["plugin_id"] = vapiBindings_.NewStringType()
-	fields["sha_dynamic_plugin"] = vapiBindings_.NewReferenceType(nsx_policyModel.ShaDynamicPluginBindingType)
+	fields["plugin_id"] = bindings.NewStringType()
+	fields["sha_dynamic_plugin"] = bindings.NewReferenceType(model.ShaDynamicPluginBindingType)
 	fieldNameMap["plugin_id"] = "PluginId"
 	fieldNameMap["sha_dynamic_plugin"] = "ShaDynamicPlugin"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func DynamicPluginsUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.ShaDynamicPluginBindingType)
+func dynamicPluginsUpdateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.ShaDynamicPluginBindingType)
 }
 
-func dynamicPluginsUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func dynamicPluginsUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["plugin_id"] = vapiBindings_.NewStringType()
-	fields["sha_dynamic_plugin"] = vapiBindings_.NewReferenceType(nsx_policyModel.ShaDynamicPluginBindingType)
+	fields["plugin_id"] = bindings.NewStringType()
+	fields["sha_dynamic_plugin"] = bindings.NewReferenceType(model.ShaDynamicPluginBindingType)
 	fieldNameMap["plugin_id"] = "PluginId"
 	fieldNameMap["sha_dynamic_plugin"] = "ShaDynamicPlugin"
-	paramsTypeMap["plugin_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["sha_dynamic_plugin"] = vapiBindings_.NewReferenceType(nsx_policyModel.ShaDynamicPluginBindingType)
-	paramsTypeMap["pluginId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["plugin_id"] = bindings.NewStringType()
+	paramsTypeMap["sha_dynamic_plugin"] = bindings.NewReferenceType(model.ShaDynamicPluginBindingType)
+	paramsTypeMap["pluginId"] = bindings.NewStringType()
 	pathParams["plugin_id"] = "pluginId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

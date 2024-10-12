@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,57 +11,57 @@
 package ports
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_global_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-gm/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-gm/model"
 	"reflect"
 )
 
-func portQosProfileBindingMapsGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func portQosProfileBindingMapsGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["segment_id"] = vapiBindings_.NewStringType()
-	fields["port_id"] = vapiBindings_.NewStringType()
-	fields["port_qos_profile_binding_map_id"] = vapiBindings_.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["port_id"] = bindings.NewStringType()
+	fields["port_qos_profile_binding_map_id"] = bindings.NewStringType()
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["port_id"] = "PortId"
 	fieldNameMap["port_qos_profile_binding_map_id"] = "PortQosProfileBindingMapId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func PortQosProfileBindingMapsGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_global_policyModel.PortQosProfileBindingMapBindingType)
+func portQosProfileBindingMapsGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.PortQosProfileBindingMapBindingType)
 }
 
-func portQosProfileBindingMapsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func portQosProfileBindingMapsGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["segment_id"] = vapiBindings_.NewStringType()
-	fields["port_id"] = vapiBindings_.NewStringType()
-	fields["port_qos_profile_binding_map_id"] = vapiBindings_.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["port_id"] = bindings.NewStringType()
+	fields["port_qos_profile_binding_map_id"] = bindings.NewStringType()
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["port_id"] = "PortId"
 	fieldNameMap["port_qos_profile_binding_map_id"] = "PortQosProfileBindingMapId"
-	paramsTypeMap["port_qos_profile_binding_map_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["port_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segment_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segmentId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["portId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["portQosProfileBindingMapId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["port_qos_profile_binding_map_id"] = bindings.NewStringType()
+	paramsTypeMap["port_id"] = bindings.NewStringType()
+	paramsTypeMap["segment_id"] = bindings.NewStringType()
+	paramsTypeMap["segmentId"] = bindings.NewStringType()
+	paramsTypeMap["portId"] = bindings.NewStringType()
+	paramsTypeMap["portQosProfileBindingMapId"] = bindings.NewStringType()
 	pathParams["segment_id"] = "segmentId"
 	pathParams["port_qos_profile_binding_map_id"] = "portQosProfileBindingMapId"
 	pathParams["port_id"] = "portId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -82,16 +82,16 @@ func portQosProfileBindingMapsGetRestMetadata() vapiProtocol_.OperationRestMetad
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func portQosProfileBindingMapsListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func portQosProfileBindingMapsListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["segment_id"] = vapiBindings_.NewStringType()
-	fields["port_id"] = vapiBindings_.NewStringType()
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["segment_id"] = bindings.NewStringType()
+	fields["port_id"] = bindings.NewStringType()
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["port_id"] = "PortId"
 	fieldNameMap["cursor"] = "Cursor"
@@ -99,30 +99,30 @@ func portQosProfileBindingMapsListInputType() vapiBindings_.StructType {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func PortQosProfileBindingMapsListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_global_policyModel.PortQosProfileBindingMapListResultBindingType)
+func portQosProfileBindingMapsListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.PortQosProfileBindingMapListResultBindingType)
 }
 
-func portQosProfileBindingMapsListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func portQosProfileBindingMapsListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["segment_id"] = vapiBindings_.NewStringType()
-	fields["port_id"] = vapiBindings_.NewStringType()
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["segment_id"] = bindings.NewStringType()
+	fields["port_id"] = bindings.NewStringType()
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["port_id"] = "PortId"
 	fieldNameMap["cursor"] = "Cursor"
@@ -130,15 +130,15 @@ func portQosProfileBindingMapsListRestMetadata() vapiProtocol_.OperationRestMeta
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["port_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["segment_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	paramsTypeMap["segmentId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["portId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["port_id"] = bindings.NewStringType()
+	paramsTypeMap["segment_id"] = bindings.NewStringType()
+	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["segmentId"] = bindings.NewStringType()
+	paramsTypeMap["portId"] = bindings.NewStringType()
 	pathParams["segment_id"] = "segmentId"
 	pathParams["port_id"] = "portId"
 	queryParams["cursor"] = "cursor"
@@ -148,7 +148,7 @@ func portQosProfileBindingMapsListRestMetadata() vapiProtocol_.OperationRestMeta
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,18 +9,19 @@
 package members
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type ConsolidatedEffectiveIpAddressesClient interface {
 
-	// Returns the consolidated effective IP address members of the specified Group. This is applicable in the case of a federated/NSX+ environment. The response includes a site-wise list of static and dynamically translated effective IP address members. If the group evaluation on a site is empty, the response will contain the site-id with empty list. If a group is a reference group on a site, then its consolidated effective IP response will contain the effective IPs from other sites, and the response will contain an empty list of IPs for the sites where is it a reference group. This API is applicable only for Global and NSX+ Groups that contain (either directly or via nesting) VirtualMachine, VIF, Segment, SegmentPort, or IPSet member types. Please use the cursor value in the response to fetch the next page. If there is no cursor value in the response, it indicates that it is the last page of results for the query.
+	// Returns consolidated effective ip address members of the specified NSGroup. Applicable in case of federated environment. The response contains site-wise list of consolidated effective IP address members. In the response, for the local-site, the list will contain static and dynamicaly translated IPs. For the remote sites, the list will contain only the dynamically translated IPs. The static IPs will not be seen in the response of this API. Hence, user can refer to the local-site Ip response in the API results or the group definition to see the static IP membership of the Group. This API is applicable only for Global Groups containing (directly or via nesting) either VirtualMachine, VIF, Segment, SegmentPort or IPSet member type. Use the cursor value in the response to fetch the next page. If there is no cursor value for a response, it implies the last page in the results for the query.
 	//
 	// @param domainIdParam Domain id (required)
 	// @param groupIdParam Group Id (required)
@@ -33,48 +34,43 @@ type ConsolidatedEffectiveIpAddressesClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_policy.model.ConsolidatedEffectiveIPAddressMemberListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(domainIdParam string, groupIdParam string, cursorParam *string, enforcementPointPathParam *string, includedFieldsParam *string, ipFilterParam *string, pageSizeParam *int64, siteIdParam *string, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.ConsolidatedEffectiveIPAddressMemberListResult, error)
+	List(domainIdParam string, groupIdParam string, cursorParam *string, enforcementPointPathParam *string, includedFieldsParam *string, ipFilterParam *string, pageSizeParam *int64, siteIdParam *string, sortAscendingParam *bool, sortByParam *string) (model.ConsolidatedEffectiveIPAddressMemberListResult, error)
 }
 
 type consolidatedEffectiveIpAddressesClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewConsolidatedEffectiveIpAddressesClient(connector vapiProtocolClient_.Connector) *consolidatedEffectiveIpAddressesClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.global_infra.domains.groups.members.consolidated_effective_ip_addresses")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"list": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
+func NewConsolidatedEffectiveIpAddressesClient(connector client.Connector) *consolidatedEffectiveIpAddressesClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.global_infra.domains.groups.members.consolidated_effective_ip_addresses")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"list": core.NewMethodIdentifier(interfaceIdentifier, "list"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	cIface := consolidatedEffectiveIpAddressesClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &cIface
 }
 
-func (cIface *consolidatedEffectiveIpAddressesClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (cIface *consolidatedEffectiveIpAddressesClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := cIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (cIface *consolidatedEffectiveIpAddressesClient) List(domainIdParam string, groupIdParam string, cursorParam *string, enforcementPointPathParam *string, includedFieldsParam *string, ipFilterParam *string, pageSizeParam *int64, siteIdParam *string, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.ConsolidatedEffectiveIPAddressMemberListResult, error) {
+func (cIface *consolidatedEffectiveIpAddressesClient) List(domainIdParam string, groupIdParam string, cursorParam *string, enforcementPointPathParam *string, includedFieldsParam *string, ipFilterParam *string, pageSizeParam *int64, siteIdParam *string, sortAscendingParam *bool, sortByParam *string) (model.ConsolidatedEffectiveIPAddressMemberListResult, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
-	operationRestMetaData := consolidatedEffectiveIpAddressesListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(consolidatedEffectiveIpAddressesListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(consolidatedEffectiveIpAddressesListInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("Cursor", cursorParam)
@@ -87,22 +83,25 @@ func (cIface *consolidatedEffectiveIpAddressesClient) List(domainIdParam string,
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.ConsolidatedEffectiveIPAddressMemberListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.ConsolidatedEffectiveIPAddressMemberListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := consolidatedEffectiveIpAddressesListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := cIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.global_infra.domains.groups.members.consolidated_effective_ip_addresses", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.ConsolidatedEffectiveIPAddressMemberListResult
+	var emptyOutput model.ConsolidatedEffectiveIPAddressMemberListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ConsolidatedEffectiveIpAddressesListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), consolidatedEffectiveIpAddressesListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.ConsolidatedEffectiveIPAddressMemberListResult), nil
+		return output.(model.ConsolidatedEffectiveIPAddressMemberListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), cIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

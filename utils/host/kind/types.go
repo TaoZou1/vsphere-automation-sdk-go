@@ -4,8 +4,8 @@
 package kind
 
 import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/auth"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/session/arch"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/auth"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/session/arch"
 )
 
 // Info represents details of the HostTypes.

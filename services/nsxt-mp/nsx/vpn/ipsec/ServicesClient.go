@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package ipsec
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type ServicesClient interface {
 
@@ -26,17 +27,14 @@ type ServicesClient interface {
 	//  PATCH /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>
 	//  PATCH /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param ipSecVPNServiceParam (required)
 	// @return com.vmware.nsx.model.IPSecVPNService
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Create(ipSecVPNServiceParam nsxModel.IPSecVPNService) (nsxModel.IPSecVPNService, error)
+	Create(ipSecVPNServiceParam model.IPSecVPNService) (model.IPSecVPNService, error)
 
 	// Delete IPSec VPN service for given router.
 	//
@@ -44,11 +42,8 @@ type ServicesClient interface {
 	//  DELETE /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>
 	//  DELETE /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param ipsecVpnServiceIdParam (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -62,17 +57,14 @@ type ServicesClient interface {
 	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>
 	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param ipsecVpnServiceIdParam (required)
 	// @return com.vmware.nsx.model.IPSecVPNService
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(ipsecVpnServiceIdParam string) (nsxModel.IPSecVPNService, error)
+	Get(ipsecVpnServiceIdParam string) (model.IPSecVPNService, error)
 
 	// Get paginated list of all IPSec VPN services.
 	//
@@ -80,21 +72,18 @@ type ServicesClient interface {
 	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services
 	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
 	// @param pageSizeParam Maximum number of results to return in this page (server may return fewer) (optional, default to 1000)
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx.model.IPSecVPNServiceListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsxModel.IPSecVPNServiceListResult, error)
+	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IPSecVPNServiceListResult, error)
 
 	// Edit IPSec VPN service for given logical router.
 	//
@@ -102,76 +91,72 @@ type ServicesClient interface {
 	//  PUT /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>
 	//  PUT /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param ipsecVpnServiceIdParam (required)
 	// @param ipSecVPNServiceParam (required)
 	// @return com.vmware.nsx.model.IPSecVPNService
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(ipsecVpnServiceIdParam string, ipSecVPNServiceParam nsxModel.IPSecVPNService) (nsxModel.IPSecVPNService, error)
+	Update(ipsecVpnServiceIdParam string, ipSecVPNServiceParam model.IPSecVPNService) (model.IPSecVPNService, error)
 }
 
 type servicesClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewServicesClient(connector vapiProtocolClient_.Connector) *servicesClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.vpn.ipsec.services")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"create": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewServicesClient(connector client.Connector) *servicesClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.vpn.ipsec.services")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"create": core.NewMethodIdentifier(interfaceIdentifier, "create"),
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	sIface := servicesClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &sIface
 }
 
-func (sIface *servicesClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (sIface *servicesClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := sIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (sIface *servicesClient) Create(ipSecVPNServiceParam nsxModel.IPSecVPNService) (nsxModel.IPSecVPNService, error) {
+func (sIface *servicesClient) Create(ipSecVPNServiceParam model.IPSecVPNService) (model.IPSecVPNService, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := servicesCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(servicesCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(servicesCreateInputType(), typeConverter)
 	sv.AddStructField("IpSecVPNService", ipSecVPNServiceParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.IPSecVPNService
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IPSecVPNService
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := servicesCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx.vpn.ipsec.services", "create", inputDataValue, executionContext)
-	var emptyOutput nsxModel.IPSecVPNService
+	var emptyOutput model.IPSecVPNService
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ServicesCreateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), servicesCreateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.IPSecVPNService), nil
+		return output.(model.IPSecVPNService), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
@@ -180,70 +165,64 @@ func (sIface *servicesClient) Create(ipSecVPNServiceParam nsxModel.IPSecVPNServi
 func (sIface *servicesClient) Delete(ipsecVpnServiceIdParam string, forceParam *bool) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := servicesDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(servicesDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(servicesDeleteInputType(), typeConverter)
 	sv.AddStructField("IpsecVpnServiceId", ipsecVpnServiceIdParam)
 	sv.AddStructField("Force", forceParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := servicesDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx.vpn.ipsec.services", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (sIface *servicesClient) Get(ipsecVpnServiceIdParam string) (nsxModel.IPSecVPNService, error) {
+func (sIface *servicesClient) Get(ipsecVpnServiceIdParam string) (model.IPSecVPNService, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := servicesGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(servicesGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(servicesGetInputType(), typeConverter)
 	sv.AddStructField("IpsecVpnServiceId", ipsecVpnServiceIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.IPSecVPNService
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IPSecVPNService
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := servicesGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx.vpn.ipsec.services", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.IPSecVPNService
+	var emptyOutput model.IPSecVPNService
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ServicesGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), servicesGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.IPSecVPNService), nil
+		return output.(model.IPSecVPNService), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (sIface *servicesClient) List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsxModel.IPSecVPNServiceListResult, error) {
+func (sIface *servicesClient) List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IPSecVPNServiceListResult, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := servicesListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(servicesListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(servicesListInputType(), typeConverter)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)
 	sv.AddStructField("PageSize", pageSizeParam)
@@ -251,55 +230,57 @@ func (sIface *servicesClient) List(cursorParam *string, includedFieldsParam *str
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.IPSecVPNServiceListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IPSecVPNServiceListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := servicesListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx.vpn.ipsec.services", "list", inputDataValue, executionContext)
-	var emptyOutput nsxModel.IPSecVPNServiceListResult
+	var emptyOutput model.IPSecVPNServiceListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ServicesListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), servicesListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.IPSecVPNServiceListResult), nil
+		return output.(model.IPSecVPNServiceListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (sIface *servicesClient) Update(ipsecVpnServiceIdParam string, ipSecVPNServiceParam nsxModel.IPSecVPNService) (nsxModel.IPSecVPNService, error) {
+func (sIface *servicesClient) Update(ipsecVpnServiceIdParam string, ipSecVPNServiceParam model.IPSecVPNService) (model.IPSecVPNService, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := servicesUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(servicesUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(servicesUpdateInputType(), typeConverter)
 	sv.AddStructField("IpsecVpnServiceId", ipsecVpnServiceIdParam)
 	sv.AddStructField("IpSecVPNService", ipSecVPNServiceParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.IPSecVPNService
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IPSecVPNService
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := servicesUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx.vpn.ipsec.services", "update", inputDataValue, executionContext)
-	var emptyOutput nsxModel.IPSecVPNService
+	var emptyOutput model.IPSecVPNService
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ServicesUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), servicesUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.IPSecVPNService), nil
+		return output.(model.IPSecVPNService), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

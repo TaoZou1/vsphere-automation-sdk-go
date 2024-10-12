@@ -3,7 +3,7 @@
 
 package task
 
-import "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/session"
+import "github.com/vmware/vsphere-automation-sdk-go/utils/session"
 
 // Task represents the task that is to be executed on the Host server.
 type Task interface {

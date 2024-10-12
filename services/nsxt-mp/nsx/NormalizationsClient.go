@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,22 +9,21 @@
 package nsx
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type NormalizationsClient interface {
 
 	// Returns the list of normalized resources based on the query parameters. Id and Type of the resource on which the normalizations is to be performed, are to be specified as query parameters in the URI. The target resource types to which normalization is to be done should also be specified as query parameter.
 	//  This API has been deprecated, please use below effective membership APIs
 	//  GET /ns-groups/<ns-group-id>/effective-logical-switch-members GET /ns-groups/<ns-group-id>/effective-logical-port-members GET /ns-groups/<ns-group-id>/effective-ip-address-members GET /ns-groups/<ns-group-id>/effective-vif-members GET /ns-groups/<ns-group-id>/effective-transport-node-members GET /ns-groups/<ns-group-id>/effective-virtual-machine-members GET /ns-groups/<ns-group-id>/effective-cloud-native-service-instance-members GET /ns-groups/<ns-group-id>/effective-physical-server-members GET /ns-groups/<ns-group-id>/effective-directory-group-members GET /ns-groups/<ns-group-id>/effective-ipset-members
-	//
-	// Deprecated: This API element is deprecated.
 	//
 	// @param preferredNormalizationTypeParam Resource type valid for use as target in normalization API. (required)
 	// @param resourceIdParam Identifier of the resource on which normalization is to be performed (required)
@@ -35,48 +34,43 @@ type NormalizationsClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx.model.NormalizedResourceListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(preferredNormalizationTypeParam string, resourceIdParam string, resourceTypeParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsxModel.NormalizedResourceListResult, error)
+	List(preferredNormalizationTypeParam string, resourceIdParam string, resourceTypeParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.NormalizedResourceListResult, error)
 }
 
 type normalizationsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewNormalizationsClient(connector vapiProtocolClient_.Connector) *normalizationsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.normalizations")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"list": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
+func NewNormalizationsClient(connector client.Connector) *normalizationsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.normalizations")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"list": core.NewMethodIdentifier(interfaceIdentifier, "list"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	nIface := normalizationsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &nIface
 }
 
-func (nIface *normalizationsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (nIface *normalizationsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := nIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (nIface *normalizationsClient) List(preferredNormalizationTypeParam string, resourceIdParam string, resourceTypeParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsxModel.NormalizedResourceListResult, error) {
+func (nIface *normalizationsClient) List(preferredNormalizationTypeParam string, resourceIdParam string, resourceTypeParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.NormalizedResourceListResult, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	executionContext := nIface.connector.NewExecutionContext()
-	operationRestMetaData := normalizationsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(normalizationsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(normalizationsListInputType(), typeConverter)
 	sv.AddStructField("PreferredNormalizationType", preferredNormalizationTypeParam)
 	sv.AddStructField("ResourceId", resourceIdParam)
 	sv.AddStructField("ResourceType", resourceTypeParam)
@@ -87,22 +81,25 @@ func (nIface *normalizationsClient) List(preferredNormalizationTypeParam string,
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.NormalizedResourceListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.NormalizedResourceListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := normalizationsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := nIface.connector.GetApiProvider().Invoke("com.vmware.nsx.normalizations", "list", inputDataValue, executionContext)
-	var emptyOutput nsxModel.NormalizedResourceListResult
+	var emptyOutput model.NormalizedResourceListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), NormalizationsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), normalizationsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.NormalizedResourceListResult), nil
+		return output.(model.NormalizedResourceListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), nIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

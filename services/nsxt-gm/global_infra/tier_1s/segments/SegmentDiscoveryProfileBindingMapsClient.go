@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package segments
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_global_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-gm/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-gm/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type SegmentDiscoveryProfileBindingMapsClient interface {
 
@@ -25,7 +26,6 @@ type SegmentDiscoveryProfileBindingMapsClient interface {
 	// @param tier1IdParam Tier-1 ID (required)
 	// @param segmentIdParam Segment ID (required)
 	// @param segmentDiscoveryProfileBindingMapIdParam Segment Discovery Profile Binding Map ID (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -39,13 +39,12 @@ type SegmentDiscoveryProfileBindingMapsClient interface {
 	// @param segmentIdParam Segment ID (required)
 	// @param segmentDiscoveryProfileBindingMapIdParam Segment Discovery Profile Binding Map ID (required)
 	// @return com.vmware.nsx_global_policy.model.SegmentDiscoveryProfileBindingMap
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string) (nsx_global_policyModel.SegmentDiscoveryProfileBindingMap, error)
+	Get(tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string) (model.SegmentDiscoveryProfileBindingMap, error)
 
 	// API will list all Segment Discovery Profile Binding Maps in current segment id.
 	//
@@ -58,13 +57,12 @@ type SegmentDiscoveryProfileBindingMapsClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_global_policy.model.SegmentDiscoveryProfileBindingMapListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(tier1IdParam string, segmentIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_global_policyModel.SegmentDiscoveryProfileBindingMapListResult, error)
+	List(tier1IdParam string, segmentIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.SegmentDiscoveryProfileBindingMapListResult, error)
 
 	// API will create Segment Discovery Profile Binding Map. For objects with no binding maps, default profile is applied.
 	//
@@ -72,13 +70,12 @@ type SegmentDiscoveryProfileBindingMapsClient interface {
 	// @param segmentIdParam Segment ID (required)
 	// @param segmentDiscoveryProfileBindingMapIdParam Segment Discovery Profile Binding Map ID (required)
 	// @param segmentDiscoveryProfileBindingMapParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string, segmentDiscoveryProfileBindingMapParam nsx_global_policyModel.SegmentDiscoveryProfileBindingMap) error
+	Patch(tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string, segmentDiscoveryProfileBindingMapParam model.SegmentDiscoveryProfileBindingMap) error
 
 	// API will update Segment Discovery Profile Binding Map. For objects with no binding maps, default profile is applied.
 	//
@@ -87,114 +84,107 @@ type SegmentDiscoveryProfileBindingMapsClient interface {
 	// @param segmentDiscoveryProfileBindingMapIdParam Segment Discovery Profile Binding Map ID (required)
 	// @param segmentDiscoveryProfileBindingMapParam (required)
 	// @return com.vmware.nsx_global_policy.model.SegmentDiscoveryProfileBindingMap
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string, segmentDiscoveryProfileBindingMapParam nsx_global_policyModel.SegmentDiscoveryProfileBindingMap) (nsx_global_policyModel.SegmentDiscoveryProfileBindingMap, error)
+	Update(tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string, segmentDiscoveryProfileBindingMapParam model.SegmentDiscoveryProfileBindingMap) (model.SegmentDiscoveryProfileBindingMap, error)
 }
 
 type segmentDiscoveryProfileBindingMapsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewSegmentDiscoveryProfileBindingMapsClient(connector vapiProtocolClient_.Connector) *segmentDiscoveryProfileBindingMapsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_global_policy.global_infra.tier_1s.segments.segment_discovery_profile_binding_maps")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"patch":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewSegmentDiscoveryProfileBindingMapsClient(connector client.Connector) *segmentDiscoveryProfileBindingMapsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_global_policy.global_infra.tier_1s.segments.segment_discovery_profile_binding_maps")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	sIface := segmentDiscoveryProfileBindingMapsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &sIface
 }
 
-func (sIface *segmentDiscoveryProfileBindingMapsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (sIface *segmentDiscoveryProfileBindingMapsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := sIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
 func (sIface *segmentDiscoveryProfileBindingMapsClient) Delete(tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := segmentDiscoveryProfileBindingMapsDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(segmentDiscoveryProfileBindingMapsDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(segmentDiscoveryProfileBindingMapsDeleteInputType(), typeConverter)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("SegmentDiscoveryProfileBindingMapId", segmentDiscoveryProfileBindingMapIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := segmentDiscoveryProfileBindingMapsDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx_global_policy.global_infra.tier_1s.segments.segment_discovery_profile_binding_maps", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (sIface *segmentDiscoveryProfileBindingMapsClient) Get(tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string) (nsx_global_policyModel.SegmentDiscoveryProfileBindingMap, error) {
+func (sIface *segmentDiscoveryProfileBindingMapsClient) Get(tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string) (model.SegmentDiscoveryProfileBindingMap, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := segmentDiscoveryProfileBindingMapsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(segmentDiscoveryProfileBindingMapsGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(segmentDiscoveryProfileBindingMapsGetInputType(), typeConverter)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("SegmentDiscoveryProfileBindingMapId", segmentDiscoveryProfileBindingMapIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_global_policyModel.SegmentDiscoveryProfileBindingMap
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.SegmentDiscoveryProfileBindingMap
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := segmentDiscoveryProfileBindingMapsGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx_global_policy.global_infra.tier_1s.segments.segment_discovery_profile_binding_maps", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_global_policyModel.SegmentDiscoveryProfileBindingMap
+	var emptyOutput model.SegmentDiscoveryProfileBindingMap
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), SegmentDiscoveryProfileBindingMapsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), segmentDiscoveryProfileBindingMapsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_global_policyModel.SegmentDiscoveryProfileBindingMap), nil
+		return output.(model.SegmentDiscoveryProfileBindingMap), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (sIface *segmentDiscoveryProfileBindingMapsClient) List(tier1IdParam string, segmentIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_global_policyModel.SegmentDiscoveryProfileBindingMapListResult, error) {
+func (sIface *segmentDiscoveryProfileBindingMapsClient) List(tier1IdParam string, segmentIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.SegmentDiscoveryProfileBindingMapListResult, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := segmentDiscoveryProfileBindingMapsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(segmentDiscoveryProfileBindingMapsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(segmentDiscoveryProfileBindingMapsListInputType(), typeConverter)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("Cursor", cursorParam)
@@ -205,86 +195,87 @@ func (sIface *segmentDiscoveryProfileBindingMapsClient) List(tier1IdParam string
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_global_policyModel.SegmentDiscoveryProfileBindingMapListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.SegmentDiscoveryProfileBindingMapListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := segmentDiscoveryProfileBindingMapsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx_global_policy.global_infra.tier_1s.segments.segment_discovery_profile_binding_maps", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_global_policyModel.SegmentDiscoveryProfileBindingMapListResult
+	var emptyOutput model.SegmentDiscoveryProfileBindingMapListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), SegmentDiscoveryProfileBindingMapsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), segmentDiscoveryProfileBindingMapsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_global_policyModel.SegmentDiscoveryProfileBindingMapListResult), nil
+		return output.(model.SegmentDiscoveryProfileBindingMapListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (sIface *segmentDiscoveryProfileBindingMapsClient) Patch(tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string, segmentDiscoveryProfileBindingMapParam nsx_global_policyModel.SegmentDiscoveryProfileBindingMap) error {
+func (sIface *segmentDiscoveryProfileBindingMapsClient) Patch(tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string, segmentDiscoveryProfileBindingMapParam model.SegmentDiscoveryProfileBindingMap) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := segmentDiscoveryProfileBindingMapsPatchRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(segmentDiscoveryProfileBindingMapsPatchInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(segmentDiscoveryProfileBindingMapsPatchInputType(), typeConverter)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("SegmentDiscoveryProfileBindingMapId", segmentDiscoveryProfileBindingMapIdParam)
 	sv.AddStructField("SegmentDiscoveryProfileBindingMap", segmentDiscoveryProfileBindingMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := segmentDiscoveryProfileBindingMapsPatchRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx_global_policy.global_infra.tier_1s.segments.segment_discovery_profile_binding_maps", "patch", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (sIface *segmentDiscoveryProfileBindingMapsClient) Update(tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string, segmentDiscoveryProfileBindingMapParam nsx_global_policyModel.SegmentDiscoveryProfileBindingMap) (nsx_global_policyModel.SegmentDiscoveryProfileBindingMap, error) {
+func (sIface *segmentDiscoveryProfileBindingMapsClient) Update(tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string, segmentDiscoveryProfileBindingMapParam model.SegmentDiscoveryProfileBindingMap) (model.SegmentDiscoveryProfileBindingMap, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := segmentDiscoveryProfileBindingMapsUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(segmentDiscoveryProfileBindingMapsUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(segmentDiscoveryProfileBindingMapsUpdateInputType(), typeConverter)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("SegmentDiscoveryProfileBindingMapId", segmentDiscoveryProfileBindingMapIdParam)
 	sv.AddStructField("SegmentDiscoveryProfileBindingMap", segmentDiscoveryProfileBindingMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_global_policyModel.SegmentDiscoveryProfileBindingMap
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.SegmentDiscoveryProfileBindingMap
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := segmentDiscoveryProfileBindingMapsUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx_global_policy.global_infra.tier_1s.segments.segment_discovery_profile_binding_maps", "update", inputDataValue, executionContext)
-	var emptyOutput nsx_global_policyModel.SegmentDiscoveryProfileBindingMap
+	var emptyOutput model.SegmentDiscoveryProfileBindingMap
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), SegmentDiscoveryProfileBindingMapsUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), segmentDiscoveryProfileBindingMapsUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_global_policyModel.SegmentDiscoveryProfileBindingMap), nil
+		return output.(model.SegmentDiscoveryProfileBindingMap), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

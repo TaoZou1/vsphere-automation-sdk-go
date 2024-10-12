@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,41 +11,41 @@
 package fabric
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 	"reflect"
 )
 
-func computeManagersCreateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func computeManagersCreateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["compute_manager"] = vapiBindings_.NewReferenceType(nsxModel.ComputeManagerBindingType)
+	fields["compute_manager"] = bindings.NewReferenceType(model.ComputeManagerBindingType)
 	fieldNameMap["compute_manager"] = "ComputeManager"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ComputeManagersCreateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.ComputeManagerBindingType)
+func computeManagersCreateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.ComputeManagerBindingType)
 }
 
-func computeManagersCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func computeManagersCreateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["compute_manager"] = vapiBindings_.NewReferenceType(nsxModel.ComputeManagerBindingType)
+	fields["compute_manager"] = bindings.NewReferenceType(model.ComputeManagerBindingType)
 	fieldNameMap["compute_manager"] = "ComputeManager"
-	paramsTypeMap["compute_manager"] = vapiBindings_.NewReferenceType(nsxModel.ComputeManagerBindingType)
+	paramsTypeMap["compute_manager"] = bindings.NewReferenceType(model.ComputeManagerBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -66,36 +66,36 @@ func computeManagersCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func computeManagersDeleteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func computeManagersDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["compute_manager_id"] = vapiBindings_.NewStringType()
+	fields["compute_manager_id"] = bindings.NewStringType()
 	fieldNameMap["compute_manager_id"] = "ComputeManagerId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ComputeManagersDeleteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func computeManagersDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func computeManagersDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func computeManagersDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["compute_manager_id"] = vapiBindings_.NewStringType()
+	fields["compute_manager_id"] = bindings.NewStringType()
 	fieldNameMap["compute_manager_id"] = "ComputeManagerId"
-	paramsTypeMap["compute_manager_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["computeManagerId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["compute_manager_id"] = bindings.NewStringType()
+	paramsTypeMap["computeManagerId"] = bindings.NewStringType()
 	pathParams["compute_manager_id"] = "computeManagerId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -116,36 +116,36 @@ func computeManagersDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func computeManagersGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func computeManagersGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["compute_manager_id"] = vapiBindings_.NewStringType()
+	fields["compute_manager_id"] = bindings.NewStringType()
 	fieldNameMap["compute_manager_id"] = "ComputeManagerId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ComputeManagersGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.ComputeManagerBindingType)
+func computeManagersGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.ComputeManagerBindingType)
 }
 
-func computeManagersGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func computeManagersGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["compute_manager_id"] = vapiBindings_.NewStringType()
+	fields["compute_manager_id"] = bindings.NewStringType()
 	fieldNameMap["compute_manager_id"] = "ComputeManagerId"
-	paramsTypeMap["compute_manager_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["computeManagerId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["compute_manager_id"] = bindings.NewStringType()
+	paramsTypeMap["computeManagerId"] = bindings.NewStringType()
 	pathParams["compute_manager_id"] = "computeManagerId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -166,16 +166,16 @@ func computeManagersGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func computeManagersListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func computeManagersListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["origin_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["server"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["origin_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["server"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["included_fields"] = "IncludedFields"
 	fieldNameMap["origin_type"] = "OriginType"
@@ -183,30 +183,30 @@ func computeManagersListInputType() vapiBindings_.StructType {
 	fieldNameMap["server"] = "Server"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ComputeManagersListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.ComputeManagerListResultBindingType)
+func computeManagersListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.ComputeManagerListResultBindingType)
 }
 
-func computeManagersListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func computeManagersListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["origin_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["server"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["origin_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["server"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["included_fields"] = "IncludedFields"
 	fieldNameMap["origin_type"] = "OriginType"
@@ -214,13 +214,13 @@ func computeManagersListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	fieldNameMap["server"] = "Server"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["server"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["origin_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	paramsTypeMap["origin_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["server"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	queryParams["cursor"] = "cursor"
 	queryParams["server"] = "server"
 	queryParams["sort_ascending"] = "sort_ascending"
@@ -230,7 +230,7 @@ func computeManagersListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -251,41 +251,41 @@ func computeManagersListRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func computeManagersUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func computeManagersUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["compute_manager_id"] = vapiBindings_.NewStringType()
-	fields["compute_manager"] = vapiBindings_.NewReferenceType(nsxModel.ComputeManagerBindingType)
+	fields["compute_manager_id"] = bindings.NewStringType()
+	fields["compute_manager"] = bindings.NewReferenceType(model.ComputeManagerBindingType)
 	fieldNameMap["compute_manager_id"] = "ComputeManagerId"
 	fieldNameMap["compute_manager"] = "ComputeManager"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ComputeManagersUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.ComputeManagerBindingType)
+func computeManagersUpdateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.ComputeManagerBindingType)
 }
 
-func computeManagersUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func computeManagersUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["compute_manager_id"] = vapiBindings_.NewStringType()
-	fields["compute_manager"] = vapiBindings_.NewReferenceType(nsxModel.ComputeManagerBindingType)
+	fields["compute_manager_id"] = bindings.NewStringType()
+	fields["compute_manager"] = bindings.NewReferenceType(model.ComputeManagerBindingType)
 	fieldNameMap["compute_manager_id"] = "ComputeManagerId"
 	fieldNameMap["compute_manager"] = "ComputeManager"
-	paramsTypeMap["compute_manager_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["compute_manager"] = vapiBindings_.NewReferenceType(nsxModel.ComputeManagerBindingType)
-	paramsTypeMap["computeManagerId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["compute_manager_id"] = bindings.NewStringType()
+	paramsTypeMap["compute_manager"] = bindings.NewReferenceType(model.ComputeManagerBindingType)
+	paramsTypeMap["computeManagerId"] = bindings.NewStringType()
 	pathParams["compute_manager_id"] = "computeManagerId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

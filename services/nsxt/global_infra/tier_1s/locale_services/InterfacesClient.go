@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package locale_services
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type InterfacesClient interface {
 
@@ -26,13 +27,12 @@ type InterfacesClient interface {
 	// @param localeServicesIdParam (required)
 	// @param interfaceIdParam (required)
 	// @return com.vmware.nsx_policy.model.Tier1Interface
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(tier1IdParam string, localeServicesIdParam string, interfaceIdParam string) (nsx_policyModel.Tier1Interface, error)
+	Get(tier1IdParam string, localeServicesIdParam string, interfaceIdParam string) (model.Tier1Interface, error)
 
 	// Paginated list of all Tier-1 interfaces
 	//
@@ -45,83 +45,77 @@ type InterfacesClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_policy.model.Tier1InterfaceListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(tier1IdParam string, localeServicesIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.Tier1InterfaceListResult, error)
+	List(tier1IdParam string, localeServicesIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.Tier1InterfaceListResult, error)
 }
 
 type interfacesClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewInterfacesClient(connector vapiProtocolClient_.Connector) *interfacesClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.global_infra.tier_1s.locale_services.interfaces")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"get":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
+func NewInterfacesClient(connector client.Connector) *interfacesClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.global_infra.tier_1s.locale_services.interfaces")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"get":  core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list": core.NewMethodIdentifier(interfaceIdentifier, "list"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	iIface := interfacesClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &iIface
 }
 
-func (iIface *interfacesClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (iIface *interfacesClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := iIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (iIface *interfacesClient) Get(tier1IdParam string, localeServicesIdParam string, interfaceIdParam string) (nsx_policyModel.Tier1Interface, error) {
+func (iIface *interfacesClient) Get(tier1IdParam string, localeServicesIdParam string, interfaceIdParam string) (model.Tier1Interface, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := interfacesGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(interfacesGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(interfacesGetInputType(), typeConverter)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("LocaleServicesId", localeServicesIdParam)
 	sv.AddStructField("InterfaceId", interfaceIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.Tier1Interface
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.Tier1Interface
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := interfacesGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.global_infra.tier_1s.locale_services.interfaces", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.Tier1Interface
+	var emptyOutput model.Tier1Interface
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), InterfacesGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), interfacesGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.Tier1Interface), nil
+		return output.(model.Tier1Interface), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (iIface *interfacesClient) List(tier1IdParam string, localeServicesIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.Tier1InterfaceListResult, error) {
+func (iIface *interfacesClient) List(tier1IdParam string, localeServicesIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.Tier1InterfaceListResult, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := interfacesListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(interfacesListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(interfacesListInputType(), typeConverter)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("LocaleServicesId", localeServicesIdParam)
 	sv.AddStructField("Cursor", cursorParam)
@@ -132,22 +126,25 @@ func (iIface *interfacesClient) List(tier1IdParam string, localeServicesIdParam 
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.Tier1InterfaceListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.Tier1InterfaceListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := interfacesListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.global_infra.tier_1s.locale_services.interfaces", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.Tier1InterfaceListResult
+	var emptyOutput model.Tier1InterfaceListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), InterfacesListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), interfacesListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.Tier1InterfaceListResult), nil
+		return output.(model.Tier1InterfaceListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,55 +9,47 @@
 package pools
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type IpSubnetsClient interface {
 
 	//
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param subnetIdParam IP subnet id (required)
 	// @param allocationIpAddressParam (required)
 	// @param actionParam Specifies allocate or release action (required)
 	// @return com.vmware.nsx.model.AllocationIpAddress
-	//
 	// @throws ConcurrentChange  Conflict
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Allocateorreleasefromipblocksubnet(subnetIdParam string, allocationIpAddressParam nsxModel.AllocationIpAddress, actionParam string) (nsxModel.AllocationIpAddress, error)
+	Allocateorreleasefromipblocksubnet(subnetIdParam string, allocationIpAddressParam model.AllocationIpAddress, actionParam string) (model.AllocationIpAddress, error)
 
 	//
-	//
-	// Deprecated: This API element is deprecated.
 	//
 	// @param ipBlockSubnetParam (required)
 	// @return com.vmware.nsx.model.IpBlockSubnet
-	//
 	// @throws ConcurrentChange  Conflict
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Create(ipBlockSubnetParam nsxModel.IpBlockSubnet) (nsxModel.IpBlockSubnet, error)
+	Create(ipBlockSubnetParam model.IpBlockSubnet) (model.IpBlockSubnet, error)
 
 	//
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param subnetIdParam Subnet id (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -67,17 +59,14 @@ type IpSubnetsClient interface {
 
 	//
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param subnetIdParam Subnet id (required)
 	// @return com.vmware.nsx.model.IpBlockSubnet
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(subnetIdParam string) (nsxModel.IpBlockSubnet, error)
+	Get(subnetIdParam string) (model.IpBlockSubnet, error)
 
 	// Returns information about all subnets present within an IP address block. Information includes subnet's id, display_name, description, cidr and allocation ranges.
 	//
@@ -88,105 +77,102 @@ type IpSubnetsClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx.model.IpBlockSubnetListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(blockIdParam *string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsxModel.IpBlockSubnetListResult, error)
+	List(blockIdParam *string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IpBlockSubnetListResult, error)
 }
 
 type ipSubnetsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewIpSubnetsClient(connector vapiProtocolClient_.Connector) *ipSubnetsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.pools.ip_subnets")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"allocateorreleasefromipblocksubnet": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "allocateorreleasefromipblocksubnet"),
-		"create":                             vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
-		"delete":                             vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":                                vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":                               vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
+func NewIpSubnetsClient(connector client.Connector) *ipSubnetsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.pools.ip_subnets")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"allocateorreleasefromipblocksubnet": core.NewMethodIdentifier(interfaceIdentifier, "allocateorreleasefromipblocksubnet"),
+		"create":                             core.NewMethodIdentifier(interfaceIdentifier, "create"),
+		"delete":                             core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":                                core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":                               core.NewMethodIdentifier(interfaceIdentifier, "list"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	iIface := ipSubnetsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &iIface
 }
 
-func (iIface *ipSubnetsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (iIface *ipSubnetsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := iIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (iIface *ipSubnetsClient) Allocateorreleasefromipblocksubnet(subnetIdParam string, allocationIpAddressParam nsxModel.AllocationIpAddress, actionParam string) (nsxModel.AllocationIpAddress, error) {
+func (iIface *ipSubnetsClient) Allocateorreleasefromipblocksubnet(subnetIdParam string, allocationIpAddressParam model.AllocationIpAddress, actionParam string) (model.AllocationIpAddress, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := ipSubnetsAllocateorreleasefromipblocksubnetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ipSubnetsAllocateorreleasefromipblocksubnetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ipSubnetsAllocateorreleasefromipblocksubnetInputType(), typeConverter)
 	sv.AddStructField("SubnetId", subnetIdParam)
 	sv.AddStructField("AllocationIpAddress", allocationIpAddressParam)
 	sv.AddStructField("Action", actionParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.AllocationIpAddress
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.AllocationIpAddress
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ipSubnetsAllocateorreleasefromipblocksubnetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx.pools.ip_subnets", "allocateorreleasefromipblocksubnet", inputDataValue, executionContext)
-	var emptyOutput nsxModel.AllocationIpAddress
+	var emptyOutput model.AllocationIpAddress
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), IpSubnetsAllocateorreleasefromipblocksubnetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ipSubnetsAllocateorreleasefromipblocksubnetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.AllocationIpAddress), nil
+		return output.(model.AllocationIpAddress), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (iIface *ipSubnetsClient) Create(ipBlockSubnetParam nsxModel.IpBlockSubnet) (nsxModel.IpBlockSubnet, error) {
+func (iIface *ipSubnetsClient) Create(ipBlockSubnetParam model.IpBlockSubnet) (model.IpBlockSubnet, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := ipSubnetsCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ipSubnetsCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ipSubnetsCreateInputType(), typeConverter)
 	sv.AddStructField("IpBlockSubnet", ipBlockSubnetParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.IpBlockSubnet
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IpBlockSubnet
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ipSubnetsCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx.pools.ip_subnets", "create", inputDataValue, executionContext)
-	var emptyOutput nsxModel.IpBlockSubnet
+	var emptyOutput model.IpBlockSubnet
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), IpSubnetsCreateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ipSubnetsCreateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.IpBlockSubnet), nil
+		return output.(model.IpBlockSubnet), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
@@ -195,69 +181,63 @@ func (iIface *ipSubnetsClient) Create(ipBlockSubnetParam nsxModel.IpBlockSubnet)
 func (iIface *ipSubnetsClient) Delete(subnetIdParam string) error {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := ipSubnetsDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ipSubnetsDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ipSubnetsDeleteInputType(), typeConverter)
 	sv.AddStructField("SubnetId", subnetIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ipSubnetsDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx.pools.ip_subnets", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (iIface *ipSubnetsClient) Get(subnetIdParam string) (nsxModel.IpBlockSubnet, error) {
+func (iIface *ipSubnetsClient) Get(subnetIdParam string) (model.IpBlockSubnet, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := ipSubnetsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ipSubnetsGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ipSubnetsGetInputType(), typeConverter)
 	sv.AddStructField("SubnetId", subnetIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.IpBlockSubnet
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IpBlockSubnet
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ipSubnetsGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx.pools.ip_subnets", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.IpBlockSubnet
+	var emptyOutput model.IpBlockSubnet
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), IpSubnetsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ipSubnetsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.IpBlockSubnet), nil
+		return output.(model.IpBlockSubnet), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (iIface *ipSubnetsClient) List(blockIdParam *string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsxModel.IpBlockSubnetListResult, error) {
+func (iIface *ipSubnetsClient) List(blockIdParam *string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IpBlockSubnetListResult, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := ipSubnetsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ipSubnetsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ipSubnetsListInputType(), typeConverter)
 	sv.AddStructField("BlockId", blockIdParam)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)
@@ -266,22 +246,25 @@ func (iIface *ipSubnetsClient) List(blockIdParam *string, cursorParam *string, i
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.IpBlockSubnetListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IpBlockSubnetListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ipSubnetsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx.pools.ip_subnets", "list", inputDataValue, executionContext)
-	var emptyOutput nsxModel.IpBlockSubnetListResult
+	var emptyOutput model.IpBlockSubnetListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), IpSubnetsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ipSubnetsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.IpBlockSubnetListResult), nil
+		return output.(model.IpBlockSubnetListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

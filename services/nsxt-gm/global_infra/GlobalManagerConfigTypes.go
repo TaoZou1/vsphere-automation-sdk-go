@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,41 +11,41 @@
 package global_infra
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_global_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-gm/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-gm/model"
 	"reflect"
 )
 
-func globalManagerConfigPatchInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func globalManagerConfigPatchInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["global_manager_config"] = vapiBindings_.NewReferenceType(nsx_global_policyModel.GlobalManagerConfigBindingType)
+	fields["global_manager_config"] = bindings.NewReferenceType(model.GlobalManagerConfigBindingType)
 	fieldNameMap["global_manager_config"] = "GlobalManagerConfig"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func GlobalManagerConfigPatchOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func globalManagerConfigPatchOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func globalManagerConfigPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func globalManagerConfigPatchRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["global_manager_config"] = vapiBindings_.NewReferenceType(nsx_global_policyModel.GlobalManagerConfigBindingType)
+	fields["global_manager_config"] = bindings.NewReferenceType(model.GlobalManagerConfigBindingType)
 	fieldNameMap["global_manager_config"] = "GlobalManagerConfig"
-	paramsTypeMap["global_manager_config"] = vapiBindings_.NewReferenceType(nsx_global_policyModel.GlobalManagerConfigBindingType)
+	paramsTypeMap["global_manager_config"] = bindings.NewReferenceType(model.GlobalManagerConfigBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -66,21 +66,21 @@ func globalManagerConfigPatchRestMetadata() vapiProtocol_.OperationRestMetadata 
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func globalManagerConfigShowsensitivedataInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func globalManagerConfigShowsensitivedataInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func GlobalManagerConfigShowsensitivedataOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_global_policyModel.GlobalManagerConfigBindingType)
+func globalManagerConfigShowsensitivedataOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.GlobalManagerConfigBindingType)
 }
 
-func globalManagerConfigShowsensitivedataRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func globalManagerConfigShowsensitivedataRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
@@ -88,7 +88,7 @@ func globalManagerConfigShowsensitivedataRestMetadata() vapiProtocol_.OperationR
 	bodyFieldsMap := map[string]string{}
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -109,34 +109,34 @@ func globalManagerConfigShowsensitivedataRestMetadata() vapiProtocol_.OperationR
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func globalManagerConfigUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func globalManagerConfigUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["global_manager_config"] = vapiBindings_.NewReferenceType(nsx_global_policyModel.GlobalManagerConfigBindingType)
+	fields["global_manager_config"] = bindings.NewReferenceType(model.GlobalManagerConfigBindingType)
 	fieldNameMap["global_manager_config"] = "GlobalManagerConfig"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func GlobalManagerConfigUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_global_policyModel.GlobalManagerConfigBindingType)
+func globalManagerConfigUpdateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.GlobalManagerConfigBindingType)
 }
 
-func globalManagerConfigUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func globalManagerConfigUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["global_manager_config"] = vapiBindings_.NewReferenceType(nsx_global_policyModel.GlobalManagerConfigBindingType)
+	fields["global_manager_config"] = bindings.NewReferenceType(model.GlobalManagerConfigBindingType)
 	fieldNameMap["global_manager_config"] = "GlobalManagerConfig"
-	paramsTypeMap["global_manager_config"] = vapiBindings_.NewReferenceType(nsx_global_policyModel.GlobalManagerConfigBindingType)
+	paramsTypeMap["global_manager_config"] = bindings.NewReferenceType(model.GlobalManagerConfigBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

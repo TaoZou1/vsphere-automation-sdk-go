@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,22 +9,22 @@
 package aaa
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type LdapIdentitySourcesClient interface {
 
 	// Delete an LDAP identity source. Users defined in that source will no longer be able to access NSX.
 	//
 	// @param ldapIdentitySourceIdParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -36,26 +36,24 @@ type LdapIdentitySourcesClient interface {
 	//
 	// @param identitySourceLdapServerEndpointParam (required)
 	// @return com.vmware.nsx_policy.model.PeerCertificateChain
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Fetchcertificate(identitySourceLdapServerEndpointParam nsx_policyModel.IdentitySourceLdapServerEndpoint) (nsx_policyModel.PeerCertificateChain, error)
+	Fetchcertificate(identitySourceLdapServerEndpointParam model.IdentitySourceLdapServerEndpoint) (model.PeerCertificateChain, error)
 
 	// Return details about one LDAP identity source
 	//
 	// @param ldapIdentitySourceIdParam (required)
 	// @return com.vmware.nsx_policy.model.LdapIdentitySource
-	// The return value will contain all the properties defined in nsx_policyModel.LdapIdentitySource.
-	//
+	// The return value will contain all the properties defined in model.LdapIdentitySource.
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(ldapIdentitySourceIdParam string) (*vapiData_.StructValue, error)
+	Get(ldapIdentitySourceIdParam string) (*data.StructValue, error)
 
 	// Return a list of all configured LDAP identity sources.
 	//
@@ -65,197 +63,185 @@ type LdapIdentitySourcesClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_policy.model.LdapIdentitySourceListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.LdapIdentitySourceListResult, error)
+	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.LdapIdentitySourceListResult, error)
 
 	// Attempt to connect to an existing LDAP identity source and report any errors encountered.
 	//
 	// @param ldapIdentitySourceIdParam (required)
 	// @return com.vmware.nsx_policy.model.LdapIdentitySourceProbeResults
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Probe(ldapIdentitySourceIdParam string) (nsx_policyModel.LdapIdentitySourceProbeResults, error)
+	Probe(ldapIdentitySourceIdParam string) (model.LdapIdentitySourceProbeResults, error)
 
 	// Verify that the configuration of an LDAP identity source is correct before actually creating the source.
 	//
 	// @param ldapIdentitySourceParam (required)
-	// The parameter must contain all the properties defined in nsx_policyModel.LdapIdentitySource.
+	// The parameter must contain all the properties defined in model.LdapIdentitySource.
 	// @return com.vmware.nsx_policy.model.LdapIdentitySourceProbeResults
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Probeidentitysource(ldapIdentitySourceParam *vapiData_.StructValue) (nsx_policyModel.LdapIdentitySourceProbeResults, error)
+	Probeidentitysource(ldapIdentitySourceParam *data.StructValue) (model.LdapIdentitySourceProbeResults, error)
 
 	// Attempt to connect to an LDAP server and ensure that the server can be contacted using the given URL and authentication credentials.
 	//
 	// @param identitySourceLdapServerParam (required)
 	// @return com.vmware.nsx_policy.model.IdentitySourceLdapServerProbeResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Probeldapserver(identitySourceLdapServerParam nsx_policyModel.IdentitySourceLdapServer) (nsx_policyModel.IdentitySourceLdapServerProbeResult, error)
+	Probeldapserver(identitySourceLdapServerParam model.IdentitySourceLdapServer) (model.IdentitySourceLdapServerProbeResult, error)
 
 	// Create a new LDAP identity source or update the configuration of an existing LDAP identity source. You may wish to verify the new configuration using the POST /aaa/ldap-identity-sources?action=probe API before creating or changing the configuration. Note that if you are using LDAP on an active and standby NSX-T Global Manager in a federated environment, you must use the same name for your LDAP identity sources on the active and standby Global Managers.
 	//
 	// @param ldapIdentitySourceIdParam (required)
 	// @param ldapIdentitySourceParam (required)
-	// The parameter must contain all the properties defined in nsx_policyModel.LdapIdentitySource.
+	// The parameter must contain all the properties defined in model.LdapIdentitySource.
 	// @return com.vmware.nsx_policy.model.LdapIdentitySource
-	// The return value will contain all the properties defined in nsx_policyModel.LdapIdentitySource.
-	//
+	// The return value will contain all the properties defined in model.LdapIdentitySource.
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(ldapIdentitySourceIdParam string, ldapIdentitySourceParam *vapiData_.StructValue) (*vapiData_.StructValue, error)
+	Update(ldapIdentitySourceIdParam string, ldapIdentitySourceParam *data.StructValue) (*data.StructValue, error)
 }
 
 type ldapIdentitySourcesClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewLdapIdentitySourcesClient(connector vapiProtocolClient_.Connector) *ldapIdentitySourcesClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.aaa.ldap_identity_sources")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"delete":              vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"fetchcertificate":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "fetchcertificate"),
-		"get":                 vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":                vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"probe":               vapiCore_.NewMethodIdentifier(interfaceIdentifier, "probe"),
-		"probeidentitysource": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "probeidentitysource"),
-		"probeldapserver":     vapiCore_.NewMethodIdentifier(interfaceIdentifier, "probeldapserver"),
-		"update":              vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewLdapIdentitySourcesClient(connector client.Connector) *ldapIdentitySourcesClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.aaa.ldap_identity_sources")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"delete":              core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"fetchcertificate":    core.NewMethodIdentifier(interfaceIdentifier, "fetchcertificate"),
+		"get":                 core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":                core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"probe":               core.NewMethodIdentifier(interfaceIdentifier, "probe"),
+		"probeidentitysource": core.NewMethodIdentifier(interfaceIdentifier, "probeidentitysource"),
+		"probeldapserver":     core.NewMethodIdentifier(interfaceIdentifier, "probeldapserver"),
+		"update":              core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	lIface := ldapIdentitySourcesClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &lIface
 }
 
-func (lIface *ldapIdentitySourcesClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (lIface *ldapIdentitySourcesClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := lIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
 func (lIface *ldapIdentitySourcesClient) Delete(ldapIdentitySourceIdParam string) error {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
-	operationRestMetaData := ldapIdentitySourcesDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ldapIdentitySourcesDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ldapIdentitySourcesDeleteInputType(), typeConverter)
 	sv.AddStructField("LdapIdentitySourceId", ldapIdentitySourceIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ldapIdentitySourcesDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.aaa.ldap_identity_sources", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (lIface *ldapIdentitySourcesClient) Fetchcertificate(identitySourceLdapServerEndpointParam nsx_policyModel.IdentitySourceLdapServerEndpoint) (nsx_policyModel.PeerCertificateChain, error) {
+func (lIface *ldapIdentitySourcesClient) Fetchcertificate(identitySourceLdapServerEndpointParam model.IdentitySourceLdapServerEndpoint) (model.PeerCertificateChain, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
-	operationRestMetaData := ldapIdentitySourcesFetchcertificateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ldapIdentitySourcesFetchcertificateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ldapIdentitySourcesFetchcertificateInputType(), typeConverter)
 	sv.AddStructField("IdentitySourceLdapServerEndpoint", identitySourceLdapServerEndpointParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.PeerCertificateChain
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.PeerCertificateChain
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ldapIdentitySourcesFetchcertificateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.aaa.ldap_identity_sources", "fetchcertificate", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.PeerCertificateChain
+	var emptyOutput model.PeerCertificateChain
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), LdapIdentitySourcesFetchcertificateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ldapIdentitySourcesFetchcertificateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.PeerCertificateChain), nil
+		return output.(model.PeerCertificateChain), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (lIface *ldapIdentitySourcesClient) Get(ldapIdentitySourceIdParam string) (*vapiData_.StructValue, error) {
+func (lIface *ldapIdentitySourcesClient) Get(ldapIdentitySourceIdParam string) (*data.StructValue, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
-	operationRestMetaData := ldapIdentitySourcesGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ldapIdentitySourcesGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ldapIdentitySourcesGetInputType(), typeConverter)
 	sv.AddStructField("LdapIdentitySourceId", ldapIdentitySourceIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput *vapiData_.StructValue
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput *data.StructValue
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ldapIdentitySourcesGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.aaa.ldap_identity_sources", "get", inputDataValue, executionContext)
-	var emptyOutput *vapiData_.StructValue
+	var emptyOutput *data.StructValue
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), LdapIdentitySourcesGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ldapIdentitySourcesGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(*vapiData_.StructValue), nil
+		return output.(*data.StructValue), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (lIface *ldapIdentitySourcesClient) List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.LdapIdentitySourceListResult, error) {
+func (lIface *ldapIdentitySourcesClient) List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.LdapIdentitySourceListResult, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
-	operationRestMetaData := ldapIdentitySourcesListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ldapIdentitySourcesListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ldapIdentitySourcesListInputType(), typeConverter)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)
 	sv.AddStructField("PageSize", pageSizeParam)
@@ -263,151 +249,150 @@ func (lIface *ldapIdentitySourcesClient) List(cursorParam *string, includedField
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.LdapIdentitySourceListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.LdapIdentitySourceListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ldapIdentitySourcesListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.aaa.ldap_identity_sources", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.LdapIdentitySourceListResult
+	var emptyOutput model.LdapIdentitySourceListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), LdapIdentitySourcesListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ldapIdentitySourcesListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.LdapIdentitySourceListResult), nil
+		return output.(model.LdapIdentitySourceListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (lIface *ldapIdentitySourcesClient) Probe(ldapIdentitySourceIdParam string) (nsx_policyModel.LdapIdentitySourceProbeResults, error) {
+func (lIface *ldapIdentitySourcesClient) Probe(ldapIdentitySourceIdParam string) (model.LdapIdentitySourceProbeResults, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
-	operationRestMetaData := ldapIdentitySourcesProbeRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ldapIdentitySourcesProbeInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ldapIdentitySourcesProbeInputType(), typeConverter)
 	sv.AddStructField("LdapIdentitySourceId", ldapIdentitySourceIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.LdapIdentitySourceProbeResults
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.LdapIdentitySourceProbeResults
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ldapIdentitySourcesProbeRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.aaa.ldap_identity_sources", "probe", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.LdapIdentitySourceProbeResults
+	var emptyOutput model.LdapIdentitySourceProbeResults
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), LdapIdentitySourcesProbeOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ldapIdentitySourcesProbeOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.LdapIdentitySourceProbeResults), nil
+		return output.(model.LdapIdentitySourceProbeResults), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (lIface *ldapIdentitySourcesClient) Probeidentitysource(ldapIdentitySourceParam *vapiData_.StructValue) (nsx_policyModel.LdapIdentitySourceProbeResults, error) {
+func (lIface *ldapIdentitySourcesClient) Probeidentitysource(ldapIdentitySourceParam *data.StructValue) (model.LdapIdentitySourceProbeResults, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
-	operationRestMetaData := ldapIdentitySourcesProbeidentitysourceRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ldapIdentitySourcesProbeidentitysourceInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ldapIdentitySourcesProbeidentitysourceInputType(), typeConverter)
 	sv.AddStructField("LdapIdentitySource", ldapIdentitySourceParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.LdapIdentitySourceProbeResults
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.LdapIdentitySourceProbeResults
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ldapIdentitySourcesProbeidentitysourceRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.aaa.ldap_identity_sources", "probeidentitysource", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.LdapIdentitySourceProbeResults
+	var emptyOutput model.LdapIdentitySourceProbeResults
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), LdapIdentitySourcesProbeidentitysourceOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ldapIdentitySourcesProbeidentitysourceOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.LdapIdentitySourceProbeResults), nil
+		return output.(model.LdapIdentitySourceProbeResults), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (lIface *ldapIdentitySourcesClient) Probeldapserver(identitySourceLdapServerParam nsx_policyModel.IdentitySourceLdapServer) (nsx_policyModel.IdentitySourceLdapServerProbeResult, error) {
+func (lIface *ldapIdentitySourcesClient) Probeldapserver(identitySourceLdapServerParam model.IdentitySourceLdapServer) (model.IdentitySourceLdapServerProbeResult, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
-	operationRestMetaData := ldapIdentitySourcesProbeldapserverRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ldapIdentitySourcesProbeldapserverInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ldapIdentitySourcesProbeldapserverInputType(), typeConverter)
 	sv.AddStructField("IdentitySourceLdapServer", identitySourceLdapServerParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.IdentitySourceLdapServerProbeResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IdentitySourceLdapServerProbeResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ldapIdentitySourcesProbeldapserverRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.aaa.ldap_identity_sources", "probeldapserver", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.IdentitySourceLdapServerProbeResult
+	var emptyOutput model.IdentitySourceLdapServerProbeResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), LdapIdentitySourcesProbeldapserverOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ldapIdentitySourcesProbeldapserverOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.IdentitySourceLdapServerProbeResult), nil
+		return output.(model.IdentitySourceLdapServerProbeResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (lIface *ldapIdentitySourcesClient) Update(ldapIdentitySourceIdParam string, ldapIdentitySourceParam *vapiData_.StructValue) (*vapiData_.StructValue, error) {
+func (lIface *ldapIdentitySourcesClient) Update(ldapIdentitySourceIdParam string, ldapIdentitySourceParam *data.StructValue) (*data.StructValue, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
-	operationRestMetaData := ldapIdentitySourcesUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ldapIdentitySourcesUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ldapIdentitySourcesUpdateInputType(), typeConverter)
 	sv.AddStructField("LdapIdentitySourceId", ldapIdentitySourceIdParam)
 	sv.AddStructField("LdapIdentitySource", ldapIdentitySourceParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput *vapiData_.StructValue
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput *data.StructValue
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ldapIdentitySourcesUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.aaa.ldap_identity_sources", "update", inputDataValue, executionContext)
-	var emptyOutput *vapiData_.StructValue
+	var emptyOutput *data.StructValue
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), LdapIdentitySourcesUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ldapIdentitySourcesUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(*vapiData_.StructValue), nil
+		return output.(*data.StructValue), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

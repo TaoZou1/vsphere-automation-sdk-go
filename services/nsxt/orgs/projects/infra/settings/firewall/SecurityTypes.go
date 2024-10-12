@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,50 +11,50 @@
 package firewall
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func securityGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func securityGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SecurityGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.DfwFirewallConfigurationBindingType)
+func securityGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.DfwFirewallConfigurationBindingType)
 }
 
-func securityGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func securityGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
-	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["orgId"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
 	pathParams["project_id"] = "projectId"
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -75,48 +75,48 @@ func securityGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func securityPatchInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func securityPatchInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["dfw_firewall_configuration"] = vapiBindings_.NewReferenceType(nsx_policyModel.DfwFirewallConfigurationBindingType)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["dfw_firewall_configuration"] = bindings.NewReferenceType(model.DfwFirewallConfigurationBindingType)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["dfw_firewall_configuration"] = "DfwFirewallConfiguration"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SecurityPatchOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func securityPatchOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func securityPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func securityPatchRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["dfw_firewall_configuration"] = vapiBindings_.NewReferenceType(nsx_policyModel.DfwFirewallConfigurationBindingType)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["dfw_firewall_configuration"] = bindings.NewReferenceType(model.DfwFirewallConfigurationBindingType)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["dfw_firewall_configuration"] = "DfwFirewallConfiguration"
-	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["dfw_firewall_configuration"] = vapiBindings_.NewReferenceType(nsx_policyModel.DfwFirewallConfigurationBindingType)
-	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["dfw_firewall_configuration"] = bindings.NewReferenceType(model.DfwFirewallConfigurationBindingType)
+	paramsTypeMap["orgId"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
 	pathParams["project_id"] = "projectId"
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -137,48 +137,48 @@ func securityPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func securityUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func securityUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["dfw_firewall_configuration"] = vapiBindings_.NewReferenceType(nsx_policyModel.DfwFirewallConfigurationBindingType)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["dfw_firewall_configuration"] = bindings.NewReferenceType(model.DfwFirewallConfigurationBindingType)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["dfw_firewall_configuration"] = "DfwFirewallConfiguration"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SecurityUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.DfwFirewallConfigurationBindingType)
+func securityUpdateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.DfwFirewallConfigurationBindingType)
 }
 
-func securityUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func securityUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["dfw_firewall_configuration"] = vapiBindings_.NewReferenceType(nsx_policyModel.DfwFirewallConfigurationBindingType)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["dfw_firewall_configuration"] = bindings.NewReferenceType(model.DfwFirewallConfigurationBindingType)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["dfw_firewall_configuration"] = "DfwFirewallConfiguration"
-	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["dfw_firewall_configuration"] = vapiBindings_.NewReferenceType(nsx_policyModel.DfwFirewallConfigurationBindingType)
-	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["dfw_firewall_configuration"] = bindings.NewReferenceType(model.DfwFirewallConfigurationBindingType)
+	paramsTypeMap["orgId"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
 	pathParams["project_id"] = "projectId"
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

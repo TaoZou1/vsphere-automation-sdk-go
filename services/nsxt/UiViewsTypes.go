@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,41 +11,41 @@
 package nsx_policy
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func uiViewsCreateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func uiViewsCreateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["view"] = vapiBindings_.NewReferenceType(nsx_policyModel.ViewBindingType)
+	fields["view"] = bindings.NewReferenceType(model.ViewBindingType)
 	fieldNameMap["view"] = "View"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func UiViewsCreateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.ViewBindingType)
+func uiViewsCreateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.ViewBindingType)
 }
 
-func uiViewsCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func uiViewsCreateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["view"] = vapiBindings_.NewReferenceType(nsx_policyModel.ViewBindingType)
+	fields["view"] = bindings.NewReferenceType(model.ViewBindingType)
 	fieldNameMap["view"] = "View"
-	paramsTypeMap["view"] = vapiBindings_.NewReferenceType(nsx_policyModel.ViewBindingType)
+	paramsTypeMap["view"] = bindings.NewReferenceType(model.ViewBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -66,36 +66,36 @@ func uiViewsCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func uiViewsDeleteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func uiViewsDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["view_id"] = vapiBindings_.NewStringType()
+	fields["view_id"] = bindings.NewStringType()
 	fieldNameMap["view_id"] = "ViewId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func UiViewsDeleteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func uiViewsDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func uiViewsDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func uiViewsDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["view_id"] = vapiBindings_.NewStringType()
+	fields["view_id"] = bindings.NewStringType()
 	fieldNameMap["view_id"] = "ViewId"
-	paramsTypeMap["view_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["viewId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["view_id"] = bindings.NewStringType()
+	paramsTypeMap["viewId"] = bindings.NewStringType()
 	pathParams["view_id"] = "viewId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -116,47 +116,47 @@ func uiViewsDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func uiViewsGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func uiViewsGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["tag"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["view_ids"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["widget_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["tag"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["view_ids"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["widget_id"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["tag"] = "Tag"
 	fieldNameMap["view_ids"] = "ViewIds"
 	fieldNameMap["widget_id"] = "WidgetId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func UiViewsGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.ViewListBindingType)
+func uiViewsGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.ViewListBindingType)
 }
 
-func uiViewsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func uiViewsGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["tag"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["view_ids"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["widget_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["tag"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["view_ids"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["widget_id"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["tag"] = "Tag"
 	fieldNameMap["view_ids"] = "ViewIds"
 	fieldNameMap["widget_id"] = "WidgetId"
-	paramsTypeMap["view_ids"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["widget_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["tag"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["widget_id"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["tag"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["view_ids"] = bindings.NewOptionalType(bindings.NewStringType())
 	queryParams["view_ids"] = "view_ids"
 	queryParams["widget_id"] = "widget_id"
 	queryParams["tag"] = "tag"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -177,36 +177,36 @@ func uiViewsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func uiViewsGet0InputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func uiViewsGet0InputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["view_id"] = vapiBindings_.NewStringType()
+	fields["view_id"] = bindings.NewStringType()
 	fieldNameMap["view_id"] = "ViewId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func UiViewsGet0OutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.ViewBindingType)
+func uiViewsGet0OutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.ViewBindingType)
 }
 
-func uiViewsGet0RestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func uiViewsGet0RestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["view_id"] = vapiBindings_.NewStringType()
+	fields["view_id"] = bindings.NewStringType()
 	fieldNameMap["view_id"] = "ViewId"
-	paramsTypeMap["view_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["viewId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["view_id"] = bindings.NewStringType()
+	paramsTypeMap["viewId"] = bindings.NewStringType()
 	pathParams["view_id"] = "viewId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -227,41 +227,41 @@ func uiViewsGet0RestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func uiViewsUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func uiViewsUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["view_id"] = vapiBindings_.NewStringType()
-	fields["view"] = vapiBindings_.NewReferenceType(nsx_policyModel.ViewBindingType)
+	fields["view_id"] = bindings.NewStringType()
+	fields["view"] = bindings.NewReferenceType(model.ViewBindingType)
 	fieldNameMap["view_id"] = "ViewId"
 	fieldNameMap["view"] = "View"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func UiViewsUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.ViewBindingType)
+func uiViewsUpdateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.ViewBindingType)
 }
 
-func uiViewsUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func uiViewsUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["view_id"] = vapiBindings_.NewStringType()
-	fields["view"] = vapiBindings_.NewReferenceType(nsx_policyModel.ViewBindingType)
+	fields["view_id"] = bindings.NewStringType()
+	fields["view"] = bindings.NewReferenceType(model.ViewBindingType)
 	fieldNameMap["view_id"] = "ViewId"
 	fieldNameMap["view"] = "View"
-	paramsTypeMap["view"] = vapiBindings_.NewReferenceType(nsx_policyModel.ViewBindingType)
-	paramsTypeMap["view_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["viewId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["view_id"] = bindings.NewStringType()
+	paramsTypeMap["view"] = bindings.NewReferenceType(model.ViewBindingType)
+	paramsTypeMap["viewId"] = bindings.NewStringType()
 	pathParams["view_id"] = "viewId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

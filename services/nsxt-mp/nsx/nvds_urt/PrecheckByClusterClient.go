@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,133 +9,126 @@
 package nvds_urt
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type PrecheckByClusterClient interface {
 
 	// Start precheck for N-VDS to VDS migration by cluster
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param clusterIdParam (required)
 	// @param tolerateDifferentConfigurationsParam tolerate differnet configurations (optional, default to true)
 	// @return com.vmware.nsx.model.NvdsUpgradePrecheckId
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Create(clusterIdParam string, tolerateDifferentConfigurationsParam *bool) (nsxModel.NvdsUpgradePrecheckId, error)
+	Create(clusterIdParam string, tolerateDifferentConfigurationsParam *bool) (model.NvdsUpgradePrecheckId, error)
 
 	// Retrieve latest precheck ID of the N-VDS to VDS migration for the cluster
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param clusterIdParam (required)
 	// @return com.vmware.nsx.model.NvdsUpgradePrecheckId
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(clusterIdParam string) (nsxModel.NvdsUpgradePrecheckId, error)
+	Get(clusterIdParam string) (model.NvdsUpgradePrecheckId, error)
 }
 
 type precheckByClusterClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewPrecheckByClusterClient(connector vapiProtocolClient_.Connector) *precheckByClusterClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.nvds_urt.precheck_by_cluster")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"create": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
+func NewPrecheckByClusterClient(connector client.Connector) *precheckByClusterClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.nvds_urt.precheck_by_cluster")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"create": core.NewMethodIdentifier(interfaceIdentifier, "create"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	pIface := precheckByClusterClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &pIface
 }
 
-func (pIface *precheckByClusterClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (pIface *precheckByClusterClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := pIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (pIface *precheckByClusterClient) Create(clusterIdParam string, tolerateDifferentConfigurationsParam *bool) (nsxModel.NvdsUpgradePrecheckId, error) {
+func (pIface *precheckByClusterClient) Create(clusterIdParam string, tolerateDifferentConfigurationsParam *bool) (model.NvdsUpgradePrecheckId, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
-	operationRestMetaData := precheckByClusterCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(precheckByClusterCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(precheckByClusterCreateInputType(), typeConverter)
 	sv.AddStructField("ClusterId", clusterIdParam)
 	sv.AddStructField("TolerateDifferentConfigurations", tolerateDifferentConfigurationsParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.NvdsUpgradePrecheckId
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.NvdsUpgradePrecheckId
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := precheckByClusterCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx.nvds_urt.precheck_by_cluster", "create", inputDataValue, executionContext)
-	var emptyOutput nsxModel.NvdsUpgradePrecheckId
+	var emptyOutput model.NvdsUpgradePrecheckId
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), PrecheckByClusterCreateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), precheckByClusterCreateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.NvdsUpgradePrecheckId), nil
+		return output.(model.NvdsUpgradePrecheckId), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (pIface *precheckByClusterClient) Get(clusterIdParam string) (nsxModel.NvdsUpgradePrecheckId, error) {
+func (pIface *precheckByClusterClient) Get(clusterIdParam string) (model.NvdsUpgradePrecheckId, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
-	operationRestMetaData := precheckByClusterGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(precheckByClusterGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(precheckByClusterGetInputType(), typeConverter)
 	sv.AddStructField("ClusterId", clusterIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.NvdsUpgradePrecheckId
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.NvdsUpgradePrecheckId
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := precheckByClusterGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx.nvds_urt.precheck_by_cluster", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.NvdsUpgradePrecheckId
+	var emptyOutput model.NvdsUpgradePrecheckId
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), PrecheckByClusterGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), precheckByClusterGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.NvdsUpgradePrecheckId), nil
+		return output.(model.NvdsUpgradePrecheckId), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

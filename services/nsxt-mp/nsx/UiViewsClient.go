@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package nsx
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type UiViewsClient interface {
 
@@ -24,18 +25,16 @@ type UiViewsClient interface {
 	//
 	// @param viewParam (required)
 	// @return com.vmware.nsx.model.View
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Create(viewParam nsxModel.View) (nsxModel.View, error)
+	Create(viewParam model.View) (model.View, error)
 
 	// Delete View
 	//
 	// @param viewIdParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -49,96 +48,92 @@ type UiViewsClient interface {
 	// @param viewIdsParam Ids of the Views (optional)
 	// @param widgetIdParam Id of widget configuration (optional)
 	// @return com.vmware.nsx.model.ViewList
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(tagParam *string, viewIdsParam *string, widgetIdParam *string) (nsxModel.ViewList, error)
+	Get(tagParam *string, viewIdsParam *string, widgetIdParam *string) (model.ViewList, error)
 
 	// Returns Information about a specific View.
 	//
 	// @param viewIdParam (required)
 	// @return com.vmware.nsx.model.View
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get0(viewIdParam string) (nsxModel.View, error)
+	Get0(viewIdParam string) (model.View, error)
 
 	// Update View
 	//
 	// @param viewIdParam (required)
 	// @param viewParam (required)
 	// @return com.vmware.nsx.model.View
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(viewIdParam string, viewParam nsxModel.View) (nsxModel.View, error)
+	Update(viewIdParam string, viewParam model.View) (model.View, error)
 }
 
 type uiViewsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewUiViewsClient(connector vapiProtocolClient_.Connector) *uiViewsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.ui_views")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"create": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"get_0":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get_0"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewUiViewsClient(connector client.Connector) *uiViewsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.ui_views")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"create": core.NewMethodIdentifier(interfaceIdentifier, "create"),
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"get_0":  core.NewMethodIdentifier(interfaceIdentifier, "get_0"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	uIface := uiViewsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &uIface
 }
 
-func (uIface *uiViewsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (uIface *uiViewsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := uIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (uIface *uiViewsClient) Create(viewParam nsxModel.View) (nsxModel.View, error) {
+func (uIface *uiViewsClient) Create(viewParam model.View) (model.View, error) {
 	typeConverter := uIface.connector.TypeConverter()
 	executionContext := uIface.connector.NewExecutionContext()
-	operationRestMetaData := uiViewsCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(uiViewsCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(uiViewsCreateInputType(), typeConverter)
 	sv.AddStructField("View", viewParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.View
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.View
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := uiViewsCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	uIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := uIface.connector.GetApiProvider().Invoke("com.vmware.nsx.ui_views", "create", inputDataValue, executionContext)
-	var emptyOutput nsxModel.View
+	var emptyOutput model.View
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), UiViewsCreateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), uiViewsCreateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.View), nil
+		return output.(model.View), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), uIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
@@ -147,123 +142,119 @@ func (uIface *uiViewsClient) Create(viewParam nsxModel.View) (nsxModel.View, err
 func (uIface *uiViewsClient) Delete(viewIdParam string) error {
 	typeConverter := uIface.connector.TypeConverter()
 	executionContext := uIface.connector.NewExecutionContext()
-	operationRestMetaData := uiViewsDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(uiViewsDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(uiViewsDeleteInputType(), typeConverter)
 	sv.AddStructField("ViewId", viewIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := uiViewsDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	uIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := uIface.connector.GetApiProvider().Invoke("com.vmware.nsx.ui_views", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), uIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (uIface *uiViewsClient) Get(tagParam *string, viewIdsParam *string, widgetIdParam *string) (nsxModel.ViewList, error) {
+func (uIface *uiViewsClient) Get(tagParam *string, viewIdsParam *string, widgetIdParam *string) (model.ViewList, error) {
 	typeConverter := uIface.connector.TypeConverter()
 	executionContext := uIface.connector.NewExecutionContext()
-	operationRestMetaData := uiViewsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(uiViewsGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(uiViewsGetInputType(), typeConverter)
 	sv.AddStructField("Tag", tagParam)
 	sv.AddStructField("ViewIds", viewIdsParam)
 	sv.AddStructField("WidgetId", widgetIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.ViewList
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.ViewList
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := uiViewsGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	uIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := uIface.connector.GetApiProvider().Invoke("com.vmware.nsx.ui_views", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.ViewList
+	var emptyOutput model.ViewList
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), UiViewsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), uiViewsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.ViewList), nil
+		return output.(model.ViewList), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), uIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (uIface *uiViewsClient) Get0(viewIdParam string) (nsxModel.View, error) {
+func (uIface *uiViewsClient) Get0(viewIdParam string) (model.View, error) {
 	typeConverter := uIface.connector.TypeConverter()
 	executionContext := uIface.connector.NewExecutionContext()
-	operationRestMetaData := uiViewsGet0RestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(uiViewsGet0InputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(uiViewsGet0InputType(), typeConverter)
 	sv.AddStructField("ViewId", viewIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.View
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.View
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := uiViewsGet0RestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	uIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := uIface.connector.GetApiProvider().Invoke("com.vmware.nsx.ui_views", "get_0", inputDataValue, executionContext)
-	var emptyOutput nsxModel.View
+	var emptyOutput model.View
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), UiViewsGet0OutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), uiViewsGet0OutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.View), nil
+		return output.(model.View), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), uIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (uIface *uiViewsClient) Update(viewIdParam string, viewParam nsxModel.View) (nsxModel.View, error) {
+func (uIface *uiViewsClient) Update(viewIdParam string, viewParam model.View) (model.View, error) {
 	typeConverter := uIface.connector.TypeConverter()
 	executionContext := uIface.connector.NewExecutionContext()
-	operationRestMetaData := uiViewsUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(uiViewsUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(uiViewsUpdateInputType(), typeConverter)
 	sv.AddStructField("ViewId", viewIdParam)
 	sv.AddStructField("View", viewParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.View
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.View
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := uiViewsUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	uIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := uIface.connector.GetApiProvider().Invoke("com.vmware.nsx.ui_views", "update", inputDataValue, executionContext)
-	var emptyOutput nsxModel.View
+	var emptyOutput model.View
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), UiViewsUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), uiViewsUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.View), nil
+		return output.(model.View), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), uIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

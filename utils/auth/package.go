@@ -8,13 +8,13 @@ import (
 	"fmt"
 	"strings"
 
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/args"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/args/keys"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/auth/basic"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/auth/model"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/auth/oauth/refreshtoken"
-	oauthRefreshToken "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/auth/oauth/refreshtoken"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/auth/samlbearer"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/args"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/args/keys"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/auth/basic"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/auth/model"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/auth/oauth/refreshtoken"
+	oauthRefreshToken "github.com/vmware/vsphere-automation-sdk-go/utils/auth/oauth/refreshtoken"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/auth/samlbearer"
 )
 
 // GetAuthSchemeByName fetches Authentication Scheme by Scheme Name.

@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,25 +9,23 @@
 package domains
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type CommunicationMapsClient interface {
 
 	// Deletes the communication map along with all the communication entries
 	//  This API is deprecated. Please use the following API instead. DELETE /infra/domains/domain-id/security-policies/security-policy-id
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param domainIdParam (required)
 	// @param communicationMapIdParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -38,23 +36,18 @@ type CommunicationMapsClient interface {
 	// Read communication-map for a domain.
 	//  This API is deprecated. Please use the following API instead. GET /infra/domains/domain-id/security-policies/security-policy-id
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param domainIdParam (required)
 	// @param communicationMapIdParam (required)
 	// @return com.vmware.nsx_policy.model.CommunicationMap
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(domainIdParam string, communicationMapIdParam string) (nsx_policyModel.CommunicationMap, error)
+	Get(domainIdParam string, communicationMapIdParam string) (model.CommunicationMap, error)
 
 	// List all communication maps for a domain.
 	//  This API is deprecated. Please use the following API instead. GET /infra/domains/domain-id/security-policies
-	//
-	// Deprecated: This API element is deprecated.
 	//
 	// @param domainIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -64,34 +57,28 @@ type CommunicationMapsClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_policy.model.CommunicationMapListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(domainIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.CommunicationMapListResult, error)
+	List(domainIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.CommunicationMapListResult, error)
 
 	// Patch the communication map for a domain. If a communication map for the given communication-map-id is not present, the object will get created and if it is present it will be updated. This is a full replace
 	//  This API is deprecated. Please use the following API instead. PATCH /infra/domains/domain-id/security-policies/security-policy-id
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param domainIdParam (required)
 	// @param communicationMapIdParam (required)
 	// @param communicationMapParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(domainIdParam string, communicationMapIdParam string, communicationMapParam nsx_policyModel.CommunicationMap) error
+	Patch(domainIdParam string, communicationMapIdParam string, communicationMapParam model.CommunicationMap) error
 
 	// This is used to set a precedence of a communication map w.r.t others.
 	//  This API is deprecated. Please use the following API instead. POST /infra/domains/domain-id/security-policies/security-policy-id?action=revise
-	//
-	// Deprecated: This API element is deprecated.
 	//
 	// @param domainIdParam (required)
 	// @param communicationMapIdParam (required)
@@ -99,130 +86,120 @@ type CommunicationMapsClient interface {
 	// @param anchorPathParam The communication map/communication entry path if operation is 'insert_after' or 'insert_before' (optional)
 	// @param operationParam Operation (optional, default to insert_top)
 	// @return com.vmware.nsx_policy.model.CommunicationMap
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Revise(domainIdParam string, communicationMapIdParam string, communicationMapParam nsx_policyModel.CommunicationMap, anchorPathParam *string, operationParam *string) (nsx_policyModel.CommunicationMap, error)
+	Revise(domainIdParam string, communicationMapIdParam string, communicationMapParam model.CommunicationMap, anchorPathParam *string, operationParam *string) (model.CommunicationMap, error)
 
 	// Create or Update the communication map for a domain. This is a full replace. All the CommunicationEntries are replaced.
 	//  This API is deprecated. Please use the following API instead. PUT /infra/domains/domain-id/security-policies/security-policy-id
-	//
-	// Deprecated: This API element is deprecated.
 	//
 	// @param domainIdParam (required)
 	// @param communicationMapIdParam (required)
 	// @param communicationMapParam (required)
 	// @return com.vmware.nsx_policy.model.CommunicationMap
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(domainIdParam string, communicationMapIdParam string, communicationMapParam nsx_policyModel.CommunicationMap) (nsx_policyModel.CommunicationMap, error)
+	Update(domainIdParam string, communicationMapIdParam string, communicationMapParam model.CommunicationMap) (model.CommunicationMap, error)
 }
 
 type communicationMapsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewCommunicationMapsClient(connector vapiProtocolClient_.Connector) *communicationMapsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.domains.communication_maps")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"patch":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"revise": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "revise"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewCommunicationMapsClient(connector client.Connector) *communicationMapsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.domains.communication_maps")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
+		"revise": core.NewMethodIdentifier(interfaceIdentifier, "revise"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	cIface := communicationMapsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &cIface
 }
 
-func (cIface *communicationMapsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (cIface *communicationMapsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := cIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
 func (cIface *communicationMapsClient) Delete(domainIdParam string, communicationMapIdParam string) error {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
-	operationRestMetaData := communicationMapsDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(communicationMapsDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(communicationMapsDeleteInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("CommunicationMapId", communicationMapIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := communicationMapsDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := cIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.domains.communication_maps", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), cIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (cIface *communicationMapsClient) Get(domainIdParam string, communicationMapIdParam string) (nsx_policyModel.CommunicationMap, error) {
+func (cIface *communicationMapsClient) Get(domainIdParam string, communicationMapIdParam string) (model.CommunicationMap, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
-	operationRestMetaData := communicationMapsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(communicationMapsGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(communicationMapsGetInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("CommunicationMapId", communicationMapIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.CommunicationMap
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.CommunicationMap
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := communicationMapsGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := cIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.domains.communication_maps", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.CommunicationMap
+	var emptyOutput model.CommunicationMap
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), CommunicationMapsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), communicationMapsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.CommunicationMap), nil
+		return output.(model.CommunicationMap), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), cIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (cIface *communicationMapsClient) List(domainIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.CommunicationMapListResult, error) {
+func (cIface *communicationMapsClient) List(domainIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.CommunicationMapListResult, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
-	operationRestMetaData := communicationMapsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(communicationMapsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(communicationMapsListInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IncludeMarkForDeleteObjects", includeMarkForDeleteObjectsParam)
@@ -232,63 +209,61 @@ func (cIface *communicationMapsClient) List(domainIdParam string, cursorParam *s
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.CommunicationMapListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.CommunicationMapListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := communicationMapsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := cIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.domains.communication_maps", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.CommunicationMapListResult
+	var emptyOutput model.CommunicationMapListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), CommunicationMapsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), communicationMapsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.CommunicationMapListResult), nil
+		return output.(model.CommunicationMapListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), cIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (cIface *communicationMapsClient) Patch(domainIdParam string, communicationMapIdParam string, communicationMapParam nsx_policyModel.CommunicationMap) error {
+func (cIface *communicationMapsClient) Patch(domainIdParam string, communicationMapIdParam string, communicationMapParam model.CommunicationMap) error {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
-	operationRestMetaData := communicationMapsPatchRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(communicationMapsPatchInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(communicationMapsPatchInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("CommunicationMapId", communicationMapIdParam)
 	sv.AddStructField("CommunicationMap", communicationMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := communicationMapsPatchRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := cIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.domains.communication_maps", "patch", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), cIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (cIface *communicationMapsClient) Revise(domainIdParam string, communicationMapIdParam string, communicationMapParam nsx_policyModel.CommunicationMap, anchorPathParam *string, operationParam *string) (nsx_policyModel.CommunicationMap, error) {
+func (cIface *communicationMapsClient) Revise(domainIdParam string, communicationMapIdParam string, communicationMapParam model.CommunicationMap, anchorPathParam *string, operationParam *string) (model.CommunicationMap, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
-	operationRestMetaData := communicationMapsReviseRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(communicationMapsReviseInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(communicationMapsReviseInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("CommunicationMapId", communicationMapIdParam)
 	sv.AddStructField("CommunicationMap", communicationMapParam)
@@ -296,56 +271,58 @@ func (cIface *communicationMapsClient) Revise(domainIdParam string, communicatio
 	sv.AddStructField("Operation", operationParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.CommunicationMap
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.CommunicationMap
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := communicationMapsReviseRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := cIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.domains.communication_maps", "revise", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.CommunicationMap
+	var emptyOutput model.CommunicationMap
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), CommunicationMapsReviseOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), communicationMapsReviseOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.CommunicationMap), nil
+		return output.(model.CommunicationMap), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), cIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (cIface *communicationMapsClient) Update(domainIdParam string, communicationMapIdParam string, communicationMapParam nsx_policyModel.CommunicationMap) (nsx_policyModel.CommunicationMap, error) {
+func (cIface *communicationMapsClient) Update(domainIdParam string, communicationMapIdParam string, communicationMapParam model.CommunicationMap) (model.CommunicationMap, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
-	operationRestMetaData := communicationMapsUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(communicationMapsUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(communicationMapsUpdateInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("CommunicationMapId", communicationMapIdParam)
 	sv.AddStructField("CommunicationMap", communicationMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.CommunicationMap
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.CommunicationMap
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := communicationMapsUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := cIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.domains.communication_maps", "update", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.CommunicationMap
+	var emptyOutput model.CommunicationMap
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), CommunicationMapsUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), communicationMapsUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.CommunicationMap), nil
+		return output.(model.CommunicationMap), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), cIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

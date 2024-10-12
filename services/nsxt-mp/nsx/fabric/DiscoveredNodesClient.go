@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package fabric
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type DiscoveredNodesClient interface {
 
@@ -24,27 +25,24 @@ type DiscoveredNodesClient interface {
 	//
 	// @param nodeExtIdParam (required)
 	// @param transportNodeParam (required)
-	// @param overrideNsxOwnershipParam Override NSX Ownership (optional, default to false)
 	// @return com.vmware.nsx.model.TransportNode
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Createtransportnode(nodeExtIdParam string, transportNodeParam nsxModel.TransportNode, overrideNsxOwnershipParam *bool) (nsxModel.TransportNode, error)
+	Createtransportnode(nodeExtIdParam string, transportNodeParam model.TransportNode) (model.TransportNode, error)
 
 	// Returns information about a specific discovered node.
 	//
 	// @param nodeExtIdParam (required)
 	// @return com.vmware.nsx.model.DiscoveredNode
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(nodeExtIdParam string) (nsxModel.DiscoveredNode, error)
+	Get(nodeExtIdParam string) (model.DiscoveredNode, error)
 
 	// Returns information about all discovered nodes.
 	//
@@ -63,130 +61,120 @@ type DiscoveredNodesClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx.model.DiscoveredNodeListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(cmLocalIdParam *string, cursorParam *string, displayNameParam *string, externalIdParam *string, hasParentParam *string, includedFieldsParam *string, ipAddressParam *string, nodeIdParam *string, nodeTypeParam *string, originIdParam *string, pageSizeParam *int64, parentComputeCollectionParam *string, sortAscendingParam *bool, sortByParam *string) (nsxModel.DiscoveredNodeListResult, error)
+	List(cmLocalIdParam *string, cursorParam *string, displayNameParam *string, externalIdParam *string, hasParentParam *string, includedFieldsParam *string, ipAddressParam *string, nodeIdParam *string, nodeTypeParam *string, originIdParam *string, pageSizeParam *int64, parentComputeCollectionParam *string, sortAscendingParam *bool, sortByParam *string) (model.DiscoveredNodeListResult, error)
 
 	// When transport node profile (TNP) is applied to a cluster, if any validation fails (e.g. VMs running on host) then transport node (TN) is not created. In that case after the required action is taken (e.g. VMs powered off), you can call this API to try to create TN for that discovered node. Do not call this API if Transport Node already exists for the discovered node. In that case use API on transport node. /transport-nodes/<transport-node-id>?action=restore_cluster_config
 	//
 	// @param nodeExtIdParam (required)
-	// @param overrideNsxOwnershipParam Override NSX Ownership (optional, default to false)
 	// @return com.vmware.nsx.model.TransportNode
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Reapplyclusterconfig(nodeExtIdParam string, overrideNsxOwnershipParam *bool) (nsxModel.TransportNode, error)
+	Reapplyclusterconfig(nodeExtIdParam string) (model.TransportNode, error)
 }
 
 type discoveredNodesClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewDiscoveredNodesClient(connector vapiProtocolClient_.Connector) *discoveredNodesClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.fabric.discovered_nodes")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"createtransportnode":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "createtransportnode"),
-		"get":                  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":                 vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"reapplyclusterconfig": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "reapplyclusterconfig"),
+func NewDiscoveredNodesClient(connector client.Connector) *discoveredNodesClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.fabric.discovered_nodes")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"createtransportnode":  core.NewMethodIdentifier(interfaceIdentifier, "createtransportnode"),
+		"get":                  core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":                 core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"reapplyclusterconfig": core.NewMethodIdentifier(interfaceIdentifier, "reapplyclusterconfig"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	dIface := discoveredNodesClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &dIface
 }
 
-func (dIface *discoveredNodesClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (dIface *discoveredNodesClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := dIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (dIface *discoveredNodesClient) Createtransportnode(nodeExtIdParam string, transportNodeParam nsxModel.TransportNode, overrideNsxOwnershipParam *bool) (nsxModel.TransportNode, error) {
+func (dIface *discoveredNodesClient) Createtransportnode(nodeExtIdParam string, transportNodeParam model.TransportNode) (model.TransportNode, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
-	operationRestMetaData := discoveredNodesCreatetransportnodeRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(discoveredNodesCreatetransportnodeInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(discoveredNodesCreatetransportnodeInputType(), typeConverter)
 	sv.AddStructField("NodeExtId", nodeExtIdParam)
 	sv.AddStructField("TransportNode", transportNodeParam)
-	sv.AddStructField("OverrideNsxOwnership", overrideNsxOwnershipParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.TransportNode
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.TransportNode
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := discoveredNodesCreatetransportnodeRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := dIface.connector.GetApiProvider().Invoke("com.vmware.nsx.fabric.discovered_nodes", "createtransportnode", inputDataValue, executionContext)
-	var emptyOutput nsxModel.TransportNode
+	var emptyOutput model.TransportNode
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), DiscoveredNodesCreatetransportnodeOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), discoveredNodesCreatetransportnodeOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.TransportNode), nil
+		return output.(model.TransportNode), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), dIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (dIface *discoveredNodesClient) Get(nodeExtIdParam string) (nsxModel.DiscoveredNode, error) {
+func (dIface *discoveredNodesClient) Get(nodeExtIdParam string) (model.DiscoveredNode, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
-	operationRestMetaData := discoveredNodesGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(discoveredNodesGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(discoveredNodesGetInputType(), typeConverter)
 	sv.AddStructField("NodeExtId", nodeExtIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.DiscoveredNode
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.DiscoveredNode
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := discoveredNodesGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := dIface.connector.GetApiProvider().Invoke("com.vmware.nsx.fabric.discovered_nodes", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.DiscoveredNode
+	var emptyOutput model.DiscoveredNode
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), DiscoveredNodesGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), discoveredNodesGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.DiscoveredNode), nil
+		return output.(model.DiscoveredNode), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), dIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (dIface *discoveredNodesClient) List(cmLocalIdParam *string, cursorParam *string, displayNameParam *string, externalIdParam *string, hasParentParam *string, includedFieldsParam *string, ipAddressParam *string, nodeIdParam *string, nodeTypeParam *string, originIdParam *string, pageSizeParam *int64, parentComputeCollectionParam *string, sortAscendingParam *bool, sortByParam *string) (nsxModel.DiscoveredNodeListResult, error) {
+func (dIface *discoveredNodesClient) List(cmLocalIdParam *string, cursorParam *string, displayNameParam *string, externalIdParam *string, hasParentParam *string, includedFieldsParam *string, ipAddressParam *string, nodeIdParam *string, nodeTypeParam *string, originIdParam *string, pageSizeParam *int64, parentComputeCollectionParam *string, sortAscendingParam *bool, sortByParam *string) (model.DiscoveredNodeListResult, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
-	operationRestMetaData := discoveredNodesListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(discoveredNodesListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(discoveredNodesListInputType(), typeConverter)
 	sv.AddStructField("CmLocalId", cmLocalIdParam)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("DisplayName", displayNameParam)
@@ -203,55 +191,56 @@ func (dIface *discoveredNodesClient) List(cmLocalIdParam *string, cursorParam *s
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.DiscoveredNodeListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.DiscoveredNodeListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := discoveredNodesListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := dIface.connector.GetApiProvider().Invoke("com.vmware.nsx.fabric.discovered_nodes", "list", inputDataValue, executionContext)
-	var emptyOutput nsxModel.DiscoveredNodeListResult
+	var emptyOutput model.DiscoveredNodeListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), DiscoveredNodesListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), discoveredNodesListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.DiscoveredNodeListResult), nil
+		return output.(model.DiscoveredNodeListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), dIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (dIface *discoveredNodesClient) Reapplyclusterconfig(nodeExtIdParam string, overrideNsxOwnershipParam *bool) (nsxModel.TransportNode, error) {
+func (dIface *discoveredNodesClient) Reapplyclusterconfig(nodeExtIdParam string) (model.TransportNode, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
-	operationRestMetaData := discoveredNodesReapplyclusterconfigRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(discoveredNodesReapplyclusterconfigInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(discoveredNodesReapplyclusterconfigInputType(), typeConverter)
 	sv.AddStructField("NodeExtId", nodeExtIdParam)
-	sv.AddStructField("OverrideNsxOwnership", overrideNsxOwnershipParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.TransportNode
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.TransportNode
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := discoveredNodesReapplyclusterconfigRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := dIface.connector.GetApiProvider().Invoke("com.vmware.nsx.fabric.discovered_nodes", "reapplyclusterconfig", inputDataValue, executionContext)
-	var emptyOutput nsxModel.TransportNode
+	var emptyOutput model.TransportNode
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), DiscoveredNodesReapplyclusterconfigOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), discoveredNodesReapplyclusterconfigOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.TransportNode), nil
+		return output.(model.TransportNode), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), dIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

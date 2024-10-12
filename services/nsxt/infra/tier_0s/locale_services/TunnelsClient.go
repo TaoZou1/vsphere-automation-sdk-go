@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,15 +9,16 @@
 package locale_services
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type TunnelsClient interface {
 
@@ -26,7 +27,6 @@ type TunnelsClient interface {
 	// @param tier0IdParam tier0 id (required)
 	// @param localeSvcIdParam locale service id (required)
 	// @param tunnelIdParam tunnel id (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -40,14 +40,13 @@ type TunnelsClient interface {
 	// @param localeSvcIdParam locale service id (required)
 	// @param tunnelIdParam tunnel id (required)
 	// @return com.vmware.nsx_policy.model.Tunnel
-	// The return value will contain all the properties defined in nsx_policyModel.Tunnel.
-	//
+	// The return value will contain all the properties defined in model.Tunnel.
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(tier0IdParam string, localeSvcIdParam string, tunnelIdParam string) (*vapiData_.StructValue, error)
+	Get(tier0IdParam string, localeSvcIdParam string, tunnelIdParam string) (*data.StructValue, error)
 
 	// List Tunnel
 	//
@@ -59,13 +58,12 @@ type TunnelsClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_policy.model.PolicyTunnelListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(tier0IdParam string, localeSvcIdParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.PolicyTunnelListResult, error)
+	List(tier0IdParam string, localeSvcIdParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyTunnelListResult, error)
 
 	// Patch Tunnel
 	//
@@ -73,14 +71,13 @@ type TunnelsClient interface {
 	// @param localeSvcIdParam locale service id (required)
 	// @param tunnelIdParam tunnel id (required)
 	// @param tunnelParam (required)
-	// The parameter must contain all the properties defined in nsx_policyModel.Tunnel.
-	//
+	// The parameter must contain all the properties defined in model.Tunnel.
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(tier0IdParam string, localeSvcIdParam string, tunnelIdParam string, tunnelParam *vapiData_.StructValue) error
+	Patch(tier0IdParam string, localeSvcIdParam string, tunnelIdParam string, tunnelParam *data.StructValue) error
 
 	// Create or Update Tunnel
 	//
@@ -88,117 +85,110 @@ type TunnelsClient interface {
 	// @param localeSvcIdParam locale service id (required)
 	// @param tunnelIdParam tunnel id (required)
 	// @param tunnelParam (required)
-	// The parameter must contain all the properties defined in nsx_policyModel.Tunnel.
+	// The parameter must contain all the properties defined in model.Tunnel.
 	// @return com.vmware.nsx_policy.model.Tunnel
-	// The return value will contain all the properties defined in nsx_policyModel.Tunnel.
-	//
+	// The return value will contain all the properties defined in model.Tunnel.
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(tier0IdParam string, localeSvcIdParam string, tunnelIdParam string, tunnelParam *vapiData_.StructValue) (*vapiData_.StructValue, error)
+	Update(tier0IdParam string, localeSvcIdParam string, tunnelIdParam string, tunnelParam *data.StructValue) (*data.StructValue, error)
 }
 
 type tunnelsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewTunnelsClient(connector vapiProtocolClient_.Connector) *tunnelsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.tier_0s.locale_services.tunnels")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"patch":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewTunnelsClient(connector client.Connector) *tunnelsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.tier_0s.locale_services.tunnels")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	tIface := tunnelsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &tIface
 }
 
-func (tIface *tunnelsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (tIface *tunnelsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := tIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
 func (tIface *tunnelsClient) Delete(tier0IdParam string, localeSvcIdParam string, tunnelIdParam string) error {
 	typeConverter := tIface.connector.TypeConverter()
 	executionContext := tIface.connector.NewExecutionContext()
-	operationRestMetaData := tunnelsDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(tunnelsDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(tunnelsDeleteInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("LocaleSvcId", localeSvcIdParam)
 	sv.AddStructField("TunnelId", tunnelIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := tunnelsDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := tIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_0s.locale_services.tunnels", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), tIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (tIface *tunnelsClient) Get(tier0IdParam string, localeSvcIdParam string, tunnelIdParam string) (*vapiData_.StructValue, error) {
+func (tIface *tunnelsClient) Get(tier0IdParam string, localeSvcIdParam string, tunnelIdParam string) (*data.StructValue, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	executionContext := tIface.connector.NewExecutionContext()
-	operationRestMetaData := tunnelsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(tunnelsGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(tunnelsGetInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("LocaleSvcId", localeSvcIdParam)
 	sv.AddStructField("TunnelId", tunnelIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput *vapiData_.StructValue
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput *data.StructValue
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := tunnelsGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := tIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_0s.locale_services.tunnels", "get", inputDataValue, executionContext)
-	var emptyOutput *vapiData_.StructValue
+	var emptyOutput *data.StructValue
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), TunnelsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), tunnelsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(*vapiData_.StructValue), nil
+		return output.(*data.StructValue), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), tIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (tIface *tunnelsClient) List(tier0IdParam string, localeSvcIdParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.PolicyTunnelListResult, error) {
+func (tIface *tunnelsClient) List(tier0IdParam string, localeSvcIdParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyTunnelListResult, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	executionContext := tIface.connector.NewExecutionContext()
-	operationRestMetaData := tunnelsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(tunnelsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(tunnelsListInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("LocaleSvcId", localeSvcIdParam)
 	sv.AddStructField("Cursor", cursorParam)
@@ -208,86 +198,87 @@ func (tIface *tunnelsClient) List(tier0IdParam string, localeSvcIdParam string, 
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.PolicyTunnelListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.PolicyTunnelListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := tunnelsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := tIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_0s.locale_services.tunnels", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.PolicyTunnelListResult
+	var emptyOutput model.PolicyTunnelListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), TunnelsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), tunnelsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.PolicyTunnelListResult), nil
+		return output.(model.PolicyTunnelListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), tIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (tIface *tunnelsClient) Patch(tier0IdParam string, localeSvcIdParam string, tunnelIdParam string, tunnelParam *vapiData_.StructValue) error {
+func (tIface *tunnelsClient) Patch(tier0IdParam string, localeSvcIdParam string, tunnelIdParam string, tunnelParam *data.StructValue) error {
 	typeConverter := tIface.connector.TypeConverter()
 	executionContext := tIface.connector.NewExecutionContext()
-	operationRestMetaData := tunnelsPatchRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(tunnelsPatchInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(tunnelsPatchInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("LocaleSvcId", localeSvcIdParam)
 	sv.AddStructField("TunnelId", tunnelIdParam)
 	sv.AddStructField("Tunnel", tunnelParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := tunnelsPatchRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := tIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_0s.locale_services.tunnels", "patch", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), tIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (tIface *tunnelsClient) Update(tier0IdParam string, localeSvcIdParam string, tunnelIdParam string, tunnelParam *vapiData_.StructValue) (*vapiData_.StructValue, error) {
+func (tIface *tunnelsClient) Update(tier0IdParam string, localeSvcIdParam string, tunnelIdParam string, tunnelParam *data.StructValue) (*data.StructValue, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	executionContext := tIface.connector.NewExecutionContext()
-	operationRestMetaData := tunnelsUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(tunnelsUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(tunnelsUpdateInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("LocaleSvcId", localeSvcIdParam)
 	sv.AddStructField("TunnelId", tunnelIdParam)
 	sv.AddStructField("Tunnel", tunnelParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput *vapiData_.StructValue
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput *data.StructValue
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := tunnelsUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := tIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_0s.locale_services.tunnels", "update", inputDataValue, executionContext)
-	var emptyOutput *vapiData_.StructValue
+	var emptyOutput *data.StructValue
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), TunnelsUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), tunnelsUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(*vapiData_.StructValue), nil
+		return output.(*data.StructValue), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), tIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

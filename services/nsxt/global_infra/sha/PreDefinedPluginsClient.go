@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package sha
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type PreDefinedPluginsClient interface {
 
@@ -24,13 +25,12 @@ type PreDefinedPluginsClient interface {
 	//
 	// @param pluginIdParam Sha pre-defined plugin (required)
 	// @return com.vmware.nsx_policy.model.ShaPredefinedPlugin
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(pluginIdParam string) (nsx_policyModel.ShaPredefinedPlugin, error)
+	Get(pluginIdParam string) (model.ShaPredefinedPlugin, error)
 
 	// API will provide list of Sha dynamic plugins.
 	//
@@ -41,81 +41,75 @@ type PreDefinedPluginsClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_policy.model.ShaPreDefinedPluginListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.ShaPreDefinedPluginListResult, error)
+	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ShaPreDefinedPluginListResult, error)
 }
 
 type preDefinedPluginsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewPreDefinedPluginsClient(connector vapiProtocolClient_.Connector) *preDefinedPluginsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.global_infra.sha.pre_defined_plugins")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"get":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
+func NewPreDefinedPluginsClient(connector client.Connector) *preDefinedPluginsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.global_infra.sha.pre_defined_plugins")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"get":  core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list": core.NewMethodIdentifier(interfaceIdentifier, "list"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	pIface := preDefinedPluginsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &pIface
 }
 
-func (pIface *preDefinedPluginsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (pIface *preDefinedPluginsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := pIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (pIface *preDefinedPluginsClient) Get(pluginIdParam string) (nsx_policyModel.ShaPredefinedPlugin, error) {
+func (pIface *preDefinedPluginsClient) Get(pluginIdParam string) (model.ShaPredefinedPlugin, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
-	operationRestMetaData := preDefinedPluginsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(preDefinedPluginsGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(preDefinedPluginsGetInputType(), typeConverter)
 	sv.AddStructField("PluginId", pluginIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.ShaPredefinedPlugin
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.ShaPredefinedPlugin
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := preDefinedPluginsGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.global_infra.sha.pre_defined_plugins", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.ShaPredefinedPlugin
+	var emptyOutput model.ShaPredefinedPlugin
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), PreDefinedPluginsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), preDefinedPluginsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.ShaPredefinedPlugin), nil
+		return output.(model.ShaPredefinedPlugin), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (pIface *preDefinedPluginsClient) List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.ShaPreDefinedPluginListResult, error) {
+func (pIface *preDefinedPluginsClient) List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ShaPreDefinedPluginListResult, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
-	operationRestMetaData := preDefinedPluginsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(preDefinedPluginsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(preDefinedPluginsListInputType(), typeConverter)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IncludeMarkForDeleteObjects", includeMarkForDeleteObjectsParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)
@@ -124,22 +118,25 @@ func (pIface *preDefinedPluginsClient) List(cursorParam *string, includeMarkForD
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.ShaPreDefinedPluginListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.ShaPreDefinedPluginListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := preDefinedPluginsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.global_infra.sha.pre_defined_plugins", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.ShaPreDefinedPluginListResult
+	var emptyOutput model.ShaPreDefinedPluginListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), PreDefinedPluginsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), preDefinedPluginsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.ShaPreDefinedPluginListResult), nil
+		return output.(model.ShaPreDefinedPluginListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

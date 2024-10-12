@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,205 +9,198 @@
 package services
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type LiagentClient interface {
 
 	// Read liagent service properties
 	// @return com.vmware.nsx.model.NodeServiceProperties
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get() (nsxModel.NodeServiceProperties, error)
+	Get() (model.NodeServiceProperties, error)
 
 	// Restart, start or stop the liagent service
 	// @return com.vmware.nsx.model.NodeServiceStatusProperties
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Restart() (nsxModel.NodeServiceStatusProperties, error)
+	Restart() (model.NodeServiceStatusProperties, error)
 
 	// Restart, start or stop the liagent service
 	// @return com.vmware.nsx.model.NodeServiceStatusProperties
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Start() (nsxModel.NodeServiceStatusProperties, error)
+	Start() (model.NodeServiceStatusProperties, error)
 
 	// Restart, start or stop the liagent service
 	// @return com.vmware.nsx.model.NodeServiceStatusProperties
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Stop() (nsxModel.NodeServiceStatusProperties, error)
+	Stop() (model.NodeServiceStatusProperties, error)
 }
 
 type liagentClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewLiagentClient(connector vapiProtocolClient_.Connector) *liagentClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.node.services.liagent")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"get":     vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"restart": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "restart"),
-		"start":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "start"),
-		"stop":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "stop"),
+func NewLiagentClient(connector client.Connector) *liagentClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.node.services.liagent")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"get":     core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"restart": core.NewMethodIdentifier(interfaceIdentifier, "restart"),
+		"start":   core.NewMethodIdentifier(interfaceIdentifier, "start"),
+		"stop":    core.NewMethodIdentifier(interfaceIdentifier, "stop"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	lIface := liagentClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &lIface
 }
 
-func (lIface *liagentClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (lIface *liagentClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := lIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (lIface *liagentClient) Get() (nsxModel.NodeServiceProperties, error) {
+func (lIface *liagentClient) Get() (model.NodeServiceProperties, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(liagentGetInputType(), typeConverter)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput model.NodeServiceProperties
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+	}
 	operationRestMetaData := liagentGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(liagentGetInputType(), typeConverter)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput nsxModel.NodeServiceProperties
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
-	}
-
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.liagent", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.NodeServiceProperties
+	var emptyOutput model.NodeServiceProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), LiagentGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), liagentGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.NodeServiceProperties), nil
+		return output.(model.NodeServiceProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (lIface *liagentClient) Restart() (nsxModel.NodeServiceStatusProperties, error) {
+func (lIface *liagentClient) Restart() (model.NodeServiceStatusProperties, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(liagentRestartInputType(), typeConverter)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput model.NodeServiceStatusProperties
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+	}
 	operationRestMetaData := liagentRestartRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(liagentRestartInputType(), typeConverter)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput nsxModel.NodeServiceStatusProperties
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
-	}
-
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.liagent", "restart", inputDataValue, executionContext)
-	var emptyOutput nsxModel.NodeServiceStatusProperties
+	var emptyOutput model.NodeServiceStatusProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), LiagentRestartOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), liagentRestartOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.NodeServiceStatusProperties), nil
+		return output.(model.NodeServiceStatusProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (lIface *liagentClient) Start() (nsxModel.NodeServiceStatusProperties, error) {
+func (lIface *liagentClient) Start() (model.NodeServiceStatusProperties, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(liagentStartInputType(), typeConverter)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput model.NodeServiceStatusProperties
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+	}
 	operationRestMetaData := liagentStartRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(liagentStartInputType(), typeConverter)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput nsxModel.NodeServiceStatusProperties
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
-	}
-
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.liagent", "start", inputDataValue, executionContext)
-	var emptyOutput nsxModel.NodeServiceStatusProperties
+	var emptyOutput model.NodeServiceStatusProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), LiagentStartOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), liagentStartOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.NodeServiceStatusProperties), nil
+		return output.(model.NodeServiceStatusProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (lIface *liagentClient) Stop() (nsxModel.NodeServiceStatusProperties, error) {
+func (lIface *liagentClient) Stop() (model.NodeServiceStatusProperties, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
-	operationRestMetaData := liagentStopRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(liagentStopInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(liagentStopInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.NodeServiceStatusProperties
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.NodeServiceStatusProperties
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := liagentStopRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.liagent", "stop", inputDataValue, executionContext)
-	var emptyOutput nsxModel.NodeServiceStatusProperties
+	var emptyOutput model.NodeServiceStatusProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), LiagentStopOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), liagentStopOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.NodeServiceStatusProperties), nil
+		return output.(model.NodeServiceStatusProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

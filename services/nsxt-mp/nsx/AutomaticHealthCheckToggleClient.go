@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,124 +9,121 @@
 package nsx
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type AutomaticHealthCheckToggleClient interface {
 
 	// Get detailed info for automatic health check toggle.
 	// @return com.vmware.nsx.model.AutomaticHealthCheckToggle
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get() (nsxModel.AutomaticHealthCheckToggle, error)
+	Get() (model.AutomaticHealthCheckToggle, error)
 
 	// Change status of automatic health check toggle to enabled/disabled.
 	//
 	// @param automaticHealthCheckToggleParam (required)
 	// @return com.vmware.nsx.model.AutomaticHealthCheckToggle
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(automaticHealthCheckToggleParam nsxModel.AutomaticHealthCheckToggle) (nsxModel.AutomaticHealthCheckToggle, error)
+	Update(automaticHealthCheckToggleParam model.AutomaticHealthCheckToggle) (model.AutomaticHealthCheckToggle, error)
 }
 
 type automaticHealthCheckToggleClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewAutomaticHealthCheckToggleClient(connector vapiProtocolClient_.Connector) *automaticHealthCheckToggleClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.automatic_health_check_toggle")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewAutomaticHealthCheckToggleClient(connector client.Connector) *automaticHealthCheckToggleClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.automatic_health_check_toggle")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	aIface := automaticHealthCheckToggleClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &aIface
 }
 
-func (aIface *automaticHealthCheckToggleClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (aIface *automaticHealthCheckToggleClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := aIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (aIface *automaticHealthCheckToggleClient) Get() (nsxModel.AutomaticHealthCheckToggle, error) {
+func (aIface *automaticHealthCheckToggleClient) Get() (model.AutomaticHealthCheckToggle, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	executionContext := aIface.connector.NewExecutionContext()
-	operationRestMetaData := automaticHealthCheckToggleGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(automaticHealthCheckToggleGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(automaticHealthCheckToggleGetInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.AutomaticHealthCheckToggle
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.AutomaticHealthCheckToggle
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := automaticHealthCheckToggleGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := aIface.connector.GetApiProvider().Invoke("com.vmware.nsx.automatic_health_check_toggle", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.AutomaticHealthCheckToggle
+	var emptyOutput model.AutomaticHealthCheckToggle
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), AutomaticHealthCheckToggleGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), automaticHealthCheckToggleGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.AutomaticHealthCheckToggle), nil
+		return output.(model.AutomaticHealthCheckToggle), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), aIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (aIface *automaticHealthCheckToggleClient) Update(automaticHealthCheckToggleParam nsxModel.AutomaticHealthCheckToggle) (nsxModel.AutomaticHealthCheckToggle, error) {
+func (aIface *automaticHealthCheckToggleClient) Update(automaticHealthCheckToggleParam model.AutomaticHealthCheckToggle) (model.AutomaticHealthCheckToggle, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	executionContext := aIface.connector.NewExecutionContext()
-	operationRestMetaData := automaticHealthCheckToggleUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(automaticHealthCheckToggleUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(automaticHealthCheckToggleUpdateInputType(), typeConverter)
 	sv.AddStructField("AutomaticHealthCheckToggle", automaticHealthCheckToggleParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.AutomaticHealthCheckToggle
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.AutomaticHealthCheckToggle
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := automaticHealthCheckToggleUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := aIface.connector.GetApiProvider().Invoke("com.vmware.nsx.automatic_health_check_toggle", "update", inputDataValue, executionContext)
-	var emptyOutput nsxModel.AutomaticHealthCheckToggle
+	var emptyOutput model.AutomaticHealthCheckToggle
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), AutomaticHealthCheckToggleUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), automaticHealthCheckToggleUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.AutomaticHealthCheckToggle), nil
+		return output.(model.AutomaticHealthCheckToggle), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), aIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

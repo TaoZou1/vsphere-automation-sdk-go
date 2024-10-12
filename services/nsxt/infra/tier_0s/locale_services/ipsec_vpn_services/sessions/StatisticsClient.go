@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,21 +9,20 @@
 package sessions
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type StatisticsClient interface {
 
 	// Resets the statistics of the given VPN session. Since source of data is enforcement point, data is reset there.
 	//  This API is deprecated. Please use GET /infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/ sessions/<session-id>/statistics instead.
-	//
-	// Deprecated: This API element is deprecated.
 	//
 	// @param tier0IdParam (required)
 	// @param localeServiceIdParam (required)
@@ -31,7 +30,6 @@ type StatisticsClient interface {
 	// @param sessionIdParam (required)
 	// @param actionParam Action on statistics (required)
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -42,8 +40,6 @@ type StatisticsClient interface {
 	// - no enforcement point path specified: statistics are evaluated on each enforcement point. - an enforcement point path is specified: statistics are evaluated only on the given enforcement point. - source=realtime: statistics are fetched realtime from the enforcement point. - source=cached: cached statistics from enforcement point are returned.
 	//  This API is deprecated. Please use GET /infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/ sessions/<session-id>/statisticsinstead.
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param tier0IdParam (required)
 	// @param localeServiceIdParam (required)
 	// @param serviceIdParam (required)
@@ -51,49 +47,44 @@ type StatisticsClient interface {
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)
 	// @param sourceParam Data source type. (optional)
 	// @return com.vmware.nsx_policy.model.AggregateIPSecVpnSessionStatistics
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, sessionIdParam string, enforcementPointPathParam *string, sourceParam *string) (nsx_policyModel.AggregateIPSecVpnSessionStatistics, error)
+	Get(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, sessionIdParam string, enforcementPointPathParam *string, sourceParam *string) (model.AggregateIPSecVpnSessionStatistics, error)
 }
 
 type statisticsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewStatisticsClient(connector vapiProtocolClient_.Connector) *statisticsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.tier_0s.locale_services.ipsec_vpn_services.sessions.statistics")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"create": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
+func NewStatisticsClient(connector client.Connector) *statisticsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.tier_0s.locale_services.ipsec_vpn_services.sessions.statistics")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"create": core.NewMethodIdentifier(interfaceIdentifier, "create"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	sIface := statisticsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &sIface
 }
 
-func (sIface *statisticsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (sIface *statisticsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := sIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
 func (sIface *statisticsClient) Create(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, sessionIdParam string, actionParam string, enforcementPointPathParam *string) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := statisticsCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(statisticsCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(statisticsCreateInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
 	sv.AddStructField("ServiceId", serviceIdParam)
@@ -102,29 +93,28 @@ func (sIface *statisticsClient) Create(tier0IdParam string, localeServiceIdParam
 	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := statisticsCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_0s.locale_services.ipsec_vpn_services.sessions.statistics", "create", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (sIface *statisticsClient) Get(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, sessionIdParam string, enforcementPointPathParam *string, sourceParam *string) (nsx_policyModel.AggregateIPSecVpnSessionStatistics, error) {
+func (sIface *statisticsClient) Get(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, sessionIdParam string, enforcementPointPathParam *string, sourceParam *string) (model.AggregateIPSecVpnSessionStatistics, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := statisticsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(statisticsGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(statisticsGetInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
 	sv.AddStructField("ServiceId", serviceIdParam)
@@ -133,22 +123,25 @@ func (sIface *statisticsClient) Get(tier0IdParam string, localeServiceIdParam st
 	sv.AddStructField("Source", sourceParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.AggregateIPSecVpnSessionStatistics
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.AggregateIPSecVpnSessionStatistics
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := statisticsGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_0s.locale_services.ipsec_vpn_services.sessions.statistics", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.AggregateIPSecVpnSessionStatistics
+	var emptyOutput model.AggregateIPSecVpnSessionStatistics
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), StatisticsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), statisticsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.AggregateIPSecVpnSessionStatistics), nil
+		return output.(model.AggregateIPSecVpnSessionStatistics), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

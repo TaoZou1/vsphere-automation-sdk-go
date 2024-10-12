@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,28 +11,28 @@
 package intrusion_services
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
 // Possible value for ``context`` of method IdsSummary#create.
 const IdsSummary_CREATE_CONTEXT_PROJECTS = "ALL_PROJECTS"
 
-func idsSummaryCreateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func idsSummaryCreateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["policy_ids_event_data_request"] = vapiBindings_.NewReferenceType(nsx_policyModel.PolicyIdsEventDataRequestBindingType)
-	fields["context"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["policy_ids_event_data_request"] = bindings.NewReferenceType(model.PolicyIdsEventDataRequestBindingType)
+	fields["context"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["policy_ids_event_data_request"] = "PolicyIdsEventDataRequest"
@@ -42,32 +42,32 @@ func idsSummaryCreateInputType() vapiBindings_.StructType {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func IdsSummaryCreateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.PolicyIdsSummaryListResultBindingType)
+func idsSummaryCreateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.PolicyIdsSummaryListResultBindingType)
 }
 
-func idsSummaryCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func idsSummaryCreateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["policy_ids_event_data_request"] = vapiBindings_.NewReferenceType(nsx_policyModel.PolicyIdsEventDataRequestBindingType)
-	fields["context"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["policy_ids_event_data_request"] = bindings.NewReferenceType(model.PolicyIdsEventDataRequestBindingType)
+	fields["context"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["policy_ids_event_data_request"] = "PolicyIdsEventDataRequest"
@@ -77,17 +77,17 @@ func idsSummaryCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	paramsTypeMap["policy_ids_event_data_request"] = vapiBindings_.NewReferenceType(nsx_policyModel.PolicyIdsEventDataRequestBindingType)
-	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["context"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["context"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["policy_ids_event_data_request"] = bindings.NewReferenceType(model.PolicyIdsEventDataRequestBindingType)
+	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["orgId"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
 	pathParams["project_id"] = "projectId"
 	pathParams["org_id"] = "orgId"
 	queryParams["cursor"] = "cursor"
@@ -98,7 +98,7 @@ func idsSummaryCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

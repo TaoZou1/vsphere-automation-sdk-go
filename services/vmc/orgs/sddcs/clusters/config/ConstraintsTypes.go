@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,56 +11,56 @@
 package config
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	vmcModel "github.com/vmware/vsphere-automation-sdk-go/services/vmc/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vmc/model"
 	"reflect"
 )
 
-func constraintsGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func constraintsGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org"] = vapiBindings_.NewStringType()
-	fields["sddc"] = vapiBindings_.NewStringType()
-	fields["cluster"] = vapiBindings_.NewStringType()
-	fields["expected_num_hosts"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	fields["org"] = bindings.NewStringType()
+	fields["sddc"] = bindings.NewStringType()
+	fields["cluster"] = bindings.NewStringType()
+	fields["expected_num_hosts"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fieldNameMap["org"] = "Org"
 	fieldNameMap["sddc"] = "Sddc"
 	fieldNameMap["cluster"] = "Cluster"
 	fieldNameMap["expected_num_hosts"] = "ExpectedNumHosts"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ConstraintsGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(vmcModel.VsanClusterReconfigConstraintsBindingType)
+func constraintsGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.VsanClusterReconfigConstraintsBindingType)
 }
 
-func constraintsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func constraintsGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org"] = vapiBindings_.NewStringType()
-	fields["sddc"] = vapiBindings_.NewStringType()
-	fields["cluster"] = vapiBindings_.NewStringType()
-	fields["expected_num_hosts"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	fields["org"] = bindings.NewStringType()
+	fields["sddc"] = bindings.NewStringType()
+	fields["cluster"] = bindings.NewStringType()
+	fields["expected_num_hosts"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fieldNameMap["org"] = "Org"
 	fieldNameMap["sddc"] = "Sddc"
 	fieldNameMap["cluster"] = "Cluster"
 	fieldNameMap["expected_num_hosts"] = "ExpectedNumHosts"
-	paramsTypeMap["cluster"] = vapiBindings_.NewStringType()
-	paramsTypeMap["org"] = vapiBindings_.NewStringType()
-	paramsTypeMap["sddc"] = vapiBindings_.NewStringType()
-	paramsTypeMap["expected_num_hosts"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	paramsTypeMap["org"] = vapiBindings_.NewStringType()
-	paramsTypeMap["sddc"] = vapiBindings_.NewStringType()
-	paramsTypeMap["cluster"] = vapiBindings_.NewStringType()
+	paramsTypeMap["cluster"] = bindings.NewStringType()
+	paramsTypeMap["expected_num_hosts"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["org"] = bindings.NewStringType()
+	paramsTypeMap["sddc"] = bindings.NewStringType()
+	paramsTypeMap["org"] = bindings.NewStringType()
+	paramsTypeMap["sddc"] = bindings.NewStringType()
+	paramsTypeMap["cluster"] = bindings.NewStringType()
 	pathParams["cluster"] = "cluster"
 	pathParams["org"] = "org"
 	pathParams["sddc"] = "sddc"
@@ -69,7 +69,7 @@ func constraintsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 	errorHeaders := map[string]map[string]string{}
 	errorHeaders["com.vmware.vapi.std.errors.unauthenticated"] = make(map[string]string)
 	errorHeaders["com.vmware.vapi.std.errors.unauthenticated"]["challenge"] = "WWW-Authenticate"
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

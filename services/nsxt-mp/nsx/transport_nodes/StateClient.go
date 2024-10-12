@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,131 +9,128 @@
 package transport_nodes
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type StateClient interface {
 
-	// Returns information about the current state of the transport node configuration and information about the associated hostswitch. Change introduced in 4.1.2 for ESX Transport node - The vib details will not be retrieved in every state API call. It will be retrieved by periodical polling on the host. Therefore the nsx vib version mismatch or nsx vib absence will be reported by this API only after subsequent polling takes place. Currently, the poll frequency is 10 minutes.
+	// Returns information about the current state of the transport node configuration and information about the associated hostswitch. This api is now deprecated. Please use new api - /infra/sites/<site-id>/enforcement-points/<enforcementpoint-id>/host-transport-nodes/<host-transport-node-id>/state
 	//
 	// @param transportNodeIdParam (required)
 	// @return com.vmware.nsx.model.TransportNodeState
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(transportNodeIdParam string) (nsxModel.TransportNodeState, error)
+	Get(transportNodeIdParam string) (model.TransportNodeState, error)
 
-	// Returns a list of transport node states that have realized state as provided as query parameter. If this API is called multiple times in parallel then it will fail with error indicating that another request is already in progress. In such case, try the API on another NSX manager instance (if exists) or try again after some time.
+	// Returns a list of transport node states that have realized state as provided as query parameter. This api will be deprecated in future. For Host, please use new api - /infra/sites/<site-id>/enforcement-points/<enforcementpoint- id>/host-transport-nodes/state
 	//
 	// @param mmStateParam maintenance mode state (optional)
 	// @param statusParam Realized state of transport nodes (optional)
 	// @param vtepIpParam Virtual tunnel endpoint ip address of transport node (optional)
 	// @return com.vmware.nsx.model.TransportNodeStateListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(mmStateParam *string, statusParam *string, vtepIpParam *string) (nsxModel.TransportNodeStateListResult, error)
+	List(mmStateParam *string, statusParam *string, vtepIpParam *string) (model.TransportNodeStateListResult, error)
 }
 
 type stateClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewStateClient(connector vapiProtocolClient_.Connector) *stateClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.transport_nodes.state")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"get":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
+func NewStateClient(connector client.Connector) *stateClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.transport_nodes.state")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"get":  core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list": core.NewMethodIdentifier(interfaceIdentifier, "list"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	sIface := stateClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &sIface
 }
 
-func (sIface *stateClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (sIface *stateClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := sIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (sIface *stateClient) Get(transportNodeIdParam string) (nsxModel.TransportNodeState, error) {
+func (sIface *stateClient) Get(transportNodeIdParam string) (model.TransportNodeState, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := stateGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(stateGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(stateGetInputType(), typeConverter)
 	sv.AddStructField("TransportNodeId", transportNodeIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.TransportNodeState
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.TransportNodeState
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := stateGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx.transport_nodes.state", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.TransportNodeState
+	var emptyOutput model.TransportNodeState
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), StateGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), stateGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.TransportNodeState), nil
+		return output.(model.TransportNodeState), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (sIface *stateClient) List(mmStateParam *string, statusParam *string, vtepIpParam *string) (nsxModel.TransportNodeStateListResult, error) {
+func (sIface *stateClient) List(mmStateParam *string, statusParam *string, vtepIpParam *string) (model.TransportNodeStateListResult, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := stateListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(stateListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(stateListInputType(), typeConverter)
 	sv.AddStructField("MmState", mmStateParam)
 	sv.AddStructField("Status", statusParam)
 	sv.AddStructField("VtepIp", vtepIpParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.TransportNodeStateListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.TransportNodeStateListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := stateListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx.transport_nodes.state", "list", inputDataValue, executionContext)
-	var emptyOutput nsxModel.TransportNodeStateListResult
+	var emptyOutput model.TransportNodeStateListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), StateListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), stateListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.TransportNodeStateListResult), nil
+		return output.(model.TransportNodeStateListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

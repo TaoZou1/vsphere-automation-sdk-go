@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,10 +11,10 @@
 package migration_units
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 	"reflect"
 )
 
@@ -27,19 +27,19 @@ const AggregateInfo_LIST_SELECTION_STATUS_DESELECTED = "DESELECTED"
 // Possible value for ``selectionStatus`` of method AggregateInfo#list.
 const AggregateInfo_LIST_SELECTION_STATUS_ALL = "ALL"
 
-func aggregateInfoListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func aggregateInfoListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["component_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["group_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["has_errors"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["metadata"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["selection_status"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["component_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["group_id"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["has_errors"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["metadata"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["selection_status"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["component_type"] = "ComponentType"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["group_id"] = "GroupId"
@@ -50,33 +50,33 @@ func aggregateInfoListInputType() vapiBindings_.StructType {
 	fieldNameMap["selection_status"] = "SelectionStatus"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func AggregateInfoListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.MigrationUnitAggregateInfoListResultBindingType)
+func aggregateInfoListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.MigrationUnitAggregateInfoListResultBindingType)
 }
 
-func aggregateInfoListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func aggregateInfoListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["component_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["group_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["has_errors"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["metadata"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["selection_status"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["component_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["group_id"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["has_errors"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["metadata"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["selection_status"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["component_type"] = "ComponentType"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["group_id"] = "GroupId"
@@ -87,16 +87,16 @@ func aggregateInfoListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	fieldNameMap["selection_status"] = "SelectionStatus"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["has_errors"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["component_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["metadata"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["group_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["selection_status"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	paramsTypeMap["selection_status"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["has_errors"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["metadata"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["component_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["group_id"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	queryParams["cursor"] = "cursor"
 	queryParams["has_errors"] = "has_errors"
 	queryParams["component_type"] = "component_type"
@@ -109,7 +109,7 @@ func aggregateInfoListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

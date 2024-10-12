@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,48 +11,48 @@
 package roles
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func roleAssignmentPermissionConfigUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func roleAssignmentPermissionConfigUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["role"] = vapiBindings_.NewStringType()
-	fields["role_assignment_permission_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.RoleAssignmentPermissionConfigBindingType)
+	fields["role"] = bindings.NewStringType()
+	fields["role_assignment_permission_config"] = bindings.NewReferenceType(model.RoleAssignmentPermissionConfigBindingType)
 	fieldNameMap["role"] = "Role"
 	fieldNameMap["role_assignment_permission_config"] = "RoleAssignmentPermissionConfig"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func RoleAssignmentPermissionConfigUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func roleAssignmentPermissionConfigUpdateOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func roleAssignmentPermissionConfigUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func roleAssignmentPermissionConfigUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["role"] = vapiBindings_.NewStringType()
-	fields["role_assignment_permission_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.RoleAssignmentPermissionConfigBindingType)
+	fields["role"] = bindings.NewStringType()
+	fields["role_assignment_permission_config"] = bindings.NewReferenceType(model.RoleAssignmentPermissionConfigBindingType)
 	fieldNameMap["role"] = "Role"
 	fieldNameMap["role_assignment_permission_config"] = "RoleAssignmentPermissionConfig"
-	paramsTypeMap["role"] = vapiBindings_.NewStringType()
-	paramsTypeMap["role_assignment_permission_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.RoleAssignmentPermissionConfigBindingType)
-	paramsTypeMap["role"] = vapiBindings_.NewStringType()
+	paramsTypeMap["role"] = bindings.NewStringType()
+	paramsTypeMap["role_assignment_permission_config"] = bindings.NewReferenceType(model.RoleAssignmentPermissionConfigBindingType)
+	paramsTypeMap["role"] = bindings.NewStringType()
 	pathParams["role"] = "role"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

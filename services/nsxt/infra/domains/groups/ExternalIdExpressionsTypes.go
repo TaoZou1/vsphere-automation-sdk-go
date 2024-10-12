@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,10 +11,10 @@
 package groups
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
@@ -24,61 +24,61 @@ const ExternalIdExpressions_CREATE_ACTION_ADD = "add"
 // Possible value for ``action`` of method ExternalIdExpressions#create.
 const ExternalIdExpressions_CREATE_ACTION_REMOVE = "remove"
 
-func externalIdExpressionsCreateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func externalIdExpressionsCreateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["domain_id"] = vapiBindings_.NewStringType()
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["expression_id"] = vapiBindings_.NewStringType()
-	fields["group_member_list"] = vapiBindings_.NewReferenceType(nsx_policyModel.GroupMemberListBindingType)
-	fields["action"] = vapiBindings_.NewStringType()
+	fields["domain_id"] = bindings.NewStringType()
+	fields["group_id"] = bindings.NewStringType()
+	fields["expression_id"] = bindings.NewStringType()
+	fields["group_member_list"] = bindings.NewReferenceType(model.GroupMemberListBindingType)
+	fields["action"] = bindings.NewStringType()
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["expression_id"] = "ExpressionId"
 	fieldNameMap["group_member_list"] = "GroupMemberList"
 	fieldNameMap["action"] = "Action"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ExternalIdExpressionsCreateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func externalIdExpressionsCreateOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func externalIdExpressionsCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func externalIdExpressionsCreateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["domain_id"] = vapiBindings_.NewStringType()
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["expression_id"] = vapiBindings_.NewStringType()
-	fields["group_member_list"] = vapiBindings_.NewReferenceType(nsx_policyModel.GroupMemberListBindingType)
-	fields["action"] = vapiBindings_.NewStringType()
+	fields["domain_id"] = bindings.NewStringType()
+	fields["group_id"] = bindings.NewStringType()
+	fields["expression_id"] = bindings.NewStringType()
+	fields["group_member_list"] = bindings.NewReferenceType(model.GroupMemberListBindingType)
+	fields["action"] = bindings.NewStringType()
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["expression_id"] = "ExpressionId"
 	fieldNameMap["group_member_list"] = "GroupMemberList"
 	fieldNameMap["action"] = "Action"
-	paramsTypeMap["domain_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["group_member_list"] = vapiBindings_.NewReferenceType(nsx_policyModel.GroupMemberListBindingType)
-	paramsTypeMap["group_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["action"] = vapiBindings_.NewStringType()
-	paramsTypeMap["expression_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["domainId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["groupId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["expressionId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["domain_id"] = bindings.NewStringType()
+	paramsTypeMap["action"] = bindings.NewStringType()
+	paramsTypeMap["group_id"] = bindings.NewStringType()
+	paramsTypeMap["expression_id"] = bindings.NewStringType()
+	paramsTypeMap["group_member_list"] = bindings.NewReferenceType(model.GroupMemberListBindingType)
+	paramsTypeMap["domainId"] = bindings.NewStringType()
+	paramsTypeMap["groupId"] = bindings.NewStringType()
+	paramsTypeMap["expressionId"] = bindings.NewStringType()
 	pathParams["expression_id"] = "expressionId"
 	pathParams["group_id"] = "groupId"
 	pathParams["domain_id"] = "domainId"
 	queryParams["action"] = "action"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -99,50 +99,50 @@ func externalIdExpressionsCreateRestMetadata() vapiProtocol_.OperationRestMetada
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func externalIdExpressionsDeleteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func externalIdExpressionsDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["domain_id"] = vapiBindings_.NewStringType()
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["expression_id"] = vapiBindings_.NewStringType()
+	fields["domain_id"] = bindings.NewStringType()
+	fields["group_id"] = bindings.NewStringType()
+	fields["expression_id"] = bindings.NewStringType()
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["expression_id"] = "ExpressionId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ExternalIdExpressionsDeleteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func externalIdExpressionsDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func externalIdExpressionsDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func externalIdExpressionsDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["domain_id"] = vapiBindings_.NewStringType()
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["expression_id"] = vapiBindings_.NewStringType()
+	fields["domain_id"] = bindings.NewStringType()
+	fields["group_id"] = bindings.NewStringType()
+	fields["expression_id"] = bindings.NewStringType()
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["expression_id"] = "ExpressionId"
-	paramsTypeMap["domain_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["group_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["expression_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["domainId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["groupId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["expressionId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["domain_id"] = bindings.NewStringType()
+	paramsTypeMap["group_id"] = bindings.NewStringType()
+	paramsTypeMap["expression_id"] = bindings.NewStringType()
+	paramsTypeMap["domainId"] = bindings.NewStringType()
+	paramsTypeMap["groupId"] = bindings.NewStringType()
+	paramsTypeMap["expressionId"] = bindings.NewStringType()
 	pathParams["expression_id"] = "expressionId"
 	pathParams["group_id"] = "groupId"
 	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -163,55 +163,55 @@ func externalIdExpressionsDeleteRestMetadata() vapiProtocol_.OperationRestMetada
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func externalIdExpressionsPatchInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func externalIdExpressionsPatchInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["domain_id"] = vapiBindings_.NewStringType()
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["expression_id"] = vapiBindings_.NewStringType()
-	fields["external_ID_expression"] = vapiBindings_.NewReferenceType(nsx_policyModel.ExternalIDExpressionBindingType)
+	fields["domain_id"] = bindings.NewStringType()
+	fields["group_id"] = bindings.NewStringType()
+	fields["expression_id"] = bindings.NewStringType()
+	fields["external_ID_expression"] = bindings.NewReferenceType(model.ExternalIDExpressionBindingType)
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["expression_id"] = "ExpressionId"
 	fieldNameMap["external_ID_expression"] = "ExternalIDExpression"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ExternalIdExpressionsPatchOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func externalIdExpressionsPatchOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func externalIdExpressionsPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func externalIdExpressionsPatchRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["domain_id"] = vapiBindings_.NewStringType()
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["expression_id"] = vapiBindings_.NewStringType()
-	fields["external_ID_expression"] = vapiBindings_.NewReferenceType(nsx_policyModel.ExternalIDExpressionBindingType)
+	fields["domain_id"] = bindings.NewStringType()
+	fields["group_id"] = bindings.NewStringType()
+	fields["expression_id"] = bindings.NewStringType()
+	fields["external_ID_expression"] = bindings.NewReferenceType(model.ExternalIDExpressionBindingType)
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["expression_id"] = "ExpressionId"
 	fieldNameMap["external_ID_expression"] = "ExternalIDExpression"
-	paramsTypeMap["domain_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["group_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["external_ID_expression"] = vapiBindings_.NewReferenceType(nsx_policyModel.ExternalIDExpressionBindingType)
-	paramsTypeMap["expression_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["domainId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["groupId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["expressionId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["domain_id"] = bindings.NewStringType()
+	paramsTypeMap["group_id"] = bindings.NewStringType()
+	paramsTypeMap["expression_id"] = bindings.NewStringType()
+	paramsTypeMap["external_ID_expression"] = bindings.NewReferenceType(model.ExternalIDExpressionBindingType)
+	paramsTypeMap["domainId"] = bindings.NewStringType()
+	paramsTypeMap["groupId"] = bindings.NewStringType()
+	paramsTypeMap["expressionId"] = bindings.NewStringType()
 	pathParams["expression_id"] = "expressionId"
 	pathParams["group_id"] = "groupId"
 	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

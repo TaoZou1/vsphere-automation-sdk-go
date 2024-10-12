@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package ports
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type PortDiscoveryProfileBindingMapsClient interface {
 
@@ -26,7 +27,6 @@ type PortDiscoveryProfileBindingMapsClient interface {
 	// @param segmentIdParam Segment ID (required)
 	// @param portIdParam Port ID (required)
 	// @param portDiscoveryProfileBindingMapIdParam Port Discovery Profile Binding Map ID (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -41,13 +41,12 @@ type PortDiscoveryProfileBindingMapsClient interface {
 	// @param portIdParam Port ID (required)
 	// @param portDiscoveryProfileBindingMapIdParam Port Discovery Profile Binding Map ID (required)
 	// @return com.vmware.nsx_policy.model.PortDiscoveryProfileBindingMap
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(tier1IdParam string, segmentIdParam string, portIdParam string, portDiscoveryProfileBindingMapIdParam string) (nsx_policyModel.PortDiscoveryProfileBindingMap, error)
+	Get(tier1IdParam string, segmentIdParam string, portIdParam string, portDiscoveryProfileBindingMapIdParam string) (model.PortDiscoveryProfileBindingMap, error)
 
 	// API will list all Port Discovery Profile Binding Maps in current port id.
 	//
@@ -61,13 +60,12 @@ type PortDiscoveryProfileBindingMapsClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_policy.model.PortDiscoveryProfileBindingMapListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(tier1IdParam string, segmentIdParam string, portIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.PortDiscoveryProfileBindingMapListResult, error)
+	List(tier1IdParam string, segmentIdParam string, portIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PortDiscoveryProfileBindingMapListResult, error)
 
 	// API will create Port Discovery Profile Binding Map. For objects with no binding maps, default profile is applied.
 	//
@@ -76,13 +74,12 @@ type PortDiscoveryProfileBindingMapsClient interface {
 	// @param portIdParam Port ID (required)
 	// @param portDiscoveryProfileBindingMapIdParam Port Discovery Profile Binding Map ID (required)
 	// @param portDiscoveryProfileBindingMapParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(tier1IdParam string, segmentIdParam string, portIdParam string, portDiscoveryProfileBindingMapIdParam string, portDiscoveryProfileBindingMapParam nsx_policyModel.PortDiscoveryProfileBindingMap) error
+	Patch(tier1IdParam string, segmentIdParam string, portIdParam string, portDiscoveryProfileBindingMapIdParam string, portDiscoveryProfileBindingMapParam model.PortDiscoveryProfileBindingMap) error
 
 	// API will update Port Discovery Profile Binding Map. For objects with no binding maps, default profile is applied.
 	//
@@ -92,116 +89,109 @@ type PortDiscoveryProfileBindingMapsClient interface {
 	// @param portDiscoveryProfileBindingMapIdParam Port Discovery Profile Binding Map ID (required)
 	// @param portDiscoveryProfileBindingMapParam (required)
 	// @return com.vmware.nsx_policy.model.PortDiscoveryProfileBindingMap
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(tier1IdParam string, segmentIdParam string, portIdParam string, portDiscoveryProfileBindingMapIdParam string, portDiscoveryProfileBindingMapParam nsx_policyModel.PortDiscoveryProfileBindingMap) (nsx_policyModel.PortDiscoveryProfileBindingMap, error)
+	Update(tier1IdParam string, segmentIdParam string, portIdParam string, portDiscoveryProfileBindingMapIdParam string, portDiscoveryProfileBindingMapParam model.PortDiscoveryProfileBindingMap) (model.PortDiscoveryProfileBindingMap, error)
 }
 
 type portDiscoveryProfileBindingMapsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewPortDiscoveryProfileBindingMapsClient(connector vapiProtocolClient_.Connector) *portDiscoveryProfileBindingMapsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.tier_1s.segments.ports.port_discovery_profile_binding_maps")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"patch":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewPortDiscoveryProfileBindingMapsClient(connector client.Connector) *portDiscoveryProfileBindingMapsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.tier_1s.segments.ports.port_discovery_profile_binding_maps")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	pIface := portDiscoveryProfileBindingMapsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &pIface
 }
 
-func (pIface *portDiscoveryProfileBindingMapsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (pIface *portDiscoveryProfileBindingMapsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := pIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
 func (pIface *portDiscoveryProfileBindingMapsClient) Delete(tier1IdParam string, segmentIdParam string, portIdParam string, portDiscoveryProfileBindingMapIdParam string) error {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
-	operationRestMetaData := portDiscoveryProfileBindingMapsDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(portDiscoveryProfileBindingMapsDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(portDiscoveryProfileBindingMapsDeleteInputType(), typeConverter)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("PortId", portIdParam)
 	sv.AddStructField("PortDiscoveryProfileBindingMapId", portDiscoveryProfileBindingMapIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := portDiscoveryProfileBindingMapsDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_1s.segments.ports.port_discovery_profile_binding_maps", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (pIface *portDiscoveryProfileBindingMapsClient) Get(tier1IdParam string, segmentIdParam string, portIdParam string, portDiscoveryProfileBindingMapIdParam string) (nsx_policyModel.PortDiscoveryProfileBindingMap, error) {
+func (pIface *portDiscoveryProfileBindingMapsClient) Get(tier1IdParam string, segmentIdParam string, portIdParam string, portDiscoveryProfileBindingMapIdParam string) (model.PortDiscoveryProfileBindingMap, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
-	operationRestMetaData := portDiscoveryProfileBindingMapsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(portDiscoveryProfileBindingMapsGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(portDiscoveryProfileBindingMapsGetInputType(), typeConverter)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("PortId", portIdParam)
 	sv.AddStructField("PortDiscoveryProfileBindingMapId", portDiscoveryProfileBindingMapIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.PortDiscoveryProfileBindingMap
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.PortDiscoveryProfileBindingMap
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := portDiscoveryProfileBindingMapsGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_1s.segments.ports.port_discovery_profile_binding_maps", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.PortDiscoveryProfileBindingMap
+	var emptyOutput model.PortDiscoveryProfileBindingMap
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), PortDiscoveryProfileBindingMapsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), portDiscoveryProfileBindingMapsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.PortDiscoveryProfileBindingMap), nil
+		return output.(model.PortDiscoveryProfileBindingMap), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (pIface *portDiscoveryProfileBindingMapsClient) List(tier1IdParam string, segmentIdParam string, portIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.PortDiscoveryProfileBindingMapListResult, error) {
+func (pIface *portDiscoveryProfileBindingMapsClient) List(tier1IdParam string, segmentIdParam string, portIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PortDiscoveryProfileBindingMapListResult, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
-	operationRestMetaData := portDiscoveryProfileBindingMapsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(portDiscoveryProfileBindingMapsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(portDiscoveryProfileBindingMapsListInputType(), typeConverter)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("PortId", portIdParam)
@@ -213,35 +203,34 @@ func (pIface *portDiscoveryProfileBindingMapsClient) List(tier1IdParam string, s
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.PortDiscoveryProfileBindingMapListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.PortDiscoveryProfileBindingMapListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := portDiscoveryProfileBindingMapsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_1s.segments.ports.port_discovery_profile_binding_maps", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.PortDiscoveryProfileBindingMapListResult
+	var emptyOutput model.PortDiscoveryProfileBindingMapListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), PortDiscoveryProfileBindingMapsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), portDiscoveryProfileBindingMapsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.PortDiscoveryProfileBindingMapListResult), nil
+		return output.(model.PortDiscoveryProfileBindingMapListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (pIface *portDiscoveryProfileBindingMapsClient) Patch(tier1IdParam string, segmentIdParam string, portIdParam string, portDiscoveryProfileBindingMapIdParam string, portDiscoveryProfileBindingMapParam nsx_policyModel.PortDiscoveryProfileBindingMap) error {
+func (pIface *portDiscoveryProfileBindingMapsClient) Patch(tier1IdParam string, segmentIdParam string, portIdParam string, portDiscoveryProfileBindingMapIdParam string, portDiscoveryProfileBindingMapParam model.PortDiscoveryProfileBindingMap) error {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
-	operationRestMetaData := portDiscoveryProfileBindingMapsPatchRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(portDiscoveryProfileBindingMapsPatchInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(portDiscoveryProfileBindingMapsPatchInputType(), typeConverter)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("PortId", portIdParam)
@@ -249,29 +238,28 @@ func (pIface *portDiscoveryProfileBindingMapsClient) Patch(tier1IdParam string, 
 	sv.AddStructField("PortDiscoveryProfileBindingMap", portDiscoveryProfileBindingMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := portDiscoveryProfileBindingMapsPatchRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_1s.segments.ports.port_discovery_profile_binding_maps", "patch", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (pIface *portDiscoveryProfileBindingMapsClient) Update(tier1IdParam string, segmentIdParam string, portIdParam string, portDiscoveryProfileBindingMapIdParam string, portDiscoveryProfileBindingMapParam nsx_policyModel.PortDiscoveryProfileBindingMap) (nsx_policyModel.PortDiscoveryProfileBindingMap, error) {
+func (pIface *portDiscoveryProfileBindingMapsClient) Update(tier1IdParam string, segmentIdParam string, portIdParam string, portDiscoveryProfileBindingMapIdParam string, portDiscoveryProfileBindingMapParam model.PortDiscoveryProfileBindingMap) (model.PortDiscoveryProfileBindingMap, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
-	operationRestMetaData := portDiscoveryProfileBindingMapsUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(portDiscoveryProfileBindingMapsUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(portDiscoveryProfileBindingMapsUpdateInputType(), typeConverter)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("PortId", portIdParam)
@@ -279,22 +267,25 @@ func (pIface *portDiscoveryProfileBindingMapsClient) Update(tier1IdParam string,
 	sv.AddStructField("PortDiscoveryProfileBindingMap", portDiscoveryProfileBindingMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.PortDiscoveryProfileBindingMap
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.PortDiscoveryProfileBindingMap
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := portDiscoveryProfileBindingMapsUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_1s.segments.ports.port_discovery_profile_binding_maps", "update", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.PortDiscoveryProfileBindingMap
+	var emptyOutput model.PortDiscoveryProfileBindingMap
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), PortDiscoveryProfileBindingMapsUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), portDiscoveryProfileBindingMapsUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.PortDiscoveryProfileBindingMap), nil
+		return output.(model.PortDiscoveryProfileBindingMap), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

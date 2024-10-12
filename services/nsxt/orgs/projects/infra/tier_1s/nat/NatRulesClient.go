@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package nat
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type NatRulesClient interface {
 
@@ -27,7 +28,6 @@ type NatRulesClient interface {
 	// @param tier1IdParam Tier-1 ID (required)
 	// @param natIdParam NAT id (required)
 	// @param natRuleIdParam Rule ID (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -43,13 +43,12 @@ type NatRulesClient interface {
 	// @param natIdParam NAT id (required)
 	// @param natRuleIdParam Rule ID (required)
 	// @return com.vmware.nsx_policy.model.PolicyNatRule
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, natRuleIdParam string) (nsx_policyModel.PolicyNatRule, error)
+	Get(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, natRuleIdParam string) (model.PolicyNatRule, error)
 
 	// List NAT Rules from Tier-1 denoted by Tier-1 ID, under NAT section denoted by <nat-id>. Under tier-1 there will be 3 different NATs(sections). (INTERNAL, USER and DEFAULT) For more details related to NAT section please refer to PolicyNAT schema. Note: IPSecVpnSession as Scope: Please note that old IPSecVpnSession policy path deprecated. If user specifiy old IPSecVpnSession path in the scope property in the PATCH/PUT PoliycNatRule API, the path returned in the GET response payload will be a new path instead of the deprecated IPSecVpnSession path Both old and new IPSecVpnSession path refer to same resource. there is no functional impact.
 	//
@@ -64,13 +63,12 @@ type NatRulesClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_policy.model.PolicyNatRuleListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.PolicyNatRuleListResult, error)
+	List(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyNatRuleListResult, error)
 
 	// If a NAT Rule is not already present on Tier-1 denoted by Tier-1 ID, under NAT section denoted by <nat-id>, create a new NAT Rule. If it already exists, update the NAT Rule. Under tier-1 there will be 3 different NATs(sections). (INTERNAL, USER and DEFAULT) For more details related to NAT section please refer to PolicyNAT schema. Note: IPSecVpnSession as Scope: Please note that old IPSecVpnSession policy path deprecated. If user specifiy old IPSecVpnSession path in the scope property, the path returned in the GET response payload will be a new path instead of the deprecated IPSecVpnSession path Both old and new IPSecVpnSession path refer to same resource. there is no functional impact.
 	//
@@ -80,13 +78,12 @@ type NatRulesClient interface {
 	// @param natIdParam NAT id (required)
 	// @param natRuleIdParam Rule ID (required)
 	// @param policyNatRuleParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, natRuleIdParam string, policyNatRuleParam nsx_policyModel.PolicyNatRule) error
+	Patch(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, natRuleIdParam string, policyNatRuleParam model.PolicyNatRule) error
 
 	// Create or update NAT Rule on Tier-1 denoted by Tier-1 ID, under NAT section denoted by <nat-id>. Under tier-1 there will be 3 different NATs(sections). (INTERNAL, USER and DEFAULT) For more details related to NAT section please refer to PolicyNAT schema. Note: IPSecVpnSession as Scope: Please note that old IPSecVpnSession policy path deprecated. If user specifiy old IPSecVpnSession path in the scope property in the PUT API, the path returned in the GET/PUT response payload will be a new path instead of the deprecated IPSecVpnSession path Both old and new IPSecVpnSession path refer to same resource. there is no functional impact.
 	//
@@ -97,52 +94,47 @@ type NatRulesClient interface {
 	// @param natRuleIdParam Rule ID (required)
 	// @param policyNatRuleParam (required)
 	// @return com.vmware.nsx_policy.model.PolicyNatRule
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, natRuleIdParam string, policyNatRuleParam nsx_policyModel.PolicyNatRule) (nsx_policyModel.PolicyNatRule, error)
+	Update(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, natRuleIdParam string, policyNatRuleParam model.PolicyNatRule) (model.PolicyNatRule, error)
 }
 
 type natRulesClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewNatRulesClient(connector vapiProtocolClient_.Connector) *natRulesClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.orgs.projects.infra.tier_1s.nat.nat_rules")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"patch":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewNatRulesClient(connector client.Connector) *natRulesClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.orgs.projects.infra.tier_1s.nat.nat_rules")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	nIface := natRulesClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &nIface
 }
 
-func (nIface *natRulesClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (nIface *natRulesClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := nIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
 func (nIface *natRulesClient) Delete(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, natRuleIdParam string) error {
 	typeConverter := nIface.connector.TypeConverter()
 	executionContext := nIface.connector.NewExecutionContext()
-	operationRestMetaData := natRulesDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(natRulesDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(natRulesDeleteInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Tier1Id", tier1IdParam)
@@ -150,29 +142,28 @@ func (nIface *natRulesClient) Delete(orgIdParam string, projectIdParam string, t
 	sv.AddStructField("NatRuleId", natRuleIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := natRulesDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := nIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.orgs.projects.infra.tier_1s.nat.nat_rules", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), nIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (nIface *natRulesClient) Get(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, natRuleIdParam string) (nsx_policyModel.PolicyNatRule, error) {
+func (nIface *natRulesClient) Get(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, natRuleIdParam string) (model.PolicyNatRule, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	executionContext := nIface.connector.NewExecutionContext()
-	operationRestMetaData := natRulesGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(natRulesGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(natRulesGetInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Tier1Id", tier1IdParam)
@@ -180,35 +171,34 @@ func (nIface *natRulesClient) Get(orgIdParam string, projectIdParam string, tier
 	sv.AddStructField("NatRuleId", natRuleIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.PolicyNatRule
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.PolicyNatRule
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := natRulesGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := nIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.orgs.projects.infra.tier_1s.nat.nat_rules", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.PolicyNatRule
+	var emptyOutput model.PolicyNatRule
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), NatRulesGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), natRulesGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.PolicyNatRule), nil
+		return output.(model.PolicyNatRule), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), nIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (nIface *natRulesClient) List(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.PolicyNatRuleListResult, error) {
+func (nIface *natRulesClient) List(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyNatRuleListResult, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	executionContext := nIface.connector.NewExecutionContext()
-	operationRestMetaData := natRulesListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(natRulesListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(natRulesListInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Tier1Id", tier1IdParam)
@@ -221,35 +211,34 @@ func (nIface *natRulesClient) List(orgIdParam string, projectIdParam string, tie
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.PolicyNatRuleListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.PolicyNatRuleListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := natRulesListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := nIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.orgs.projects.infra.tier_1s.nat.nat_rules", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.PolicyNatRuleListResult
+	var emptyOutput model.PolicyNatRuleListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), NatRulesListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), natRulesListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.PolicyNatRuleListResult), nil
+		return output.(model.PolicyNatRuleListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), nIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (nIface *natRulesClient) Patch(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, natRuleIdParam string, policyNatRuleParam nsx_policyModel.PolicyNatRule) error {
+func (nIface *natRulesClient) Patch(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, natRuleIdParam string, policyNatRuleParam model.PolicyNatRule) error {
 	typeConverter := nIface.connector.TypeConverter()
 	executionContext := nIface.connector.NewExecutionContext()
-	operationRestMetaData := natRulesPatchRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(natRulesPatchInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(natRulesPatchInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Tier1Id", tier1IdParam)
@@ -258,29 +247,28 @@ func (nIface *natRulesClient) Patch(orgIdParam string, projectIdParam string, ti
 	sv.AddStructField("PolicyNatRule", policyNatRuleParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := natRulesPatchRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := nIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.orgs.projects.infra.tier_1s.nat.nat_rules", "patch", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), nIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (nIface *natRulesClient) Update(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, natRuleIdParam string, policyNatRuleParam nsx_policyModel.PolicyNatRule) (nsx_policyModel.PolicyNatRule, error) {
+func (nIface *natRulesClient) Update(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, natRuleIdParam string, policyNatRuleParam model.PolicyNatRule) (model.PolicyNatRule, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	executionContext := nIface.connector.NewExecutionContext()
-	operationRestMetaData := natRulesUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(natRulesUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(natRulesUpdateInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Tier1Id", tier1IdParam)
@@ -289,22 +277,25 @@ func (nIface *natRulesClient) Update(orgIdParam string, projectIdParam string, t
 	sv.AddStructField("PolicyNatRule", policyNatRuleParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.PolicyNatRule
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.PolicyNatRule
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := natRulesUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := nIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.orgs.projects.infra.tier_1s.nat.nat_rules", "update", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.PolicyNatRule
+	var emptyOutput model.PolicyNatRule
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), NatRulesUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), natRulesUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.PolicyNatRule), nil
+		return output.(model.PolicyNatRule), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), nIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

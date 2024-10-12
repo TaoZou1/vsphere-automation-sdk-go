@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,60 +11,60 @@
 package projects
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func infraGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func infraGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["base_path"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["filter"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["type_filter"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["base_path"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["filter"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["type_filter"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["base_path"] = "BasePath"
 	fieldNameMap["filter"] = "Filter"
 	fieldNameMap["type_filter"] = "TypeFilter"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func InfraGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.InfraBindingType)
+func infraGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.InfraBindingType)
 }
 
-func infraGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func infraGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["base_path"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["filter"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["type_filter"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["base_path"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["filter"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["type_filter"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["base_path"] = "BasePath"
 	fieldNameMap["filter"] = "Filter"
 	fieldNameMap["type_filter"] = "TypeFilter"
-	paramsTypeMap["filter"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["base_path"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["type_filter"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["base_path"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["filter"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["type_filter"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["orgId"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
 	pathParams["project_id"] = "projectId"
 	pathParams["org_id"] = "orgId"
 	queryParams["filter"] = "filter"
@@ -72,7 +72,7 @@ func infraGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 	queryParams["type_filter"] = "type_filter"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -93,54 +93,54 @@ func infraGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func infraPatchInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func infraPatchInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["infra"] = vapiBindings_.NewReferenceType(nsx_policyModel.InfraBindingType)
-	fields["enforce_revision_check"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["infra"] = bindings.NewReferenceType(model.InfraBindingType)
+	fields["enforce_revision_check"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["infra"] = "Infra"
 	fieldNameMap["enforce_revision_check"] = "EnforceRevisionCheck"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func InfraPatchOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func infraPatchOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func infraPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func infraPatchRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["infra"] = vapiBindings_.NewReferenceType(nsx_policyModel.InfraBindingType)
-	fields["enforce_revision_check"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["infra"] = bindings.NewReferenceType(model.InfraBindingType)
+	fields["enforce_revision_check"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["infra"] = "Infra"
 	fieldNameMap["enforce_revision_check"] = "EnforceRevisionCheck"
-	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["infra"] = vapiBindings_.NewReferenceType(nsx_policyModel.InfraBindingType)
-	paramsTypeMap["enforce_revision_check"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["enforce_revision_check"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["infra"] = bindings.NewReferenceType(model.InfraBindingType)
+	paramsTypeMap["orgId"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
 	pathParams["project_id"] = "projectId"
 	pathParams["org_id"] = "orgId"
 	queryParams["enforce_revision_check"] = "enforce_revision_check"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

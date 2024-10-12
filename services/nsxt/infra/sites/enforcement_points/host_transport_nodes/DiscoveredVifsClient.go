@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package host_transport_nodes
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type DiscoveredVifsClient interface {
 
@@ -33,48 +34,43 @@ type DiscoveredVifsClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_policy.model.DiscoveredVifStateListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(siteIdParam string, enforcementpointIdParam string, hostTransportNodeIdParam string, cursorParam *string, hostSwitchIdParam *string, includedFieldsParam *string, pageSizeParam *int64, segmentIdParam *string, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.DiscoveredVifStateListResult, error)
+	List(siteIdParam string, enforcementpointIdParam string, hostTransportNodeIdParam string, cursorParam *string, hostSwitchIdParam *string, includedFieldsParam *string, pageSizeParam *int64, segmentIdParam *string, sortAscendingParam *bool, sortByParam *string) (model.DiscoveredVifStateListResult, error)
 }
 
 type discoveredVifsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewDiscoveredVifsClient(connector vapiProtocolClient_.Connector) *discoveredVifsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.sites.enforcement_points.host_transport_nodes.discovered_vifs")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"list": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
+func NewDiscoveredVifsClient(connector client.Connector) *discoveredVifsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.sites.enforcement_points.host_transport_nodes.discovered_vifs")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"list": core.NewMethodIdentifier(interfaceIdentifier, "list"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	dIface := discoveredVifsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &dIface
 }
 
-func (dIface *discoveredVifsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (dIface *discoveredVifsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := dIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (dIface *discoveredVifsClient) List(siteIdParam string, enforcementpointIdParam string, hostTransportNodeIdParam string, cursorParam *string, hostSwitchIdParam *string, includedFieldsParam *string, pageSizeParam *int64, segmentIdParam *string, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.DiscoveredVifStateListResult, error) {
+func (dIface *discoveredVifsClient) List(siteIdParam string, enforcementpointIdParam string, hostTransportNodeIdParam string, cursorParam *string, hostSwitchIdParam *string, includedFieldsParam *string, pageSizeParam *int64, segmentIdParam *string, sortAscendingParam *bool, sortByParam *string) (model.DiscoveredVifStateListResult, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
-	operationRestMetaData := discoveredVifsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(discoveredVifsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(discoveredVifsListInputType(), typeConverter)
 	sv.AddStructField("SiteId", siteIdParam)
 	sv.AddStructField("EnforcementpointId", enforcementpointIdParam)
 	sv.AddStructField("HostTransportNodeId", hostTransportNodeIdParam)
@@ -87,22 +83,25 @@ func (dIface *discoveredVifsClient) List(siteIdParam string, enforcementpointIdP
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.DiscoveredVifStateListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.DiscoveredVifStateListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := discoveredVifsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := dIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.sites.enforcement_points.host_transport_nodes.discovered_vifs", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.DiscoveredVifStateListResult
+	var emptyOutput model.DiscoveredVifStateListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), DiscoveredVifsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), discoveredVifsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.DiscoveredVifStateListResult), nil
+		return output.(model.DiscoveredVifStateListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), dIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

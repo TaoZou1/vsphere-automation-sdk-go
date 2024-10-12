@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package principal_identities
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type WithCertificateClient interface {
 
@@ -24,67 +25,65 @@ type WithCertificateClient interface {
 	//
 	// @param principalIdentityWithCertificateParam (required)
 	// @return com.vmware.nsx.model.PrincipalIdentity
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Create(principalIdentityWithCertificateParam nsxModel.PrincipalIdentityWithCertificate) (nsxModel.PrincipalIdentity, error)
+	Create(principalIdentityWithCertificateParam model.PrincipalIdentityWithCertificate) (model.PrincipalIdentity, error)
 }
 
 type withCertificateClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewWithCertificateClient(connector vapiProtocolClient_.Connector) *withCertificateClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.trust_management.principal_identities.with_certificate")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"create": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
+func NewWithCertificateClient(connector client.Connector) *withCertificateClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.trust_management.principal_identities.with_certificate")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"create": core.NewMethodIdentifier(interfaceIdentifier, "create"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	wIface := withCertificateClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &wIface
 }
 
-func (wIface *withCertificateClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (wIface *withCertificateClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := wIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (wIface *withCertificateClient) Create(principalIdentityWithCertificateParam nsxModel.PrincipalIdentityWithCertificate) (nsxModel.PrincipalIdentity, error) {
+func (wIface *withCertificateClient) Create(principalIdentityWithCertificateParam model.PrincipalIdentityWithCertificate) (model.PrincipalIdentity, error) {
 	typeConverter := wIface.connector.TypeConverter()
 	executionContext := wIface.connector.NewExecutionContext()
-	operationRestMetaData := withCertificateCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(withCertificateCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(withCertificateCreateInputType(), typeConverter)
 	sv.AddStructField("PrincipalIdentityWithCertificate", principalIdentityWithCertificateParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.PrincipalIdentity
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.PrincipalIdentity
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := withCertificateCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	wIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := wIface.connector.GetApiProvider().Invoke("com.vmware.nsx.trust_management.principal_identities.with_certificate", "create", inputDataValue, executionContext)
-	var emptyOutput nsxModel.PrincipalIdentity
+	var emptyOutput model.PrincipalIdentity
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), WithCertificateCreateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), withCertificateCreateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.PrincipalIdentity), nil
+		return output.(model.PrincipalIdentity), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), wIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

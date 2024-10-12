@@ -11,8 +11,8 @@
 package update
 
 import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/appliance"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/appliance/update/Pending"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vsphere/appliance"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vsphere/appliance/update/Pending"
 )
 
 // The ``Pending`` interface provides methods to manipulate pending updates. This interface was added in vSphere API 6.7.

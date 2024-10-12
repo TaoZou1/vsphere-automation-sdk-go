@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,37 +9,32 @@
 package nsx
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type BridgeEndpointsClient interface {
 
-	//
-	//
-	// Deprecated: This API element is deprecated.
+	// Creates a Bridge Endpoint. It describes the physical attributes of the bridge like vlan. A logical port can be attached to a vif providing bridging functionality from the logical overlay network to the physical vlan network
 	//
 	// @param bridgeEndpointParam (required)
 	// @return com.vmware.nsx.model.BridgeEndpoint
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Create(bridgeEndpointParam nsxModel.BridgeEndpoint) (nsxModel.BridgeEndpoint, error)
+	Create(bridgeEndpointParam model.BridgeEndpoint) (model.BridgeEndpoint, error)
 
-	//
-	//
-	// Deprecated: This API element is deprecated.
+	// Deletes the specified Bridge Endpoint.
 	//
 	// @param bridgeendpointIdParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -51,13 +46,12 @@ type BridgeEndpointsClient interface {
 	//
 	// @param bridgeendpointIdParam (required)
 	// @return com.vmware.nsx.model.BridgeEndpoint
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(bridgeendpointIdParam string) (nsxModel.BridgeEndpoint, error)
+	Get(bridgeendpointIdParam string) (model.BridgeEndpoint, error)
 
 	// Returns information about all configured bridge endoints
 	//
@@ -71,86 +65,81 @@ type BridgeEndpointsClient interface {
 	// @param sortByParam Field by which records are sorted (optional)
 	// @param vlanTransportZoneIdParam VLAN transport zone id used by the edge cluster (optional)
 	// @return com.vmware.nsx.model.BridgeEndpointListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(bridgeClusterIdParam *string, bridgeEndpointProfileIdParam *string, cursorParam *string, includedFieldsParam *string, logicalSwitchIdParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, vlanTransportZoneIdParam *string) (nsxModel.BridgeEndpointListResult, error)
+	List(bridgeClusterIdParam *string, bridgeEndpointProfileIdParam *string, cursorParam *string, includedFieldsParam *string, logicalSwitchIdParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, vlanTransportZoneIdParam *string) (model.BridgeEndpointListResult, error)
 
-	//
-	//
-	// Deprecated: This API element is deprecated.
+	// Modifies a existing bridge endpoint.
 	//
 	// @param bridgeendpointIdParam (required)
 	// @param bridgeEndpointParam (required)
 	// @return com.vmware.nsx.model.BridgeEndpoint
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(bridgeendpointIdParam string, bridgeEndpointParam nsxModel.BridgeEndpoint) (nsxModel.BridgeEndpoint, error)
+	Update(bridgeendpointIdParam string, bridgeEndpointParam model.BridgeEndpoint) (model.BridgeEndpoint, error)
 }
 
 type bridgeEndpointsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewBridgeEndpointsClient(connector vapiProtocolClient_.Connector) *bridgeEndpointsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.bridge_endpoints")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"create": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewBridgeEndpointsClient(connector client.Connector) *bridgeEndpointsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.bridge_endpoints")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"create": core.NewMethodIdentifier(interfaceIdentifier, "create"),
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	bIface := bridgeEndpointsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &bIface
 }
 
-func (bIface *bridgeEndpointsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (bIface *bridgeEndpointsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := bIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (bIface *bridgeEndpointsClient) Create(bridgeEndpointParam nsxModel.BridgeEndpoint) (nsxModel.BridgeEndpoint, error) {
+func (bIface *bridgeEndpointsClient) Create(bridgeEndpointParam model.BridgeEndpoint) (model.BridgeEndpoint, error) {
 	typeConverter := bIface.connector.TypeConverter()
 	executionContext := bIface.connector.NewExecutionContext()
-	operationRestMetaData := bridgeEndpointsCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(bridgeEndpointsCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(bridgeEndpointsCreateInputType(), typeConverter)
 	sv.AddStructField("BridgeEndpoint", bridgeEndpointParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.BridgeEndpoint
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.BridgeEndpoint
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := bridgeEndpointsCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := bIface.connector.GetApiProvider().Invoke("com.vmware.nsx.bridge_endpoints", "create", inputDataValue, executionContext)
-	var emptyOutput nsxModel.BridgeEndpoint
+	var emptyOutput model.BridgeEndpoint
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), BridgeEndpointsCreateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), bridgeEndpointsCreateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.BridgeEndpoint), nil
+		return output.(model.BridgeEndpoint), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), bIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
@@ -159,69 +148,63 @@ func (bIface *bridgeEndpointsClient) Create(bridgeEndpointParam nsxModel.BridgeE
 func (bIface *bridgeEndpointsClient) Delete(bridgeendpointIdParam string) error {
 	typeConverter := bIface.connector.TypeConverter()
 	executionContext := bIface.connector.NewExecutionContext()
-	operationRestMetaData := bridgeEndpointsDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(bridgeEndpointsDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(bridgeEndpointsDeleteInputType(), typeConverter)
 	sv.AddStructField("BridgeendpointId", bridgeendpointIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := bridgeEndpointsDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := bIface.connector.GetApiProvider().Invoke("com.vmware.nsx.bridge_endpoints", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), bIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (bIface *bridgeEndpointsClient) Get(bridgeendpointIdParam string) (nsxModel.BridgeEndpoint, error) {
+func (bIface *bridgeEndpointsClient) Get(bridgeendpointIdParam string) (model.BridgeEndpoint, error) {
 	typeConverter := bIface.connector.TypeConverter()
 	executionContext := bIface.connector.NewExecutionContext()
-	operationRestMetaData := bridgeEndpointsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(bridgeEndpointsGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(bridgeEndpointsGetInputType(), typeConverter)
 	sv.AddStructField("BridgeendpointId", bridgeendpointIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.BridgeEndpoint
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.BridgeEndpoint
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := bridgeEndpointsGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := bIface.connector.GetApiProvider().Invoke("com.vmware.nsx.bridge_endpoints", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.BridgeEndpoint
+	var emptyOutput model.BridgeEndpoint
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), BridgeEndpointsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), bridgeEndpointsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.BridgeEndpoint), nil
+		return output.(model.BridgeEndpoint), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), bIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (bIface *bridgeEndpointsClient) List(bridgeClusterIdParam *string, bridgeEndpointProfileIdParam *string, cursorParam *string, includedFieldsParam *string, logicalSwitchIdParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, vlanTransportZoneIdParam *string) (nsxModel.BridgeEndpointListResult, error) {
+func (bIface *bridgeEndpointsClient) List(bridgeClusterIdParam *string, bridgeEndpointProfileIdParam *string, cursorParam *string, includedFieldsParam *string, logicalSwitchIdParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, vlanTransportZoneIdParam *string) (model.BridgeEndpointListResult, error) {
 	typeConverter := bIface.connector.TypeConverter()
 	executionContext := bIface.connector.NewExecutionContext()
-	operationRestMetaData := bridgeEndpointsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(bridgeEndpointsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(bridgeEndpointsListInputType(), typeConverter)
 	sv.AddStructField("BridgeClusterId", bridgeClusterIdParam)
 	sv.AddStructField("BridgeEndpointProfileId", bridgeEndpointProfileIdParam)
 	sv.AddStructField("Cursor", cursorParam)
@@ -233,55 +216,57 @@ func (bIface *bridgeEndpointsClient) List(bridgeClusterIdParam *string, bridgeEn
 	sv.AddStructField("VlanTransportZoneId", vlanTransportZoneIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.BridgeEndpointListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.BridgeEndpointListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := bridgeEndpointsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := bIface.connector.GetApiProvider().Invoke("com.vmware.nsx.bridge_endpoints", "list", inputDataValue, executionContext)
-	var emptyOutput nsxModel.BridgeEndpointListResult
+	var emptyOutput model.BridgeEndpointListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), BridgeEndpointsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), bridgeEndpointsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.BridgeEndpointListResult), nil
+		return output.(model.BridgeEndpointListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), bIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (bIface *bridgeEndpointsClient) Update(bridgeendpointIdParam string, bridgeEndpointParam nsxModel.BridgeEndpoint) (nsxModel.BridgeEndpoint, error) {
+func (bIface *bridgeEndpointsClient) Update(bridgeendpointIdParam string, bridgeEndpointParam model.BridgeEndpoint) (model.BridgeEndpoint, error) {
 	typeConverter := bIface.connector.TypeConverter()
 	executionContext := bIface.connector.NewExecutionContext()
-	operationRestMetaData := bridgeEndpointsUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(bridgeEndpointsUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(bridgeEndpointsUpdateInputType(), typeConverter)
 	sv.AddStructField("BridgeendpointId", bridgeendpointIdParam)
 	sv.AddStructField("BridgeEndpoint", bridgeEndpointParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.BridgeEndpoint
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.BridgeEndpoint
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := bridgeEndpointsUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := bIface.connector.GetApiProvider().Invoke("com.vmware.nsx.bridge_endpoints", "update", inputDataValue, executionContext)
-	var emptyOutput nsxModel.BridgeEndpoint
+	var emptyOutput model.BridgeEndpoint
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), BridgeEndpointsUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), bridgeEndpointsUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.BridgeEndpoint), nil
+		return output.(model.BridgeEndpoint), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), bIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

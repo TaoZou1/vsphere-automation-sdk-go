@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,57 +11,57 @@
 package segments
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_global_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-gm/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-gm/model"
 	"reflect"
 )
 
-func segmentQosProfileBindingMapsDeleteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func segmentQosProfileBindingMapsDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["tier1_id"] = vapiBindings_.NewStringType()
-	fields["segment_id"] = vapiBindings_.NewStringType()
-	fields["segment_qos_profile_binding_map_id"] = vapiBindings_.NewStringType()
+	fields["tier1_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["segment_qos_profile_binding_map_id"] = bindings.NewStringType()
 	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["segment_qos_profile_binding_map_id"] = "SegmentQosProfileBindingMapId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SegmentQosProfileBindingMapsDeleteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func segmentQosProfileBindingMapsDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func segmentQosProfileBindingMapsDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func segmentQosProfileBindingMapsDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["tier1_id"] = vapiBindings_.NewStringType()
-	fields["segment_id"] = vapiBindings_.NewStringType()
-	fields["segment_qos_profile_binding_map_id"] = vapiBindings_.NewStringType()
+	fields["tier1_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["segment_qos_profile_binding_map_id"] = bindings.NewStringType()
 	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["segment_qos_profile_binding_map_id"] = "SegmentQosProfileBindingMapId"
-	paramsTypeMap["segment_qos_profile_binding_map_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tier1_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segment_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tier1Id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segmentId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segmentQosProfileBindingMapId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["segment_qos_profile_binding_map_id"] = bindings.NewStringType()
+	paramsTypeMap["tier1_id"] = bindings.NewStringType()
+	paramsTypeMap["segment_id"] = bindings.NewStringType()
+	paramsTypeMap["tier1Id"] = bindings.NewStringType()
+	paramsTypeMap["segmentId"] = bindings.NewStringType()
+	paramsTypeMap["segmentQosProfileBindingMapId"] = bindings.NewStringType()
 	pathParams["segment_id"] = "segmentId"
 	pathParams["segment_qos_profile_binding_map_id"] = "segmentQosProfileBindingMapId"
 	pathParams["tier1_id"] = "tier1Id"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -82,50 +82,50 @@ func segmentQosProfileBindingMapsDeleteRestMetadata() vapiProtocol_.OperationRes
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func segmentQosProfileBindingMapsGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func segmentQosProfileBindingMapsGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["tier1_id"] = vapiBindings_.NewStringType()
-	fields["segment_id"] = vapiBindings_.NewStringType()
-	fields["segment_qos_profile_binding_map_id"] = vapiBindings_.NewStringType()
+	fields["tier1_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["segment_qos_profile_binding_map_id"] = bindings.NewStringType()
 	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["segment_qos_profile_binding_map_id"] = "SegmentQosProfileBindingMapId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SegmentQosProfileBindingMapsGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_global_policyModel.SegmentQosProfileBindingMapBindingType)
+func segmentQosProfileBindingMapsGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.SegmentQosProfileBindingMapBindingType)
 }
 
-func segmentQosProfileBindingMapsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func segmentQosProfileBindingMapsGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["tier1_id"] = vapiBindings_.NewStringType()
-	fields["segment_id"] = vapiBindings_.NewStringType()
-	fields["segment_qos_profile_binding_map_id"] = vapiBindings_.NewStringType()
+	fields["tier1_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["segment_qos_profile_binding_map_id"] = bindings.NewStringType()
 	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["segment_qos_profile_binding_map_id"] = "SegmentQosProfileBindingMapId"
-	paramsTypeMap["segment_qos_profile_binding_map_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tier1_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segment_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tier1Id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segmentId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segmentQosProfileBindingMapId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["segment_qos_profile_binding_map_id"] = bindings.NewStringType()
+	paramsTypeMap["tier1_id"] = bindings.NewStringType()
+	paramsTypeMap["segment_id"] = bindings.NewStringType()
+	paramsTypeMap["tier1Id"] = bindings.NewStringType()
+	paramsTypeMap["segmentId"] = bindings.NewStringType()
+	paramsTypeMap["segmentQosProfileBindingMapId"] = bindings.NewStringType()
 	pathParams["segment_id"] = "segmentId"
 	pathParams["segment_qos_profile_binding_map_id"] = "segmentQosProfileBindingMapId"
 	pathParams["tier1_id"] = "tier1Id"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -146,16 +146,16 @@ func segmentQosProfileBindingMapsGetRestMetadata() vapiProtocol_.OperationRestMe
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func segmentQosProfileBindingMapsListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func segmentQosProfileBindingMapsListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["tier1_id"] = vapiBindings_.NewStringType()
-	fields["segment_id"] = vapiBindings_.NewStringType()
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["tier1_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["cursor"] = "Cursor"
@@ -163,30 +163,30 @@ func segmentQosProfileBindingMapsListInputType() vapiBindings_.StructType {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SegmentQosProfileBindingMapsListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_global_policyModel.SegmentQosProfileBindingMapListResultBindingType)
+func segmentQosProfileBindingMapsListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.SegmentQosProfileBindingMapListResultBindingType)
 }
 
-func segmentQosProfileBindingMapsListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func segmentQosProfileBindingMapsListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["tier1_id"] = vapiBindings_.NewStringType()
-	fields["segment_id"] = vapiBindings_.NewStringType()
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["tier1_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["cursor"] = "Cursor"
@@ -194,15 +194,15 @@ func segmentQosProfileBindingMapsListRestMetadata() vapiProtocol_.OperationRestM
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["tier1_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["segment_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	paramsTypeMap["tier1Id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segmentId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["tier1_id"] = bindings.NewStringType()
+	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["segment_id"] = bindings.NewStringType()
+	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["tier1Id"] = bindings.NewStringType()
+	paramsTypeMap["segmentId"] = bindings.NewStringType()
 	pathParams["segment_id"] = "segmentId"
 	pathParams["tier1_id"] = "tier1Id"
 	queryParams["cursor"] = "cursor"
@@ -212,7 +212,7 @@ func segmentQosProfileBindingMapsListRestMetadata() vapiProtocol_.OperationRestM
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -233,55 +233,55 @@ func segmentQosProfileBindingMapsListRestMetadata() vapiProtocol_.OperationRestM
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func segmentQosProfileBindingMapsPatchInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func segmentQosProfileBindingMapsPatchInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["tier1_id"] = vapiBindings_.NewStringType()
-	fields["segment_id"] = vapiBindings_.NewStringType()
-	fields["segment_qos_profile_binding_map_id"] = vapiBindings_.NewStringType()
-	fields["segment_qos_profile_binding_map"] = vapiBindings_.NewReferenceType(nsx_global_policyModel.SegmentQosProfileBindingMapBindingType)
+	fields["tier1_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["segment_qos_profile_binding_map_id"] = bindings.NewStringType()
+	fields["segment_qos_profile_binding_map"] = bindings.NewReferenceType(model.SegmentQosProfileBindingMapBindingType)
 	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["segment_qos_profile_binding_map_id"] = "SegmentQosProfileBindingMapId"
 	fieldNameMap["segment_qos_profile_binding_map"] = "SegmentQosProfileBindingMap"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SegmentQosProfileBindingMapsPatchOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func segmentQosProfileBindingMapsPatchOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func segmentQosProfileBindingMapsPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func segmentQosProfileBindingMapsPatchRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["tier1_id"] = vapiBindings_.NewStringType()
-	fields["segment_id"] = vapiBindings_.NewStringType()
-	fields["segment_qos_profile_binding_map_id"] = vapiBindings_.NewStringType()
-	fields["segment_qos_profile_binding_map"] = vapiBindings_.NewReferenceType(nsx_global_policyModel.SegmentQosProfileBindingMapBindingType)
+	fields["tier1_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["segment_qos_profile_binding_map_id"] = bindings.NewStringType()
+	fields["segment_qos_profile_binding_map"] = bindings.NewReferenceType(model.SegmentQosProfileBindingMapBindingType)
 	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["segment_qos_profile_binding_map_id"] = "SegmentQosProfileBindingMapId"
 	fieldNameMap["segment_qos_profile_binding_map"] = "SegmentQosProfileBindingMap"
-	paramsTypeMap["segment_qos_profile_binding_map_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tier1_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segment_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segment_qos_profile_binding_map"] = vapiBindings_.NewReferenceType(nsx_global_policyModel.SegmentQosProfileBindingMapBindingType)
-	paramsTypeMap["tier1Id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segmentId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segmentQosProfileBindingMapId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["segment_qos_profile_binding_map_id"] = bindings.NewStringType()
+	paramsTypeMap["segment_qos_profile_binding_map"] = bindings.NewReferenceType(model.SegmentQosProfileBindingMapBindingType)
+	paramsTypeMap["tier1_id"] = bindings.NewStringType()
+	paramsTypeMap["segment_id"] = bindings.NewStringType()
+	paramsTypeMap["tier1Id"] = bindings.NewStringType()
+	paramsTypeMap["segmentId"] = bindings.NewStringType()
+	paramsTypeMap["segmentQosProfileBindingMapId"] = bindings.NewStringType()
 	pathParams["segment_id"] = "segmentId"
 	pathParams["segment_qos_profile_binding_map_id"] = "segmentQosProfileBindingMapId"
 	pathParams["tier1_id"] = "tier1Id"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -302,55 +302,55 @@ func segmentQosProfileBindingMapsPatchRestMetadata() vapiProtocol_.OperationRest
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func segmentQosProfileBindingMapsUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func segmentQosProfileBindingMapsUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["tier1_id"] = vapiBindings_.NewStringType()
-	fields["segment_id"] = vapiBindings_.NewStringType()
-	fields["segment_qos_profile_binding_map_id"] = vapiBindings_.NewStringType()
-	fields["segment_qos_profile_binding_map"] = vapiBindings_.NewReferenceType(nsx_global_policyModel.SegmentQosProfileBindingMapBindingType)
+	fields["tier1_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["segment_qos_profile_binding_map_id"] = bindings.NewStringType()
+	fields["segment_qos_profile_binding_map"] = bindings.NewReferenceType(model.SegmentQosProfileBindingMapBindingType)
 	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["segment_qos_profile_binding_map_id"] = "SegmentQosProfileBindingMapId"
 	fieldNameMap["segment_qos_profile_binding_map"] = "SegmentQosProfileBindingMap"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SegmentQosProfileBindingMapsUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_global_policyModel.SegmentQosProfileBindingMapBindingType)
+func segmentQosProfileBindingMapsUpdateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.SegmentQosProfileBindingMapBindingType)
 }
 
-func segmentQosProfileBindingMapsUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func segmentQosProfileBindingMapsUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["tier1_id"] = vapiBindings_.NewStringType()
-	fields["segment_id"] = vapiBindings_.NewStringType()
-	fields["segment_qos_profile_binding_map_id"] = vapiBindings_.NewStringType()
-	fields["segment_qos_profile_binding_map"] = vapiBindings_.NewReferenceType(nsx_global_policyModel.SegmentQosProfileBindingMapBindingType)
+	fields["tier1_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["segment_qos_profile_binding_map_id"] = bindings.NewStringType()
+	fields["segment_qos_profile_binding_map"] = bindings.NewReferenceType(model.SegmentQosProfileBindingMapBindingType)
 	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["segment_qos_profile_binding_map_id"] = "SegmentQosProfileBindingMapId"
 	fieldNameMap["segment_qos_profile_binding_map"] = "SegmentQosProfileBindingMap"
-	paramsTypeMap["segment_qos_profile_binding_map_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tier1_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segment_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segment_qos_profile_binding_map"] = vapiBindings_.NewReferenceType(nsx_global_policyModel.SegmentQosProfileBindingMapBindingType)
-	paramsTypeMap["tier1Id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segmentId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segmentQosProfileBindingMapId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["segment_qos_profile_binding_map_id"] = bindings.NewStringType()
+	paramsTypeMap["segment_qos_profile_binding_map"] = bindings.NewReferenceType(model.SegmentQosProfileBindingMapBindingType)
+	paramsTypeMap["tier1_id"] = bindings.NewStringType()
+	paramsTypeMap["segment_id"] = bindings.NewStringType()
+	paramsTypeMap["tier1Id"] = bindings.NewStringType()
+	paramsTypeMap["segmentId"] = bindings.NewStringType()
+	paramsTypeMap["segmentQosProfileBindingMapId"] = bindings.NewStringType()
 	pathParams["segment_id"] = "segmentId"
 	pathParams["segment_qos_profile_binding_map_id"] = "segmentQosProfileBindingMapId"
 	pathParams["tier1_id"] = "tier1Id"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

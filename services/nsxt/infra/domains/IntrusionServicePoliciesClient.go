@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package domains
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type IntrusionServicePoliciesClient interface {
 
@@ -24,7 +25,6 @@ type IntrusionServicePoliciesClient interface {
 	//
 	// @param domainIdParam Domain ID (required)
 	// @param policyIdParam Policy ID (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -37,13 +37,12 @@ type IntrusionServicePoliciesClient interface {
 	// @param domainIdParam Domain ID (required)
 	// @param policyIdParam Policy ID (required)
 	// @return com.vmware.nsx_policy.model.IdsSecurityPolicy
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(domainIdParam string, policyIdParam string) (nsx_policyModel.IdsSecurityPolicy, error)
+	Get(domainIdParam string, policyIdParam string) (model.IdsSecurityPolicy, error)
 
 	// List intrusion detection system security policies.
 	//
@@ -56,26 +55,24 @@ type IntrusionServicePoliciesClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_policy.model.IdsSecurityPolicyListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(domainIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includeRuleCountParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.IdsSecurityPolicyListResult, error)
+	List(domainIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includeRuleCountParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IdsSecurityPolicyListResult, error)
 
 	// Patch intrusion detection system security policy for a domain.
 	//
 	// @param domainIdParam Domain ID (required)
 	// @param policyIdParam Policy ID (required)
 	// @param idsSecurityPolicyParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(domainIdParam string, policyIdParam string, idsSecurityPolicyParam nsx_policyModel.IdsSecurityPolicy) error
+	Patch(domainIdParam string, policyIdParam string, idsSecurityPolicyParam model.IdsSecurityPolicy) error
 
 	// This is used to set a precedence of a security policy w.r.t others.
 	//
@@ -85,13 +82,12 @@ type IntrusionServicePoliciesClient interface {
 	// @param anchorPathParam The security policy/rule path if operation is 'insert_after' or 'insert_before' (optional)
 	// @param operationParam Operation (optional, default to insert_top)
 	// @return com.vmware.nsx_policy.model.IdsSecurityPolicy
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Revise(domainIdParam string, policyIdParam string, idsSecurityPolicyParam nsx_policyModel.IdsSecurityPolicy, anchorPathParam *string, operationParam *string) (nsx_policyModel.IdsSecurityPolicy, error)
+	Revise(domainIdParam string, policyIdParam string, idsSecurityPolicyParam model.IdsSecurityPolicy, anchorPathParam *string, operationParam *string) (model.IdsSecurityPolicy, error)
 
 	// Update intrusion detection system security policy for a domain.
 	//
@@ -99,113 +95,106 @@ type IntrusionServicePoliciesClient interface {
 	// @param policyIdParam Policy ID (required)
 	// @param idsSecurityPolicyParam (required)
 	// @return com.vmware.nsx_policy.model.IdsSecurityPolicy
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(domainIdParam string, policyIdParam string, idsSecurityPolicyParam nsx_policyModel.IdsSecurityPolicy) (nsx_policyModel.IdsSecurityPolicy, error)
+	Update(domainIdParam string, policyIdParam string, idsSecurityPolicyParam model.IdsSecurityPolicy) (model.IdsSecurityPolicy, error)
 }
 
 type intrusionServicePoliciesClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewIntrusionServicePoliciesClient(connector vapiProtocolClient_.Connector) *intrusionServicePoliciesClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.domains.intrusion_service_policies")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"patch":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"revise": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "revise"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewIntrusionServicePoliciesClient(connector client.Connector) *intrusionServicePoliciesClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.domains.intrusion_service_policies")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
+		"revise": core.NewMethodIdentifier(interfaceIdentifier, "revise"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	iIface := intrusionServicePoliciesClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &iIface
 }
 
-func (iIface *intrusionServicePoliciesClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (iIface *intrusionServicePoliciesClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := iIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
 func (iIface *intrusionServicePoliciesClient) Delete(domainIdParam string, policyIdParam string) error {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := intrusionServicePoliciesDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(intrusionServicePoliciesDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(intrusionServicePoliciesDeleteInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("PolicyId", policyIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := intrusionServicePoliciesDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.domains.intrusion_service_policies", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (iIface *intrusionServicePoliciesClient) Get(domainIdParam string, policyIdParam string) (nsx_policyModel.IdsSecurityPolicy, error) {
+func (iIface *intrusionServicePoliciesClient) Get(domainIdParam string, policyIdParam string) (model.IdsSecurityPolicy, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := intrusionServicePoliciesGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(intrusionServicePoliciesGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(intrusionServicePoliciesGetInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("PolicyId", policyIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.IdsSecurityPolicy
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IdsSecurityPolicy
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := intrusionServicePoliciesGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.domains.intrusion_service_policies", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.IdsSecurityPolicy
+	var emptyOutput model.IdsSecurityPolicy
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), IntrusionServicePoliciesGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), intrusionServicePoliciesGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.IdsSecurityPolicy), nil
+		return output.(model.IdsSecurityPolicy), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (iIface *intrusionServicePoliciesClient) List(domainIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includeRuleCountParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.IdsSecurityPolicyListResult, error) {
+func (iIface *intrusionServicePoliciesClient) List(domainIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includeRuleCountParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IdsSecurityPolicyListResult, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := intrusionServicePoliciesListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(intrusionServicePoliciesListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(intrusionServicePoliciesListInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IncludeMarkForDeleteObjects", includeMarkForDeleteObjectsParam)
@@ -216,63 +205,61 @@ func (iIface *intrusionServicePoliciesClient) List(domainIdParam string, cursorP
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.IdsSecurityPolicyListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IdsSecurityPolicyListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := intrusionServicePoliciesListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.domains.intrusion_service_policies", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.IdsSecurityPolicyListResult
+	var emptyOutput model.IdsSecurityPolicyListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), IntrusionServicePoliciesListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), intrusionServicePoliciesListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.IdsSecurityPolicyListResult), nil
+		return output.(model.IdsSecurityPolicyListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (iIface *intrusionServicePoliciesClient) Patch(domainIdParam string, policyIdParam string, idsSecurityPolicyParam nsx_policyModel.IdsSecurityPolicy) error {
+func (iIface *intrusionServicePoliciesClient) Patch(domainIdParam string, policyIdParam string, idsSecurityPolicyParam model.IdsSecurityPolicy) error {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := intrusionServicePoliciesPatchRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(intrusionServicePoliciesPatchInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(intrusionServicePoliciesPatchInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("PolicyId", policyIdParam)
 	sv.AddStructField("IdsSecurityPolicy", idsSecurityPolicyParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := intrusionServicePoliciesPatchRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.domains.intrusion_service_policies", "patch", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (iIface *intrusionServicePoliciesClient) Revise(domainIdParam string, policyIdParam string, idsSecurityPolicyParam nsx_policyModel.IdsSecurityPolicy, anchorPathParam *string, operationParam *string) (nsx_policyModel.IdsSecurityPolicy, error) {
+func (iIface *intrusionServicePoliciesClient) Revise(domainIdParam string, policyIdParam string, idsSecurityPolicyParam model.IdsSecurityPolicy, anchorPathParam *string, operationParam *string) (model.IdsSecurityPolicy, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := intrusionServicePoliciesReviseRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(intrusionServicePoliciesReviseInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(intrusionServicePoliciesReviseInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("PolicyId", policyIdParam)
 	sv.AddStructField("IdsSecurityPolicy", idsSecurityPolicyParam)
@@ -280,56 +267,58 @@ func (iIface *intrusionServicePoliciesClient) Revise(domainIdParam string, polic
 	sv.AddStructField("Operation", operationParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.IdsSecurityPolicy
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IdsSecurityPolicy
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := intrusionServicePoliciesReviseRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.domains.intrusion_service_policies", "revise", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.IdsSecurityPolicy
+	var emptyOutput model.IdsSecurityPolicy
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), IntrusionServicePoliciesReviseOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), intrusionServicePoliciesReviseOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.IdsSecurityPolicy), nil
+		return output.(model.IdsSecurityPolicy), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (iIface *intrusionServicePoliciesClient) Update(domainIdParam string, policyIdParam string, idsSecurityPolicyParam nsx_policyModel.IdsSecurityPolicy) (nsx_policyModel.IdsSecurityPolicy, error) {
+func (iIface *intrusionServicePoliciesClient) Update(domainIdParam string, policyIdParam string, idsSecurityPolicyParam model.IdsSecurityPolicy) (model.IdsSecurityPolicy, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := intrusionServicePoliciesUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(intrusionServicePoliciesUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(intrusionServicePoliciesUpdateInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("PolicyId", policyIdParam)
 	sv.AddStructField("IdsSecurityPolicy", idsSecurityPolicyParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.IdsSecurityPolicy
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IdsSecurityPolicy
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := intrusionServicePoliciesUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.domains.intrusion_service_policies", "update", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.IdsSecurityPolicy
+	var emptyOutput model.IdsSecurityPolicy
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), IntrusionServicePoliciesUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), intrusionServicePoliciesUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.IdsSecurityPolicy), nil
+		return output.(model.IdsSecurityPolicy), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

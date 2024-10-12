@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,50 +11,50 @@
 package domains
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func redirectionPoliciesDeleteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func redirectionPoliciesDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["domain_id"] = vapiBindings_.NewStringType()
-	fields["redirection_policy_id"] = vapiBindings_.NewStringType()
+	fields["domain_id"] = bindings.NewStringType()
+	fields["redirection_policy_id"] = bindings.NewStringType()
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["redirection_policy_id"] = "RedirectionPolicyId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func RedirectionPoliciesDeleteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func redirectionPoliciesDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func redirectionPoliciesDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func redirectionPoliciesDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["domain_id"] = vapiBindings_.NewStringType()
-	fields["redirection_policy_id"] = vapiBindings_.NewStringType()
+	fields["domain_id"] = bindings.NewStringType()
+	fields["redirection_policy_id"] = bindings.NewStringType()
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["redirection_policy_id"] = "RedirectionPolicyId"
-	paramsTypeMap["domain_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["redirection_policy_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["domainId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["redirectionPolicyId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["domain_id"] = bindings.NewStringType()
+	paramsTypeMap["redirection_policy_id"] = bindings.NewStringType()
+	paramsTypeMap["domainId"] = bindings.NewStringType()
+	paramsTypeMap["redirectionPolicyId"] = bindings.NewStringType()
 	pathParams["redirection_policy_id"] = "redirectionPolicyId"
 	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -75,43 +75,43 @@ func redirectionPoliciesDeleteRestMetadata() vapiProtocol_.OperationRestMetadata
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func redirectionPoliciesGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func redirectionPoliciesGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["domain_id"] = vapiBindings_.NewStringType()
-	fields["redirection_policy_id"] = vapiBindings_.NewStringType()
+	fields["domain_id"] = bindings.NewStringType()
+	fields["redirection_policy_id"] = bindings.NewStringType()
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["redirection_policy_id"] = "RedirectionPolicyId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func RedirectionPoliciesGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.RedirectionPolicyBindingType)
+func redirectionPoliciesGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.RedirectionPolicyBindingType)
 }
 
-func redirectionPoliciesGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func redirectionPoliciesGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["domain_id"] = vapiBindings_.NewStringType()
-	fields["redirection_policy_id"] = vapiBindings_.NewStringType()
+	fields["domain_id"] = bindings.NewStringType()
+	fields["redirection_policy_id"] = bindings.NewStringType()
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["redirection_policy_id"] = "RedirectionPolicyId"
-	paramsTypeMap["domain_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["redirection_policy_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["domainId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["redirectionPolicyId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["domain_id"] = bindings.NewStringType()
+	paramsTypeMap["redirection_policy_id"] = bindings.NewStringType()
+	paramsTypeMap["domainId"] = bindings.NewStringType()
+	paramsTypeMap["redirectionPolicyId"] = bindings.NewStringType()
 	pathParams["redirection_policy_id"] = "redirectionPolicyId"
 	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -132,16 +132,16 @@ func redirectionPoliciesGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func redirectionPoliciesListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func redirectionPoliciesListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["include_rule_count"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["include_rule_count"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["include_mark_for_delete_objects"] = "IncludeMarkForDeleteObjects"
 	fieldNameMap["include_rule_count"] = "IncludeRuleCount"
@@ -149,30 +149,30 @@ func redirectionPoliciesListInputType() vapiBindings_.StructType {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func RedirectionPoliciesListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.RedirectionPolicyListResultBindingType)
+func redirectionPoliciesListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.RedirectionPolicyListResultBindingType)
 }
 
-func redirectionPoliciesListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func redirectionPoliciesListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["include_rule_count"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["include_rule_count"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["include_mark_for_delete_objects"] = "IncludeMarkForDeleteObjects"
 	fieldNameMap["include_rule_count"] = "IncludeRuleCount"
@@ -180,13 +180,13 @@ func redirectionPoliciesListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["include_rule_count"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	paramsTypeMap["include_rule_count"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	queryParams["cursor"] = "cursor"
 	queryParams["include_rule_count"] = "include_rule_count"
 	queryParams["sort_ascending"] = "sort_ascending"
@@ -196,7 +196,7 @@ func redirectionPoliciesListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -217,17 +217,17 @@ func redirectionPoliciesListRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func redirectionPoliciesList0InputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func redirectionPoliciesList0InputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["domain_id"] = vapiBindings_.NewStringType()
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["include_rule_count"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["domain_id"] = bindings.NewStringType()
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["include_rule_count"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["include_mark_for_delete_objects"] = "IncludeMarkForDeleteObjects"
@@ -236,31 +236,31 @@ func redirectionPoliciesList0InputType() vapiBindings_.StructType {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func RedirectionPoliciesList0OutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.RedirectionPolicyListResultBindingType)
+func redirectionPoliciesList0OutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.RedirectionPolicyListResultBindingType)
 }
 
-func redirectionPoliciesList0RestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func redirectionPoliciesList0RestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["domain_id"] = vapiBindings_.NewStringType()
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["include_rule_count"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["domain_id"] = bindings.NewStringType()
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["include_rule_count"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["include_mark_for_delete_objects"] = "IncludeMarkForDeleteObjects"
@@ -269,15 +269,15 @@ func redirectionPoliciesList0RestMetadata() vapiProtocol_.OperationRestMetadata 
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	paramsTypeMap["domain_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["include_rule_count"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	paramsTypeMap["domainId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["domain_id"] = bindings.NewStringType()
+	paramsTypeMap["include_rule_count"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["domainId"] = bindings.NewStringType()
 	pathParams["domain_id"] = "domainId"
 	queryParams["cursor"] = "cursor"
 	queryParams["include_rule_count"] = "include_rule_count"
@@ -288,7 +288,7 @@ func redirectionPoliciesList0RestMetadata() vapiProtocol_.OperationRestMetadata 
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -309,48 +309,48 @@ func redirectionPoliciesList0RestMetadata() vapiProtocol_.OperationRestMetadata 
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func redirectionPoliciesPatchInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func redirectionPoliciesPatchInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["domain_id"] = vapiBindings_.NewStringType()
-	fields["redirection_policy_id"] = vapiBindings_.NewStringType()
-	fields["redirection_policy"] = vapiBindings_.NewReferenceType(nsx_policyModel.RedirectionPolicyBindingType)
+	fields["domain_id"] = bindings.NewStringType()
+	fields["redirection_policy_id"] = bindings.NewStringType()
+	fields["redirection_policy"] = bindings.NewReferenceType(model.RedirectionPolicyBindingType)
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["redirection_policy_id"] = "RedirectionPolicyId"
 	fieldNameMap["redirection_policy"] = "RedirectionPolicy"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func RedirectionPoliciesPatchOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func redirectionPoliciesPatchOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func redirectionPoliciesPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func redirectionPoliciesPatchRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["domain_id"] = vapiBindings_.NewStringType()
-	fields["redirection_policy_id"] = vapiBindings_.NewStringType()
-	fields["redirection_policy"] = vapiBindings_.NewReferenceType(nsx_policyModel.RedirectionPolicyBindingType)
+	fields["domain_id"] = bindings.NewStringType()
+	fields["redirection_policy_id"] = bindings.NewStringType()
+	fields["redirection_policy"] = bindings.NewReferenceType(model.RedirectionPolicyBindingType)
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["redirection_policy_id"] = "RedirectionPolicyId"
 	fieldNameMap["redirection_policy"] = "RedirectionPolicy"
-	paramsTypeMap["domain_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["redirection_policy_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["redirection_policy"] = vapiBindings_.NewReferenceType(nsx_policyModel.RedirectionPolicyBindingType)
-	paramsTypeMap["domainId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["redirectionPolicyId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["domain_id"] = bindings.NewStringType()
+	paramsTypeMap["redirection_policy"] = bindings.NewReferenceType(model.RedirectionPolicyBindingType)
+	paramsTypeMap["redirection_policy_id"] = bindings.NewStringType()
+	paramsTypeMap["domainId"] = bindings.NewStringType()
+	paramsTypeMap["redirectionPolicyId"] = bindings.NewStringType()
 	pathParams["redirection_policy_id"] = "redirectionPolicyId"
 	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -371,48 +371,48 @@ func redirectionPoliciesPatchRestMetadata() vapiProtocol_.OperationRestMetadata 
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func redirectionPoliciesUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func redirectionPoliciesUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["domain_id"] = vapiBindings_.NewStringType()
-	fields["redirection_policy_id"] = vapiBindings_.NewStringType()
-	fields["redirection_policy"] = vapiBindings_.NewReferenceType(nsx_policyModel.RedirectionPolicyBindingType)
+	fields["domain_id"] = bindings.NewStringType()
+	fields["redirection_policy_id"] = bindings.NewStringType()
+	fields["redirection_policy"] = bindings.NewReferenceType(model.RedirectionPolicyBindingType)
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["redirection_policy_id"] = "RedirectionPolicyId"
 	fieldNameMap["redirection_policy"] = "RedirectionPolicy"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func RedirectionPoliciesUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.RedirectionPolicyBindingType)
+func redirectionPoliciesUpdateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.RedirectionPolicyBindingType)
 }
 
-func redirectionPoliciesUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func redirectionPoliciesUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["domain_id"] = vapiBindings_.NewStringType()
-	fields["redirection_policy_id"] = vapiBindings_.NewStringType()
-	fields["redirection_policy"] = vapiBindings_.NewReferenceType(nsx_policyModel.RedirectionPolicyBindingType)
+	fields["domain_id"] = bindings.NewStringType()
+	fields["redirection_policy_id"] = bindings.NewStringType()
+	fields["redirection_policy"] = bindings.NewReferenceType(model.RedirectionPolicyBindingType)
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["redirection_policy_id"] = "RedirectionPolicyId"
 	fieldNameMap["redirection_policy"] = "RedirectionPolicy"
-	paramsTypeMap["domain_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["redirection_policy_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["redirection_policy"] = vapiBindings_.NewReferenceType(nsx_policyModel.RedirectionPolicyBindingType)
-	paramsTypeMap["domainId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["redirectionPolicyId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["domain_id"] = bindings.NewStringType()
+	paramsTypeMap["redirection_policy"] = bindings.NewReferenceType(model.RedirectionPolicyBindingType)
+	paramsTypeMap["redirection_policy_id"] = bindings.NewStringType()
+	paramsTypeMap["domainId"] = bindings.NewStringType()
+	paramsTypeMap["redirectionPolicyId"] = bindings.NewStringType()
 	pathParams["redirection_policy_id"] = "redirectionPolicyId"
 	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

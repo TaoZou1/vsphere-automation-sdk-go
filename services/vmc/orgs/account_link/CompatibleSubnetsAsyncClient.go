@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package account_link
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	vmcModel "github.com/vmware/vsphere-automation-sdk-go/services/vmc/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vmc/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type CompatibleSubnetsAsyncClient interface {
 
@@ -30,56 +31,50 @@ type CompatibleSubnetsAsyncClient interface {
 	// @param sddcTypeParam The sddc type to be used. (1NODE, SingleAZ, MultiAZ) (optional)
 	// @param numOfHostsParam The number of hosts (optional)
 	// @return com.vmware.vmc.model.Task
-	//
 	// @throws Unauthenticated  Unauthorized
 	// @throws Unauthorized  Forbidden
-	Get(orgParam string, linkedAccountIdParam string, regionParam *string, sddcParam *string, instanceTypeParam *string, sddcTypeParam *string, numOfHostsParam *int64) (vmcModel.Task, error)
+	Get(orgParam string, linkedAccountIdParam string, regionParam *string, sddcParam *string, instanceTypeParam *string, sddcTypeParam *string, numOfHostsParam *int64) (model.Task, error)
 
 	// Sets which subnet to use to link accounts and finishes the linking process via a task
 	//
 	// @param awsSubnetParam The subnet chosen by the customer (required)
 	// @param orgParam Organization identifier (required)
 	// @return com.vmware.vmc.model.Task
-	//
 	// @throws Unauthenticated  Unauthorized
 	// @throws Unauthorized  Forbidden
-	Post(awsSubnetParam vmcModel.AwsSubnet, orgParam string) (vmcModel.Task, error)
+	Post(awsSubnetParam model.AwsSubnet, orgParam string) (model.Task, error)
 }
 
 type compatibleSubnetsAsyncClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewCompatibleSubnetsAsyncClient(connector vapiProtocolClient_.Connector) *compatibleSubnetsAsyncClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.vmc.orgs.account_link.compatible_subnets_async")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"get":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"post": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "post"),
+func NewCompatibleSubnetsAsyncClient(connector client.Connector) *compatibleSubnetsAsyncClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.vmc.orgs.account_link.compatible_subnets_async")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"get":  core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"post": core.NewMethodIdentifier(interfaceIdentifier, "post"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	cIface := compatibleSubnetsAsyncClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &cIface
 }
 
-func (cIface *compatibleSubnetsAsyncClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (cIface *compatibleSubnetsAsyncClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := cIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (cIface *compatibleSubnetsAsyncClient) Get(orgParam string, linkedAccountIdParam string, regionParam *string, sddcParam *string, instanceTypeParam *string, sddcTypeParam *string, numOfHostsParam *int64) (vmcModel.Task, error) {
+func (cIface *compatibleSubnetsAsyncClient) Get(orgParam string, linkedAccountIdParam string, regionParam *string, sddcParam *string, instanceTypeParam *string, sddcTypeParam *string, numOfHostsParam *int64) (model.Task, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
-	operationRestMetaData := compatibleSubnetsAsyncGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(compatibleSubnetsAsyncGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(compatibleSubnetsAsyncGetInputType(), typeConverter)
 	sv.AddStructField("Org", orgParam)
 	sv.AddStructField("LinkedAccountId", linkedAccountIdParam)
 	sv.AddStructField("Region", regionParam)
@@ -89,55 +84,57 @@ func (cIface *compatibleSubnetsAsyncClient) Get(orgParam string, linkedAccountId
 	sv.AddStructField("NumOfHosts", numOfHostsParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput vmcModel.Task
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.Task
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := compatibleSubnetsAsyncGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := cIface.connector.GetApiProvider().Invoke("com.vmware.vmc.orgs.account_link.compatible_subnets_async", "get", inputDataValue, executionContext)
-	var emptyOutput vmcModel.Task
+	var emptyOutput model.Task
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), CompatibleSubnetsAsyncGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), compatibleSubnetsAsyncGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(vmcModel.Task), nil
+		return output.(model.Task), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), cIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (cIface *compatibleSubnetsAsyncClient) Post(awsSubnetParam vmcModel.AwsSubnet, orgParam string) (vmcModel.Task, error) {
+func (cIface *compatibleSubnetsAsyncClient) Post(awsSubnetParam model.AwsSubnet, orgParam string) (model.Task, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
-	operationRestMetaData := compatibleSubnetsAsyncPostRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(compatibleSubnetsAsyncPostInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(compatibleSubnetsAsyncPostInputType(), typeConverter)
 	sv.AddStructField("AwsSubnet", awsSubnetParam)
 	sv.AddStructField("Org", orgParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput vmcModel.Task
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.Task
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := compatibleSubnetsAsyncPostRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := cIface.connector.GetApiProvider().Invoke("com.vmware.vmc.orgs.account_link.compatible_subnets_async", "post", inputDataValue, executionContext)
-	var emptyOutput vmcModel.Task
+	var emptyOutput model.Task
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), CompatibleSubnetsAsyncPostOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), compatibleSubnetsAsyncPostOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(vmcModel.Task), nil
+		return output.(model.Task), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), cIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

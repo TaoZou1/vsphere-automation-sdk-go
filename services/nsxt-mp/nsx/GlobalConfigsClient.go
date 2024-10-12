@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,15 +9,16 @@
 package nsx
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type GlobalConfigsClient interface {
 
@@ -34,14 +35,13 @@ type GlobalConfigsClient interface {
 	//
 	// @param configTypeParam (required)
 	// @return com.vmware.nsx.model.GlobalConfigs
-	// The return value will contain all the properties defined in nsxModel.GlobalConfigs.
-	//
+	// The return value will contain all the properties defined in model.GlobalConfigs.
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(configTypeParam string) (*vapiData_.StructValue, error)
+	Get(configTypeParam string) (*data.StructValue, error)
 
 	// Returns global configurations of a NSX domain grouped by the config types. These global configurations are valid across NSX domain for their respective types unless they are overridden by a more granular configurations. This rest routine is deprecated, and will be removed after a year.
 	//
@@ -55,13 +55,12 @@ type GlobalConfigsClient interface {
 	//  SwitchingGlobalConfig GET /policy/api/v1/infra/connectivity-global-config
 	//  FirewallGlobalConfig GET policy/api/v1/infra/settings/firewall/security
 	// @return com.vmware.nsx.model.GlobalConfigsListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List() (nsxModel.GlobalConfigsListResult, error)
+	List() (model.GlobalConfigsListResult, error)
 
 	// It is similar to update global configurations but this request would trigger update even if the configs are unmodified. However, the realization of the new configurations is config-type specific. Refer to config-type specific documentation for details about the configuration push state. This rest routine is deprecated, and will be removed after a year.
 	//
@@ -76,16 +75,15 @@ type GlobalConfigsClient interface {
 	//
 	// @param configTypeParam (required)
 	// @param globalConfigsParam (required)
-	// The parameter must contain all the properties defined in nsxModel.GlobalConfigs.
+	// The parameter must contain all the properties defined in model.GlobalConfigs.
 	// @return com.vmware.nsx.model.GlobalConfigs
-	// The return value will contain all the properties defined in nsxModel.GlobalConfigs.
-	//
+	// The return value will contain all the properties defined in model.GlobalConfigs.
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Resyncconfig(configTypeParam string, globalConfigsParam *vapiData_.StructValue) (*vapiData_.StructValue, error)
+	Resyncconfig(configTypeParam string, globalConfigsParam *data.StructValue) (*data.StructValue, error)
 
 	// Updates global configurations that belong to a config type. The request must include the updated values along with the unmodified values. The values that are updated(different) would trigger update to config-type specific state. However, the realization of the new configurations is config-type specific. Refer to config-type specific documentation for details about the config- uration push state. This rest routine is deprecated, and will be removed after a year.
 	//
@@ -100,170 +98,165 @@ type GlobalConfigsClient interface {
 	//
 	// @param configTypeParam (required)
 	// @param globalConfigsParam (required)
-	// The parameter must contain all the properties defined in nsxModel.GlobalConfigs.
+	// The parameter must contain all the properties defined in model.GlobalConfigs.
 	// @return com.vmware.nsx.model.GlobalConfigs
-	// The return value will contain all the properties defined in nsxModel.GlobalConfigs.
-	//
+	// The return value will contain all the properties defined in model.GlobalConfigs.
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(configTypeParam string, globalConfigsParam *vapiData_.StructValue) (*vapiData_.StructValue, error)
+	Update(configTypeParam string, globalConfigsParam *data.StructValue) (*data.StructValue, error)
 }
 
 type globalConfigsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewGlobalConfigsClient(connector vapiProtocolClient_.Connector) *globalConfigsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.global_configs")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"get":          vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":         vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"resyncconfig": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "resyncconfig"),
-		"update":       vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewGlobalConfigsClient(connector client.Connector) *globalConfigsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.global_configs")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"get":          core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":         core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"resyncconfig": core.NewMethodIdentifier(interfaceIdentifier, "resyncconfig"),
+		"update":       core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	gIface := globalConfigsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &gIface
 }
 
-func (gIface *globalConfigsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (gIface *globalConfigsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := gIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (gIface *globalConfigsClient) Get(configTypeParam string) (*vapiData_.StructValue, error) {
+func (gIface *globalConfigsClient) Get(configTypeParam string) (*data.StructValue, error) {
 	typeConverter := gIface.connector.TypeConverter()
 	executionContext := gIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(globalConfigsGetInputType(), typeConverter)
+	sv.AddStructField("ConfigType", configTypeParam)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput *data.StructValue
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+	}
 	operationRestMetaData := globalConfigsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(globalConfigsGetInputType(), typeConverter)
-	sv.AddStructField("ConfigType", configTypeParam)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput *vapiData_.StructValue
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
-	}
-
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	gIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := gIface.connector.GetApiProvider().Invoke("com.vmware.nsx.global_configs", "get", inputDataValue, executionContext)
-	var emptyOutput *vapiData_.StructValue
+	var emptyOutput *data.StructValue
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), GlobalConfigsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), globalConfigsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(*vapiData_.StructValue), nil
+		return output.(*data.StructValue), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), gIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (gIface *globalConfigsClient) List() (nsxModel.GlobalConfigsListResult, error) {
+func (gIface *globalConfigsClient) List() (model.GlobalConfigsListResult, error) {
 	typeConverter := gIface.connector.TypeConverter()
 	executionContext := gIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(globalConfigsListInputType(), typeConverter)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput model.GlobalConfigsListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+	}
 	operationRestMetaData := globalConfigsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(globalConfigsListInputType(), typeConverter)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput nsxModel.GlobalConfigsListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
-	}
-
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	gIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := gIface.connector.GetApiProvider().Invoke("com.vmware.nsx.global_configs", "list", inputDataValue, executionContext)
-	var emptyOutput nsxModel.GlobalConfigsListResult
+	var emptyOutput model.GlobalConfigsListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), GlobalConfigsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), globalConfigsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.GlobalConfigsListResult), nil
+		return output.(model.GlobalConfigsListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), gIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (gIface *globalConfigsClient) Resyncconfig(configTypeParam string, globalConfigsParam *vapiData_.StructValue) (*vapiData_.StructValue, error) {
+func (gIface *globalConfigsClient) Resyncconfig(configTypeParam string, globalConfigsParam *data.StructValue) (*data.StructValue, error) {
 	typeConverter := gIface.connector.TypeConverter()
 	executionContext := gIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(globalConfigsResyncconfigInputType(), typeConverter)
+	sv.AddStructField("ConfigType", configTypeParam)
+	sv.AddStructField("GlobalConfigs", globalConfigsParam)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput *data.StructValue
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+	}
 	operationRestMetaData := globalConfigsResyncconfigRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(globalConfigsResyncconfigInputType(), typeConverter)
-	sv.AddStructField("ConfigType", configTypeParam)
-	sv.AddStructField("GlobalConfigs", globalConfigsParam)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput *vapiData_.StructValue
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
-	}
-
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	gIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := gIface.connector.GetApiProvider().Invoke("com.vmware.nsx.global_configs", "resyncconfig", inputDataValue, executionContext)
-	var emptyOutput *vapiData_.StructValue
+	var emptyOutput *data.StructValue
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), GlobalConfigsResyncconfigOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), globalConfigsResyncconfigOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(*vapiData_.StructValue), nil
+		return output.(*data.StructValue), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), gIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (gIface *globalConfigsClient) Update(configTypeParam string, globalConfigsParam *vapiData_.StructValue) (*vapiData_.StructValue, error) {
+func (gIface *globalConfigsClient) Update(configTypeParam string, globalConfigsParam *data.StructValue) (*data.StructValue, error) {
 	typeConverter := gIface.connector.TypeConverter()
 	executionContext := gIface.connector.NewExecutionContext()
-	operationRestMetaData := globalConfigsUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(globalConfigsUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(globalConfigsUpdateInputType(), typeConverter)
 	sv.AddStructField("ConfigType", configTypeParam)
 	sv.AddStructField("GlobalConfigs", globalConfigsParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput *vapiData_.StructValue
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput *data.StructValue
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := globalConfigsUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	gIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := gIface.connector.GetApiProvider().Invoke("com.vmware.nsx.global_configs", "update", inputDataValue, executionContext)
-	var emptyOutput *vapiData_.StructValue
+	var emptyOutput *data.StructValue
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), GlobalConfigsUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), globalConfigsUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(*vapiData_.StructValue), nil
+		return output.(*data.StructValue), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), gIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

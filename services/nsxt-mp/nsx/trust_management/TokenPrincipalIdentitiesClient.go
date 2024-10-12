@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package trust_management
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type TokenPrincipalIdentitiesClient interface {
 
@@ -24,18 +25,16 @@ type TokenPrincipalIdentitiesClient interface {
 	//
 	// @param tokenBasedPrincipalIdentityParam (required)
 	// @return com.vmware.nsx.model.TokenBasedPrincipalIdentity
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Create(tokenBasedPrincipalIdentityParam nsxModel.TokenBasedPrincipalIdentity) (nsxModel.TokenBasedPrincipalIdentity, error)
+	Create(tokenBasedPrincipalIdentityParam model.TokenBasedPrincipalIdentity) (model.TokenBasedPrincipalIdentity, error)
 
 	// Delete a token-based principal identity.
 	//
 	// @param principalIdentityIdParam Unique id of the token-based principal identity to delete (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -47,80 +46,77 @@ type TokenPrincipalIdentitiesClient interface {
 	//
 	// @param principalIdentityIdParam ID of the principal identity to get (required)
 	// @return com.vmware.nsx.model.TokenBasedPrincipalIdentity
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(principalIdentityIdParam string) (nsxModel.TokenBasedPrincipalIdentity, error)
+	Get(principalIdentityIdParam string) (model.TokenBasedPrincipalIdentity, error)
 
 	// Return the list of token-based principal identities. | These don't have certificate or role information.
 	// @return com.vmware.nsx.model.TokenBasedPrincipalIdentityListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List() (nsxModel.TokenBasedPrincipalIdentityListResult, error)
+	List() (model.TokenBasedPrincipalIdentityListResult, error)
 }
 
 type tokenPrincipalIdentitiesClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewTokenPrincipalIdentitiesClient(connector vapiProtocolClient_.Connector) *tokenPrincipalIdentitiesClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.trust_management.token_principal_identities")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"create": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
+func NewTokenPrincipalIdentitiesClient(connector client.Connector) *tokenPrincipalIdentitiesClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.trust_management.token_principal_identities")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"create": core.NewMethodIdentifier(interfaceIdentifier, "create"),
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	tIface := tokenPrincipalIdentitiesClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &tIface
 }
 
-func (tIface *tokenPrincipalIdentitiesClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (tIface *tokenPrincipalIdentitiesClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := tIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (tIface *tokenPrincipalIdentitiesClient) Create(tokenBasedPrincipalIdentityParam nsxModel.TokenBasedPrincipalIdentity) (nsxModel.TokenBasedPrincipalIdentity, error) {
+func (tIface *tokenPrincipalIdentitiesClient) Create(tokenBasedPrincipalIdentityParam model.TokenBasedPrincipalIdentity) (model.TokenBasedPrincipalIdentity, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	executionContext := tIface.connector.NewExecutionContext()
-	operationRestMetaData := tokenPrincipalIdentitiesCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(tokenPrincipalIdentitiesCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(tokenPrincipalIdentitiesCreateInputType(), typeConverter)
 	sv.AddStructField("TokenBasedPrincipalIdentity", tokenBasedPrincipalIdentityParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.TokenBasedPrincipalIdentity
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.TokenBasedPrincipalIdentity
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := tokenPrincipalIdentitiesCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := tIface.connector.GetApiProvider().Invoke("com.vmware.nsx.trust_management.token_principal_identities", "create", inputDataValue, executionContext)
-	var emptyOutput nsxModel.TokenBasedPrincipalIdentity
+	var emptyOutput model.TokenBasedPrincipalIdentity
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), TokenPrincipalIdentitiesCreateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), tokenPrincipalIdentitiesCreateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.TokenBasedPrincipalIdentity), nil
+		return output.(model.TokenBasedPrincipalIdentity), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), tIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
@@ -129,87 +125,84 @@ func (tIface *tokenPrincipalIdentitiesClient) Create(tokenBasedPrincipalIdentity
 func (tIface *tokenPrincipalIdentitiesClient) Delete(principalIdentityIdParam string) error {
 	typeConverter := tIface.connector.TypeConverter()
 	executionContext := tIface.connector.NewExecutionContext()
-	operationRestMetaData := tokenPrincipalIdentitiesDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(tokenPrincipalIdentitiesDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(tokenPrincipalIdentitiesDeleteInputType(), typeConverter)
 	sv.AddStructField("PrincipalIdentityId", principalIdentityIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := tokenPrincipalIdentitiesDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := tIface.connector.GetApiProvider().Invoke("com.vmware.nsx.trust_management.token_principal_identities", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), tIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (tIface *tokenPrincipalIdentitiesClient) Get(principalIdentityIdParam string) (nsxModel.TokenBasedPrincipalIdentity, error) {
+func (tIface *tokenPrincipalIdentitiesClient) Get(principalIdentityIdParam string) (model.TokenBasedPrincipalIdentity, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	executionContext := tIface.connector.NewExecutionContext()
-	operationRestMetaData := tokenPrincipalIdentitiesGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(tokenPrincipalIdentitiesGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(tokenPrincipalIdentitiesGetInputType(), typeConverter)
 	sv.AddStructField("PrincipalIdentityId", principalIdentityIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.TokenBasedPrincipalIdentity
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.TokenBasedPrincipalIdentity
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := tokenPrincipalIdentitiesGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := tIface.connector.GetApiProvider().Invoke("com.vmware.nsx.trust_management.token_principal_identities", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.TokenBasedPrincipalIdentity
+	var emptyOutput model.TokenBasedPrincipalIdentity
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), TokenPrincipalIdentitiesGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), tokenPrincipalIdentitiesGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.TokenBasedPrincipalIdentity), nil
+		return output.(model.TokenBasedPrincipalIdentity), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), tIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (tIface *tokenPrincipalIdentitiesClient) List() (nsxModel.TokenBasedPrincipalIdentityListResult, error) {
+func (tIface *tokenPrincipalIdentitiesClient) List() (model.TokenBasedPrincipalIdentityListResult, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	executionContext := tIface.connector.NewExecutionContext()
-	operationRestMetaData := tokenPrincipalIdentitiesListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(tokenPrincipalIdentitiesListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(tokenPrincipalIdentitiesListInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.TokenBasedPrincipalIdentityListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.TokenBasedPrincipalIdentityListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := tokenPrincipalIdentitiesListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := tIface.connector.GetApiProvider().Invoke("com.vmware.nsx.trust_management.token_principal_identities", "list", inputDataValue, executionContext)
-	var emptyOutput nsxModel.TokenBasedPrincipalIdentityListResult
+	var emptyOutput model.TokenBasedPrincipalIdentityListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), TokenPrincipalIdentitiesListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), tokenPrincipalIdentitiesListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.TokenBasedPrincipalIdentityListResult), nil
+		return output.(model.TokenBasedPrincipalIdentityListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), tIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

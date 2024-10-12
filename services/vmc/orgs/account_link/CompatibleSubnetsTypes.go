@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,24 +11,24 @@
 package account_link
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	vmcModel "github.com/vmware/vsphere-automation-sdk-go/services/vmc/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vmc/model"
 	"reflect"
 )
 
-func compatibleSubnetsGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func compatibleSubnetsGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org"] = vapiBindings_.NewStringType()
-	fields["linked_account_id"] = vapiBindings_.NewStringType()
-	fields["region"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["sddc"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["force_refresh"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["instance_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["sddc_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["num_of_hosts"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	fields["org"] = bindings.NewStringType()
+	fields["linked_account_id"] = bindings.NewStringType()
+	fields["region"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["sddc"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["force_refresh"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["instance_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["sddc_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["num_of_hosts"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fieldNameMap["org"] = "Org"
 	fieldNameMap["linked_account_id"] = "LinkedAccountId"
 	fieldNameMap["region"] = "Region"
@@ -37,31 +37,31 @@ func compatibleSubnetsGetInputType() vapiBindings_.StructType {
 	fieldNameMap["instance_type"] = "InstanceType"
 	fieldNameMap["sddc_type"] = "SddcType"
 	fieldNameMap["num_of_hosts"] = "NumOfHosts"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func CompatibleSubnetsGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(vmcModel.AwsCompatibleSubnetsBindingType)
+func compatibleSubnetsGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.AwsCompatibleSubnetsBindingType)
 }
 
-func compatibleSubnetsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func compatibleSubnetsGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org"] = vapiBindings_.NewStringType()
-	fields["linked_account_id"] = vapiBindings_.NewStringType()
-	fields["region"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["sddc"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["force_refresh"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["instance_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["sddc_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["num_of_hosts"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	fields["org"] = bindings.NewStringType()
+	fields["linked_account_id"] = bindings.NewStringType()
+	fields["region"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["sddc"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["force_refresh"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["instance_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["sddc_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["num_of_hosts"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fieldNameMap["org"] = "Org"
 	fieldNameMap["linked_account_id"] = "LinkedAccountId"
 	fieldNameMap["region"] = "Region"
@@ -70,15 +70,15 @@ func compatibleSubnetsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 	fieldNameMap["instance_type"] = "InstanceType"
 	fieldNameMap["sddc_type"] = "SddcType"
 	fieldNameMap["num_of_hosts"] = "NumOfHosts"
-	paramsTypeMap["num_of_hosts"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	paramsTypeMap["org"] = vapiBindings_.NewStringType()
-	paramsTypeMap["sddc"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["linked_account_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["sddc_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["region"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["force_refresh"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["instance_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["org"] = vapiBindings_.NewStringType()
+	paramsTypeMap["sddc"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["instance_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["region"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["linked_account_id"] = bindings.NewStringType()
+	paramsTypeMap["org"] = bindings.NewStringType()
+	paramsTypeMap["force_refresh"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["num_of_hosts"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["sddc_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["org"] = bindings.NewStringType()
 	pathParams["org"] = "org"
 	queryParams["linked_account_id"] = "linkedAccountId"
 	queryParams["num_of_hosts"] = "numOfHosts"
@@ -91,7 +91,7 @@ func compatibleSubnetsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 	errorHeaders := map[string]map[string]string{}
 	errorHeaders["com.vmware.vapi.std.errors.unauthenticated"] = make(map[string]string)
 	errorHeaders["com.vmware.vapi.std.errors.unauthenticated"]["challenge"] = "WWW-Authenticate"
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -112,38 +112,38 @@ func compatibleSubnetsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.unauthenticated": 401, "com.vmware.vapi.std.errors.unauthorized": 403})
 }
 
-func compatibleSubnetsPostInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func compatibleSubnetsPostInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org"] = vapiBindings_.NewStringType()
+	fields["org"] = bindings.NewStringType()
 	fieldNameMap["org"] = "Org"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func CompatibleSubnetsPostOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(vmcModel.AwsSubnetBindingType)
+func compatibleSubnetsPostOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.AwsSubnetBindingType)
 }
 
-func compatibleSubnetsPostRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func compatibleSubnetsPostRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org"] = vapiBindings_.NewStringType()
+	fields["org"] = bindings.NewStringType()
 	fieldNameMap["org"] = "Org"
-	paramsTypeMap["org"] = vapiBindings_.NewStringType()
-	paramsTypeMap["org"] = vapiBindings_.NewStringType()
+	paramsTypeMap["org"] = bindings.NewStringType()
+	paramsTypeMap["org"] = bindings.NewStringType()
 	pathParams["org"] = "org"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	errorHeaders["com.vmware.vapi.std.errors.unauthenticated"] = make(map[string]string)
 	errorHeaders["com.vmware.vapi.std.errors.unauthenticated"]["challenge"] = "WWW-Authenticate"
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

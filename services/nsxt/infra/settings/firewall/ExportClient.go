@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,166 +9,161 @@
 package firewall
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type ExportClient interface {
 
 	// This operation cancels an export task. Task needs to be in running state.
 	// @return com.vmware.nsx_policy.model.ExportTask
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Cancel() (nsx_policyModel.ExportTask, error)
+	Cancel() (model.ExportTask, error)
 
 	// Invoke export task. There can be only one export task run at any point of time. Hence invocation of another export task will be discarded, when there exist an already running export task. Exported configuration will be in a CSV format. This CSV file will be zipped into a ZIP file, that can be downloaded after the completion of export task.
 	//
 	// @param exportRequestParameterParam (required)
 	// @return com.vmware.nsx_policy.model.ExportTask
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Create(exportRequestParameterParam nsx_policyModel.ExportRequestParameter) (nsx_policyModel.ExportTask, error)
+	Create(exportRequestParameterParam model.ExportRequestParameter) (model.ExportTask, error)
 
 	// Get the information of the latest export task.
 	// @return com.vmware.nsx_policy.model.ExportTask
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get() (nsx_policyModel.ExportTask, error)
+	Get() (model.ExportTask, error)
 }
 
 type exportClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewExportClient(connector vapiProtocolClient_.Connector) *exportClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.settings.firewall.export")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"cancel": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "cancel"),
-		"create": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
+func NewExportClient(connector client.Connector) *exportClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.settings.firewall.export")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"cancel": core.NewMethodIdentifier(interfaceIdentifier, "cancel"),
+		"create": core.NewMethodIdentifier(interfaceIdentifier, "create"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	eIface := exportClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &eIface
 }
 
-func (eIface *exportClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (eIface *exportClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := eIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (eIface *exportClient) Cancel() (nsx_policyModel.ExportTask, error) {
+func (eIface *exportClient) Cancel() (model.ExportTask, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
-	operationRestMetaData := exportCancelRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(exportCancelInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(exportCancelInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.ExportTask
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.ExportTask
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := exportCancelRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.settings.firewall.export", "cancel", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.ExportTask
+	var emptyOutput model.ExportTask
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ExportCancelOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), exportCancelOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.ExportTask), nil
+		return output.(model.ExportTask), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (eIface *exportClient) Create(exportRequestParameterParam nsx_policyModel.ExportRequestParameter) (nsx_policyModel.ExportTask, error) {
+func (eIface *exportClient) Create(exportRequestParameterParam model.ExportRequestParameter) (model.ExportTask, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
-	operationRestMetaData := exportCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(exportCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(exportCreateInputType(), typeConverter)
 	sv.AddStructField("ExportRequestParameter", exportRequestParameterParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.ExportTask
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.ExportTask
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := exportCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.settings.firewall.export", "create", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.ExportTask
+	var emptyOutput model.ExportTask
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ExportCreateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), exportCreateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.ExportTask), nil
+		return output.(model.ExportTask), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (eIface *exportClient) Get() (nsx_policyModel.ExportTask, error) {
+func (eIface *exportClient) Get() (model.ExportTask, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
-	operationRestMetaData := exportGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(exportGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(exportGetInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.ExportTask
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.ExportTask
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := exportGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.settings.firewall.export", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.ExportTask
+	var emptyOutput model.ExportTask
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ExportGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), exportGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.ExportTask), nil
+		return output.(model.ExportTask), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

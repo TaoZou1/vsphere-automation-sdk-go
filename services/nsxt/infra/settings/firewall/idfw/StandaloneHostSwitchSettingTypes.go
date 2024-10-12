@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,28 +11,28 @@
 package idfw
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func standaloneHostSwitchSettingGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func standaloneHostSwitchSettingGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func StandaloneHostSwitchSettingGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.StandaloneHostIdfwConfigurationBindingType)
+func standaloneHostSwitchSettingGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.StandaloneHostIdfwConfigurationBindingType)
 }
 
-func standaloneHostSwitchSettingGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func standaloneHostSwitchSettingGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
@@ -40,7 +40,7 @@ func standaloneHostSwitchSettingGetRestMetadata() vapiProtocol_.OperationRestMet
 	bodyFieldsMap := map[string]string{}
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -61,34 +61,34 @@ func standaloneHostSwitchSettingGetRestMetadata() vapiProtocol_.OperationRestMet
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func standaloneHostSwitchSettingPatchInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func standaloneHostSwitchSettingPatchInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["standalone_host_idfw_configuration"] = vapiBindings_.NewReferenceType(nsx_policyModel.StandaloneHostIdfwConfigurationBindingType)
+	fields["standalone_host_idfw_configuration"] = bindings.NewReferenceType(model.StandaloneHostIdfwConfigurationBindingType)
 	fieldNameMap["standalone_host_idfw_configuration"] = "StandaloneHostIdfwConfiguration"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func StandaloneHostSwitchSettingPatchOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func standaloneHostSwitchSettingPatchOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func standaloneHostSwitchSettingPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func standaloneHostSwitchSettingPatchRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["standalone_host_idfw_configuration"] = vapiBindings_.NewReferenceType(nsx_policyModel.StandaloneHostIdfwConfigurationBindingType)
+	fields["standalone_host_idfw_configuration"] = bindings.NewReferenceType(model.StandaloneHostIdfwConfigurationBindingType)
 	fieldNameMap["standalone_host_idfw_configuration"] = "StandaloneHostIdfwConfiguration"
-	paramsTypeMap["standalone_host_idfw_configuration"] = vapiBindings_.NewReferenceType(nsx_policyModel.StandaloneHostIdfwConfigurationBindingType)
+	paramsTypeMap["standalone_host_idfw_configuration"] = bindings.NewReferenceType(model.StandaloneHostIdfwConfigurationBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -109,34 +109,34 @@ func standaloneHostSwitchSettingPatchRestMetadata() vapiProtocol_.OperationRestM
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func standaloneHostSwitchSettingUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func standaloneHostSwitchSettingUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["standalone_host_idfw_configuration"] = vapiBindings_.NewReferenceType(nsx_policyModel.StandaloneHostIdfwConfigurationBindingType)
+	fields["standalone_host_idfw_configuration"] = bindings.NewReferenceType(model.StandaloneHostIdfwConfigurationBindingType)
 	fieldNameMap["standalone_host_idfw_configuration"] = "StandaloneHostIdfwConfiguration"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func StandaloneHostSwitchSettingUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.StandaloneHostIdfwConfigurationBindingType)
+func standaloneHostSwitchSettingUpdateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.StandaloneHostIdfwConfigurationBindingType)
 }
 
-func standaloneHostSwitchSettingUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func standaloneHostSwitchSettingUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["standalone_host_idfw_configuration"] = vapiBindings_.NewReferenceType(nsx_policyModel.StandaloneHostIdfwConfigurationBindingType)
+	fields["standalone_host_idfw_configuration"] = bindings.NewReferenceType(model.StandaloneHostIdfwConfigurationBindingType)
 	fieldNameMap["standalone_host_idfw_configuration"] = "StandaloneHostIdfwConfiguration"
-	paramsTypeMap["standalone_host_idfw_configuration"] = vapiBindings_.NewReferenceType(nsx_policyModel.StandaloneHostIdfwConfigurationBindingType)
+	paramsTypeMap["standalone_host_idfw_configuration"] = bindings.NewReferenceType(model.StandaloneHostIdfwConfigurationBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

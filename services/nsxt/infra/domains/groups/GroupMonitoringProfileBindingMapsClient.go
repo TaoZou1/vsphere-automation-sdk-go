@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package groups
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type GroupMonitoringProfileBindingMapsClient interface {
 
@@ -25,7 +26,6 @@ type GroupMonitoringProfileBindingMapsClient interface {
 	// @param domainIdParam Domain ID (required)
 	// @param groupIdParam Group ID (required)
 	// @param groupMonitoringProfileBindingMapIdParam Group Monitoring Profile Binding Map ID (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -39,13 +39,12 @@ type GroupMonitoringProfileBindingMapsClient interface {
 	// @param groupIdParam Group ID (required)
 	// @param groupMonitoringProfileBindingMapIdParam Group Monitoring Profile Binding Map ID (required)
 	// @return com.vmware.nsx_policy.model.GroupMonitoringProfileBindingMap
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string) (nsx_policyModel.GroupMonitoringProfileBindingMap, error)
+	Get(domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string) (model.GroupMonitoringProfileBindingMap, error)
 
 	// API will list all Group Monitoring Profile Binding Maps in current group id.
 	//
@@ -58,13 +57,12 @@ type GroupMonitoringProfileBindingMapsClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_policy.model.GroupMonitoringProfileBindingMapListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(domainIdParam string, groupIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.GroupMonitoringProfileBindingMapListResult, error)
+	List(domainIdParam string, groupIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.GroupMonitoringProfileBindingMapListResult, error)
 
 	// API will create group monitoring profile binding map
 	//
@@ -72,13 +70,12 @@ type GroupMonitoringProfileBindingMapsClient interface {
 	// @param groupIdParam Group ID (required)
 	// @param groupMonitoringProfileBindingMapIdParam Group Monitoring Profile Binding Map ID (required)
 	// @param groupMonitoringProfileBindingMapParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string, groupMonitoringProfileBindingMapParam nsx_policyModel.GroupMonitoringProfileBindingMap) error
+	Patch(domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string, groupMonitoringProfileBindingMapParam model.GroupMonitoringProfileBindingMap) error
 
 	// API will update Group Monitoring Profile Binding Map
 	//
@@ -87,114 +84,107 @@ type GroupMonitoringProfileBindingMapsClient interface {
 	// @param groupMonitoringProfileBindingMapIdParam Group Monitoring Profile Binding Map ID (required)
 	// @param groupMonitoringProfileBindingMapParam (required)
 	// @return com.vmware.nsx_policy.model.GroupMonitoringProfileBindingMap
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string, groupMonitoringProfileBindingMapParam nsx_policyModel.GroupMonitoringProfileBindingMap) (nsx_policyModel.GroupMonitoringProfileBindingMap, error)
+	Update(domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string, groupMonitoringProfileBindingMapParam model.GroupMonitoringProfileBindingMap) (model.GroupMonitoringProfileBindingMap, error)
 }
 
 type groupMonitoringProfileBindingMapsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewGroupMonitoringProfileBindingMapsClient(connector vapiProtocolClient_.Connector) *groupMonitoringProfileBindingMapsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.domains.groups.group_monitoring_profile_binding_maps")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"patch":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewGroupMonitoringProfileBindingMapsClient(connector client.Connector) *groupMonitoringProfileBindingMapsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.domains.groups.group_monitoring_profile_binding_maps")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	gIface := groupMonitoringProfileBindingMapsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &gIface
 }
 
-func (gIface *groupMonitoringProfileBindingMapsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (gIface *groupMonitoringProfileBindingMapsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := gIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
 func (gIface *groupMonitoringProfileBindingMapsClient) Delete(domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string) error {
 	typeConverter := gIface.connector.TypeConverter()
 	executionContext := gIface.connector.NewExecutionContext()
-	operationRestMetaData := groupMonitoringProfileBindingMapsDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(groupMonitoringProfileBindingMapsDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(groupMonitoringProfileBindingMapsDeleteInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("GroupMonitoringProfileBindingMapId", groupMonitoringProfileBindingMapIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := groupMonitoringProfileBindingMapsDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	gIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := gIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.domains.groups.group_monitoring_profile_binding_maps", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), gIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (gIface *groupMonitoringProfileBindingMapsClient) Get(domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string) (nsx_policyModel.GroupMonitoringProfileBindingMap, error) {
+func (gIface *groupMonitoringProfileBindingMapsClient) Get(domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string) (model.GroupMonitoringProfileBindingMap, error) {
 	typeConverter := gIface.connector.TypeConverter()
 	executionContext := gIface.connector.NewExecutionContext()
-	operationRestMetaData := groupMonitoringProfileBindingMapsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(groupMonitoringProfileBindingMapsGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(groupMonitoringProfileBindingMapsGetInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("GroupMonitoringProfileBindingMapId", groupMonitoringProfileBindingMapIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.GroupMonitoringProfileBindingMap
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.GroupMonitoringProfileBindingMap
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := groupMonitoringProfileBindingMapsGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	gIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := gIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.domains.groups.group_monitoring_profile_binding_maps", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.GroupMonitoringProfileBindingMap
+	var emptyOutput model.GroupMonitoringProfileBindingMap
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), GroupMonitoringProfileBindingMapsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), groupMonitoringProfileBindingMapsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.GroupMonitoringProfileBindingMap), nil
+		return output.(model.GroupMonitoringProfileBindingMap), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), gIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (gIface *groupMonitoringProfileBindingMapsClient) List(domainIdParam string, groupIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.GroupMonitoringProfileBindingMapListResult, error) {
+func (gIface *groupMonitoringProfileBindingMapsClient) List(domainIdParam string, groupIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.GroupMonitoringProfileBindingMapListResult, error) {
 	typeConverter := gIface.connector.TypeConverter()
 	executionContext := gIface.connector.NewExecutionContext()
-	operationRestMetaData := groupMonitoringProfileBindingMapsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(groupMonitoringProfileBindingMapsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(groupMonitoringProfileBindingMapsListInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("Cursor", cursorParam)
@@ -205,86 +195,87 @@ func (gIface *groupMonitoringProfileBindingMapsClient) List(domainIdParam string
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.GroupMonitoringProfileBindingMapListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.GroupMonitoringProfileBindingMapListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := groupMonitoringProfileBindingMapsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	gIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := gIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.domains.groups.group_monitoring_profile_binding_maps", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.GroupMonitoringProfileBindingMapListResult
+	var emptyOutput model.GroupMonitoringProfileBindingMapListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), GroupMonitoringProfileBindingMapsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), groupMonitoringProfileBindingMapsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.GroupMonitoringProfileBindingMapListResult), nil
+		return output.(model.GroupMonitoringProfileBindingMapListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), gIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (gIface *groupMonitoringProfileBindingMapsClient) Patch(domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string, groupMonitoringProfileBindingMapParam nsx_policyModel.GroupMonitoringProfileBindingMap) error {
+func (gIface *groupMonitoringProfileBindingMapsClient) Patch(domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string, groupMonitoringProfileBindingMapParam model.GroupMonitoringProfileBindingMap) error {
 	typeConverter := gIface.connector.TypeConverter()
 	executionContext := gIface.connector.NewExecutionContext()
-	operationRestMetaData := groupMonitoringProfileBindingMapsPatchRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(groupMonitoringProfileBindingMapsPatchInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(groupMonitoringProfileBindingMapsPatchInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("GroupMonitoringProfileBindingMapId", groupMonitoringProfileBindingMapIdParam)
 	sv.AddStructField("GroupMonitoringProfileBindingMap", groupMonitoringProfileBindingMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := groupMonitoringProfileBindingMapsPatchRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	gIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := gIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.domains.groups.group_monitoring_profile_binding_maps", "patch", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), gIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (gIface *groupMonitoringProfileBindingMapsClient) Update(domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string, groupMonitoringProfileBindingMapParam nsx_policyModel.GroupMonitoringProfileBindingMap) (nsx_policyModel.GroupMonitoringProfileBindingMap, error) {
+func (gIface *groupMonitoringProfileBindingMapsClient) Update(domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string, groupMonitoringProfileBindingMapParam model.GroupMonitoringProfileBindingMap) (model.GroupMonitoringProfileBindingMap, error) {
 	typeConverter := gIface.connector.TypeConverter()
 	executionContext := gIface.connector.NewExecutionContext()
-	operationRestMetaData := groupMonitoringProfileBindingMapsUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(groupMonitoringProfileBindingMapsUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(groupMonitoringProfileBindingMapsUpdateInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("GroupMonitoringProfileBindingMapId", groupMonitoringProfileBindingMapIdParam)
 	sv.AddStructField("GroupMonitoringProfileBindingMap", groupMonitoringProfileBindingMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.GroupMonitoringProfileBindingMap
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.GroupMonitoringProfileBindingMap
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := groupMonitoringProfileBindingMapsUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	gIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := gIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.domains.groups.group_monitoring_profile_binding_maps", "update", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.GroupMonitoringProfileBindingMap
+	var emptyOutput model.GroupMonitoringProfileBindingMap
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), GroupMonitoringProfileBindingMapsUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), groupMonitoringProfileBindingMapsUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.GroupMonitoringProfileBindingMap), nil
+		return output.(model.GroupMonitoringProfileBindingMap), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), gIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

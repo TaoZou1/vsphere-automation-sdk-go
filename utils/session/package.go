@@ -7,9 +7,9 @@ package session
 import (
 	"net/http"
 
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/protocol/client"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/auth"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/session/arch"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/auth"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/session/arch"
 )
 
 // NewSessionManager creates and returns new Session Manager that manages API session with the Host server.

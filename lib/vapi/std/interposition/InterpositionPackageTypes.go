@@ -11,9 +11,9 @@
 package interposition
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiLog_ "github.com/vmware/vsphere-automation-sdk-go/runtime/log"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/log"
 	"reflect"
 )
 
@@ -24,23 +24,24 @@ type InvocationRequest struct {
 	// Name of the interposed operation. In canonical format. For example say_hello.
 	OperationId string
 	// Input of the interposed operation.
-	OperationInput vapiData_.DataValue
+	OperationInput data.DataValue
 	// User which started the interposed operation.
 	User *SecurityPrincipal
 	// Groups of the user who started the interposed operation. Would be empty if there is no authentication information.
 	Groups []SecurityPrincipal
 }
 
-func (s *InvocationRequest) GetType__() vapiBindings_.BindingType {
+func (s *InvocationRequest) GetType__() bindings.BindingType {
 	return InvocationRequestBindingType()
 }
 
-func (s *InvocationRequest) GetDataValue__() (vapiData_.DataValue, []error) {
-	typeConverter := vapiBindings_.NewTypeConverter()
+func (s *InvocationRequest) GetDataValue__() (data.DataValue, []error) {
+	typeConverter := bindings.NewTypeConverter()
+	typeConverter.SetMode(bindings.JSONRPC)
 	dataVal, err := typeConverter.ConvertToVapi(s, s.GetType__())
 	if err != nil {
-		vapiLog_.Errorf("Error in ConvertToVapi for InvocationRequest._GetDataValue method - %s",
-			vapiBindings_.VAPIerrorsToError(err).Error())
+		log.Errorf("Error in ConvertToVapi for InvocationRequest._GetDataValue method - %s",
+			bindings.VAPIerrorsToError(err).Error())
 		return nil, err
 	}
 	return dataVal, nil
@@ -51,21 +52,22 @@ type InvocationResult struct {
 	// Type of the invocation result.
 	ResultType InvocationResultResultTypeEnum
 	// Normal result value.
-	Output vapiData_.DataValue
+	Output data.DataValue
 	// Error result value.
-	Error_ *vapiData_.StructValue
+	Error_ *data.StructValue
 }
 
-func (s *InvocationResult) GetType__() vapiBindings_.BindingType {
+func (s *InvocationResult) GetType__() bindings.BindingType {
 	return InvocationResultBindingType()
 }
 
-func (s *InvocationResult) GetDataValue__() (vapiData_.DataValue, []error) {
-	typeConverter := vapiBindings_.NewTypeConverter()
+func (s *InvocationResult) GetDataValue__() (data.DataValue, []error) {
+	typeConverter := bindings.NewTypeConverter()
+	typeConverter.SetMode(bindings.JSONRPC)
 	dataVal, err := typeConverter.ConvertToVapi(s, s.GetType__())
 	if err != nil {
-		vapiLog_.Errorf("Error in ConvertToVapi for InvocationResult._GetDataValue method - %s",
-			vapiBindings_.VAPIerrorsToError(err).Error())
+		log.Errorf("Error in ConvertToVapi for InvocationResult._GetDataValue method - %s",
+			bindings.VAPIerrorsToError(err).Error())
 		return nil, err
 	}
 	return dataVal, nil
@@ -102,69 +104,70 @@ type SecurityPrincipal struct {
 	Domain *string
 }
 
-func (s *SecurityPrincipal) GetType__() vapiBindings_.BindingType {
+func (s *SecurityPrincipal) GetType__() bindings.BindingType {
 	return SecurityPrincipalBindingType()
 }
 
-func (s *SecurityPrincipal) GetDataValue__() (vapiData_.DataValue, []error) {
-	typeConverter := vapiBindings_.NewTypeConverter()
+func (s *SecurityPrincipal) GetDataValue__() (data.DataValue, []error) {
+	typeConverter := bindings.NewTypeConverter()
+	typeConverter.SetMode(bindings.JSONRPC)
 	dataVal, err := typeConverter.ConvertToVapi(s, s.GetType__())
 	if err != nil {
-		vapiLog_.Errorf("Error in ConvertToVapi for SecurityPrincipal._GetDataValue method - %s",
-			vapiBindings_.VAPIerrorsToError(err).Error())
+		log.Errorf("Error in ConvertToVapi for SecurityPrincipal._GetDataValue method - %s",
+			bindings.VAPIerrorsToError(err).Error())
 		return nil, err
 	}
 	return dataVal, nil
 }
 
-func InvocationRequestBindingType() vapiBindings_.BindingType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func InvocationRequestBindingType() bindings.BindingType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["service_id"] = vapiBindings_.NewStringType()
+	fields["service_id"] = bindings.NewStringType()
 	fieldNameMap["service_id"] = "ServiceId"
-	fields["operation_id"] = vapiBindings_.NewStringType()
+	fields["operation_id"] = bindings.NewStringType()
 	fieldNameMap["operation_id"] = "OperationId"
-	fields["operation_input"] = vapiBindings_.NewOpaqueType()
+	fields["operation_input"] = bindings.NewOpaqueType()
 	fieldNameMap["operation_input"] = "OperationInput"
-	fields["user"] = vapiBindings_.NewOptionalType(vapiBindings_.NewReferenceType(SecurityPrincipalBindingType))
+	fields["user"] = bindings.NewOptionalType(bindings.NewReferenceType(SecurityPrincipalBindingType))
 	fieldNameMap["user"] = "User"
-	fields["groups"] = vapiBindings_.NewListType(vapiBindings_.NewReferenceType(SecurityPrincipalBindingType), reflect.TypeOf([]SecurityPrincipal{}))
+	fields["groups"] = bindings.NewListType(bindings.NewReferenceType(SecurityPrincipalBindingType), reflect.TypeOf([]SecurityPrincipal{}))
 	fieldNameMap["groups"] = "Groups"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("com.vmware.vapi.std.interposition.invocation_request", fields, reflect.TypeOf(InvocationRequest{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("com.vmware.vapi.std.interposition.invocation_request", fields, reflect.TypeOf(InvocationRequest{}), fieldNameMap, validators)
 }
 
-func InvocationResultBindingType() vapiBindings_.BindingType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func InvocationResultBindingType() bindings.BindingType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["result_type"] = vapiBindings_.NewEnumType("com.vmware.vapi.std.interposition.invocation_result.result_type", reflect.TypeOf(InvocationResultResultTypeEnum(InvocationResultResultType_NORMAL_RESULT)))
+	fields["result_type"] = bindings.NewEnumType("com.vmware.vapi.std.interposition.invocation_result.result_type", reflect.TypeOf(InvocationResultResultTypeEnum(InvocationResultResultType_NORMAL_RESULT)))
 	fieldNameMap["result_type"] = "ResultType"
-	fields["output"] = vapiBindings_.NewOptionalType(vapiBindings_.NewOpaqueType())
+	fields["output"] = bindings.NewOptionalType(bindings.NewOpaqueType())
 	fieldNameMap["output"] = "Output"
-	fields["error"] = vapiBindings_.NewOptionalType(vapiBindings_.NewDynamicStructType(nil))
+	fields["error"] = bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
 	fieldNameMap["error"] = "Error_"
-	var validators = []vapiBindings_.Validator{}
-	uv1 := vapiBindings_.NewUnionValidator("result_type",
-		map[string][]vapiBindings_.FieldData{
-			"NORMAL_RESULT": []vapiBindings_.FieldData{
-				vapiBindings_.NewFieldData("output", true),
+	var validators = []bindings.Validator{}
+	uv1 := bindings.NewUnionValidator("result_type",
+		map[string][]bindings.FieldData{
+			"NORMAL_RESULT": []bindings.FieldData{
+				bindings.NewFieldData("output", true),
 			},
-			"ERROR_RESULT": []vapiBindings_.FieldData{
-				vapiBindings_.NewFieldData("error", true),
+			"ERROR_RESULT": []bindings.FieldData{
+				bindings.NewFieldData("error", true),
 			},
 		},
 	)
 	validators = append(validators, uv1)
-	return vapiBindings_.NewStructType("com.vmware.vapi.std.interposition.invocation_result", fields, reflect.TypeOf(InvocationResult{}), fieldNameMap, validators)
+	return bindings.NewStructType("com.vmware.vapi.std.interposition.invocation_result", fields, reflect.TypeOf(InvocationResult{}), fieldNameMap, validators)
 }
 
-func SecurityPrincipalBindingType() vapiBindings_.BindingType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func SecurityPrincipalBindingType() bindings.BindingType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["name"] = vapiBindings_.NewStringType()
+	fields["name"] = bindings.NewStringType()
 	fieldNameMap["name"] = "Name"
-	fields["domain"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["domain"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["domain"] = "Domain"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("com.vmware.vapi.std.interposition.security_principal", fields, reflect.TypeOf(SecurityPrincipal{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("com.vmware.vapi.std.interposition.security_principal", fields, reflect.TypeOf(SecurityPrincipal{}), fieldNameMap, validators)
 }

@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,9 +11,9 @@
 package nsx_policy
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
 	"reflect"
 )
 
@@ -29,41 +29,41 @@ const Cluster_BACKUPTOREMOTE_FRAME_TYPE_LOCAL_LOCAL_MANAGER = "LOCAL_LOCAL_MANAG
 // Possible value for ``frameType`` of method Cluster#backuptoremote.
 const Cluster_BACKUPTOREMOTE_FRAME_TYPE_NSX_INTELLIGENCE = "NSX_INTELLIGENCE"
 
-func clusterBackuptoremoteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func clusterBackuptoremoteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["frame_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["site_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["frame_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["site_id"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["frame_type"] = "FrameType"
 	fieldNameMap["site_id"] = "SiteId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ClusterBackuptoremoteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func clusterBackuptoremoteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func clusterBackuptoremoteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func clusterBackuptoremoteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["frame_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["site_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["frame_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["site_id"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["frame_type"] = "FrameType"
 	fieldNameMap["site_id"] = "SiteId"
-	paramsTypeMap["site_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["frame_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["frame_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["site_id"] = bindings.NewOptionalType(bindings.NewStringType())
 	queryParams["site_id"] = "site_id"
 	queryParams["frame_type"] = "frame_type"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -84,21 +84,21 @@ func clusterBackuptoremoteRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func clusterSummarizeinventorytoremoteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func clusterSummarizeinventorytoremoteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ClusterSummarizeinventorytoremoteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func clusterSummarizeinventorytoremoteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func clusterSummarizeinventorytoremoteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func clusterSummarizeinventorytoremoteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
@@ -106,7 +106,7 @@ func clusterSummarizeinventorytoremoteRestMetadata() vapiProtocol_.OperationRest
 	bodyFieldsMap := map[string]string{}
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

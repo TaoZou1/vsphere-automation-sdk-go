@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,10 +11,10 @@
 package firewall
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 	"reflect"
 )
 
@@ -123,46 +123,46 @@ const Sections_REVISEWITHRULES_OPERATION_AFTER = "insert_after"
 // Possible value for ``operation`` of method Sections#revisewithrules.
 const Sections_REVISEWITHRULES_OPERATION_BEFORE = "insert_before"
 
-func sectionsCreateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func sectionsCreateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["firewall_section"] = vapiBindings_.NewReferenceType(nsxModel.FirewallSectionBindingType)
-	fields["id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["operation"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["firewall_section"] = bindings.NewReferenceType(model.FirewallSectionBindingType)
+	fields["id"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["operation"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["firewall_section"] = "FirewallSection"
 	fieldNameMap["id"] = "Id"
 	fieldNameMap["operation"] = "Operation"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SectionsCreateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.FirewallSectionBindingType)
+func sectionsCreateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.FirewallSectionBindingType)
 }
 
-func sectionsCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func sectionsCreateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["firewall_section"] = vapiBindings_.NewReferenceType(nsxModel.FirewallSectionBindingType)
-	fields["id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["operation"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["firewall_section"] = bindings.NewReferenceType(model.FirewallSectionBindingType)
+	fields["id"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["operation"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["firewall_section"] = "FirewallSection"
 	fieldNameMap["id"] = "Id"
 	fieldNameMap["operation"] = "Operation"
-	paramsTypeMap["firewall_section"] = vapiBindings_.NewReferenceType(nsxModel.FirewallSectionBindingType)
-	paramsTypeMap["id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["operation"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["id"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["operation"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["firewall_section"] = bindings.NewReferenceType(model.FirewallSectionBindingType)
 	queryParams["id"] = "id"
 	queryParams["operation"] = "operation"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -183,46 +183,46 @@ func sectionsCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func sectionsCreatewithrulesInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func sectionsCreatewithrulesInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["firewall_section_rule_list"] = vapiBindings_.NewReferenceType(nsxModel.FirewallSectionRuleListBindingType)
-	fields["id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["operation"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["firewall_section_rule_list"] = bindings.NewReferenceType(model.FirewallSectionRuleListBindingType)
+	fields["id"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["operation"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["firewall_section_rule_list"] = "FirewallSectionRuleList"
 	fieldNameMap["id"] = "Id"
 	fieldNameMap["operation"] = "Operation"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SectionsCreatewithrulesOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.FirewallSectionRuleListBindingType)
+func sectionsCreatewithrulesOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.FirewallSectionRuleListBindingType)
 }
 
-func sectionsCreatewithrulesRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func sectionsCreatewithrulesRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["firewall_section_rule_list"] = vapiBindings_.NewReferenceType(nsxModel.FirewallSectionRuleListBindingType)
-	fields["id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["operation"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["firewall_section_rule_list"] = bindings.NewReferenceType(model.FirewallSectionRuleListBindingType)
+	fields["id"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["operation"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["firewall_section_rule_list"] = "FirewallSectionRuleList"
 	fieldNameMap["id"] = "Id"
 	fieldNameMap["operation"] = "Operation"
-	paramsTypeMap["firewall_section_rule_list"] = vapiBindings_.NewReferenceType(nsxModel.FirewallSectionRuleListBindingType)
-	paramsTypeMap["id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["operation"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["id"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["firewall_section_rule_list"] = bindings.NewReferenceType(model.FirewallSectionRuleListBindingType)
+	paramsTypeMap["operation"] = bindings.NewOptionalType(bindings.NewStringType())
 	queryParams["id"] = "id"
 	queryParams["operation"] = "operation"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -243,42 +243,42 @@ func sectionsCreatewithrulesRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func sectionsDeleteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func sectionsDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["section_id"] = vapiBindings_.NewStringType()
-	fields["cascade"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["section_id"] = bindings.NewStringType()
+	fields["cascade"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["section_id"] = "SectionId"
 	fieldNameMap["cascade"] = "Cascade"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SectionsDeleteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func sectionsDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func sectionsDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func sectionsDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["section_id"] = vapiBindings_.NewStringType()
-	fields["cascade"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["section_id"] = bindings.NewStringType()
+	fields["cascade"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["section_id"] = "SectionId"
 	fieldNameMap["cascade"] = "Cascade"
-	paramsTypeMap["section_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["cascade"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["sectionId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["section_id"] = bindings.NewStringType()
+	paramsTypeMap["cascade"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["sectionId"] = bindings.NewStringType()
 	pathParams["section_id"] = "sectionId"
 	queryParams["cascade"] = "cascade"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -299,36 +299,36 @@ func sectionsDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func sectionsGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func sectionsGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["section_id"] = vapiBindings_.NewStringType()
+	fields["section_id"] = bindings.NewStringType()
 	fieldNameMap["section_id"] = "SectionId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SectionsGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.FirewallSectionBindingType)
+func sectionsGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.FirewallSectionBindingType)
 }
 
-func sectionsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func sectionsGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["section_id"] = vapiBindings_.NewStringType()
+	fields["section_id"] = bindings.NewStringType()
 	fieldNameMap["section_id"] = "SectionId"
-	paramsTypeMap["section_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["sectionId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["section_id"] = bindings.NewStringType()
+	paramsTypeMap["sectionId"] = bindings.NewStringType()
 	pathParams["section_id"] = "sectionId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -349,29 +349,29 @@ func sectionsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func sectionsListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func sectionsListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["applied_tos"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["context_profiles"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["deep_search"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["destinations"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["enforced_on"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["exclude_applied_to_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["extended_sources"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["filter_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["include_applied_to_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["locked"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["search_invalid_references"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["search_scope"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["services"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["sources"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["applied_tos"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["context_profiles"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["deep_search"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["destinations"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["enforced_on"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["exclude_applied_to_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["extended_sources"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["filter_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["include_applied_to_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["locked"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["search_invalid_references"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["search_scope"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["services"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["sources"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["type"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["applied_tos"] = "AppliedTos"
 	fieldNameMap["context_profiles"] = "ContextProfiles"
 	fieldNameMap["cursor"] = "Cursor"
@@ -392,43 +392,43 @@ func sectionsListInputType() vapiBindings_.StructType {
 	fieldNameMap["sort_by"] = "SortBy"
 	fieldNameMap["sources"] = "Sources"
 	fieldNameMap["type"] = "Type_"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SectionsListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.FirewallSectionListResultBindingType)
+func sectionsListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.FirewallSectionListResultBindingType)
 }
 
-func sectionsListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func sectionsListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["applied_tos"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["context_profiles"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["deep_search"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["destinations"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["enforced_on"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["exclude_applied_to_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["extended_sources"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["filter_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["include_applied_to_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["locked"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["search_invalid_references"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["search_scope"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["services"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["sources"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["applied_tos"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["context_profiles"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["deep_search"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["destinations"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["enforced_on"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["exclude_applied_to_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["extended_sources"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["filter_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["include_applied_to_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["locked"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["search_invalid_references"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["search_scope"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["services"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["sources"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["type"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["applied_tos"] = "AppliedTos"
 	fieldNameMap["context_profiles"] = "ContextProfiles"
 	fieldNameMap["cursor"] = "Cursor"
@@ -449,26 +449,26 @@ func sectionsListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	fieldNameMap["sort_by"] = "SortBy"
 	fieldNameMap["sources"] = "Sources"
 	fieldNameMap["type"] = "Type_"
-	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sources"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["deep_search"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["destinations"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["exclude_applied_to_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["include_applied_to_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["context_profiles"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["services"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["search_scope"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["extended_sources"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["filter_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["applied_tos"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["enforced_on"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["locked"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["search_invalid_references"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	paramsTypeMap["sources"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["exclude_applied_to_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["enforced_on"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["include_applied_to_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["destinations"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["type"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["context_profiles"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["filter_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["search_scope"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["extended_sources"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["applied_tos"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["search_invalid_references"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["services"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["locked"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["deep_search"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	queryParams["cursor"] = "cursor"
 	queryParams["sources"] = "sources"
 	queryParams["deep_search"] = "deep_search"
@@ -491,7 +491,7 @@ func sectionsListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -512,36 +512,36 @@ func sectionsListRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func sectionsListwithrulesInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func sectionsListwithrulesInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["section_id"] = vapiBindings_.NewStringType()
+	fields["section_id"] = bindings.NewStringType()
 	fieldNameMap["section_id"] = "SectionId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SectionsListwithrulesOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.FirewallSectionRuleListBindingType)
+func sectionsListwithrulesOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.FirewallSectionRuleListBindingType)
 }
 
-func sectionsListwithrulesRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func sectionsListwithrulesRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["section_id"] = vapiBindings_.NewStringType()
+	fields["section_id"] = bindings.NewStringType()
 	fieldNameMap["section_id"] = "SectionId"
-	paramsTypeMap["section_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["sectionId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["section_id"] = bindings.NewStringType()
+	paramsTypeMap["sectionId"] = bindings.NewStringType()
 	pathParams["section_id"] = "sectionId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -562,41 +562,41 @@ func sectionsListwithrulesRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func sectionsLockInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func sectionsLockInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["section_id"] = vapiBindings_.NewStringType()
-	fields["firewall_section_lock"] = vapiBindings_.NewReferenceType(nsxModel.FirewallSectionLockBindingType)
+	fields["section_id"] = bindings.NewStringType()
+	fields["firewall_section_lock"] = bindings.NewReferenceType(model.FirewallSectionLockBindingType)
 	fieldNameMap["section_id"] = "SectionId"
 	fieldNameMap["firewall_section_lock"] = "FirewallSectionLock"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SectionsLockOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.FirewallSectionBindingType)
+func sectionsLockOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.FirewallSectionBindingType)
 }
 
-func sectionsLockRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func sectionsLockRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["section_id"] = vapiBindings_.NewStringType()
-	fields["firewall_section_lock"] = vapiBindings_.NewReferenceType(nsxModel.FirewallSectionLockBindingType)
+	fields["section_id"] = bindings.NewStringType()
+	fields["firewall_section_lock"] = bindings.NewReferenceType(model.FirewallSectionLockBindingType)
 	fieldNameMap["section_id"] = "SectionId"
 	fieldNameMap["firewall_section_lock"] = "FirewallSectionLock"
-	paramsTypeMap["section_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["firewall_section_lock"] = vapiBindings_.NewReferenceType(nsxModel.FirewallSectionLockBindingType)
-	paramsTypeMap["sectionId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["section_id"] = bindings.NewStringType()
+	paramsTypeMap["firewall_section_lock"] = bindings.NewReferenceType(model.FirewallSectionLockBindingType)
+	paramsTypeMap["sectionId"] = bindings.NewStringType()
 	pathParams["section_id"] = "sectionId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -617,53 +617,53 @@ func sectionsLockRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.resource_busy": 500, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func sectionsReviseInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func sectionsReviseInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["section_id"] = vapiBindings_.NewStringType()
-	fields["firewall_section"] = vapiBindings_.NewReferenceType(nsxModel.FirewallSectionBindingType)
-	fields["id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["operation"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["section_id"] = bindings.NewStringType()
+	fields["firewall_section"] = bindings.NewReferenceType(model.FirewallSectionBindingType)
+	fields["id"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["operation"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["section_id"] = "SectionId"
 	fieldNameMap["firewall_section"] = "FirewallSection"
 	fieldNameMap["id"] = "Id"
 	fieldNameMap["operation"] = "Operation"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SectionsReviseOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.FirewallSectionBindingType)
+func sectionsReviseOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.FirewallSectionBindingType)
 }
 
-func sectionsReviseRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func sectionsReviseRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["section_id"] = vapiBindings_.NewStringType()
-	fields["firewall_section"] = vapiBindings_.NewReferenceType(nsxModel.FirewallSectionBindingType)
-	fields["id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["operation"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["section_id"] = bindings.NewStringType()
+	fields["firewall_section"] = bindings.NewReferenceType(model.FirewallSectionBindingType)
+	fields["id"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["operation"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["section_id"] = "SectionId"
 	fieldNameMap["firewall_section"] = "FirewallSection"
 	fieldNameMap["id"] = "Id"
 	fieldNameMap["operation"] = "Operation"
-	paramsTypeMap["firewall_section"] = vapiBindings_.NewReferenceType(nsxModel.FirewallSectionBindingType)
-	paramsTypeMap["section_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["operation"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sectionId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["id"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["section_id"] = bindings.NewStringType()
+	paramsTypeMap["operation"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["firewall_section"] = bindings.NewReferenceType(model.FirewallSectionBindingType)
+	paramsTypeMap["sectionId"] = bindings.NewStringType()
 	pathParams["section_id"] = "sectionId"
 	queryParams["id"] = "id"
 	queryParams["operation"] = "operation"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -684,53 +684,53 @@ func sectionsReviseRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func sectionsRevisewithrulesInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func sectionsRevisewithrulesInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["section_id"] = vapiBindings_.NewStringType()
-	fields["firewall_section_rule_list"] = vapiBindings_.NewReferenceType(nsxModel.FirewallSectionRuleListBindingType)
-	fields["id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["operation"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["section_id"] = bindings.NewStringType()
+	fields["firewall_section_rule_list"] = bindings.NewReferenceType(model.FirewallSectionRuleListBindingType)
+	fields["id"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["operation"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["section_id"] = "SectionId"
 	fieldNameMap["firewall_section_rule_list"] = "FirewallSectionRuleList"
 	fieldNameMap["id"] = "Id"
 	fieldNameMap["operation"] = "Operation"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SectionsRevisewithrulesOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.FirewallSectionRuleListBindingType)
+func sectionsRevisewithrulesOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.FirewallSectionRuleListBindingType)
 }
 
-func sectionsRevisewithrulesRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func sectionsRevisewithrulesRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["section_id"] = vapiBindings_.NewStringType()
-	fields["firewall_section_rule_list"] = vapiBindings_.NewReferenceType(nsxModel.FirewallSectionRuleListBindingType)
-	fields["id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["operation"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["section_id"] = bindings.NewStringType()
+	fields["firewall_section_rule_list"] = bindings.NewReferenceType(model.FirewallSectionRuleListBindingType)
+	fields["id"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["operation"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["section_id"] = "SectionId"
 	fieldNameMap["firewall_section_rule_list"] = "FirewallSectionRuleList"
 	fieldNameMap["id"] = "Id"
 	fieldNameMap["operation"] = "Operation"
-	paramsTypeMap["section_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["firewall_section_rule_list"] = vapiBindings_.NewReferenceType(nsxModel.FirewallSectionRuleListBindingType)
-	paramsTypeMap["id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["operation"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sectionId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["id"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["firewall_section_rule_list"] = bindings.NewReferenceType(model.FirewallSectionRuleListBindingType)
+	paramsTypeMap["section_id"] = bindings.NewStringType()
+	paramsTypeMap["operation"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sectionId"] = bindings.NewStringType()
 	pathParams["section_id"] = "sectionId"
 	queryParams["id"] = "id"
 	queryParams["operation"] = "operation"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -751,41 +751,41 @@ func sectionsRevisewithrulesRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func sectionsUnlockInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func sectionsUnlockInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["section_id"] = vapiBindings_.NewStringType()
-	fields["firewall_section_lock"] = vapiBindings_.NewReferenceType(nsxModel.FirewallSectionLockBindingType)
+	fields["section_id"] = bindings.NewStringType()
+	fields["firewall_section_lock"] = bindings.NewReferenceType(model.FirewallSectionLockBindingType)
 	fieldNameMap["section_id"] = "SectionId"
 	fieldNameMap["firewall_section_lock"] = "FirewallSectionLock"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SectionsUnlockOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.FirewallSectionBindingType)
+func sectionsUnlockOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.FirewallSectionBindingType)
 }
 
-func sectionsUnlockRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func sectionsUnlockRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["section_id"] = vapiBindings_.NewStringType()
-	fields["firewall_section_lock"] = vapiBindings_.NewReferenceType(nsxModel.FirewallSectionLockBindingType)
+	fields["section_id"] = bindings.NewStringType()
+	fields["firewall_section_lock"] = bindings.NewReferenceType(model.FirewallSectionLockBindingType)
 	fieldNameMap["section_id"] = "SectionId"
 	fieldNameMap["firewall_section_lock"] = "FirewallSectionLock"
-	paramsTypeMap["section_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["firewall_section_lock"] = vapiBindings_.NewReferenceType(nsxModel.FirewallSectionLockBindingType)
-	paramsTypeMap["sectionId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["section_id"] = bindings.NewStringType()
+	paramsTypeMap["firewall_section_lock"] = bindings.NewReferenceType(model.FirewallSectionLockBindingType)
+	paramsTypeMap["sectionId"] = bindings.NewStringType()
 	pathParams["section_id"] = "sectionId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -806,41 +806,41 @@ func sectionsUnlockRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.resource_busy": 500, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func sectionsUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func sectionsUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["section_id"] = vapiBindings_.NewStringType()
-	fields["firewall_section"] = vapiBindings_.NewReferenceType(nsxModel.FirewallSectionBindingType)
+	fields["section_id"] = bindings.NewStringType()
+	fields["firewall_section"] = bindings.NewReferenceType(model.FirewallSectionBindingType)
 	fieldNameMap["section_id"] = "SectionId"
 	fieldNameMap["firewall_section"] = "FirewallSection"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SectionsUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.FirewallSectionBindingType)
+func sectionsUpdateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.FirewallSectionBindingType)
 }
 
-func sectionsUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func sectionsUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["section_id"] = vapiBindings_.NewStringType()
-	fields["firewall_section"] = vapiBindings_.NewReferenceType(nsxModel.FirewallSectionBindingType)
+	fields["section_id"] = bindings.NewStringType()
+	fields["firewall_section"] = bindings.NewReferenceType(model.FirewallSectionBindingType)
 	fieldNameMap["section_id"] = "SectionId"
 	fieldNameMap["firewall_section"] = "FirewallSection"
-	paramsTypeMap["firewall_section"] = vapiBindings_.NewReferenceType(nsxModel.FirewallSectionBindingType)
-	paramsTypeMap["section_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["sectionId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["section_id"] = bindings.NewStringType()
+	paramsTypeMap["firewall_section"] = bindings.NewReferenceType(model.FirewallSectionBindingType)
+	paramsTypeMap["sectionId"] = bindings.NewStringType()
 	pathParams["section_id"] = "sectionId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -861,41 +861,41 @@ func sectionsUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func sectionsUpdatewithrulesInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func sectionsUpdatewithrulesInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["section_id"] = vapiBindings_.NewStringType()
-	fields["firewall_section_rule_list"] = vapiBindings_.NewReferenceType(nsxModel.FirewallSectionRuleListBindingType)
+	fields["section_id"] = bindings.NewStringType()
+	fields["firewall_section_rule_list"] = bindings.NewReferenceType(model.FirewallSectionRuleListBindingType)
 	fieldNameMap["section_id"] = "SectionId"
 	fieldNameMap["firewall_section_rule_list"] = "FirewallSectionRuleList"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SectionsUpdatewithrulesOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.FirewallSectionRuleListBindingType)
+func sectionsUpdatewithrulesOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.FirewallSectionRuleListBindingType)
 }
 
-func sectionsUpdatewithrulesRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func sectionsUpdatewithrulesRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["section_id"] = vapiBindings_.NewStringType()
-	fields["firewall_section_rule_list"] = vapiBindings_.NewReferenceType(nsxModel.FirewallSectionRuleListBindingType)
+	fields["section_id"] = bindings.NewStringType()
+	fields["firewall_section_rule_list"] = bindings.NewReferenceType(model.FirewallSectionRuleListBindingType)
 	fieldNameMap["section_id"] = "SectionId"
 	fieldNameMap["firewall_section_rule_list"] = "FirewallSectionRuleList"
-	paramsTypeMap["section_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["firewall_section_rule_list"] = vapiBindings_.NewReferenceType(nsxModel.FirewallSectionRuleListBindingType)
-	paramsTypeMap["sectionId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["firewall_section_rule_list"] = bindings.NewReferenceType(model.FirewallSectionRuleListBindingType)
+	paramsTypeMap["section_id"] = bindings.NewStringType()
+	paramsTypeMap["sectionId"] = bindings.NewStringType()
 	pathParams["section_id"] = "sectionId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

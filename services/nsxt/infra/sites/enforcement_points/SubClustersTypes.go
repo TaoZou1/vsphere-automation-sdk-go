@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,57 +11,57 @@
 package enforcement_points
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func subClustersDeleteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func subClustersDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["site_id"] = vapiBindings_.NewStringType()
-	fields["enforcementpoint_id"] = vapiBindings_.NewStringType()
-	fields["subcluster_id"] = vapiBindings_.NewStringType()
+	fields["site_id"] = bindings.NewStringType()
+	fields["enforcementpoint_id"] = bindings.NewStringType()
+	fields["subcluster_id"] = bindings.NewStringType()
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcementpoint_id"] = "EnforcementpointId"
 	fieldNameMap["subcluster_id"] = "SubclusterId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SubClustersDeleteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func subClustersDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func subClustersDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func subClustersDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["site_id"] = vapiBindings_.NewStringType()
-	fields["enforcementpoint_id"] = vapiBindings_.NewStringType()
-	fields["subcluster_id"] = vapiBindings_.NewStringType()
+	fields["site_id"] = bindings.NewStringType()
+	fields["enforcementpoint_id"] = bindings.NewStringType()
+	fields["subcluster_id"] = bindings.NewStringType()
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcementpoint_id"] = "EnforcementpointId"
 	fieldNameMap["subcluster_id"] = "SubclusterId"
-	paramsTypeMap["enforcementpoint_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["site_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["subcluster_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["siteId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["enforcementpointId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["subclusterId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["enforcementpoint_id"] = bindings.NewStringType()
+	paramsTypeMap["site_id"] = bindings.NewStringType()
+	paramsTypeMap["subcluster_id"] = bindings.NewStringType()
+	paramsTypeMap["siteId"] = bindings.NewStringType()
+	paramsTypeMap["enforcementpointId"] = bindings.NewStringType()
+	paramsTypeMap["subclusterId"] = bindings.NewStringType()
 	pathParams["enforcementpoint_id"] = "enforcementpointId"
 	pathParams["site_id"] = "siteId"
 	pathParams["subcluster_id"] = "subclusterId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -82,50 +82,50 @@ func subClustersDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func subClustersGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func subClustersGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["site_id"] = vapiBindings_.NewStringType()
-	fields["enforcementpoint_id"] = vapiBindings_.NewStringType()
-	fields["subcluster_id"] = vapiBindings_.NewStringType()
+	fields["site_id"] = bindings.NewStringType()
+	fields["enforcementpoint_id"] = bindings.NewStringType()
+	fields["subcluster_id"] = bindings.NewStringType()
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcementpoint_id"] = "EnforcementpointId"
 	fieldNameMap["subcluster_id"] = "SubclusterId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SubClustersGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.SubClusterBindingType)
+func subClustersGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.SubClusterBindingType)
 }
 
-func subClustersGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func subClustersGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["site_id"] = vapiBindings_.NewStringType()
-	fields["enforcementpoint_id"] = vapiBindings_.NewStringType()
-	fields["subcluster_id"] = vapiBindings_.NewStringType()
+	fields["site_id"] = bindings.NewStringType()
+	fields["enforcementpoint_id"] = bindings.NewStringType()
+	fields["subcluster_id"] = bindings.NewStringType()
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcementpoint_id"] = "EnforcementpointId"
 	fieldNameMap["subcluster_id"] = "SubclusterId"
-	paramsTypeMap["enforcementpoint_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["site_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["subcluster_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["siteId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["enforcementpointId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["subclusterId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["enforcementpoint_id"] = bindings.NewStringType()
+	paramsTypeMap["site_id"] = bindings.NewStringType()
+	paramsTypeMap["subcluster_id"] = bindings.NewStringType()
+	paramsTypeMap["siteId"] = bindings.NewStringType()
+	paramsTypeMap["enforcementpointId"] = bindings.NewStringType()
+	paramsTypeMap["subclusterId"] = bindings.NewStringType()
 	pathParams["enforcementpoint_id"] = "enforcementpointId"
 	pathParams["site_id"] = "siteId"
 	pathParams["subcluster_id"] = "subclusterId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -146,16 +146,16 @@ func subClustersGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func subClustersListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func subClustersListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["site_id"] = vapiBindings_.NewStringType()
-	fields["enforcementpoint_id"] = vapiBindings_.NewStringType()
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["site_id"] = bindings.NewStringType()
+	fields["enforcementpoint_id"] = bindings.NewStringType()
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcementpoint_id"] = "EnforcementpointId"
 	fieldNameMap["cursor"] = "Cursor"
@@ -163,30 +163,30 @@ func subClustersListInputType() vapiBindings_.StructType {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SubClustersListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.SubClusterListResultBindingType)
+func subClustersListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.SubClusterListResultBindingType)
 }
 
-func subClustersListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func subClustersListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["site_id"] = vapiBindings_.NewStringType()
-	fields["enforcementpoint_id"] = vapiBindings_.NewStringType()
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["site_id"] = bindings.NewStringType()
+	fields["enforcementpoint_id"] = bindings.NewStringType()
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcementpoint_id"] = "EnforcementpointId"
 	fieldNameMap["cursor"] = "Cursor"
@@ -194,15 +194,15 @@ func subClustersListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["enforcementpoint_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["site_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	paramsTypeMap["siteId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["enforcementpointId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["enforcementpoint_id"] = bindings.NewStringType()
+	paramsTypeMap["site_id"] = bindings.NewStringType()
+	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["siteId"] = bindings.NewStringType()
+	paramsTypeMap["enforcementpointId"] = bindings.NewStringType()
 	pathParams["enforcementpoint_id"] = "enforcementpointId"
 	pathParams["site_id"] = "siteId"
 	queryParams["cursor"] = "cursor"
@@ -212,7 +212,7 @@ func subClustersListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -233,48 +233,48 @@ func subClustersListRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func subClustersMoveInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func subClustersMoveInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["site_id"] = vapiBindings_.NewStringType()
-	fields["enforcementpoint_id"] = vapiBindings_.NewStringType()
-	fields["host_movement_spec"] = vapiBindings_.NewReferenceType(nsx_policyModel.HostMovementSpecBindingType)
+	fields["site_id"] = bindings.NewStringType()
+	fields["enforcementpoint_id"] = bindings.NewStringType()
+	fields["host_movement_spec"] = bindings.NewReferenceType(model.HostMovementSpecBindingType)
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcementpoint_id"] = "EnforcementpointId"
 	fieldNameMap["host_movement_spec"] = "HostMovementSpec"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SubClustersMoveOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func subClustersMoveOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func subClustersMoveRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func subClustersMoveRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["site_id"] = vapiBindings_.NewStringType()
-	fields["enforcementpoint_id"] = vapiBindings_.NewStringType()
-	fields["host_movement_spec"] = vapiBindings_.NewReferenceType(nsx_policyModel.HostMovementSpecBindingType)
+	fields["site_id"] = bindings.NewStringType()
+	fields["enforcementpoint_id"] = bindings.NewStringType()
+	fields["host_movement_spec"] = bindings.NewReferenceType(model.HostMovementSpecBindingType)
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcementpoint_id"] = "EnforcementpointId"
 	fieldNameMap["host_movement_spec"] = "HostMovementSpec"
-	paramsTypeMap["enforcementpoint_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["site_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["host_movement_spec"] = vapiBindings_.NewReferenceType(nsx_policyModel.HostMovementSpecBindingType)
-	paramsTypeMap["siteId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["enforcementpointId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["enforcementpoint_id"] = bindings.NewStringType()
+	paramsTypeMap["host_movement_spec"] = bindings.NewReferenceType(model.HostMovementSpecBindingType)
+	paramsTypeMap["site_id"] = bindings.NewStringType()
+	paramsTypeMap["siteId"] = bindings.NewStringType()
+	paramsTypeMap["enforcementpointId"] = bindings.NewStringType()
 	pathParams["enforcementpoint_id"] = "enforcementpointId"
 	pathParams["site_id"] = "siteId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -295,55 +295,55 @@ func subClustersMoveRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func subClustersPatchInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func subClustersPatchInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["site_id"] = vapiBindings_.NewStringType()
-	fields["enforcementpoint_id"] = vapiBindings_.NewStringType()
-	fields["subcluster_id"] = vapiBindings_.NewStringType()
-	fields["sub_cluster"] = vapiBindings_.NewReferenceType(nsx_policyModel.SubClusterBindingType)
+	fields["site_id"] = bindings.NewStringType()
+	fields["enforcementpoint_id"] = bindings.NewStringType()
+	fields["subcluster_id"] = bindings.NewStringType()
+	fields["sub_cluster"] = bindings.NewReferenceType(model.SubClusterBindingType)
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcementpoint_id"] = "EnforcementpointId"
 	fieldNameMap["subcluster_id"] = "SubclusterId"
 	fieldNameMap["sub_cluster"] = "SubCluster"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SubClustersPatchOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.SubClusterBindingType)
+func subClustersPatchOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.SubClusterBindingType)
 }
 
-func subClustersPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func subClustersPatchRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["site_id"] = vapiBindings_.NewStringType()
-	fields["enforcementpoint_id"] = vapiBindings_.NewStringType()
-	fields["subcluster_id"] = vapiBindings_.NewStringType()
-	fields["sub_cluster"] = vapiBindings_.NewReferenceType(nsx_policyModel.SubClusterBindingType)
+	fields["site_id"] = bindings.NewStringType()
+	fields["enforcementpoint_id"] = bindings.NewStringType()
+	fields["subcluster_id"] = bindings.NewStringType()
+	fields["sub_cluster"] = bindings.NewReferenceType(model.SubClusterBindingType)
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcementpoint_id"] = "EnforcementpointId"
 	fieldNameMap["subcluster_id"] = "SubclusterId"
 	fieldNameMap["sub_cluster"] = "SubCluster"
-	paramsTypeMap["sub_cluster"] = vapiBindings_.NewReferenceType(nsx_policyModel.SubClusterBindingType)
-	paramsTypeMap["enforcementpoint_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["site_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["subcluster_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["siteId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["enforcementpointId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["subclusterId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["enforcementpoint_id"] = bindings.NewStringType()
+	paramsTypeMap["site_id"] = bindings.NewStringType()
+	paramsTypeMap["sub_cluster"] = bindings.NewReferenceType(model.SubClusterBindingType)
+	paramsTypeMap["subcluster_id"] = bindings.NewStringType()
+	paramsTypeMap["siteId"] = bindings.NewStringType()
+	paramsTypeMap["enforcementpointId"] = bindings.NewStringType()
+	paramsTypeMap["subclusterId"] = bindings.NewStringType()
 	pathParams["enforcementpoint_id"] = "enforcementpointId"
 	pathParams["site_id"] = "siteId"
 	pathParams["subcluster_id"] = "subclusterId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -364,55 +364,55 @@ func subClustersPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func subClustersUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func subClustersUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["site_id"] = vapiBindings_.NewStringType()
-	fields["enforcementpoint_id"] = vapiBindings_.NewStringType()
-	fields["subcluster_id"] = vapiBindings_.NewStringType()
-	fields["sub_cluster"] = vapiBindings_.NewReferenceType(nsx_policyModel.SubClusterBindingType)
+	fields["site_id"] = bindings.NewStringType()
+	fields["enforcementpoint_id"] = bindings.NewStringType()
+	fields["subcluster_id"] = bindings.NewStringType()
+	fields["sub_cluster"] = bindings.NewReferenceType(model.SubClusterBindingType)
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcementpoint_id"] = "EnforcementpointId"
 	fieldNameMap["subcluster_id"] = "SubclusterId"
 	fieldNameMap["sub_cluster"] = "SubCluster"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SubClustersUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.SubClusterBindingType)
+func subClustersUpdateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.SubClusterBindingType)
 }
 
-func subClustersUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func subClustersUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["site_id"] = vapiBindings_.NewStringType()
-	fields["enforcementpoint_id"] = vapiBindings_.NewStringType()
-	fields["subcluster_id"] = vapiBindings_.NewStringType()
-	fields["sub_cluster"] = vapiBindings_.NewReferenceType(nsx_policyModel.SubClusterBindingType)
+	fields["site_id"] = bindings.NewStringType()
+	fields["enforcementpoint_id"] = bindings.NewStringType()
+	fields["subcluster_id"] = bindings.NewStringType()
+	fields["sub_cluster"] = bindings.NewReferenceType(model.SubClusterBindingType)
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcementpoint_id"] = "EnforcementpointId"
 	fieldNameMap["subcluster_id"] = "SubclusterId"
 	fieldNameMap["sub_cluster"] = "SubCluster"
-	paramsTypeMap["sub_cluster"] = vapiBindings_.NewReferenceType(nsx_policyModel.SubClusterBindingType)
-	paramsTypeMap["enforcementpoint_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["site_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["subcluster_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["siteId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["enforcementpointId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["subclusterId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["enforcementpoint_id"] = bindings.NewStringType()
+	paramsTypeMap["site_id"] = bindings.NewStringType()
+	paramsTypeMap["sub_cluster"] = bindings.NewReferenceType(model.SubClusterBindingType)
+	paramsTypeMap["subcluster_id"] = bindings.NewStringType()
+	paramsTypeMap["siteId"] = bindings.NewStringType()
+	paramsTypeMap["enforcementpointId"] = bindings.NewStringType()
+	paramsTypeMap["subclusterId"] = bindings.NewStringType()
 	pathParams["enforcementpoint_id"] = "enforcementpointId"
 	pathParams["site_id"] = "siteId"
 	pathParams["subcluster_id"] = "subclusterId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

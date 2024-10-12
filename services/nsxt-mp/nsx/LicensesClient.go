@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package nsx
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type LicensesClient interface {
 
@@ -24,21 +25,17 @@ type LicensesClient interface {
 	//
 	// @param licenseParam (required)
 	// @return com.vmware.nsx.model.License
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Create(licenseParam nsxModel.License) (nsxModel.License, error)
+	Create(licenseParam model.License) (model.License, error)
 
 	// Remove a license identified by the license-key.
 	//  Deprecated. Use POST /licenses?action=delete API instead.
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param licenseKeyParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -49,126 +46,114 @@ type LicensesClient interface {
 	// This will delete the license key identified in the request body by \"license_key\" and its properties from the system. Attempting to delete the last license key will result in an error.
 	//
 	// @param licenseParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete0(licenseParam nsxModel.License) error
+	Delete0(licenseParam model.License) error
 
 	// Return the Enterprise License.
 	//  Deprecated. Use the GET /licenses API instead.
-	//
-	// Deprecated: This API element is deprecated.
 	// @return com.vmware.nsx.model.License
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get() (nsxModel.License, error)
+	Get() (model.License, error)
 
 	// Get license properties for license identified by the license-key.
 	//  Use GET /licenses API instead.
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param licenseKeyParam (required)
 	// @return com.vmware.nsx.model.License
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Getlicensebykey(licenseKeyParam string) (nsxModel.License, error)
+	Getlicensebykey(licenseKeyParam string) (model.License, error)
 
 	// Returns all licenses.
 	// @return com.vmware.nsx.model.LicensesListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List() (nsxModel.LicensesListResult, error)
+	List() (model.LicensesListResult, error)
 
 	// Assign an Updated Enterprise License Key.
 	//  Deprecated. Use the POST /licenses API instead
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param licenseParam (required)
 	// @return com.vmware.nsx.model.License
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(licenseParam nsxModel.License) (nsxModel.License, error)
+	Update(licenseParam model.License) (model.License, error)
 }
 
 type licensesClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewLicensesClient(connector vapiProtocolClient_.Connector) *licensesClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.licenses")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"create":          vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
-		"delete":          vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"delete_0":        vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete_0"),
-		"get":             vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"getlicensebykey": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "getlicensebykey"),
-		"list":            vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"update":          vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewLicensesClient(connector client.Connector) *licensesClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.licenses")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"create":          core.NewMethodIdentifier(interfaceIdentifier, "create"),
+		"delete":          core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"delete_0":        core.NewMethodIdentifier(interfaceIdentifier, "delete_0"),
+		"get":             core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"getlicensebykey": core.NewMethodIdentifier(interfaceIdentifier, "getlicensebykey"),
+		"list":            core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"update":          core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	lIface := licensesClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &lIface
 }
 
-func (lIface *licensesClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (lIface *licensesClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := lIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (lIface *licensesClient) Create(licenseParam nsxModel.License) (nsxModel.License, error) {
+func (lIface *licensesClient) Create(licenseParam model.License) (model.License, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
-	operationRestMetaData := licensesCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(licensesCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(licensesCreateInputType(), typeConverter)
 	sv.AddStructField("License", licenseParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.License
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.License
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := licensesCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx.licenses", "create", inputDataValue, executionContext)
-	var emptyOutput nsxModel.License
+	var emptyOutput model.License
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), LicensesCreateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), licensesCreateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.License), nil
+		return output.(model.License), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
@@ -177,176 +162,170 @@ func (lIface *licensesClient) Create(licenseParam nsxModel.License) (nsxModel.Li
 func (lIface *licensesClient) Delete(licenseKeyParam string) error {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
-	operationRestMetaData := licensesDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(licensesDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(licensesDeleteInputType(), typeConverter)
 	sv.AddStructField("LicenseKey", licenseKeyParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := licensesDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx.licenses", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (lIface *licensesClient) Delete0(licenseParam nsxModel.License) error {
+func (lIface *licensesClient) Delete0(licenseParam model.License) error {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
-	operationRestMetaData := licensesDelete0RestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(licensesDelete0InputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(licensesDelete0InputType(), typeConverter)
 	sv.AddStructField("License", licenseParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := licensesDelete0RestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx.licenses", "delete_0", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (lIface *licensesClient) Get() (nsxModel.License, error) {
+func (lIface *licensesClient) Get() (model.License, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
-	operationRestMetaData := licensesGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(licensesGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(licensesGetInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.License
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.License
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := licensesGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx.licenses", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.License
+	var emptyOutput model.License
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), LicensesGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), licensesGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.License), nil
+		return output.(model.License), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (lIface *licensesClient) Getlicensebykey(licenseKeyParam string) (nsxModel.License, error) {
+func (lIface *licensesClient) Getlicensebykey(licenseKeyParam string) (model.License, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
-	operationRestMetaData := licensesGetlicensebykeyRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(licensesGetlicensebykeyInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(licensesGetlicensebykeyInputType(), typeConverter)
 	sv.AddStructField("LicenseKey", licenseKeyParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.License
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.License
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := licensesGetlicensebykeyRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx.licenses", "getlicensebykey", inputDataValue, executionContext)
-	var emptyOutput nsxModel.License
+	var emptyOutput model.License
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), LicensesGetlicensebykeyOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), licensesGetlicensebykeyOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.License), nil
+		return output.(model.License), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (lIface *licensesClient) List() (nsxModel.LicensesListResult, error) {
+func (lIface *licensesClient) List() (model.LicensesListResult, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
-	operationRestMetaData := licensesListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(licensesListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(licensesListInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.LicensesListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.LicensesListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := licensesListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx.licenses", "list", inputDataValue, executionContext)
-	var emptyOutput nsxModel.LicensesListResult
+	var emptyOutput model.LicensesListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), LicensesListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), licensesListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.LicensesListResult), nil
+		return output.(model.LicensesListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (lIface *licensesClient) Update(licenseParam nsxModel.License) (nsxModel.License, error) {
+func (lIface *licensesClient) Update(licenseParam model.License) (model.License, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
-	operationRestMetaData := licensesUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(licensesUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(licensesUpdateInputType(), typeConverter)
 	sv.AddStructField("License", licenseParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.License
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.License
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := licensesUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx.licenses", "update", inputDataValue, executionContext)
-	var emptyOutput nsxModel.License
+	var emptyOutput model.License
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), LicensesUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), licensesUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.License), nil
+		return output.(model.License), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

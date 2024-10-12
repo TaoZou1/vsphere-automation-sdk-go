@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,15 +9,16 @@
 package infra
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type IdentityFirewallStoresClient interface {
 
@@ -25,7 +26,6 @@ type IdentityFirewallStoresClient interface {
 	//
 	// @param identityFirewallStoreIdParam firewall identity store ID (required)
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -38,14 +38,13 @@ type IdentityFirewallStoresClient interface {
 	// @param identityFirewallStoreIdParam identity firewall store ID (required)
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)
 	// @return com.vmware.nsx_policy.model.IdentityFirewallStore
-	// The return value will contain all the properties defined in nsx_policyModel.IdentityFirewallStore.
-	//
+	// The return value will contain all the properties defined in model.IdentityFirewallStore.
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(identityFirewallStoreIdParam string, enforcementPointPathParam *string) (*vapiData_.StructValue, error)
+	Get(identityFirewallStoreIdParam string, enforcementPointPathParam *string) (*data.StructValue, error)
 
 	// List all firewall identity stores
 	//
@@ -56,142 +55,133 @@ type IdentityFirewallStoresClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_policy.model.IdentityFirewallStoreListResults
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(cursorParam *string, enforcementPointPathParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.IdentityFirewallStoreListResults, error)
+	List(cursorParam *string, enforcementPointPathParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IdentityFirewallStoreListResults, error)
 
 	// If a firewall identity store with the firewall-identity-store-id is not already present, create a new firewall identity store. If it already exists, update the firewall identity store with specified attributes.
 	//
 	// @param identityFirewallStoreIdParam firewall identity store ID (required)
 	// @param identityFirewallStoreParam (required)
-	// The parameter must contain all the properties defined in nsx_policyModel.IdentityFirewallStore.
+	// The parameter must contain all the properties defined in model.IdentityFirewallStore.
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(identityFirewallStoreIdParam string, identityFirewallStoreParam *vapiData_.StructValue, enforcementPointPathParam *string) error
+	Patch(identityFirewallStoreIdParam string, identityFirewallStoreParam *data.StructValue, enforcementPointPathParam *string) error
 
 	// If a firewall identity store with the firewall-identity-store-id is not already present, create a new firewall identity store. If it already exists, replace the firewall identity store instance with the new object.
 	//
 	// @param identityFirewallStoreIdParam firewall identity store ID (required)
 	// @param identityFirewallStoreParam (required)
-	// The parameter must contain all the properties defined in nsx_policyModel.IdentityFirewallStore.
+	// The parameter must contain all the properties defined in model.IdentityFirewallStore.
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)
 	// @return com.vmware.nsx_policy.model.IdentityFirewallStore
-	// The return value will contain all the properties defined in nsx_policyModel.IdentityFirewallStore.
-	//
+	// The return value will contain all the properties defined in model.IdentityFirewallStore.
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(identityFirewallStoreIdParam string, identityFirewallStoreParam *vapiData_.StructValue, enforcementPointPathParam *string) (*vapiData_.StructValue, error)
+	Update(identityFirewallStoreIdParam string, identityFirewallStoreParam *data.StructValue, enforcementPointPathParam *string) (*data.StructValue, error)
 }
 
 type identityFirewallStoresClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewIdentityFirewallStoresClient(connector vapiProtocolClient_.Connector) *identityFirewallStoresClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.identity_firewall_stores")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"patch":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewIdentityFirewallStoresClient(connector client.Connector) *identityFirewallStoresClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.identity_firewall_stores")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	iIface := identityFirewallStoresClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &iIface
 }
 
-func (iIface *identityFirewallStoresClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (iIface *identityFirewallStoresClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := iIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
 func (iIface *identityFirewallStoresClient) Delete(identityFirewallStoreIdParam string, enforcementPointPathParam *string) error {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := identityFirewallStoresDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(identityFirewallStoresDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(identityFirewallStoresDeleteInputType(), typeConverter)
 	sv.AddStructField("IdentityFirewallStoreId", identityFirewallStoreIdParam)
 	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := identityFirewallStoresDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.identity_firewall_stores", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (iIface *identityFirewallStoresClient) Get(identityFirewallStoreIdParam string, enforcementPointPathParam *string) (*vapiData_.StructValue, error) {
+func (iIface *identityFirewallStoresClient) Get(identityFirewallStoreIdParam string, enforcementPointPathParam *string) (*data.StructValue, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := identityFirewallStoresGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(identityFirewallStoresGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(identityFirewallStoresGetInputType(), typeConverter)
 	sv.AddStructField("IdentityFirewallStoreId", identityFirewallStoreIdParam)
 	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput *vapiData_.StructValue
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput *data.StructValue
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := identityFirewallStoresGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.identity_firewall_stores", "get", inputDataValue, executionContext)
-	var emptyOutput *vapiData_.StructValue
+	var emptyOutput *data.StructValue
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), IdentityFirewallStoresGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), identityFirewallStoresGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(*vapiData_.StructValue), nil
+		return output.(*data.StructValue), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (iIface *identityFirewallStoresClient) List(cursorParam *string, enforcementPointPathParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.IdentityFirewallStoreListResults, error) {
+func (iIface *identityFirewallStoresClient) List(cursorParam *string, enforcementPointPathParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IdentityFirewallStoreListResults, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := identityFirewallStoresListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(identityFirewallStoresListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(identityFirewallStoresListInputType(), typeConverter)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)
@@ -200,84 +190,85 @@ func (iIface *identityFirewallStoresClient) List(cursorParam *string, enforcemen
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.IdentityFirewallStoreListResults
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IdentityFirewallStoreListResults
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := identityFirewallStoresListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.identity_firewall_stores", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.IdentityFirewallStoreListResults
+	var emptyOutput model.IdentityFirewallStoreListResults
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), IdentityFirewallStoresListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), identityFirewallStoresListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.IdentityFirewallStoreListResults), nil
+		return output.(model.IdentityFirewallStoreListResults), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (iIface *identityFirewallStoresClient) Patch(identityFirewallStoreIdParam string, identityFirewallStoreParam *vapiData_.StructValue, enforcementPointPathParam *string) error {
+func (iIface *identityFirewallStoresClient) Patch(identityFirewallStoreIdParam string, identityFirewallStoreParam *data.StructValue, enforcementPointPathParam *string) error {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := identityFirewallStoresPatchRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(identityFirewallStoresPatchInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(identityFirewallStoresPatchInputType(), typeConverter)
 	sv.AddStructField("IdentityFirewallStoreId", identityFirewallStoreIdParam)
 	sv.AddStructField("IdentityFirewallStore", identityFirewallStoreParam)
 	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := identityFirewallStoresPatchRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.identity_firewall_stores", "patch", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (iIface *identityFirewallStoresClient) Update(identityFirewallStoreIdParam string, identityFirewallStoreParam *vapiData_.StructValue, enforcementPointPathParam *string) (*vapiData_.StructValue, error) {
+func (iIface *identityFirewallStoresClient) Update(identityFirewallStoreIdParam string, identityFirewallStoreParam *data.StructValue, enforcementPointPathParam *string) (*data.StructValue, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := identityFirewallStoresUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(identityFirewallStoresUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(identityFirewallStoresUpdateInputType(), typeConverter)
 	sv.AddStructField("IdentityFirewallStoreId", identityFirewallStoreIdParam)
 	sv.AddStructField("IdentityFirewallStore", identityFirewallStoreParam)
 	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput *vapiData_.StructValue
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput *data.StructValue
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := identityFirewallStoresUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.identity_firewall_stores", "update", inputDataValue, executionContext)
-	var emptyOutput *vapiData_.StructValue
+	var emptyOutput *data.StructValue
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), IdentityFirewallStoresUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), identityFirewallStoresUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(*vapiData_.StructValue), nil
+		return output.(*data.StructValue), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

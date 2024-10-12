@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,10 +11,10 @@
 package bundles
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 	"reflect"
 )
 
@@ -27,42 +27,42 @@ const UploadStatus_GET_PRODUCT_ALB_CONTROLLER = "ALB_CONTROLLER"
 // Possible value for ``product`` of method UploadStatus#get.
 const UploadStatus_GET_PRODUCT_INTELLIGENCE = "INTELLIGENCE"
 
-func uploadStatusGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func uploadStatusGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["bundle_id"] = vapiBindings_.NewStringType()
-	fields["product"] = vapiBindings_.NewStringType()
+	fields["bundle_id"] = bindings.NewStringType()
+	fields["product"] = bindings.NewStringType()
 	fieldNameMap["bundle_id"] = "BundleId"
 	fieldNameMap["product"] = "Product"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func UploadStatusGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.BundleUploadStatusBindingType)
+func uploadStatusGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.BundleUploadStatusBindingType)
 }
 
-func uploadStatusGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func uploadStatusGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["bundle_id"] = vapiBindings_.NewStringType()
-	fields["product"] = vapiBindings_.NewStringType()
+	fields["bundle_id"] = bindings.NewStringType()
+	fields["product"] = bindings.NewStringType()
 	fieldNameMap["bundle_id"] = "BundleId"
 	fieldNameMap["product"] = "Product"
-	paramsTypeMap["product"] = vapiBindings_.NewStringType()
-	paramsTypeMap["bundle_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["bundleId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["bundle_id"] = bindings.NewStringType()
+	paramsTypeMap["product"] = bindings.NewStringType()
+	paramsTypeMap["bundleId"] = bindings.NewStringType()
 	pathParams["bundle_id"] = "bundleId"
 	queryParams["product"] = "product"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

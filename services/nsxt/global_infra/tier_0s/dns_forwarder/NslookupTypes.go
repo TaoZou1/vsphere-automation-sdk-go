@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,55 +11,55 @@
 package dns_forwarder
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func nslookupGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func nslookupGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["tier0_id"] = vapiBindings_.NewStringType()
-	fields["address"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["enforcement_point_path"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["tier0_id"] = bindings.NewStringType()
+	fields["address"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["tier0_id"] = "Tier0Id"
 	fieldNameMap["address"] = "Address"
 	fieldNameMap["enforcement_point_path"] = "EnforcementPointPath"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func NslookupGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.AggregatePolicyDnsAnswerBindingType)
+func nslookupGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.AggregatePolicyDnsAnswerBindingType)
 }
 
-func nslookupGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func nslookupGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["tier0_id"] = vapiBindings_.NewStringType()
-	fields["address"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["enforcement_point_path"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["tier0_id"] = bindings.NewStringType()
+	fields["address"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["tier0_id"] = "Tier0Id"
 	fieldNameMap["address"] = "Address"
 	fieldNameMap["enforcement_point_path"] = "EnforcementPointPath"
-	paramsTypeMap["tier0_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["address"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["enforcement_point_path"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["tier0Id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["tier0_id"] = bindings.NewStringType()
+	paramsTypeMap["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["address"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["tier0Id"] = bindings.NewStringType()
 	pathParams["tier0_id"] = "tier0Id"
 	queryParams["address"] = "address"
 	queryParams["enforcement_point_path"] = "enforcement_point_path"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

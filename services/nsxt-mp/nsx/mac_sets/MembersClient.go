@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,39 +9,34 @@
 package mac_sets
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type MembersClient interface {
 
 	//
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param macSetIdParam MAC Set Id (required)
 	// @param mACAddressElementParam (required)
 	// @return com.vmware.nsx.model.MACAddressElement
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Create(macSetIdParam string, mACAddressElementParam nsxModel.MACAddressElement) (nsxModel.MACAddressElement, error)
+	Create(macSetIdParam string, mACAddressElementParam model.MACAddressElement) (model.MACAddressElement, error)
 
 	//
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param macSetIdParam MACSet Id (required)
 	// @param macAddressParam MAC address to be removed (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -51,74 +46,70 @@ type MembersClient interface {
 
 	//
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param macSetIdParam MAC Set Id (required)
 	// @return com.vmware.nsx.model.MACAddressElementListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(macSetIdParam string) (nsxModel.MACAddressElementListResult, error)
+	List(macSetIdParam string) (model.MACAddressElementListResult, error)
 }
 
 type membersClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewMembersClient(connector vapiProtocolClient_.Connector) *membersClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.mac_sets.members")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"create": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
+func NewMembersClient(connector client.Connector) *membersClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.mac_sets.members")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"create": core.NewMethodIdentifier(interfaceIdentifier, "create"),
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	mIface := membersClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &mIface
 }
 
-func (mIface *membersClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (mIface *membersClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := mIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (mIface *membersClient) Create(macSetIdParam string, mACAddressElementParam nsxModel.MACAddressElement) (nsxModel.MACAddressElement, error) {
+func (mIface *membersClient) Create(macSetIdParam string, mACAddressElementParam model.MACAddressElement) (model.MACAddressElement, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	executionContext := mIface.connector.NewExecutionContext()
-	operationRestMetaData := membersCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(membersCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(membersCreateInputType(), typeConverter)
 	sv.AddStructField("MacSetId", macSetIdParam)
 	sv.AddStructField("MACAddressElement", mACAddressElementParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.MACAddressElement
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.MACAddressElement
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := membersCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := mIface.connector.GetApiProvider().Invoke("com.vmware.nsx.mac_sets.members", "create", inputDataValue, executionContext)
-	var emptyOutput nsxModel.MACAddressElement
+	var emptyOutput model.MACAddressElement
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), MembersCreateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), membersCreateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.MACAddressElement), nil
+		return output.(model.MACAddressElement), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), mIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
@@ -127,57 +118,55 @@ func (mIface *membersClient) Create(macSetIdParam string, mACAddressElementParam
 func (mIface *membersClient) Delete(macSetIdParam string, macAddressParam string) error {
 	typeConverter := mIface.connector.TypeConverter()
 	executionContext := mIface.connector.NewExecutionContext()
-	operationRestMetaData := membersDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(membersDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(membersDeleteInputType(), typeConverter)
 	sv.AddStructField("MacSetId", macSetIdParam)
 	sv.AddStructField("MacAddress", macAddressParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := membersDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := mIface.connector.GetApiProvider().Invoke("com.vmware.nsx.mac_sets.members", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), mIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (mIface *membersClient) List(macSetIdParam string) (nsxModel.MACAddressElementListResult, error) {
+func (mIface *membersClient) List(macSetIdParam string) (model.MACAddressElementListResult, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	executionContext := mIface.connector.NewExecutionContext()
-	operationRestMetaData := membersListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(membersListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(membersListInputType(), typeConverter)
 	sv.AddStructField("MacSetId", macSetIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.MACAddressElementListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.MACAddressElementListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := membersListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := mIface.connector.GetApiProvider().Invoke("com.vmware.nsx.mac_sets.members", "list", inputDataValue, executionContext)
-	var emptyOutput nsxModel.MACAddressElementListResult
+	var emptyOutput model.MACAddressElementListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), MembersListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), membersListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.MACAddressElementListResult), nil
+		return output.(model.MACAddressElementListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), mIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

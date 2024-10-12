@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package vpcs
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type IpAddressAllocationsClient interface {
 
@@ -26,7 +27,6 @@ type IpAddressAllocationsClient interface {
 	// @param projectIdParam (required)
 	// @param vpcIdParam (required)
 	// @param ipAddressAllocationIdParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -34,22 +34,21 @@ type IpAddressAllocationsClient interface {
 	// @throws NotFound  Not Found
 	Delete(orgIdParam string, projectIdParam string, vpcIdParam string, ipAddressAllocationIdParam string) error
 
-	// Get detail information on VPC ip allocation by giving ID.
+	// Get detail information on vpc subnet ip allocation by giving ID.
 	//
 	// @param orgIdParam (required)
 	// @param projectIdParam (required)
 	// @param vpcIdParam (required)
 	// @param ipAddressAllocationIdParam (required)
 	// @return com.vmware.nsx_policy.model.VpcIpAddressAllocation
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(orgIdParam string, projectIdParam string, vpcIdParam string, ipAddressAllocationIdParam string) (nsx_policyModel.VpcIpAddressAllocation, error)
+	Get(orgIdParam string, projectIdParam string, vpcIdParam string, ipAddressAllocationIdParam string) (model.VpcIpAddressAllocation, error)
 
-	// List all the ip allocations for a VPC.
+	// List all the ip allocations for a vpc subnet.
 	//
 	// @param orgIdParam (required)
 	// @param projectIdParam (required)
@@ -61,13 +60,12 @@ type IpAddressAllocationsClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_policy.model.VpcIpAddressAllocationListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(orgIdParam string, projectIdParam string, vpcIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.VpcIpAddressAllocationListResult, error)
+	List(orgIdParam string, projectIdParam string, vpcIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.VpcIpAddressAllocationListResult, error)
 
 	// Create a VPC ip allocation if it does not exist
 	//
@@ -76,13 +74,12 @@ type IpAddressAllocationsClient interface {
 	// @param vpcIdParam (required)
 	// @param ipAddressAllocationIdParam (required)
 	// @param vpcIpAddressAllocationParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(orgIdParam string, projectIdParam string, vpcIdParam string, ipAddressAllocationIdParam string, vpcIpAddressAllocationParam nsx_policyModel.VpcIpAddressAllocation) error
+	Patch(orgIdParam string, projectIdParam string, vpcIdParam string, ipAddressAllocationIdParam string, vpcIpAddressAllocationParam model.VpcIpAddressAllocation) error
 
 	// Create a VPC ip allocation if it does not exist
 	//
@@ -92,116 +89,109 @@ type IpAddressAllocationsClient interface {
 	// @param ipAddressAllocationIdParam (required)
 	// @param vpcIpAddressAllocationParam (required)
 	// @return com.vmware.nsx_policy.model.VpcIpAddressAllocation
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(orgIdParam string, projectIdParam string, vpcIdParam string, ipAddressAllocationIdParam string, vpcIpAddressAllocationParam nsx_policyModel.VpcIpAddressAllocation) (nsx_policyModel.VpcIpAddressAllocation, error)
+	Update(orgIdParam string, projectIdParam string, vpcIdParam string, ipAddressAllocationIdParam string, vpcIpAddressAllocationParam model.VpcIpAddressAllocation) (model.VpcIpAddressAllocation, error)
 }
 
 type ipAddressAllocationsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewIpAddressAllocationsClient(connector vapiProtocolClient_.Connector) *ipAddressAllocationsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.orgs.projects.vpcs.ip_address_allocations")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"patch":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewIpAddressAllocationsClient(connector client.Connector) *ipAddressAllocationsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.orgs.projects.vpcs.ip_address_allocations")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	iIface := ipAddressAllocationsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &iIface
 }
 
-func (iIface *ipAddressAllocationsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (iIface *ipAddressAllocationsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := iIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
 func (iIface *ipAddressAllocationsClient) Delete(orgIdParam string, projectIdParam string, vpcIdParam string, ipAddressAllocationIdParam string) error {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := ipAddressAllocationsDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ipAddressAllocationsDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ipAddressAllocationsDeleteInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("VpcId", vpcIdParam)
 	sv.AddStructField("IpAddressAllocationId", ipAddressAllocationIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ipAddressAllocationsDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.orgs.projects.vpcs.ip_address_allocations", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (iIface *ipAddressAllocationsClient) Get(orgIdParam string, projectIdParam string, vpcIdParam string, ipAddressAllocationIdParam string) (nsx_policyModel.VpcIpAddressAllocation, error) {
+func (iIface *ipAddressAllocationsClient) Get(orgIdParam string, projectIdParam string, vpcIdParam string, ipAddressAllocationIdParam string) (model.VpcIpAddressAllocation, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := ipAddressAllocationsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ipAddressAllocationsGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ipAddressAllocationsGetInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("VpcId", vpcIdParam)
 	sv.AddStructField("IpAddressAllocationId", ipAddressAllocationIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.VpcIpAddressAllocation
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.VpcIpAddressAllocation
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ipAddressAllocationsGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.orgs.projects.vpcs.ip_address_allocations", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.VpcIpAddressAllocation
+	var emptyOutput model.VpcIpAddressAllocation
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), IpAddressAllocationsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ipAddressAllocationsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.VpcIpAddressAllocation), nil
+		return output.(model.VpcIpAddressAllocation), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (iIface *ipAddressAllocationsClient) List(orgIdParam string, projectIdParam string, vpcIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.VpcIpAddressAllocationListResult, error) {
+func (iIface *ipAddressAllocationsClient) List(orgIdParam string, projectIdParam string, vpcIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.VpcIpAddressAllocationListResult, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := ipAddressAllocationsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ipAddressAllocationsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ipAddressAllocationsListInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("VpcId", vpcIdParam)
@@ -213,35 +203,34 @@ func (iIface *ipAddressAllocationsClient) List(orgIdParam string, projectIdParam
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.VpcIpAddressAllocationListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.VpcIpAddressAllocationListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ipAddressAllocationsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.orgs.projects.vpcs.ip_address_allocations", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.VpcIpAddressAllocationListResult
+	var emptyOutput model.VpcIpAddressAllocationListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), IpAddressAllocationsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ipAddressAllocationsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.VpcIpAddressAllocationListResult), nil
+		return output.(model.VpcIpAddressAllocationListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (iIface *ipAddressAllocationsClient) Patch(orgIdParam string, projectIdParam string, vpcIdParam string, ipAddressAllocationIdParam string, vpcIpAddressAllocationParam nsx_policyModel.VpcIpAddressAllocation) error {
+func (iIface *ipAddressAllocationsClient) Patch(orgIdParam string, projectIdParam string, vpcIdParam string, ipAddressAllocationIdParam string, vpcIpAddressAllocationParam model.VpcIpAddressAllocation) error {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := ipAddressAllocationsPatchRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ipAddressAllocationsPatchInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ipAddressAllocationsPatchInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("VpcId", vpcIdParam)
@@ -249,29 +238,28 @@ func (iIface *ipAddressAllocationsClient) Patch(orgIdParam string, projectIdPara
 	sv.AddStructField("VpcIpAddressAllocation", vpcIpAddressAllocationParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ipAddressAllocationsPatchRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.orgs.projects.vpcs.ip_address_allocations", "patch", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (iIface *ipAddressAllocationsClient) Update(orgIdParam string, projectIdParam string, vpcIdParam string, ipAddressAllocationIdParam string, vpcIpAddressAllocationParam nsx_policyModel.VpcIpAddressAllocation) (nsx_policyModel.VpcIpAddressAllocation, error) {
+func (iIface *ipAddressAllocationsClient) Update(orgIdParam string, projectIdParam string, vpcIdParam string, ipAddressAllocationIdParam string, vpcIpAddressAllocationParam model.VpcIpAddressAllocation) (model.VpcIpAddressAllocation, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := ipAddressAllocationsUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ipAddressAllocationsUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ipAddressAllocationsUpdateInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("VpcId", vpcIdParam)
@@ -279,22 +267,25 @@ func (iIface *ipAddressAllocationsClient) Update(orgIdParam string, projectIdPar
 	sv.AddStructField("VpcIpAddressAllocation", vpcIpAddressAllocationParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.VpcIpAddressAllocation
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.VpcIpAddressAllocation
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ipAddressAllocationsUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.orgs.projects.vpcs.ip_address_allocations", "update", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.VpcIpAddressAllocation
+	var emptyOutput model.VpcIpAddressAllocation
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), IpAddressAllocationsUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ipAddressAllocationsUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.VpcIpAddressAllocation), nil
+		return output.(model.VpcIpAddressAllocation), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

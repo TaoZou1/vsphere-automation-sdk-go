@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package node
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type CoreDumpsClient interface {
 
@@ -24,19 +25,17 @@ type CoreDumpsClient interface {
 	//
 	// @param fileNameParam Destination filename (required)
 	// @param copyToRemoteFilePropertiesParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws TimedOut  Gateway Timeout
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Copytoremotefile(fileNameParam string, copyToRemoteFilePropertiesParam nsxModel.CopyToRemoteFileProperties) error
+	Copytoremotefile(fileNameParam string, copyToRemoteFilePropertiesParam model.CopyToRemoteFileProperties) error
 
 	// Delete core dump file
 	//
 	// @param fileNameParam Name of the core dump file to delete (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -46,64 +45,62 @@ type CoreDumpsClient interface {
 
 	// List system core dumps
 	// @return com.vmware.nsx.model.FilePropertiesListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List() (nsxModel.FilePropertiesListResult, error)
+	List() (model.FilePropertiesListResult, error)
 }
 
 type coreDumpsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewCoreDumpsClient(connector vapiProtocolClient_.Connector) *coreDumpsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.node.core_dumps")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"copytoremotefile": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "copytoremotefile"),
-		"delete":           vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"list":             vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
+func NewCoreDumpsClient(connector client.Connector) *coreDumpsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.node.core_dumps")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"copytoremotefile": core.NewMethodIdentifier(interfaceIdentifier, "copytoremotefile"),
+		"delete":           core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"list":             core.NewMethodIdentifier(interfaceIdentifier, "list"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	cIface := coreDumpsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &cIface
 }
 
-func (cIface *coreDumpsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (cIface *coreDumpsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := cIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (cIface *coreDumpsClient) Copytoremotefile(fileNameParam string, copyToRemoteFilePropertiesParam nsxModel.CopyToRemoteFileProperties) error {
+func (cIface *coreDumpsClient) Copytoremotefile(fileNameParam string, copyToRemoteFilePropertiesParam model.CopyToRemoteFileProperties) error {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
-	operationRestMetaData := coreDumpsCopytoremotefileRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(coreDumpsCopytoremotefileInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(coreDumpsCopytoremotefileInputType(), typeConverter)
 	sv.AddStructField("FileName", fileNameParam)
 	sv.AddStructField("CopyToRemoteFileProperties", copyToRemoteFilePropertiesParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := coreDumpsCopytoremotefileRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := cIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.core_dumps", "copytoremotefile", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), cIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
@@ -112,55 +109,53 @@ func (cIface *coreDumpsClient) Copytoremotefile(fileNameParam string, copyToRemo
 func (cIface *coreDumpsClient) Delete(fileNameParam string) error {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
-	operationRestMetaData := coreDumpsDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(coreDumpsDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(coreDumpsDeleteInputType(), typeConverter)
 	sv.AddStructField("FileName", fileNameParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := coreDumpsDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := cIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.core_dumps", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), cIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (cIface *coreDumpsClient) List() (nsxModel.FilePropertiesListResult, error) {
+func (cIface *coreDumpsClient) List() (model.FilePropertiesListResult, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
-	operationRestMetaData := coreDumpsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(coreDumpsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(coreDumpsListInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.FilePropertiesListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.FilePropertiesListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := coreDumpsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := cIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.core_dumps", "list", inputDataValue, executionContext)
-	var emptyOutput nsxModel.FilePropertiesListResult
+	var emptyOutput model.FilePropertiesListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), CoreDumpsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), coreDumpsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.FilePropertiesListResult), nil
+		return output.(model.FilePropertiesListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), cIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

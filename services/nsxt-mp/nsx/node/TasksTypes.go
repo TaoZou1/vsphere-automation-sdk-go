@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,43 +11,43 @@
 package node
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 	"reflect"
 )
 
-func tasksCancelInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func tasksCancelInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["task_id"] = vapiBindings_.NewStringType()
+	fields["task_id"] = bindings.NewStringType()
 	fieldNameMap["task_id"] = "TaskId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func TasksCancelOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func tasksCancelOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func tasksCancelRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func tasksCancelRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["task_id"] = vapiBindings_.NewStringType()
+	fields["task_id"] = bindings.NewStringType()
 	fieldNameMap["task_id"] = "TaskId"
-	paramsTypeMap["task_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["taskId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["task_id"] = bindings.NewStringType()
+	paramsTypeMap["taskId"] = bindings.NewStringType()
 	pathParams["task_id"] = "taskId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -68,36 +68,36 @@ func tasksCancelRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func tasksDeleteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func tasksDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["task_id"] = vapiBindings_.NewStringType()
+	fields["task_id"] = bindings.NewStringType()
 	fieldNameMap["task_id"] = "TaskId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func TasksDeleteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func tasksDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func tasksDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func tasksDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["task_id"] = vapiBindings_.NewStringType()
+	fields["task_id"] = bindings.NewStringType()
 	fieldNameMap["task_id"] = "TaskId"
-	paramsTypeMap["task_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["taskId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["task_id"] = bindings.NewStringType()
+	paramsTypeMap["taskId"] = bindings.NewStringType()
 	pathParams["task_id"] = "taskId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -118,42 +118,42 @@ func tasksDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.concurrent_change": 409, "com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func tasksGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func tasksGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["task_id"] = vapiBindings_.NewStringType()
-	fields["suppress_redirect"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["task_id"] = bindings.NewStringType()
+	fields["suppress_redirect"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["task_id"] = "TaskId"
 	fieldNameMap["suppress_redirect"] = "SuppressRedirect"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func TasksGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.ApplianceManagementTaskPropertiesBindingType)
+func tasksGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.ApplianceManagementTaskPropertiesBindingType)
 }
 
-func tasksGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func tasksGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["task_id"] = vapiBindings_.NewStringType()
-	fields["suppress_redirect"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["task_id"] = bindings.NewStringType()
+	fields["suppress_redirect"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["task_id"] = "TaskId"
 	fieldNameMap["suppress_redirect"] = "SuppressRedirect"
-	paramsTypeMap["task_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["suppress_redirect"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["taskId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["suppress_redirect"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["task_id"] = bindings.NewStringType()
+	paramsTypeMap["taskId"] = bindings.NewStringType()
 	pathParams["task_id"] = "taskId"
 	queryParams["suppress_redirect"] = "suppress_redirect"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -174,56 +174,56 @@ func tasksGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func tasksListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func tasksListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["request_method"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["request_path"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["request_uri"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["status"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["user"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["request_method"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["request_path"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["request_uri"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["status"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["user"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["fields"] = "Fields"
 	fieldNameMap["request_method"] = "RequestMethod"
 	fieldNameMap["request_path"] = "RequestPath"
 	fieldNameMap["request_uri"] = "RequestUri"
 	fieldNameMap["status"] = "Status"
 	fieldNameMap["user"] = "User"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func TasksListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.ApplianceManagementTaskListResultBindingType)
+func tasksListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.ApplianceManagementTaskListResultBindingType)
 }
 
-func tasksListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func tasksListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["request_method"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["request_path"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["request_uri"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["status"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["user"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["request_method"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["request_path"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["request_uri"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["status"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["user"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["fields"] = "Fields"
 	fieldNameMap["request_method"] = "RequestMethod"
 	fieldNameMap["request_path"] = "RequestPath"
 	fieldNameMap["request_uri"] = "RequestUri"
 	fieldNameMap["status"] = "Status"
 	fieldNameMap["user"] = "User"
-	paramsTypeMap["request_path"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["request_method"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["user"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["request_uri"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["status"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["request_uri"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["request_path"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["user"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["status"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["request_method"] = bindings.NewOptionalType(bindings.NewStringType())
 	queryParams["request_path"] = "request_path"
 	queryParams["request_method"] = "request_method"
 	queryParams["fields"] = "fields"
@@ -232,7 +232,7 @@ func tasksListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	queryParams["status"] = "status"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

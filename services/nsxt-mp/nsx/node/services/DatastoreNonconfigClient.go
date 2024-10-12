@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,205 +9,198 @@
 package services
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type Datastore_nonconfigClient interface {
 
 	// Read the Corfu Nonconfig Server service properties
 	// @return com.vmware.nsx.model.NodeServiceProperties
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get() (nsxModel.NodeServiceProperties, error)
+	Get() (model.NodeServiceProperties, error)
 
 	// Restart, start or stop the Corfu Nonconfig Server service
 	// @return com.vmware.nsx.model.NodeServiceStatusProperties
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Restart() (nsxModel.NodeServiceStatusProperties, error)
+	Restart() (model.NodeServiceStatusProperties, error)
 
 	// Restart, start or stop the Corfu Nonconfig Server service
 	// @return com.vmware.nsx.model.NodeServiceStatusProperties
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Start() (nsxModel.NodeServiceStatusProperties, error)
+	Start() (model.NodeServiceStatusProperties, error)
 
 	// Restart, start or stop the Corfu Nonconfig Server service
 	// @return com.vmware.nsx.model.NodeServiceStatusProperties
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Stop() (nsxModel.NodeServiceStatusProperties, error)
+	Stop() (model.NodeServiceStatusProperties, error)
 }
 
 type datastore_nonconfigClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewDatastore_nonconfigClient(connector vapiProtocolClient_.Connector) *datastore_nonconfigClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.node.services.datastore_nonconfig")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"get":     vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"restart": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "restart"),
-		"start":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "start"),
-		"stop":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "stop"),
+func NewDatastore_nonconfigClient(connector client.Connector) *datastore_nonconfigClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.node.services.datastore_nonconfig")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"get":     core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"restart": core.NewMethodIdentifier(interfaceIdentifier, "restart"),
+		"start":   core.NewMethodIdentifier(interfaceIdentifier, "start"),
+		"stop":    core.NewMethodIdentifier(interfaceIdentifier, "stop"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	dIface := datastore_nonconfigClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &dIface
 }
 
-func (dIface *datastore_nonconfigClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (dIface *datastore_nonconfigClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := dIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (dIface *datastore_nonconfigClient) Get() (nsxModel.NodeServiceProperties, error) {
+func (dIface *datastore_nonconfigClient) Get() (model.NodeServiceProperties, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(datastoreNonconfigGetInputType(), typeConverter)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput model.NodeServiceProperties
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+	}
 	operationRestMetaData := datastoreNonconfigGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(datastoreNonconfigGetInputType(), typeConverter)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput nsxModel.NodeServiceProperties
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
-	}
-
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := dIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.datastore_nonconfig", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.NodeServiceProperties
+	var emptyOutput model.NodeServiceProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), DatastoreNonconfigGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), datastoreNonconfigGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.NodeServiceProperties), nil
+		return output.(model.NodeServiceProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), dIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (dIface *datastore_nonconfigClient) Restart() (nsxModel.NodeServiceStatusProperties, error) {
+func (dIface *datastore_nonconfigClient) Restart() (model.NodeServiceStatusProperties, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(datastoreNonconfigRestartInputType(), typeConverter)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput model.NodeServiceStatusProperties
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+	}
 	operationRestMetaData := datastoreNonconfigRestartRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(datastoreNonconfigRestartInputType(), typeConverter)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput nsxModel.NodeServiceStatusProperties
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
-	}
-
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := dIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.datastore_nonconfig", "restart", inputDataValue, executionContext)
-	var emptyOutput nsxModel.NodeServiceStatusProperties
+	var emptyOutput model.NodeServiceStatusProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), DatastoreNonconfigRestartOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), datastoreNonconfigRestartOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.NodeServiceStatusProperties), nil
+		return output.(model.NodeServiceStatusProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), dIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (dIface *datastore_nonconfigClient) Start() (nsxModel.NodeServiceStatusProperties, error) {
+func (dIface *datastore_nonconfigClient) Start() (model.NodeServiceStatusProperties, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(datastoreNonconfigStartInputType(), typeConverter)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput model.NodeServiceStatusProperties
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+	}
 	operationRestMetaData := datastoreNonconfigStartRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(datastoreNonconfigStartInputType(), typeConverter)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput nsxModel.NodeServiceStatusProperties
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
-	}
-
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := dIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.datastore_nonconfig", "start", inputDataValue, executionContext)
-	var emptyOutput nsxModel.NodeServiceStatusProperties
+	var emptyOutput model.NodeServiceStatusProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), DatastoreNonconfigStartOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), datastoreNonconfigStartOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.NodeServiceStatusProperties), nil
+		return output.(model.NodeServiceStatusProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), dIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (dIface *datastore_nonconfigClient) Stop() (nsxModel.NodeServiceStatusProperties, error) {
+func (dIface *datastore_nonconfigClient) Stop() (model.NodeServiceStatusProperties, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
-	operationRestMetaData := datastoreNonconfigStopRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(datastoreNonconfigStopInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(datastoreNonconfigStopInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.NodeServiceStatusProperties
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.NodeServiceStatusProperties
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := datastoreNonconfigStopRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := dIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.datastore_nonconfig", "stop", inputDataValue, executionContext)
-	var emptyOutput nsxModel.NodeServiceStatusProperties
+	var emptyOutput model.NodeServiceStatusProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), DatastoreNonconfigStopOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), datastoreNonconfigStopOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.NodeServiceStatusProperties), nil
+		return output.(model.NodeServiceStatusProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), dIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

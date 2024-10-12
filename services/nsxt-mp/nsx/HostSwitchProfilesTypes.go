@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,10 +11,10 @@
 package nsx
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 	"reflect"
 )
 
@@ -42,43 +42,40 @@ const HostSwitchProfiles_LIST_HOSTSWITCH_PROFILE_TYPE_EXTRACONFIGHOSTSWITCHPROFI
 // Possible value for ``hostswitchProfileType`` of method HostSwitchProfiles#list.
 const HostSwitchProfiles_LIST_HOSTSWITCH_PROFILE_TYPE_VTEPHAHOSTSWITCHPROFILE = "VtepHAHostSwitchProfile"
 
-// Possible value for ``hostswitchProfileType`` of method HostSwitchProfiles#list.
-const HostSwitchProfiles_LIST_HOSTSWITCH_PROFILE_TYPE_HIGHPERFORMANCEHOSTSWITCHPROFILE = "HighPerformanceHostSwitchProfile"
-
 // Possible value for ``nodeType`` of method HostSwitchProfiles#list.
 const HostSwitchProfiles_LIST_NODE_TYPE_EDGENODE = "EdgeNode"
 
 // Possible value for ``nodeType`` of method HostSwitchProfiles#list.
 const HostSwitchProfiles_LIST_NODE_TYPE_PUBLICCLOUDGATEWAYNODE = "PublicCloudGatewayNode"
 
-func hostSwitchProfilesCreateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func hostSwitchProfilesCreateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["base_host_switch_profile"] = vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsxModel.BaseHostSwitchProfileBindingType)})
+	fields["base_host_switch_profile"] = bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.BaseHostSwitchProfileBindingType)}, bindings.REST)
 	fieldNameMap["base_host_switch_profile"] = "BaseHostSwitchProfile"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func HostSwitchProfilesCreateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsxModel.BaseHostSwitchProfileBindingType)})
+func hostSwitchProfilesCreateOutputType() bindings.BindingType {
+	return bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.BaseHostSwitchProfileBindingType)}, bindings.REST)
 }
 
-func hostSwitchProfilesCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func hostSwitchProfilesCreateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["base_host_switch_profile"] = vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsxModel.BaseHostSwitchProfileBindingType)})
+	fields["base_host_switch_profile"] = bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.BaseHostSwitchProfileBindingType)}, bindings.REST)
 	fieldNameMap["base_host_switch_profile"] = "BaseHostSwitchProfile"
-	paramsTypeMap["base_host_switch_profile"] = vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsxModel.BaseHostSwitchProfileBindingType)})
+	paramsTypeMap["base_host_switch_profile"] = bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.BaseHostSwitchProfileBindingType)}, bindings.REST)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -99,36 +96,36 @@ func hostSwitchProfilesCreateRestMetadata() vapiProtocol_.OperationRestMetadata 
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func hostSwitchProfilesDeleteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func hostSwitchProfilesDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["host_switch_profile_id"] = vapiBindings_.NewStringType()
+	fields["host_switch_profile_id"] = bindings.NewStringType()
 	fieldNameMap["host_switch_profile_id"] = "HostSwitchProfileId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func HostSwitchProfilesDeleteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func hostSwitchProfilesDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func hostSwitchProfilesDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func hostSwitchProfilesDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["host_switch_profile_id"] = vapiBindings_.NewStringType()
+	fields["host_switch_profile_id"] = bindings.NewStringType()
 	fieldNameMap["host_switch_profile_id"] = "HostSwitchProfileId"
-	paramsTypeMap["host_switch_profile_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["hostSwitchProfileId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["host_switch_profile_id"] = bindings.NewStringType()
+	paramsTypeMap["hostSwitchProfileId"] = bindings.NewStringType()
 	pathParams["host_switch_profile_id"] = "hostSwitchProfileId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -149,36 +146,36 @@ func hostSwitchProfilesDeleteRestMetadata() vapiProtocol_.OperationRestMetadata 
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func hostSwitchProfilesGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func hostSwitchProfilesGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["host_switch_profile_id"] = vapiBindings_.NewStringType()
+	fields["host_switch_profile_id"] = bindings.NewStringType()
 	fieldNameMap["host_switch_profile_id"] = "HostSwitchProfileId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func HostSwitchProfilesGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsxModel.BaseHostSwitchProfileBindingType)})
+func hostSwitchProfilesGetOutputType() bindings.BindingType {
+	return bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.BaseHostSwitchProfileBindingType)}, bindings.REST)
 }
 
-func hostSwitchProfilesGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func hostSwitchProfilesGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["host_switch_profile_id"] = vapiBindings_.NewStringType()
+	fields["host_switch_profile_id"] = bindings.NewStringType()
 	fieldNameMap["host_switch_profile_id"] = "HostSwitchProfileId"
-	paramsTypeMap["host_switch_profile_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["hostSwitchProfileId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["host_switch_profile_id"] = bindings.NewStringType()
+	paramsTypeMap["hostSwitchProfileId"] = bindings.NewStringType()
 	pathParams["host_switch_profile_id"] = "hostSwitchProfileId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -199,19 +196,19 @@ func hostSwitchProfilesGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func hostSwitchProfilesListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func hostSwitchProfilesListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["deployment_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["hostswitch_profile_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["include_system_owned"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["node_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["uplink_teaming_policy_name"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["deployment_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["hostswitch_profile_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["include_system_owned"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["node_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["uplink_teaming_policy_name"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["deployment_type"] = "DeploymentType"
 	fieldNameMap["hostswitch_profile_type"] = "HostswitchProfileType"
@@ -222,33 +219,33 @@ func hostSwitchProfilesListInputType() vapiBindings_.StructType {
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
 	fieldNameMap["uplink_teaming_policy_name"] = "UplinkTeamingPolicyName"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func HostSwitchProfilesListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.HostSwitchProfilesListResultBindingType)
+func hostSwitchProfilesListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.HostSwitchProfilesListResultBindingType)
 }
 
-func hostSwitchProfilesListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func hostSwitchProfilesListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["deployment_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["hostswitch_profile_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["include_system_owned"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["node_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["uplink_teaming_policy_name"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["deployment_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["hostswitch_profile_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["include_system_owned"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["node_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["uplink_teaming_policy_name"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["deployment_type"] = "DeploymentType"
 	fieldNameMap["hostswitch_profile_type"] = "HostswitchProfileType"
@@ -259,16 +256,16 @@ func hostSwitchProfilesListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
 	fieldNameMap["uplink_teaming_policy_name"] = "UplinkTeamingPolicyName"
-	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["hostswitch_profile_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["uplink_teaming_policy_name"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["deployment_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["include_system_owned"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["node_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["node_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["hostswitch_profile_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["deployment_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["uplink_teaming_policy_name"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["include_system_owned"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	queryParams["cursor"] = "cursor"
 	queryParams["hostswitch_profile_type"] = "hostswitch_profile_type"
 	queryParams["uplink_teaming_policy_name"] = "uplink_teaming_policy_name"
@@ -281,7 +278,7 @@ func hostSwitchProfilesListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -302,41 +299,41 @@ func hostSwitchProfilesListRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func hostSwitchProfilesUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func hostSwitchProfilesUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["host_switch_profile_id"] = vapiBindings_.NewStringType()
-	fields["base_host_switch_profile"] = vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsxModel.BaseHostSwitchProfileBindingType)})
+	fields["host_switch_profile_id"] = bindings.NewStringType()
+	fields["base_host_switch_profile"] = bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.BaseHostSwitchProfileBindingType)}, bindings.REST)
 	fieldNameMap["host_switch_profile_id"] = "HostSwitchProfileId"
 	fieldNameMap["base_host_switch_profile"] = "BaseHostSwitchProfile"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func HostSwitchProfilesUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsxModel.BaseHostSwitchProfileBindingType)})
+func hostSwitchProfilesUpdateOutputType() bindings.BindingType {
+	return bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.BaseHostSwitchProfileBindingType)}, bindings.REST)
 }
 
-func hostSwitchProfilesUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func hostSwitchProfilesUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["host_switch_profile_id"] = vapiBindings_.NewStringType()
-	fields["base_host_switch_profile"] = vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsxModel.BaseHostSwitchProfileBindingType)})
+	fields["host_switch_profile_id"] = bindings.NewStringType()
+	fields["base_host_switch_profile"] = bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.BaseHostSwitchProfileBindingType)}, bindings.REST)
 	fieldNameMap["host_switch_profile_id"] = "HostSwitchProfileId"
 	fieldNameMap["base_host_switch_profile"] = "BaseHostSwitchProfile"
-	paramsTypeMap["host_switch_profile_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["base_host_switch_profile"] = vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsxModel.BaseHostSwitchProfileBindingType)})
-	paramsTypeMap["hostSwitchProfileId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["host_switch_profile_id"] = bindings.NewStringType()
+	paramsTypeMap["base_host_switch_profile"] = bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.BaseHostSwitchProfileBindingType)}, bindings.REST)
+	paramsTypeMap["hostSwitchProfileId"] = bindings.NewStringType()
 	pathParams["host_switch_profile_id"] = "hostSwitchProfileId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

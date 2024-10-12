@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,10 +11,10 @@
 package controller_nodes
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
@@ -24,34 +24,34 @@ const Deployments_LIST_STATE_DEPLOYED = "DEPLOYED"
 // Possible value for ``state`` of method Deployments#list.
 const Deployments_LIST_STATE_PENDING = "PENDING"
 
-func deploymentsCreateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func deploymentsCreateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["add_ALB_controller_node_VM_info"] = vapiBindings_.NewReferenceType(nsx_policyModel.AddALBControllerNodeVMInfoBindingType)
+	fields["add_ALB_controller_node_VM_info"] = bindings.NewReferenceType(model.AddALBControllerNodeVMInfoBindingType)
 	fieldNameMap["add_ALB_controller_node_VM_info"] = "AddALBControllerNodeVMInfo"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func DeploymentsCreateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.ALBControllerNodeVMDeploymentRequestListBindingType)
+func deploymentsCreateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.ALBControllerNodeVMDeploymentRequestListBindingType)
 }
 
-func deploymentsCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func deploymentsCreateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["add_ALB_controller_node_VM_info"] = vapiBindings_.NewReferenceType(nsx_policyModel.AddALBControllerNodeVMInfoBindingType)
+	fields["add_ALB_controller_node_VM_info"] = bindings.NewReferenceType(model.AddALBControllerNodeVMInfoBindingType)
 	fieldNameMap["add_ALB_controller_node_VM_info"] = "AddALBControllerNodeVMInfo"
-	paramsTypeMap["add_ALB_controller_node_VM_info"] = vapiBindings_.NewReferenceType(nsx_policyModel.AddALBControllerNodeVMInfoBindingType)
+	paramsTypeMap["add_ALB_controller_node_VM_info"] = bindings.NewReferenceType(model.AddALBControllerNodeVMInfoBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -72,48 +72,48 @@ func deploymentsCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func deploymentsDeleteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func deploymentsDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["node_id"] = vapiBindings_.NewStringType()
-	fields["force_delete"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["inaccessible"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["node_id"] = bindings.NewStringType()
+	fields["force_delete"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["inaccessible"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["node_id"] = "NodeId"
 	fieldNameMap["force_delete"] = "ForceDelete"
 	fieldNameMap["inaccessible"] = "Inaccessible"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func DeploymentsDeleteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func deploymentsDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func deploymentsDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func deploymentsDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["node_id"] = vapiBindings_.NewStringType()
-	fields["force_delete"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["inaccessible"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["node_id"] = bindings.NewStringType()
+	fields["force_delete"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["inaccessible"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["node_id"] = "NodeId"
 	fieldNameMap["force_delete"] = "ForceDelete"
 	fieldNameMap["inaccessible"] = "Inaccessible"
-	paramsTypeMap["inaccessible"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["force_delete"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["node_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["nodeId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["inaccessible"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["force_delete"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["node_id"] = bindings.NewStringType()
+	paramsTypeMap["nodeId"] = bindings.NewStringType()
 	pathParams["node_id"] = "nodeId"
 	queryParams["inaccessible"] = "inaccessible"
 	queryParams["force_delete"] = "force_delete"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -134,36 +134,36 @@ func deploymentsDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func deploymentsGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func deploymentsGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["node_id"] = vapiBindings_.NewStringType()
+	fields["node_id"] = bindings.NewStringType()
 	fieldNameMap["node_id"] = "NodeId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func DeploymentsGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.ALBControllerNodeVMDeploymentRequestBindingType)
+func deploymentsGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.ALBControllerNodeVMDeploymentRequestBindingType)
 }
 
-func deploymentsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func deploymentsGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["node_id"] = vapiBindings_.NewStringType()
+	fields["node_id"] = bindings.NewStringType()
 	fieldNameMap["node_id"] = "NodeId"
-	paramsTypeMap["node_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["nodeId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["node_id"] = bindings.NewStringType()
+	paramsTypeMap["nodeId"] = bindings.NewStringType()
 	pathParams["node_id"] = "nodeId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -184,41 +184,35 @@ func deploymentsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func deploymentsListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func deploymentsListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["clustering_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["state"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fieldNameMap["clustering_id"] = "ClusteringId"
+	fields["state"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["state"] = "State"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func DeploymentsListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.ALBControllerNodeVMDeploymentRequestListBindingType)
+func deploymentsListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.ALBControllerNodeVMDeploymentRequestListBindingType)
 }
 
-func deploymentsListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func deploymentsListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["clustering_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["state"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fieldNameMap["clustering_id"] = "ClusteringId"
+	fields["state"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["state"] = "State"
-	paramsTypeMap["clustering_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["state"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	queryParams["clustering_id"] = "clustering_id"
+	paramsTypeMap["state"] = bindings.NewOptionalType(bindings.NewStringType())
 	queryParams["state"] = "state"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -239,47 +233,47 @@ func deploymentsListRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func deploymentsUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func deploymentsUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["node_id"] = vapiBindings_.NewStringType()
-	fields["a_LB_controller_node_VM_deployment_request"] = vapiBindings_.NewReferenceType(nsx_policyModel.ALBControllerNodeVMDeploymentRequestBindingType)
-	fields["running_config"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["node_id"] = bindings.NewStringType()
+	fields["a_LB_controller_node_VM_deployment_request"] = bindings.NewReferenceType(model.ALBControllerNodeVMDeploymentRequestBindingType)
+	fields["running_config"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["node_id"] = "NodeId"
 	fieldNameMap["a_LB_controller_node_VM_deployment_request"] = "ALBControllerNodeVMDeploymentRequest"
 	fieldNameMap["running_config"] = "RunningConfig"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func DeploymentsUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.ALBControllerNodeVMDeploymentRequestBindingType)
+func deploymentsUpdateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.ALBControllerNodeVMDeploymentRequestBindingType)
 }
 
-func deploymentsUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func deploymentsUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["node_id"] = vapiBindings_.NewStringType()
-	fields["a_LB_controller_node_VM_deployment_request"] = vapiBindings_.NewReferenceType(nsx_policyModel.ALBControllerNodeVMDeploymentRequestBindingType)
-	fields["running_config"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["node_id"] = bindings.NewStringType()
+	fields["a_LB_controller_node_VM_deployment_request"] = bindings.NewReferenceType(model.ALBControllerNodeVMDeploymentRequestBindingType)
+	fields["running_config"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["node_id"] = "NodeId"
 	fieldNameMap["a_LB_controller_node_VM_deployment_request"] = "ALBControllerNodeVMDeploymentRequest"
 	fieldNameMap["running_config"] = "RunningConfig"
-	paramsTypeMap["a_LB_controller_node_VM_deployment_request"] = vapiBindings_.NewReferenceType(nsx_policyModel.ALBControllerNodeVMDeploymentRequestBindingType)
-	paramsTypeMap["running_config"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["node_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["nodeId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["a_LB_controller_node_VM_deployment_request"] = bindings.NewReferenceType(model.ALBControllerNodeVMDeploymentRequestBindingType)
+	paramsTypeMap["running_config"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["node_id"] = bindings.NewStringType()
+	paramsTypeMap["nodeId"] = bindings.NewStringType()
 	pathParams["node_id"] = "nodeId"
 	queryParams["running_config"] = "running_config"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

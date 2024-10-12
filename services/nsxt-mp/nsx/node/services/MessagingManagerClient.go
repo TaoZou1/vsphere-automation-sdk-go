@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,205 +9,198 @@
 package services
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type MessagingManagerClient interface {
 
 	// Read NSX Messaging Manager service properties
 	// @return com.vmware.nsx.model.NodeServiceProperties
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get() (nsxModel.NodeServiceProperties, error)
+	Get() (model.NodeServiceProperties, error)
 
 	// Restart, start or stop the NSX Messaging Manager service
 	// @return com.vmware.nsx.model.NodeServiceStatusProperties
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Restart() (nsxModel.NodeServiceStatusProperties, error)
+	Restart() (model.NodeServiceStatusProperties, error)
 
 	// Restart, start or stop the NSX Messaging Manager service
 	// @return com.vmware.nsx.model.NodeServiceStatusProperties
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Start() (nsxModel.NodeServiceStatusProperties, error)
+	Start() (model.NodeServiceStatusProperties, error)
 
 	// Restart, start or stop the NSX Messaging Manager service
 	// @return com.vmware.nsx.model.NodeServiceStatusProperties
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Stop() (nsxModel.NodeServiceStatusProperties, error)
+	Stop() (model.NodeServiceStatusProperties, error)
 }
 
 type messagingManagerClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewMessagingManagerClient(connector vapiProtocolClient_.Connector) *messagingManagerClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.node.services.messaging_manager")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"get":     vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"restart": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "restart"),
-		"start":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "start"),
-		"stop":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "stop"),
+func NewMessagingManagerClient(connector client.Connector) *messagingManagerClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.node.services.messaging_manager")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"get":     core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"restart": core.NewMethodIdentifier(interfaceIdentifier, "restart"),
+		"start":   core.NewMethodIdentifier(interfaceIdentifier, "start"),
+		"stop":    core.NewMethodIdentifier(interfaceIdentifier, "stop"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	mIface := messagingManagerClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &mIface
 }
 
-func (mIface *messagingManagerClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (mIface *messagingManagerClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := mIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (mIface *messagingManagerClient) Get() (nsxModel.NodeServiceProperties, error) {
+func (mIface *messagingManagerClient) Get() (model.NodeServiceProperties, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	executionContext := mIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(messagingManagerGetInputType(), typeConverter)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput model.NodeServiceProperties
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+	}
 	operationRestMetaData := messagingManagerGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(messagingManagerGetInputType(), typeConverter)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput nsxModel.NodeServiceProperties
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
-	}
-
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := mIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.messaging_manager", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.NodeServiceProperties
+	var emptyOutput model.NodeServiceProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), MessagingManagerGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), messagingManagerGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.NodeServiceProperties), nil
+		return output.(model.NodeServiceProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), mIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (mIface *messagingManagerClient) Restart() (nsxModel.NodeServiceStatusProperties, error) {
+func (mIface *messagingManagerClient) Restart() (model.NodeServiceStatusProperties, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	executionContext := mIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(messagingManagerRestartInputType(), typeConverter)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput model.NodeServiceStatusProperties
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+	}
 	operationRestMetaData := messagingManagerRestartRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(messagingManagerRestartInputType(), typeConverter)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput nsxModel.NodeServiceStatusProperties
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
-	}
-
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := mIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.messaging_manager", "restart", inputDataValue, executionContext)
-	var emptyOutput nsxModel.NodeServiceStatusProperties
+	var emptyOutput model.NodeServiceStatusProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), MessagingManagerRestartOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), messagingManagerRestartOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.NodeServiceStatusProperties), nil
+		return output.(model.NodeServiceStatusProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), mIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (mIface *messagingManagerClient) Start() (nsxModel.NodeServiceStatusProperties, error) {
+func (mIface *messagingManagerClient) Start() (model.NodeServiceStatusProperties, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	executionContext := mIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(messagingManagerStartInputType(), typeConverter)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput model.NodeServiceStatusProperties
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+	}
 	operationRestMetaData := messagingManagerStartRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(messagingManagerStartInputType(), typeConverter)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput nsxModel.NodeServiceStatusProperties
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
-	}
-
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := mIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.messaging_manager", "start", inputDataValue, executionContext)
-	var emptyOutput nsxModel.NodeServiceStatusProperties
+	var emptyOutput model.NodeServiceStatusProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), MessagingManagerStartOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), messagingManagerStartOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.NodeServiceStatusProperties), nil
+		return output.(model.NodeServiceStatusProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), mIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (mIface *messagingManagerClient) Stop() (nsxModel.NodeServiceStatusProperties, error) {
+func (mIface *messagingManagerClient) Stop() (model.NodeServiceStatusProperties, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	executionContext := mIface.connector.NewExecutionContext()
-	operationRestMetaData := messagingManagerStopRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(messagingManagerStopInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(messagingManagerStopInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.NodeServiceStatusProperties
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.NodeServiceStatusProperties
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := messagingManagerStopRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := mIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.messaging_manager", "stop", inputDataValue, executionContext)
-	var emptyOutput nsxModel.NodeServiceStatusProperties
+	var emptyOutput model.NodeServiceStatusProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), MessagingManagerStopOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), messagingManagerStopOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.NodeServiceStatusProperties), nil
+		return output.(model.NodeServiceStatusProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), mIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

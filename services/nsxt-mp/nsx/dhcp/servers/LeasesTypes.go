@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,10 +11,10 @@
 package servers
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 	"reflect"
 )
 
@@ -24,48 +24,48 @@ const Leases_LIST_SOURCE_REALTIME = "realtime"
 // Possible value for ``source`` of method Leases#list.
 const Leases_LIST_SOURCE_CACHED = "cached"
 
-func leasesDeleteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func leasesDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["server_id"] = vapiBindings_.NewStringType()
-	fields["ip"] = vapiBindings_.NewStringType()
-	fields["mac"] = vapiBindings_.NewStringType()
+	fields["server_id"] = bindings.NewStringType()
+	fields["ip"] = bindings.NewStringType()
+	fields["mac"] = bindings.NewStringType()
 	fieldNameMap["server_id"] = "ServerId"
 	fieldNameMap["ip"] = "Ip"
 	fieldNameMap["mac"] = "Mac"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func LeasesDeleteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func leasesDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func leasesDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func leasesDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["server_id"] = vapiBindings_.NewStringType()
-	fields["ip"] = vapiBindings_.NewStringType()
-	fields["mac"] = vapiBindings_.NewStringType()
+	fields["server_id"] = bindings.NewStringType()
+	fields["ip"] = bindings.NewStringType()
+	fields["mac"] = bindings.NewStringType()
 	fieldNameMap["server_id"] = "ServerId"
 	fieldNameMap["ip"] = "Ip"
 	fieldNameMap["mac"] = "Mac"
-	paramsTypeMap["ip"] = vapiBindings_.NewStringType()
-	paramsTypeMap["server_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["mac"] = vapiBindings_.NewStringType()
-	paramsTypeMap["serverId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["mac"] = bindings.NewStringType()
+	paramsTypeMap["server_id"] = bindings.NewStringType()
+	paramsTypeMap["ip"] = bindings.NewStringType()
+	paramsTypeMap["serverId"] = bindings.NewStringType()
 	pathParams["server_id"] = "serverId"
 	queryParams["ip"] = "ip"
 	queryParams["mac"] = "mac"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -86,54 +86,54 @@ func leasesDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func leasesListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func leasesListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["server_id"] = vapiBindings_.NewStringType()
-	fields["address"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["pool_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["source"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["server_id"] = bindings.NewStringType()
+	fields["address"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["pool_id"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["source"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["server_id"] = "ServerId"
 	fieldNameMap["address"] = "Address"
 	fieldNameMap["pool_id"] = "PoolId"
 	fieldNameMap["source"] = "Source"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func LeasesListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.DhcpLeasesBindingType)
+func leasesListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.DhcpLeasesBindingType)
 }
 
-func leasesListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func leasesListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["server_id"] = vapiBindings_.NewStringType()
-	fields["address"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["pool_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["source"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["server_id"] = bindings.NewStringType()
+	fields["address"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["pool_id"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["source"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["server_id"] = "ServerId"
 	fieldNameMap["address"] = "Address"
 	fieldNameMap["pool_id"] = "PoolId"
 	fieldNameMap["source"] = "Source"
-	paramsTypeMap["address"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["source"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["server_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["pool_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["serverId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["source"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["pool_id"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["server_id"] = bindings.NewStringType()
+	paramsTypeMap["address"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["serverId"] = bindings.NewStringType()
 	pathParams["server_id"] = "serverId"
 	queryParams["address"] = "address"
 	queryParams["source"] = "source"
 	queryParams["pool_id"] = "pool_id"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

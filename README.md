@@ -26,18 +26,6 @@ Please refer to the notes in each sample for detailed compatibility information.
 
 ## VMware Cloud on AWS Support:
 
-## Release Guide for Developers
-This section demonstrates how to publish release tags from Gitlab to GitHub. The process is automated using CI pipeline. We need to run the pipeline manually from Gitlab on particular commit tag which we need to release to GitHub.
-* Validate the environment variables(variable names) before triggering the pipeline.
-* We have 3 jobs for the release process.
-  * Prepare
-  * Build
-  * Pre-publish
-  * Publish
-* We can check the progress of these jobs in Gitlab CI pipeline.
-* As extra layer of precaution, publish job needs to be triggered manually in Gitlab once pre-publish job gets completed.
-* Note: runtime and lib needs to be released first(if there is a pending release)
-
 ## Quick Start Guide
 This document will walk you through getting up and running with the GOLang SDK Samples. Prior to running the samples you will need to setup a vCenter test environment, the following steps will take you through this process.
 Before you can run the SDK samples we'll need to walk you through the following steps:

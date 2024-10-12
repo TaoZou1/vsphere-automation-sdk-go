@@ -11,7 +11,7 @@
 package system_name
 
 import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/appliance/recovery/backup"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vsphere/appliance/recovery/backup"
 )
 
 // The ``Archive`` interface provides methods to get the backup information. This interface was added in vSphere API 6.7.

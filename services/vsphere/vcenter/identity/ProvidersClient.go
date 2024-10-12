@@ -11,7 +11,7 @@
 package identity
 
 import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/identity/Providers"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vsphere/vcenter/identity/Providers"
 )
 
 // The ``Providers`` interface provides methods to list, read and modify vCenter Server identity providers. **Warning:** This interface is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.

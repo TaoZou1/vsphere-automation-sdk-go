@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,49 +11,49 @@
 package forwarders
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 	"reflect"
 )
 
-func failedQueriesGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func failedQueriesGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["forwarder_id"] = vapiBindings_.NewStringType()
-	fields["count"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	fields["forwarder_id"] = bindings.NewStringType()
+	fields["count"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fieldNameMap["forwarder_id"] = "ForwarderId"
 	fieldNameMap["count"] = "Count"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func FailedQueriesGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.DnsFailedQueriesBindingType)
+func failedQueriesGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.DnsFailedQueriesBindingType)
 }
 
-func failedQueriesGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func failedQueriesGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["forwarder_id"] = vapiBindings_.NewStringType()
-	fields["count"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	fields["forwarder_id"] = bindings.NewStringType()
+	fields["count"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fieldNameMap["forwarder_id"] = "ForwarderId"
 	fieldNameMap["count"] = "Count"
-	paramsTypeMap["count"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	paramsTypeMap["forwarder_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["forwarderId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["count"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["forwarder_id"] = bindings.NewStringType()
+	paramsTypeMap["forwarderId"] = bindings.NewStringType()
 	pathParams["forwarder_id"] = "forwarderId"
 	queryParams["count"] = "count"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

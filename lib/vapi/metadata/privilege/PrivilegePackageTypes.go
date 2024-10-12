@@ -11,9 +11,9 @@
 package privilege
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiLog_ "github.com/vmware/vsphere-automation-sdk-go/runtime/log"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/log"
 	"reflect"
 )
 
@@ -29,16 +29,17 @@ type ComponentData struct {
 	Fingerprint string
 }
 
-func (s *ComponentData) GetType__() vapiBindings_.BindingType {
+func (s *ComponentData) GetType__() bindings.BindingType {
 	return ComponentDataBindingType()
 }
 
-func (s *ComponentData) GetDataValue__() (vapiData_.DataValue, []error) {
-	typeConverter := vapiBindings_.NewTypeConverter()
+func (s *ComponentData) GetDataValue__() (data.DataValue, []error) {
+	typeConverter := bindings.NewTypeConverter()
+	typeConverter.SetMode(bindings.JSONRPC)
 	dataVal, err := typeConverter.ConvertToVapi(s, s.GetType__())
 	if err != nil {
-		vapiLog_.Errorf("Error in ConvertToVapi for ComponentData._GetDataValue method - %s",
-			vapiBindings_.VAPIerrorsToError(err).Error())
+		log.Errorf("Error in ConvertToVapi for ComponentData._GetDataValue method - %s",
+			bindings.VAPIerrorsToError(err).Error())
 		return nil, err
 	}
 	return dataVal, nil
@@ -54,16 +55,17 @@ type ComponentInfo struct {
 	Packages map[string]PackageInfo
 }
 
-func (s *ComponentInfo) GetType__() vapiBindings_.BindingType {
+func (s *ComponentInfo) GetType__() bindings.BindingType {
 	return ComponentInfoBindingType()
 }
 
-func (s *ComponentInfo) GetDataValue__() (vapiData_.DataValue, []error) {
-	typeConverter := vapiBindings_.NewTypeConverter()
+func (s *ComponentInfo) GetDataValue__() (data.DataValue, []error) {
+	typeConverter := bindings.NewTypeConverter()
+	typeConverter.SetMode(bindings.JSONRPC)
 	dataVal, err := typeConverter.ConvertToVapi(s, s.GetType__())
 	if err != nil {
-		vapiLog_.Errorf("Error in ConvertToVapi for ComponentInfo._GetDataValue method - %s",
-			vapiBindings_.VAPIerrorsToError(err).Error())
+		log.Errorf("Error in ConvertToVapi for ComponentInfo._GetDataValue method - %s",
+			bindings.VAPIerrorsToError(err).Error())
 		return nil, err
 	}
 	return dataVal, nil
@@ -75,22 +77,21 @@ func (s *ComponentInfo) GetDataValue__() (vapiData_.DataValue, []error) {
 type OperationInfo struct {
 	// List of all privileges assigned to the operation element.
 	Privileges []string
-	// Privilege information of all the parameter elements of the operation element.
-	//
-	//  For an explanation of containment of privilege information within parameter elements, see PrivilegeInfo.
+	// Privilege information of all the parameter elements of the operation element. For an explanation of containment of privilege information within parameter elements, see PrivilegeInfo.
 	PrivilegeInfo []PrivilegeInfo
 }
 
-func (s *OperationInfo) GetType__() vapiBindings_.BindingType {
+func (s *OperationInfo) GetType__() bindings.BindingType {
 	return OperationInfoBindingType()
 }
 
-func (s *OperationInfo) GetDataValue__() (vapiData_.DataValue, []error) {
-	typeConverter := vapiBindings_.NewTypeConverter()
+func (s *OperationInfo) GetDataValue__() (data.DataValue, []error) {
+	typeConverter := bindings.NewTypeConverter()
+	typeConverter.SetMode(bindings.JSONRPC)
 	dataVal, err := typeConverter.ConvertToVapi(s, s.GetType__())
 	if err != nil {
-		vapiLog_.Errorf("Error in ConvertToVapi for OperationInfo._GetDataValue method - %s",
-			vapiBindings_.VAPIerrorsToError(err).Error())
+		log.Errorf("Error in ConvertToVapi for OperationInfo._GetDataValue method - %s",
+			bindings.VAPIerrorsToError(err).Error())
 		return nil, err
 	}
 	return dataVal, nil
@@ -102,22 +103,21 @@ func (s *OperationInfo) GetDataValue__() (vapiData_.DataValue, []error) {
 type PackageInfo struct {
 	// List of default privileges to be used for all the operations present in this package. If a particular operation element has no explicit privileges defined in the privilege definition file, these privileges are used for enforcing authorization.
 	Privileges []string
-	// Information about all service elements contained in this package element that contain privilege information. The key in the map is the identifier of the service element and the value in the map is the privilege information for the service element.
-	//
-	//  For an explanation of privilege information containment within service elements, see Service.
+	// Information about all service elements contained in this package element that contain privilege information. The key in the map is the identifier of the service element and the value in the map is the privilege information for the service element. For an explanation of privilege information containment within service elements, see Service.
 	Services map[string]ServiceInfo
 }
 
-func (s *PackageInfo) GetType__() vapiBindings_.BindingType {
+func (s *PackageInfo) GetType__() bindings.BindingType {
 	return PackageInfoBindingType()
 }
 
-func (s *PackageInfo) GetDataValue__() (vapiData_.DataValue, []error) {
-	typeConverter := vapiBindings_.NewTypeConverter()
+func (s *PackageInfo) GetDataValue__() (data.DataValue, []error) {
+	typeConverter := bindings.NewTypeConverter()
+	typeConverter.SetMode(bindings.JSONRPC)
 	dataVal, err := typeConverter.ConvertToVapi(s, s.GetType__())
 	if err != nil {
-		vapiLog_.Errorf("Error in ConvertToVapi for PackageInfo._GetDataValue method - %s",
-			vapiBindings_.VAPIerrorsToError(err).Error())
+		log.Errorf("Error in ConvertToVapi for PackageInfo._GetDataValue method - %s",
+			bindings.VAPIerrorsToError(err).Error())
 		return nil, err
 	}
 	return dataVal, nil
@@ -133,16 +133,17 @@ type PrivilegeInfo struct {
 	Privileges []string
 }
 
-func (s *PrivilegeInfo) GetType__() vapiBindings_.BindingType {
+func (s *PrivilegeInfo) GetType__() bindings.BindingType {
 	return PrivilegeInfoBindingType()
 }
 
-func (s *PrivilegeInfo) GetDataValue__() (vapiData_.DataValue, []error) {
-	typeConverter := vapiBindings_.NewTypeConverter()
+func (s *PrivilegeInfo) GetDataValue__() (data.DataValue, []error) {
+	typeConverter := bindings.NewTypeConverter()
+	typeConverter.SetMode(bindings.JSONRPC)
 	dataVal, err := typeConverter.ConvertToVapi(s, s.GetType__())
 	if err != nil {
-		vapiLog_.Errorf("Error in ConvertToVapi for PrivilegeInfo._GetDataValue method - %s",
-			vapiBindings_.VAPIerrorsToError(err).Error())
+		log.Errorf("Error in ConvertToVapi for PrivilegeInfo._GetDataValue method - %s",
+			bindings.VAPIerrorsToError(err).Error())
 		return nil, err
 	}
 	return dataVal, nil
@@ -158,79 +159,80 @@ type ServiceInfo struct {
 	Operations map[string]OperationInfo
 }
 
-func (s *ServiceInfo) GetType__() vapiBindings_.BindingType {
+func (s *ServiceInfo) GetType__() bindings.BindingType {
 	return ServiceInfoBindingType()
 }
 
-func (s *ServiceInfo) GetDataValue__() (vapiData_.DataValue, []error) {
-	typeConverter := vapiBindings_.NewTypeConverter()
+func (s *ServiceInfo) GetDataValue__() (data.DataValue, []error) {
+	typeConverter := bindings.NewTypeConverter()
+	typeConverter.SetMode(bindings.JSONRPC)
 	dataVal, err := typeConverter.ConvertToVapi(s, s.GetType__())
 	if err != nil {
-		vapiLog_.Errorf("Error in ConvertToVapi for ServiceInfo._GetDataValue method - %s",
-			vapiBindings_.VAPIerrorsToError(err).Error())
+		log.Errorf("Error in ConvertToVapi for ServiceInfo._GetDataValue method - %s",
+			bindings.VAPIerrorsToError(err).Error())
 		return nil, err
 	}
 	return dataVal, nil
 }
 
-func ComponentDataBindingType() vapiBindings_.BindingType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func ComponentDataBindingType() bindings.BindingType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["info"] = vapiBindings_.NewReferenceType(ComponentInfoBindingType)
+	fields["info"] = bindings.NewReferenceType(ComponentInfoBindingType)
 	fieldNameMap["info"] = "Info"
-	fields["fingerprint"] = vapiBindings_.NewStringType()
+	fields["fingerprint"] = bindings.NewStringType()
 	fieldNameMap["fingerprint"] = "Fingerprint"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("com.vmware.vapi.metadata.privilege.component_data", fields, reflect.TypeOf(ComponentData{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("com.vmware.vapi.metadata.privilege.component_data", fields, reflect.TypeOf(ComponentData{}), fieldNameMap, validators)
 }
 
-func ComponentInfoBindingType() vapiBindings_.BindingType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func ComponentInfoBindingType() bindings.BindingType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["packages"] = vapiBindings_.NewMapType(vapiBindings_.NewIdType([]string{"com.vmware.vapi.package"}, ""), vapiBindings_.NewReferenceType(PackageInfoBindingType), reflect.TypeOf(map[string]PackageInfo{}))
+	fields["packages"] = bindings.NewMapType(bindings.NewIdType([]string{"com.vmware.vapi.package"}, ""), bindings.NewReferenceType(PackageInfoBindingType), reflect.TypeOf(map[string]PackageInfo{}))
 	fieldNameMap["packages"] = "Packages"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("com.vmware.vapi.metadata.privilege.component_info", fields, reflect.TypeOf(ComponentInfo{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("com.vmware.vapi.metadata.privilege.component_info", fields, reflect.TypeOf(ComponentInfo{}), fieldNameMap, validators)
 }
 
-func OperationInfoBindingType() vapiBindings_.BindingType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func OperationInfoBindingType() bindings.BindingType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["privileges"] = vapiBindings_.NewListType(vapiBindings_.NewStringType(), reflect.TypeOf([]string{}))
+	fields["privileges"] = bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{}))
 	fieldNameMap["privileges"] = "Privileges"
-	fields["privilege_info"] = vapiBindings_.NewListType(vapiBindings_.NewReferenceType(PrivilegeInfoBindingType), reflect.TypeOf([]PrivilegeInfo{}))
+	fields["privilege_info"] = bindings.NewListType(bindings.NewReferenceType(PrivilegeInfoBindingType), reflect.TypeOf([]PrivilegeInfo{}))
 	fieldNameMap["privilege_info"] = "PrivilegeInfo"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("com.vmware.vapi.metadata.privilege.operation_info", fields, reflect.TypeOf(OperationInfo{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("com.vmware.vapi.metadata.privilege.operation_info", fields, reflect.TypeOf(OperationInfo{}), fieldNameMap, validators)
 }
 
-func PackageInfoBindingType() vapiBindings_.BindingType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func PackageInfoBindingType() bindings.BindingType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["privileges"] = vapiBindings_.NewListType(vapiBindings_.NewStringType(), reflect.TypeOf([]string{}))
+	fields["privileges"] = bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{}))
 	fieldNameMap["privileges"] = "Privileges"
-	fields["services"] = vapiBindings_.NewMapType(vapiBindings_.NewIdType([]string{"com.vmware.vapi.service"}, ""), vapiBindings_.NewReferenceType(ServiceInfoBindingType), reflect.TypeOf(map[string]ServiceInfo{}))
+	fields["services"] = bindings.NewMapType(bindings.NewIdType([]string{"com.vmware.vapi.service"}, ""), bindings.NewReferenceType(ServiceInfoBindingType), reflect.TypeOf(map[string]ServiceInfo{}))
 	fieldNameMap["services"] = "Services"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("com.vmware.vapi.metadata.privilege.package_info", fields, reflect.TypeOf(PackageInfo{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("com.vmware.vapi.metadata.privilege.package_info", fields, reflect.TypeOf(PackageInfo{}), fieldNameMap, validators)
 }
 
-func PrivilegeInfoBindingType() vapiBindings_.BindingType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func PrivilegeInfoBindingType() bindings.BindingType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["property_path"] = vapiBindings_.NewStringType()
+	fields["property_path"] = bindings.NewStringType()
 	fieldNameMap["property_path"] = "PropertyPath"
-	fields["privileges"] = vapiBindings_.NewListType(vapiBindings_.NewStringType(), reflect.TypeOf([]string{}))
+	fields["privileges"] = bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{}))
 	fieldNameMap["privileges"] = "Privileges"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("com.vmware.vapi.metadata.privilege.privilege_info", fields, reflect.TypeOf(PrivilegeInfo{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("com.vmware.vapi.metadata.privilege.privilege_info", fields, reflect.TypeOf(PrivilegeInfo{}), fieldNameMap, validators)
 }
 
-func ServiceInfoBindingType() vapiBindings_.BindingType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func ServiceInfoBindingType() bindings.BindingType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["operations"] = vapiBindings_.NewMapType(vapiBindings_.NewIdType([]string{"com.vmware.vapi.operation"}, ""), vapiBindings_.NewReferenceType(OperationInfoBindingType), reflect.TypeOf(map[string]OperationInfo{}))
+	fields["operations"] = bindings.NewMapType(bindings.NewIdType([]string{"com.vmware.vapi.operation"}, ""), bindings.NewReferenceType(OperationInfoBindingType), reflect.TypeOf(map[string]OperationInfo{}))
 	fieldNameMap["operations"] = "Operations"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("com.vmware.vapi.metadata.privilege.service_info", fields, reflect.TypeOf(ServiceInfo{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("com.vmware.vapi.metadata.privilege.service_info", fields, reflect.TypeOf(ServiceInfo{}), fieldNameMap, validators)
 }

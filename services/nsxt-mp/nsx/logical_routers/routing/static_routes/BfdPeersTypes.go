@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,48 +11,48 @@
 package static_routes
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 	"reflect"
 )
 
-func bfdPeersCreateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func bfdPeersCreateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["logical_router_id"] = vapiBindings_.NewStringType()
-	fields["static_hop_bfd_peer"] = vapiBindings_.NewReferenceType(nsxModel.StaticHopBfdPeerBindingType)
+	fields["logical_router_id"] = bindings.NewStringType()
+	fields["static_hop_bfd_peer"] = bindings.NewReferenceType(model.StaticHopBfdPeerBindingType)
 	fieldNameMap["logical_router_id"] = "LogicalRouterId"
 	fieldNameMap["static_hop_bfd_peer"] = "StaticHopBfdPeer"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func BfdPeersCreateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.StaticHopBfdPeerBindingType)
+func bfdPeersCreateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.StaticHopBfdPeerBindingType)
 }
 
-func bfdPeersCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func bfdPeersCreateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["logical_router_id"] = vapiBindings_.NewStringType()
-	fields["static_hop_bfd_peer"] = vapiBindings_.NewReferenceType(nsxModel.StaticHopBfdPeerBindingType)
+	fields["logical_router_id"] = bindings.NewStringType()
+	fields["static_hop_bfd_peer"] = bindings.NewReferenceType(model.StaticHopBfdPeerBindingType)
 	fieldNameMap["logical_router_id"] = "LogicalRouterId"
 	fieldNameMap["static_hop_bfd_peer"] = "StaticHopBfdPeer"
-	paramsTypeMap["logical_router_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["static_hop_bfd_peer"] = vapiBindings_.NewReferenceType(nsxModel.StaticHopBfdPeerBindingType)
-	paramsTypeMap["logicalRouterId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["logical_router_id"] = bindings.NewStringType()
+	paramsTypeMap["static_hop_bfd_peer"] = bindings.NewReferenceType(model.StaticHopBfdPeerBindingType)
+	paramsTypeMap["logicalRouterId"] = bindings.NewStringType()
 	pathParams["logical_router_id"] = "logicalRouterId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -73,49 +73,49 @@ func bfdPeersCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func bfdPeersDeleteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func bfdPeersDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["logical_router_id"] = vapiBindings_.NewStringType()
-	fields["bfd_peer_id"] = vapiBindings_.NewStringType()
-	fields["force"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["logical_router_id"] = bindings.NewStringType()
+	fields["bfd_peer_id"] = bindings.NewStringType()
+	fields["force"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["logical_router_id"] = "LogicalRouterId"
 	fieldNameMap["bfd_peer_id"] = "BfdPeerId"
 	fieldNameMap["force"] = "Force"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func BfdPeersDeleteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func bfdPeersDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func bfdPeersDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func bfdPeersDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["logical_router_id"] = vapiBindings_.NewStringType()
-	fields["bfd_peer_id"] = vapiBindings_.NewStringType()
-	fields["force"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["logical_router_id"] = bindings.NewStringType()
+	fields["bfd_peer_id"] = bindings.NewStringType()
+	fields["force"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["logical_router_id"] = "LogicalRouterId"
 	fieldNameMap["bfd_peer_id"] = "BfdPeerId"
 	fieldNameMap["force"] = "Force"
-	paramsTypeMap["logical_router_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["force"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["bfd_peer_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["logicalRouterId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["bfdPeerId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["logical_router_id"] = bindings.NewStringType()
+	paramsTypeMap["force"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["bfd_peer_id"] = bindings.NewStringType()
+	paramsTypeMap["logicalRouterId"] = bindings.NewStringType()
+	paramsTypeMap["bfdPeerId"] = bindings.NewStringType()
 	pathParams["bfd_peer_id"] = "bfdPeerId"
 	pathParams["logical_router_id"] = "logicalRouterId"
 	queryParams["force"] = "force"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -136,43 +136,43 @@ func bfdPeersDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func bfdPeersGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func bfdPeersGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["logical_router_id"] = vapiBindings_.NewStringType()
-	fields["bfd_peer_id"] = vapiBindings_.NewStringType()
+	fields["logical_router_id"] = bindings.NewStringType()
+	fields["bfd_peer_id"] = bindings.NewStringType()
 	fieldNameMap["logical_router_id"] = "LogicalRouterId"
 	fieldNameMap["bfd_peer_id"] = "BfdPeerId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func BfdPeersGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.StaticHopBfdPeerBindingType)
+func bfdPeersGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.StaticHopBfdPeerBindingType)
 }
 
-func bfdPeersGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func bfdPeersGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["logical_router_id"] = vapiBindings_.NewStringType()
-	fields["bfd_peer_id"] = vapiBindings_.NewStringType()
+	fields["logical_router_id"] = bindings.NewStringType()
+	fields["bfd_peer_id"] = bindings.NewStringType()
 	fieldNameMap["logical_router_id"] = "LogicalRouterId"
 	fieldNameMap["bfd_peer_id"] = "BfdPeerId"
-	paramsTypeMap["logical_router_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["bfd_peer_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["logicalRouterId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["bfdPeerId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["logical_router_id"] = bindings.NewStringType()
+	paramsTypeMap["bfd_peer_id"] = bindings.NewStringType()
+	paramsTypeMap["logicalRouterId"] = bindings.NewStringType()
+	paramsTypeMap["bfdPeerId"] = bindings.NewStringType()
 	pathParams["bfd_peer_id"] = "bfdPeerId"
 	pathParams["logical_router_id"] = "logicalRouterId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -193,57 +193,57 @@ func bfdPeersGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func bfdPeersListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func bfdPeersListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["logical_router_id"] = vapiBindings_.NewStringType()
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["logical_router_id"] = bindings.NewStringType()
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["logical_router_id"] = "LogicalRouterId"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["included_fields"] = "IncludedFields"
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func BfdPeersListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.StaticHopBfdPeerListResultBindingType)
+func bfdPeersListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.StaticHopBfdPeerListResultBindingType)
 }
 
-func bfdPeersListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func bfdPeersListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["logical_router_id"] = vapiBindings_.NewStringType()
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["logical_router_id"] = bindings.NewStringType()
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["logical_router_id"] = "LogicalRouterId"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["included_fields"] = "IncludedFields"
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	paramsTypeMap["logical_router_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	paramsTypeMap["logicalRouterId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["logical_router_id"] = bindings.NewStringType()
+	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["logicalRouterId"] = bindings.NewStringType()
 	pathParams["logical_router_id"] = "logicalRouterId"
 	queryParams["cursor"] = "cursor"
 	queryParams["sort_ascending"] = "sort_ascending"
@@ -252,7 +252,7 @@ func bfdPeersListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -273,48 +273,48 @@ func bfdPeersListRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func bfdPeersUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func bfdPeersUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["logical_router_id"] = vapiBindings_.NewStringType()
-	fields["bfd_peer_id"] = vapiBindings_.NewStringType()
-	fields["static_hop_bfd_peer"] = vapiBindings_.NewReferenceType(nsxModel.StaticHopBfdPeerBindingType)
+	fields["logical_router_id"] = bindings.NewStringType()
+	fields["bfd_peer_id"] = bindings.NewStringType()
+	fields["static_hop_bfd_peer"] = bindings.NewReferenceType(model.StaticHopBfdPeerBindingType)
 	fieldNameMap["logical_router_id"] = "LogicalRouterId"
 	fieldNameMap["bfd_peer_id"] = "BfdPeerId"
 	fieldNameMap["static_hop_bfd_peer"] = "StaticHopBfdPeer"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func BfdPeersUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.StaticHopBfdPeerBindingType)
+func bfdPeersUpdateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.StaticHopBfdPeerBindingType)
 }
 
-func bfdPeersUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func bfdPeersUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["logical_router_id"] = vapiBindings_.NewStringType()
-	fields["bfd_peer_id"] = vapiBindings_.NewStringType()
-	fields["static_hop_bfd_peer"] = vapiBindings_.NewReferenceType(nsxModel.StaticHopBfdPeerBindingType)
+	fields["logical_router_id"] = bindings.NewStringType()
+	fields["bfd_peer_id"] = bindings.NewStringType()
+	fields["static_hop_bfd_peer"] = bindings.NewReferenceType(model.StaticHopBfdPeerBindingType)
 	fieldNameMap["logical_router_id"] = "LogicalRouterId"
 	fieldNameMap["bfd_peer_id"] = "BfdPeerId"
 	fieldNameMap["static_hop_bfd_peer"] = "StaticHopBfdPeer"
-	paramsTypeMap["logical_router_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["static_hop_bfd_peer"] = vapiBindings_.NewReferenceType(nsxModel.StaticHopBfdPeerBindingType)
-	paramsTypeMap["bfd_peer_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["logicalRouterId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["bfdPeerId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["logical_router_id"] = bindings.NewStringType()
+	paramsTypeMap["static_hop_bfd_peer"] = bindings.NewReferenceType(model.StaticHopBfdPeerBindingType)
+	paramsTypeMap["bfd_peer_id"] = bindings.NewStringType()
+	paramsTypeMap["logicalRouterId"] = bindings.NewStringType()
+	paramsTypeMap["bfdPeerId"] = bindings.NewStringType()
 	pathParams["bfd_peer_id"] = "bfdPeerId"
 	pathParams["logical_router_id"] = "logicalRouterId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

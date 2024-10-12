@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,41 +11,41 @@
 package trust_management
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 	"reflect"
 )
 
-func principalIdentitiesCreateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func principalIdentitiesCreateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["principal_identity"] = vapiBindings_.NewReferenceType(nsxModel.PrincipalIdentityBindingType)
+	fields["principal_identity"] = bindings.NewReferenceType(model.PrincipalIdentityBindingType)
 	fieldNameMap["principal_identity"] = "PrincipalIdentity"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func PrincipalIdentitiesCreateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.PrincipalIdentityBindingType)
+func principalIdentitiesCreateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.PrincipalIdentityBindingType)
 }
 
-func principalIdentitiesCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func principalIdentitiesCreateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["principal_identity"] = vapiBindings_.NewReferenceType(nsxModel.PrincipalIdentityBindingType)
+	fields["principal_identity"] = bindings.NewReferenceType(model.PrincipalIdentityBindingType)
 	fieldNameMap["principal_identity"] = "PrincipalIdentity"
-	paramsTypeMap["principal_identity"] = vapiBindings_.NewReferenceType(nsxModel.PrincipalIdentityBindingType)
+	paramsTypeMap["principal_identity"] = bindings.NewReferenceType(model.PrincipalIdentityBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -66,36 +66,36 @@ func principalIdentitiesCreateRestMetadata() vapiProtocol_.OperationRestMetadata
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func principalIdentitiesDeleteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func principalIdentitiesDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["principal_identity_id"] = vapiBindings_.NewStringType()
+	fields["principal_identity_id"] = bindings.NewStringType()
 	fieldNameMap["principal_identity_id"] = "PrincipalIdentityId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func PrincipalIdentitiesDeleteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func principalIdentitiesDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func principalIdentitiesDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func principalIdentitiesDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["principal_identity_id"] = vapiBindings_.NewStringType()
+	fields["principal_identity_id"] = bindings.NewStringType()
 	fieldNameMap["principal_identity_id"] = "PrincipalIdentityId"
-	paramsTypeMap["principal_identity_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["principalIdentityId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["principal_identity_id"] = bindings.NewStringType()
+	paramsTypeMap["principalIdentityId"] = bindings.NewStringType()
 	pathParams["principal_identity_id"] = "principalIdentityId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -116,36 +116,36 @@ func principalIdentitiesDeleteRestMetadata() vapiProtocol_.OperationRestMetadata
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func principalIdentitiesGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func principalIdentitiesGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["principal_identity_id"] = vapiBindings_.NewStringType()
+	fields["principal_identity_id"] = bindings.NewStringType()
 	fieldNameMap["principal_identity_id"] = "PrincipalIdentityId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func PrincipalIdentitiesGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.PrincipalIdentityBindingType)
+func principalIdentitiesGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.PrincipalIdentityBindingType)
 }
 
-func principalIdentitiesGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func principalIdentitiesGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["principal_identity_id"] = vapiBindings_.NewStringType()
+	fields["principal_identity_id"] = bindings.NewStringType()
 	fieldNameMap["principal_identity_id"] = "PrincipalIdentityId"
-	paramsTypeMap["principal_identity_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["principalIdentityId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["principal_identity_id"] = bindings.NewStringType()
+	paramsTypeMap["principalIdentityId"] = bindings.NewStringType()
 	pathParams["principal_identity_id"] = "principalIdentityId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -166,21 +166,21 @@ func principalIdentitiesGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func principalIdentitiesListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func principalIdentitiesListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func PrincipalIdentitiesListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.PrincipalIdentityListBindingType)
+func principalIdentitiesListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.PrincipalIdentityListBindingType)
 }
 
-func principalIdentitiesListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func principalIdentitiesListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
@@ -188,7 +188,7 @@ func principalIdentitiesListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	bodyFieldsMap := map[string]string{}
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -209,34 +209,34 @@ func principalIdentitiesListRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func principalIdentitiesUpdatecertificateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func principalIdentitiesUpdatecertificateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["update_principal_identity_certificate_request"] = vapiBindings_.NewReferenceType(nsxModel.UpdatePrincipalIdentityCertificateRequestBindingType)
+	fields["update_principal_identity_certificate_request"] = bindings.NewReferenceType(model.UpdatePrincipalIdentityCertificateRequestBindingType)
 	fieldNameMap["update_principal_identity_certificate_request"] = "UpdatePrincipalIdentityCertificateRequest"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func PrincipalIdentitiesUpdatecertificateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.PrincipalIdentityBindingType)
+func principalIdentitiesUpdatecertificateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.PrincipalIdentityBindingType)
 }
 
-func principalIdentitiesUpdatecertificateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func principalIdentitiesUpdatecertificateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["update_principal_identity_certificate_request"] = vapiBindings_.NewReferenceType(nsxModel.UpdatePrincipalIdentityCertificateRequestBindingType)
+	fields["update_principal_identity_certificate_request"] = bindings.NewReferenceType(model.UpdatePrincipalIdentityCertificateRequestBindingType)
 	fieldNameMap["update_principal_identity_certificate_request"] = "UpdatePrincipalIdentityCertificateRequest"
-	paramsTypeMap["update_principal_identity_certificate_request"] = vapiBindings_.NewReferenceType(nsxModel.UpdatePrincipalIdentityCertificateRequestBindingType)
+	paramsTypeMap["update_principal_identity_certificate_request"] = bindings.NewReferenceType(model.UpdatePrincipalIdentityCertificateRequestBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

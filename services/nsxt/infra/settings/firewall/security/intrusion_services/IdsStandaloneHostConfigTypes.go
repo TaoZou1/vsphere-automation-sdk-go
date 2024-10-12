@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,28 +11,28 @@
 package intrusion_services
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func idsStandaloneHostConfigGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func idsStandaloneHostConfigGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func IdsStandaloneHostConfigGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.IdsStandaloneHostConfigBindingType)
+func idsStandaloneHostConfigGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.IdsStandaloneHostConfigBindingType)
 }
 
-func idsStandaloneHostConfigGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func idsStandaloneHostConfigGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
@@ -40,7 +40,7 @@ func idsStandaloneHostConfigGetRestMetadata() vapiProtocol_.OperationRestMetadat
 	bodyFieldsMap := map[string]string{}
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -61,34 +61,34 @@ func idsStandaloneHostConfigGetRestMetadata() vapiProtocol_.OperationRestMetadat
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func idsStandaloneHostConfigPatchInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func idsStandaloneHostConfigPatchInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["ids_standalone_host_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.IdsStandaloneHostConfigBindingType)
+	fields["ids_standalone_host_config"] = bindings.NewReferenceType(model.IdsStandaloneHostConfigBindingType)
 	fieldNameMap["ids_standalone_host_config"] = "IdsStandaloneHostConfig"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func IdsStandaloneHostConfigPatchOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func idsStandaloneHostConfigPatchOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func idsStandaloneHostConfigPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func idsStandaloneHostConfigPatchRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["ids_standalone_host_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.IdsStandaloneHostConfigBindingType)
+	fields["ids_standalone_host_config"] = bindings.NewReferenceType(model.IdsStandaloneHostConfigBindingType)
 	fieldNameMap["ids_standalone_host_config"] = "IdsStandaloneHostConfig"
-	paramsTypeMap["ids_standalone_host_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.IdsStandaloneHostConfigBindingType)
+	paramsTypeMap["ids_standalone_host_config"] = bindings.NewReferenceType(model.IdsStandaloneHostConfigBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -109,34 +109,34 @@ func idsStandaloneHostConfigPatchRestMetadata() vapiProtocol_.OperationRestMetad
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func idsStandaloneHostConfigUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func idsStandaloneHostConfigUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["ids_standalone_host_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.IdsStandaloneHostConfigBindingType)
+	fields["ids_standalone_host_config"] = bindings.NewReferenceType(model.IdsStandaloneHostConfigBindingType)
 	fieldNameMap["ids_standalone_host_config"] = "IdsStandaloneHostConfig"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func IdsStandaloneHostConfigUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.IdsStandaloneHostConfigBindingType)
+func idsStandaloneHostConfigUpdateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.IdsStandaloneHostConfigBindingType)
 }
 
-func idsStandaloneHostConfigUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func idsStandaloneHostConfigUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["ids_standalone_host_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.IdsStandaloneHostConfigBindingType)
+	fields["ids_standalone_host_config"] = bindings.NewReferenceType(model.IdsStandaloneHostConfigBindingType)
 	fieldNameMap["ids_standalone_host_config"] = "IdsStandaloneHostConfig"
-	paramsTypeMap["ids_standalone_host_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.IdsStandaloneHostConfigBindingType)
+	paramsTypeMap["ids_standalone_host_config"] = bindings.NewReferenceType(model.IdsStandaloneHostConfigBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

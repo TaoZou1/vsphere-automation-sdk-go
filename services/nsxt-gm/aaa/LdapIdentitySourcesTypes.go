@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,43 +11,43 @@
 package aaa
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_global_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-gm/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-gm/model"
 	"reflect"
 )
 
-func ldapIdentitySourcesDeleteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func ldapIdentitySourcesDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["ldap_identity_source_id"] = vapiBindings_.NewStringType()
+	fields["ldap_identity_source_id"] = bindings.NewStringType()
 	fieldNameMap["ldap_identity_source_id"] = "LdapIdentitySourceId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func LdapIdentitySourcesDeleteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func ldapIdentitySourcesDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func ldapIdentitySourcesDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func ldapIdentitySourcesDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["ldap_identity_source_id"] = vapiBindings_.NewStringType()
+	fields["ldap_identity_source_id"] = bindings.NewStringType()
 	fieldNameMap["ldap_identity_source_id"] = "LdapIdentitySourceId"
-	paramsTypeMap["ldap_identity_source_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["ldapIdentitySourceId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["ldap_identity_source_id"] = bindings.NewStringType()
+	paramsTypeMap["ldapIdentitySourceId"] = bindings.NewStringType()
 	pathParams["ldap_identity_source_id"] = "ldapIdentitySourceId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -68,34 +68,34 @@ func ldapIdentitySourcesDeleteRestMetadata() vapiProtocol_.OperationRestMetadata
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func ldapIdentitySourcesFetchcertificateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func ldapIdentitySourcesFetchcertificateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["identity_source_ldap_server_endpoint"] = vapiBindings_.NewReferenceType(nsx_global_policyModel.IdentitySourceLdapServerEndpointBindingType)
+	fields["identity_source_ldap_server_endpoint"] = bindings.NewReferenceType(model.IdentitySourceLdapServerEndpointBindingType)
 	fieldNameMap["identity_source_ldap_server_endpoint"] = "IdentitySourceLdapServerEndpoint"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func LdapIdentitySourcesFetchcertificateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_global_policyModel.PeerCertificateChainBindingType)
+func ldapIdentitySourcesFetchcertificateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.PeerCertificateChainBindingType)
 }
 
-func ldapIdentitySourcesFetchcertificateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func ldapIdentitySourcesFetchcertificateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["identity_source_ldap_server_endpoint"] = vapiBindings_.NewReferenceType(nsx_global_policyModel.IdentitySourceLdapServerEndpointBindingType)
+	fields["identity_source_ldap_server_endpoint"] = bindings.NewReferenceType(model.IdentitySourceLdapServerEndpointBindingType)
 	fieldNameMap["identity_source_ldap_server_endpoint"] = "IdentitySourceLdapServerEndpoint"
-	paramsTypeMap["identity_source_ldap_server_endpoint"] = vapiBindings_.NewReferenceType(nsx_global_policyModel.IdentitySourceLdapServerEndpointBindingType)
+	paramsTypeMap["identity_source_ldap_server_endpoint"] = bindings.NewReferenceType(model.IdentitySourceLdapServerEndpointBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -116,36 +116,36 @@ func ldapIdentitySourcesFetchcertificateRestMetadata() vapiProtocol_.OperationRe
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func ldapIdentitySourcesGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func ldapIdentitySourcesGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["ldap_identity_source_id"] = vapiBindings_.NewStringType()
+	fields["ldap_identity_source_id"] = bindings.NewStringType()
 	fieldNameMap["ldap_identity_source_id"] = "LdapIdentitySourceId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func LdapIdentitySourcesGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsx_global_policyModel.LdapIdentitySourceBindingType)})
+func ldapIdentitySourcesGetOutputType() bindings.BindingType {
+	return bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.LdapIdentitySourceBindingType)}, bindings.REST)
 }
 
-func ldapIdentitySourcesGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func ldapIdentitySourcesGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["ldap_identity_source_id"] = vapiBindings_.NewStringType()
+	fields["ldap_identity_source_id"] = bindings.NewStringType()
 	fieldNameMap["ldap_identity_source_id"] = "LdapIdentitySourceId"
-	paramsTypeMap["ldap_identity_source_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["ldapIdentitySourceId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["ldap_identity_source_id"] = bindings.NewStringType()
+	paramsTypeMap["ldapIdentitySourceId"] = bindings.NewStringType()
 	pathParams["ldap_identity_source_id"] = "ldapIdentitySourceId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -166,51 +166,51 @@ func ldapIdentitySourcesGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func ldapIdentitySourcesListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func ldapIdentitySourcesListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["included_fields"] = "IncludedFields"
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func LdapIdentitySourcesListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_global_policyModel.LdapIdentitySourceListResultBindingType)
+func ldapIdentitySourcesListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.LdapIdentitySourceListResultBindingType)
 }
 
-func ldapIdentitySourcesListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func ldapIdentitySourcesListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["included_fields"] = "IncludedFields"
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	queryParams["cursor"] = "cursor"
 	queryParams["sort_ascending"] = "sort_ascending"
 	queryParams["included_fields"] = "included_fields"
@@ -218,7 +218,7 @@ func ldapIdentitySourcesListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -239,36 +239,36 @@ func ldapIdentitySourcesListRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func ldapIdentitySourcesProbeInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func ldapIdentitySourcesProbeInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["ldap_identity_source_id"] = vapiBindings_.NewStringType()
+	fields["ldap_identity_source_id"] = bindings.NewStringType()
 	fieldNameMap["ldap_identity_source_id"] = "LdapIdentitySourceId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func LdapIdentitySourcesProbeOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_global_policyModel.LdapIdentitySourceProbeResultsBindingType)
+func ldapIdentitySourcesProbeOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.LdapIdentitySourceProbeResultsBindingType)
 }
 
-func ldapIdentitySourcesProbeRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func ldapIdentitySourcesProbeRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["ldap_identity_source_id"] = vapiBindings_.NewStringType()
+	fields["ldap_identity_source_id"] = bindings.NewStringType()
 	fieldNameMap["ldap_identity_source_id"] = "LdapIdentitySourceId"
-	paramsTypeMap["ldap_identity_source_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["ldapIdentitySourceId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["ldap_identity_source_id"] = bindings.NewStringType()
+	paramsTypeMap["ldapIdentitySourceId"] = bindings.NewStringType()
 	pathParams["ldap_identity_source_id"] = "ldapIdentitySourceId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -289,34 +289,34 @@ func ldapIdentitySourcesProbeRestMetadata() vapiProtocol_.OperationRestMetadata 
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func ldapIdentitySourcesProbeidentitysourceInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func ldapIdentitySourcesProbeidentitysourceInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["ldap_identity_source"] = vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsx_global_policyModel.LdapIdentitySourceBindingType)})
+	fields["ldap_identity_source"] = bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.LdapIdentitySourceBindingType)}, bindings.REST)
 	fieldNameMap["ldap_identity_source"] = "LdapIdentitySource"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func LdapIdentitySourcesProbeidentitysourceOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_global_policyModel.LdapIdentitySourceProbeResultsBindingType)
+func ldapIdentitySourcesProbeidentitysourceOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.LdapIdentitySourceProbeResultsBindingType)
 }
 
-func ldapIdentitySourcesProbeidentitysourceRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func ldapIdentitySourcesProbeidentitysourceRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["ldap_identity_source"] = vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsx_global_policyModel.LdapIdentitySourceBindingType)})
+	fields["ldap_identity_source"] = bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.LdapIdentitySourceBindingType)}, bindings.REST)
 	fieldNameMap["ldap_identity_source"] = "LdapIdentitySource"
-	paramsTypeMap["ldap_identity_source"] = vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsx_global_policyModel.LdapIdentitySourceBindingType)})
+	paramsTypeMap["ldap_identity_source"] = bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.LdapIdentitySourceBindingType)}, bindings.REST)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -337,34 +337,34 @@ func ldapIdentitySourcesProbeidentitysourceRestMetadata() vapiProtocol_.Operatio
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func ldapIdentitySourcesProbeldapserverInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func ldapIdentitySourcesProbeldapserverInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["identity_source_ldap_server"] = vapiBindings_.NewReferenceType(nsx_global_policyModel.IdentitySourceLdapServerBindingType)
+	fields["identity_source_ldap_server"] = bindings.NewReferenceType(model.IdentitySourceLdapServerBindingType)
 	fieldNameMap["identity_source_ldap_server"] = "IdentitySourceLdapServer"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func LdapIdentitySourcesProbeldapserverOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_global_policyModel.IdentitySourceLdapServerProbeResultBindingType)
+func ldapIdentitySourcesProbeldapserverOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.IdentitySourceLdapServerProbeResultBindingType)
 }
 
-func ldapIdentitySourcesProbeldapserverRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func ldapIdentitySourcesProbeldapserverRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["identity_source_ldap_server"] = vapiBindings_.NewReferenceType(nsx_global_policyModel.IdentitySourceLdapServerBindingType)
+	fields["identity_source_ldap_server"] = bindings.NewReferenceType(model.IdentitySourceLdapServerBindingType)
 	fieldNameMap["identity_source_ldap_server"] = "IdentitySourceLdapServer"
-	paramsTypeMap["identity_source_ldap_server"] = vapiBindings_.NewReferenceType(nsx_global_policyModel.IdentitySourceLdapServerBindingType)
+	paramsTypeMap["identity_source_ldap_server"] = bindings.NewReferenceType(model.IdentitySourceLdapServerBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -385,41 +385,41 @@ func ldapIdentitySourcesProbeldapserverRestMetadata() vapiProtocol_.OperationRes
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func ldapIdentitySourcesUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func ldapIdentitySourcesUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["ldap_identity_source_id"] = vapiBindings_.NewStringType()
-	fields["ldap_identity_source"] = vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsx_global_policyModel.LdapIdentitySourceBindingType)})
+	fields["ldap_identity_source_id"] = bindings.NewStringType()
+	fields["ldap_identity_source"] = bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.LdapIdentitySourceBindingType)}, bindings.REST)
 	fieldNameMap["ldap_identity_source_id"] = "LdapIdentitySourceId"
 	fieldNameMap["ldap_identity_source"] = "LdapIdentitySource"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func LdapIdentitySourcesUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsx_global_policyModel.LdapIdentitySourceBindingType)})
+func ldapIdentitySourcesUpdateOutputType() bindings.BindingType {
+	return bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.LdapIdentitySourceBindingType)}, bindings.REST)
 }
 
-func ldapIdentitySourcesUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func ldapIdentitySourcesUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["ldap_identity_source_id"] = vapiBindings_.NewStringType()
-	fields["ldap_identity_source"] = vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsx_global_policyModel.LdapIdentitySourceBindingType)})
+	fields["ldap_identity_source_id"] = bindings.NewStringType()
+	fields["ldap_identity_source"] = bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.LdapIdentitySourceBindingType)}, bindings.REST)
 	fieldNameMap["ldap_identity_source_id"] = "LdapIdentitySourceId"
 	fieldNameMap["ldap_identity_source"] = "LdapIdentitySource"
-	paramsTypeMap["ldap_identity_source_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["ldap_identity_source"] = vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsx_global_policyModel.LdapIdentitySourceBindingType)})
-	paramsTypeMap["ldapIdentitySourceId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["ldap_identity_source_id"] = bindings.NewStringType()
+	paramsTypeMap["ldap_identity_source"] = bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.LdapIdentitySourceBindingType)}, bindings.REST)
+	paramsTypeMap["ldapIdentitySourceId"] = bindings.NewStringType()
 	pathParams["ldap_identity_source_id"] = "ldapIdentitySourceId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

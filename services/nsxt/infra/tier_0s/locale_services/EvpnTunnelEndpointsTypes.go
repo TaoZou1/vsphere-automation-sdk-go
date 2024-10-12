@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,57 +11,57 @@
 package locale_services
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func evpnTunnelEndpointsDeleteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func evpnTunnelEndpointsDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["tier0_id"] = vapiBindings_.NewStringType()
-	fields["locale_services_id"] = vapiBindings_.NewStringType()
-	fields["tunnel_endpoint_id"] = vapiBindings_.NewStringType()
+	fields["tier0_id"] = bindings.NewStringType()
+	fields["locale_services_id"] = bindings.NewStringType()
+	fields["tunnel_endpoint_id"] = bindings.NewStringType()
 	fieldNameMap["tier0_id"] = "Tier0Id"
 	fieldNameMap["locale_services_id"] = "LocaleServicesId"
 	fieldNameMap["tunnel_endpoint_id"] = "TunnelEndpointId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func EvpnTunnelEndpointsDeleteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func evpnTunnelEndpointsDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func evpnTunnelEndpointsDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func evpnTunnelEndpointsDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["tier0_id"] = vapiBindings_.NewStringType()
-	fields["locale_services_id"] = vapiBindings_.NewStringType()
-	fields["tunnel_endpoint_id"] = vapiBindings_.NewStringType()
+	fields["tier0_id"] = bindings.NewStringType()
+	fields["locale_services_id"] = bindings.NewStringType()
+	fields["tunnel_endpoint_id"] = bindings.NewStringType()
 	fieldNameMap["tier0_id"] = "Tier0Id"
 	fieldNameMap["locale_services_id"] = "LocaleServicesId"
 	fieldNameMap["tunnel_endpoint_id"] = "TunnelEndpointId"
-	paramsTypeMap["tier0_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tunnel_endpoint_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["locale_services_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tier0Id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["localeServicesId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tunnelEndpointId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["tier0_id"] = bindings.NewStringType()
+	paramsTypeMap["tunnel_endpoint_id"] = bindings.NewStringType()
+	paramsTypeMap["locale_services_id"] = bindings.NewStringType()
+	paramsTypeMap["tier0Id"] = bindings.NewStringType()
+	paramsTypeMap["localeServicesId"] = bindings.NewStringType()
+	paramsTypeMap["tunnelEndpointId"] = bindings.NewStringType()
 	pathParams["locale_services_id"] = "localeServicesId"
 	pathParams["tier0_id"] = "tier0Id"
 	pathParams["tunnel_endpoint_id"] = "tunnelEndpointId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -82,50 +82,50 @@ func evpnTunnelEndpointsDeleteRestMetadata() vapiProtocol_.OperationRestMetadata
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func evpnTunnelEndpointsGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func evpnTunnelEndpointsGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["tier0_id"] = vapiBindings_.NewStringType()
-	fields["locale_services_id"] = vapiBindings_.NewStringType()
-	fields["tunnel_endpoint_id"] = vapiBindings_.NewStringType()
+	fields["tier0_id"] = bindings.NewStringType()
+	fields["locale_services_id"] = bindings.NewStringType()
+	fields["tunnel_endpoint_id"] = bindings.NewStringType()
 	fieldNameMap["tier0_id"] = "Tier0Id"
 	fieldNameMap["locale_services_id"] = "LocaleServicesId"
 	fieldNameMap["tunnel_endpoint_id"] = "TunnelEndpointId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func EvpnTunnelEndpointsGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.EvpnTunnelEndpointConfigBindingType)
+func evpnTunnelEndpointsGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.EvpnTunnelEndpointConfigBindingType)
 }
 
-func evpnTunnelEndpointsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func evpnTunnelEndpointsGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["tier0_id"] = vapiBindings_.NewStringType()
-	fields["locale_services_id"] = vapiBindings_.NewStringType()
-	fields["tunnel_endpoint_id"] = vapiBindings_.NewStringType()
+	fields["tier0_id"] = bindings.NewStringType()
+	fields["locale_services_id"] = bindings.NewStringType()
+	fields["tunnel_endpoint_id"] = bindings.NewStringType()
 	fieldNameMap["tier0_id"] = "Tier0Id"
 	fieldNameMap["locale_services_id"] = "LocaleServicesId"
 	fieldNameMap["tunnel_endpoint_id"] = "TunnelEndpointId"
-	paramsTypeMap["tier0_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tunnel_endpoint_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["locale_services_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tier0Id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["localeServicesId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tunnelEndpointId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["tier0_id"] = bindings.NewStringType()
+	paramsTypeMap["tunnel_endpoint_id"] = bindings.NewStringType()
+	paramsTypeMap["locale_services_id"] = bindings.NewStringType()
+	paramsTypeMap["tier0Id"] = bindings.NewStringType()
+	paramsTypeMap["localeServicesId"] = bindings.NewStringType()
+	paramsTypeMap["tunnelEndpointId"] = bindings.NewStringType()
 	pathParams["locale_services_id"] = "localeServicesId"
 	pathParams["tier0_id"] = "tier0Id"
 	pathParams["tunnel_endpoint_id"] = "tunnelEndpointId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -146,17 +146,17 @@ func evpnTunnelEndpointsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func evpnTunnelEndpointsListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func evpnTunnelEndpointsListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["tier0_id"] = vapiBindings_.NewStringType()
-	fields["locale_services_id"] = vapiBindings_.NewStringType()
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["tier0_id"] = bindings.NewStringType()
+	fields["locale_services_id"] = bindings.NewStringType()
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["tier0_id"] = "Tier0Id"
 	fieldNameMap["locale_services_id"] = "LocaleServicesId"
 	fieldNameMap["cursor"] = "Cursor"
@@ -165,31 +165,31 @@ func evpnTunnelEndpointsListInputType() vapiBindings_.StructType {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func EvpnTunnelEndpointsListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.EvpnTunnelEndpointConfigListResultBindingType)
+func evpnTunnelEndpointsListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.EvpnTunnelEndpointConfigListResultBindingType)
 }
 
-func evpnTunnelEndpointsListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func evpnTunnelEndpointsListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["tier0_id"] = vapiBindings_.NewStringType()
-	fields["locale_services_id"] = vapiBindings_.NewStringType()
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["tier0_id"] = bindings.NewStringType()
+	fields["locale_services_id"] = bindings.NewStringType()
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["tier0_id"] = "Tier0Id"
 	fieldNameMap["locale_services_id"] = "LocaleServicesId"
 	fieldNameMap["cursor"] = "Cursor"
@@ -198,16 +198,16 @@ func evpnTunnelEndpointsListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["tier0_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["locale_services_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	paramsTypeMap["tier0Id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["localeServicesId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["tier0_id"] = bindings.NewStringType()
+	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["locale_services_id"] = bindings.NewStringType()
+	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["tier0Id"] = bindings.NewStringType()
+	paramsTypeMap["localeServicesId"] = bindings.NewStringType()
 	pathParams["locale_services_id"] = "localeServicesId"
 	pathParams["tier0_id"] = "tier0Id"
 	queryParams["cursor"] = "cursor"
@@ -218,7 +218,7 @@ func evpnTunnelEndpointsListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -239,55 +239,55 @@ func evpnTunnelEndpointsListRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func evpnTunnelEndpointsPatchInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func evpnTunnelEndpointsPatchInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["tier0_id"] = vapiBindings_.NewStringType()
-	fields["locale_services_id"] = vapiBindings_.NewStringType()
-	fields["tunnel_endpoint_id"] = vapiBindings_.NewStringType()
-	fields["evpn_tunnel_endpoint_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.EvpnTunnelEndpointConfigBindingType)
+	fields["tier0_id"] = bindings.NewStringType()
+	fields["locale_services_id"] = bindings.NewStringType()
+	fields["tunnel_endpoint_id"] = bindings.NewStringType()
+	fields["evpn_tunnel_endpoint_config"] = bindings.NewReferenceType(model.EvpnTunnelEndpointConfigBindingType)
 	fieldNameMap["tier0_id"] = "Tier0Id"
 	fieldNameMap["locale_services_id"] = "LocaleServicesId"
 	fieldNameMap["tunnel_endpoint_id"] = "TunnelEndpointId"
 	fieldNameMap["evpn_tunnel_endpoint_config"] = "EvpnTunnelEndpointConfig"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func EvpnTunnelEndpointsPatchOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func evpnTunnelEndpointsPatchOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func evpnTunnelEndpointsPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func evpnTunnelEndpointsPatchRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["tier0_id"] = vapiBindings_.NewStringType()
-	fields["locale_services_id"] = vapiBindings_.NewStringType()
-	fields["tunnel_endpoint_id"] = vapiBindings_.NewStringType()
-	fields["evpn_tunnel_endpoint_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.EvpnTunnelEndpointConfigBindingType)
+	fields["tier0_id"] = bindings.NewStringType()
+	fields["locale_services_id"] = bindings.NewStringType()
+	fields["tunnel_endpoint_id"] = bindings.NewStringType()
+	fields["evpn_tunnel_endpoint_config"] = bindings.NewReferenceType(model.EvpnTunnelEndpointConfigBindingType)
 	fieldNameMap["tier0_id"] = "Tier0Id"
 	fieldNameMap["locale_services_id"] = "LocaleServicesId"
 	fieldNameMap["tunnel_endpoint_id"] = "TunnelEndpointId"
 	fieldNameMap["evpn_tunnel_endpoint_config"] = "EvpnTunnelEndpointConfig"
-	paramsTypeMap["tier0_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["evpn_tunnel_endpoint_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.EvpnTunnelEndpointConfigBindingType)
-	paramsTypeMap["tunnel_endpoint_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["locale_services_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tier0Id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["localeServicesId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tunnelEndpointId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["tier0_id"] = bindings.NewStringType()
+	paramsTypeMap["evpn_tunnel_endpoint_config"] = bindings.NewReferenceType(model.EvpnTunnelEndpointConfigBindingType)
+	paramsTypeMap["tunnel_endpoint_id"] = bindings.NewStringType()
+	paramsTypeMap["locale_services_id"] = bindings.NewStringType()
+	paramsTypeMap["tier0Id"] = bindings.NewStringType()
+	paramsTypeMap["localeServicesId"] = bindings.NewStringType()
+	paramsTypeMap["tunnelEndpointId"] = bindings.NewStringType()
 	pathParams["locale_services_id"] = "localeServicesId"
 	pathParams["tier0_id"] = "tier0Id"
 	pathParams["tunnel_endpoint_id"] = "tunnelEndpointId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -308,55 +308,55 @@ func evpnTunnelEndpointsPatchRestMetadata() vapiProtocol_.OperationRestMetadata 
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func evpnTunnelEndpointsUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func evpnTunnelEndpointsUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["tier0_id"] = vapiBindings_.NewStringType()
-	fields["locale_services_id"] = vapiBindings_.NewStringType()
-	fields["tunnel_endpoint_id"] = vapiBindings_.NewStringType()
-	fields["evpn_tunnel_endpoint_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.EvpnTunnelEndpointConfigBindingType)
+	fields["tier0_id"] = bindings.NewStringType()
+	fields["locale_services_id"] = bindings.NewStringType()
+	fields["tunnel_endpoint_id"] = bindings.NewStringType()
+	fields["evpn_tunnel_endpoint_config"] = bindings.NewReferenceType(model.EvpnTunnelEndpointConfigBindingType)
 	fieldNameMap["tier0_id"] = "Tier0Id"
 	fieldNameMap["locale_services_id"] = "LocaleServicesId"
 	fieldNameMap["tunnel_endpoint_id"] = "TunnelEndpointId"
 	fieldNameMap["evpn_tunnel_endpoint_config"] = "EvpnTunnelEndpointConfig"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func EvpnTunnelEndpointsUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.EvpnTunnelEndpointConfigBindingType)
+func evpnTunnelEndpointsUpdateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.EvpnTunnelEndpointConfigBindingType)
 }
 
-func evpnTunnelEndpointsUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func evpnTunnelEndpointsUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["tier0_id"] = vapiBindings_.NewStringType()
-	fields["locale_services_id"] = vapiBindings_.NewStringType()
-	fields["tunnel_endpoint_id"] = vapiBindings_.NewStringType()
-	fields["evpn_tunnel_endpoint_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.EvpnTunnelEndpointConfigBindingType)
+	fields["tier0_id"] = bindings.NewStringType()
+	fields["locale_services_id"] = bindings.NewStringType()
+	fields["tunnel_endpoint_id"] = bindings.NewStringType()
+	fields["evpn_tunnel_endpoint_config"] = bindings.NewReferenceType(model.EvpnTunnelEndpointConfigBindingType)
 	fieldNameMap["tier0_id"] = "Tier0Id"
 	fieldNameMap["locale_services_id"] = "LocaleServicesId"
 	fieldNameMap["tunnel_endpoint_id"] = "TunnelEndpointId"
 	fieldNameMap["evpn_tunnel_endpoint_config"] = "EvpnTunnelEndpointConfig"
-	paramsTypeMap["tier0_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["evpn_tunnel_endpoint_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.EvpnTunnelEndpointConfigBindingType)
-	paramsTypeMap["tunnel_endpoint_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["locale_services_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tier0Id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["localeServicesId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tunnelEndpointId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["tier0_id"] = bindings.NewStringType()
+	paramsTypeMap["evpn_tunnel_endpoint_config"] = bindings.NewReferenceType(model.EvpnTunnelEndpointConfigBindingType)
+	paramsTypeMap["tunnel_endpoint_id"] = bindings.NewStringType()
+	paramsTypeMap["locale_services_id"] = bindings.NewStringType()
+	paramsTypeMap["tier0Id"] = bindings.NewStringType()
+	paramsTypeMap["localeServicesId"] = bindings.NewStringType()
+	paramsTypeMap["tunnelEndpointId"] = bindings.NewStringType()
 	pathParams["locale_services_id"] = "localeServicesId"
 	pathParams["tier0_id"] = "tier0Id"
 	pathParams["tunnel_endpoint_id"] = "tunnelEndpointId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

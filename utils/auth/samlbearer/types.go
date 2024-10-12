@@ -4,7 +4,7 @@
 package samlbearer
 
 import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/auth/model"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/auth/model"
 )
 
 // Info represents the details of SAML Bearer Authentication Scheme.

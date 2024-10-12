@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,63 +11,63 @@
 package ports
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func portDiscoveryProfileBindingMapsDeleteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func portDiscoveryProfileBindingMapsDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["infra_segment_id"] = vapiBindings_.NewStringType()
-	fields["infra_port_id"] = vapiBindings_.NewStringType()
-	fields["port_discovery_profile_binding_map_id"] = vapiBindings_.NewStringType()
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["infra_segment_id"] = bindings.NewStringType()
+	fields["infra_port_id"] = bindings.NewStringType()
+	fields["port_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
 	fieldNameMap["infra_port_id"] = "InfraPortId"
 	fieldNameMap["port_discovery_profile_binding_map_id"] = "PortDiscoveryProfileBindingMapId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func PortDiscoveryProfileBindingMapsDeleteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func portDiscoveryProfileBindingMapsDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func portDiscoveryProfileBindingMapsDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func portDiscoveryProfileBindingMapsDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["infra_segment_id"] = vapiBindings_.NewStringType()
-	fields["infra_port_id"] = vapiBindings_.NewStringType()
-	fields["port_discovery_profile_binding_map_id"] = vapiBindings_.NewStringType()
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["infra_segment_id"] = bindings.NewStringType()
+	fields["infra_port_id"] = bindings.NewStringType()
+	fields["port_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
 	fieldNameMap["infra_port_id"] = "InfraPortId"
 	fieldNameMap["port_discovery_profile_binding_map_id"] = "PortDiscoveryProfileBindingMapId"
-	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["port_discovery_profile_binding_map_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["infra_segment_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["infra_port_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["infraSegmentId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["infraPortId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["portDiscoveryProfileBindingMapId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["port_discovery_profile_binding_map_id"] = bindings.NewStringType()
+	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["infra_segment_id"] = bindings.NewStringType()
+	paramsTypeMap["infra_port_id"] = bindings.NewStringType()
+	paramsTypeMap["orgId"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
+	paramsTypeMap["infraSegmentId"] = bindings.NewStringType()
+	paramsTypeMap["infraPortId"] = bindings.NewStringType()
+	paramsTypeMap["portDiscoveryProfileBindingMapId"] = bindings.NewStringType()
 	pathParams["infra_port_id"] = "infraPortId"
 	pathParams["port_discovery_profile_binding_map_id"] = "portDiscoveryProfileBindingMapId"
 	pathParams["project_id"] = "projectId"
@@ -75,7 +75,7 @@ func portDiscoveryProfileBindingMapsDeleteRestMetadata() vapiProtocol_.Operation
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -96,56 +96,56 @@ func portDiscoveryProfileBindingMapsDeleteRestMetadata() vapiProtocol_.Operation
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func portDiscoveryProfileBindingMapsGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func portDiscoveryProfileBindingMapsGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["infra_segment_id"] = vapiBindings_.NewStringType()
-	fields["infra_port_id"] = vapiBindings_.NewStringType()
-	fields["port_discovery_profile_binding_map_id"] = vapiBindings_.NewStringType()
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["infra_segment_id"] = bindings.NewStringType()
+	fields["infra_port_id"] = bindings.NewStringType()
+	fields["port_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
 	fieldNameMap["infra_port_id"] = "InfraPortId"
 	fieldNameMap["port_discovery_profile_binding_map_id"] = "PortDiscoveryProfileBindingMapId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func PortDiscoveryProfileBindingMapsGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.PortDiscoveryProfileBindingMapBindingType)
+func portDiscoveryProfileBindingMapsGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.PortDiscoveryProfileBindingMapBindingType)
 }
 
-func portDiscoveryProfileBindingMapsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func portDiscoveryProfileBindingMapsGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["infra_segment_id"] = vapiBindings_.NewStringType()
-	fields["infra_port_id"] = vapiBindings_.NewStringType()
-	fields["port_discovery_profile_binding_map_id"] = vapiBindings_.NewStringType()
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["infra_segment_id"] = bindings.NewStringType()
+	fields["infra_port_id"] = bindings.NewStringType()
+	fields["port_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
 	fieldNameMap["infra_port_id"] = "InfraPortId"
 	fieldNameMap["port_discovery_profile_binding_map_id"] = "PortDiscoveryProfileBindingMapId"
-	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["port_discovery_profile_binding_map_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["infra_segment_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["infra_port_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["infraSegmentId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["infraPortId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["portDiscoveryProfileBindingMapId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["port_discovery_profile_binding_map_id"] = bindings.NewStringType()
+	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["infra_segment_id"] = bindings.NewStringType()
+	paramsTypeMap["infra_port_id"] = bindings.NewStringType()
+	paramsTypeMap["orgId"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
+	paramsTypeMap["infraSegmentId"] = bindings.NewStringType()
+	paramsTypeMap["infraPortId"] = bindings.NewStringType()
+	paramsTypeMap["portDiscoveryProfileBindingMapId"] = bindings.NewStringType()
 	pathParams["infra_port_id"] = "infraPortId"
 	pathParams["port_discovery_profile_binding_map_id"] = "portDiscoveryProfileBindingMapId"
 	pathParams["project_id"] = "projectId"
@@ -153,7 +153,7 @@ func portDiscoveryProfileBindingMapsGetRestMetadata() vapiProtocol_.OperationRes
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -174,19 +174,19 @@ func portDiscoveryProfileBindingMapsGetRestMetadata() vapiProtocol_.OperationRes
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func portDiscoveryProfileBindingMapsListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func portDiscoveryProfileBindingMapsListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["infra_segment_id"] = vapiBindings_.NewStringType()
-	fields["infra_port_id"] = vapiBindings_.NewStringType()
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["infra_segment_id"] = bindings.NewStringType()
+	fields["infra_port_id"] = bindings.NewStringType()
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
@@ -197,33 +197,33 @@ func portDiscoveryProfileBindingMapsListInputType() vapiBindings_.StructType {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func PortDiscoveryProfileBindingMapsListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.PortDiscoveryProfileBindingMapListResultBindingType)
+func portDiscoveryProfileBindingMapsListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.PortDiscoveryProfileBindingMapListResultBindingType)
 }
 
-func portDiscoveryProfileBindingMapsListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func portDiscoveryProfileBindingMapsListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["infra_segment_id"] = vapiBindings_.NewStringType()
-	fields["infra_port_id"] = vapiBindings_.NewStringType()
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["infra_segment_id"] = bindings.NewStringType()
+	fields["infra_port_id"] = bindings.NewStringType()
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
@@ -234,20 +234,20 @@ func portDiscoveryProfileBindingMapsListRestMetadata() vapiProtocol_.OperationRe
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["infra_segment_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["infra_port_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["infraSegmentId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["infraPortId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["infra_segment_id"] = bindings.NewStringType()
+	paramsTypeMap["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["infra_port_id"] = bindings.NewStringType()
+	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["orgId"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
+	paramsTypeMap["infraSegmentId"] = bindings.NewStringType()
+	paramsTypeMap["infraPortId"] = bindings.NewStringType()
 	pathParams["infra_port_id"] = "infraPortId"
 	pathParams["project_id"] = "projectId"
 	pathParams["infra_segment_id"] = "infraSegmentId"
@@ -260,7 +260,7 @@ func portDiscoveryProfileBindingMapsListRestMetadata() vapiProtocol_.OperationRe
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -281,61 +281,61 @@ func portDiscoveryProfileBindingMapsListRestMetadata() vapiProtocol_.OperationRe
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func portDiscoveryProfileBindingMapsPatchInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func portDiscoveryProfileBindingMapsPatchInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["infra_segment_id"] = vapiBindings_.NewStringType()
-	fields["infra_port_id"] = vapiBindings_.NewStringType()
-	fields["port_discovery_profile_binding_map_id"] = vapiBindings_.NewStringType()
-	fields["port_discovery_profile_binding_map"] = vapiBindings_.NewReferenceType(nsx_policyModel.PortDiscoveryProfileBindingMapBindingType)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["infra_segment_id"] = bindings.NewStringType()
+	fields["infra_port_id"] = bindings.NewStringType()
+	fields["port_discovery_profile_binding_map_id"] = bindings.NewStringType()
+	fields["port_discovery_profile_binding_map"] = bindings.NewReferenceType(model.PortDiscoveryProfileBindingMapBindingType)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
 	fieldNameMap["infra_port_id"] = "InfraPortId"
 	fieldNameMap["port_discovery_profile_binding_map_id"] = "PortDiscoveryProfileBindingMapId"
 	fieldNameMap["port_discovery_profile_binding_map"] = "PortDiscoveryProfileBindingMap"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func PortDiscoveryProfileBindingMapsPatchOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func portDiscoveryProfileBindingMapsPatchOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func portDiscoveryProfileBindingMapsPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func portDiscoveryProfileBindingMapsPatchRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["infra_segment_id"] = vapiBindings_.NewStringType()
-	fields["infra_port_id"] = vapiBindings_.NewStringType()
-	fields["port_discovery_profile_binding_map_id"] = vapiBindings_.NewStringType()
-	fields["port_discovery_profile_binding_map"] = vapiBindings_.NewReferenceType(nsx_policyModel.PortDiscoveryProfileBindingMapBindingType)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["infra_segment_id"] = bindings.NewStringType()
+	fields["infra_port_id"] = bindings.NewStringType()
+	fields["port_discovery_profile_binding_map_id"] = bindings.NewStringType()
+	fields["port_discovery_profile_binding_map"] = bindings.NewReferenceType(model.PortDiscoveryProfileBindingMapBindingType)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
 	fieldNameMap["infra_port_id"] = "InfraPortId"
 	fieldNameMap["port_discovery_profile_binding_map_id"] = "PortDiscoveryProfileBindingMapId"
 	fieldNameMap["port_discovery_profile_binding_map"] = "PortDiscoveryProfileBindingMap"
-	paramsTypeMap["port_discovery_profile_binding_map"] = vapiBindings_.NewReferenceType(nsx_policyModel.PortDiscoveryProfileBindingMapBindingType)
-	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["port_discovery_profile_binding_map_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["infra_segment_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["infra_port_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["infraSegmentId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["infraPortId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["portDiscoveryProfileBindingMapId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["port_discovery_profile_binding_map_id"] = bindings.NewStringType()
+	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["port_discovery_profile_binding_map"] = bindings.NewReferenceType(model.PortDiscoveryProfileBindingMapBindingType)
+	paramsTypeMap["infra_segment_id"] = bindings.NewStringType()
+	paramsTypeMap["infra_port_id"] = bindings.NewStringType()
+	paramsTypeMap["orgId"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
+	paramsTypeMap["infraSegmentId"] = bindings.NewStringType()
+	paramsTypeMap["infraPortId"] = bindings.NewStringType()
+	paramsTypeMap["portDiscoveryProfileBindingMapId"] = bindings.NewStringType()
 	pathParams["infra_port_id"] = "infraPortId"
 	pathParams["port_discovery_profile_binding_map_id"] = "portDiscoveryProfileBindingMapId"
 	pathParams["project_id"] = "projectId"
@@ -343,7 +343,7 @@ func portDiscoveryProfileBindingMapsPatchRestMetadata() vapiProtocol_.OperationR
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -364,61 +364,61 @@ func portDiscoveryProfileBindingMapsPatchRestMetadata() vapiProtocol_.OperationR
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func portDiscoveryProfileBindingMapsUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func portDiscoveryProfileBindingMapsUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["infra_segment_id"] = vapiBindings_.NewStringType()
-	fields["infra_port_id"] = vapiBindings_.NewStringType()
-	fields["port_discovery_profile_binding_map_id"] = vapiBindings_.NewStringType()
-	fields["port_discovery_profile_binding_map"] = vapiBindings_.NewReferenceType(nsx_policyModel.PortDiscoveryProfileBindingMapBindingType)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["infra_segment_id"] = bindings.NewStringType()
+	fields["infra_port_id"] = bindings.NewStringType()
+	fields["port_discovery_profile_binding_map_id"] = bindings.NewStringType()
+	fields["port_discovery_profile_binding_map"] = bindings.NewReferenceType(model.PortDiscoveryProfileBindingMapBindingType)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
 	fieldNameMap["infra_port_id"] = "InfraPortId"
 	fieldNameMap["port_discovery_profile_binding_map_id"] = "PortDiscoveryProfileBindingMapId"
 	fieldNameMap["port_discovery_profile_binding_map"] = "PortDiscoveryProfileBindingMap"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func PortDiscoveryProfileBindingMapsUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.PortDiscoveryProfileBindingMapBindingType)
+func portDiscoveryProfileBindingMapsUpdateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.PortDiscoveryProfileBindingMapBindingType)
 }
 
-func portDiscoveryProfileBindingMapsUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func portDiscoveryProfileBindingMapsUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["infra_segment_id"] = vapiBindings_.NewStringType()
-	fields["infra_port_id"] = vapiBindings_.NewStringType()
-	fields["port_discovery_profile_binding_map_id"] = vapiBindings_.NewStringType()
-	fields["port_discovery_profile_binding_map"] = vapiBindings_.NewReferenceType(nsx_policyModel.PortDiscoveryProfileBindingMapBindingType)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["infra_segment_id"] = bindings.NewStringType()
+	fields["infra_port_id"] = bindings.NewStringType()
+	fields["port_discovery_profile_binding_map_id"] = bindings.NewStringType()
+	fields["port_discovery_profile_binding_map"] = bindings.NewReferenceType(model.PortDiscoveryProfileBindingMapBindingType)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
 	fieldNameMap["infra_port_id"] = "InfraPortId"
 	fieldNameMap["port_discovery_profile_binding_map_id"] = "PortDiscoveryProfileBindingMapId"
 	fieldNameMap["port_discovery_profile_binding_map"] = "PortDiscoveryProfileBindingMap"
-	paramsTypeMap["port_discovery_profile_binding_map"] = vapiBindings_.NewReferenceType(nsx_policyModel.PortDiscoveryProfileBindingMapBindingType)
-	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["port_discovery_profile_binding_map_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["infra_segment_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["infra_port_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["infraSegmentId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["infraPortId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["portDiscoveryProfileBindingMapId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["port_discovery_profile_binding_map_id"] = bindings.NewStringType()
+	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["port_discovery_profile_binding_map"] = bindings.NewReferenceType(model.PortDiscoveryProfileBindingMapBindingType)
+	paramsTypeMap["infra_segment_id"] = bindings.NewStringType()
+	paramsTypeMap["infra_port_id"] = bindings.NewStringType()
+	paramsTypeMap["orgId"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
+	paramsTypeMap["infraSegmentId"] = bindings.NewStringType()
+	paramsTypeMap["infraPortId"] = bindings.NewStringType()
+	paramsTypeMap["portDiscoveryProfileBindingMapId"] = bindings.NewStringType()
 	pathParams["infra_port_id"] = "infraPortId"
 	pathParams["port_discovery_profile_binding_map_id"] = "portDiscoveryProfileBindingMapId"
 	pathParams["project_id"] = "projectId"
@@ -426,7 +426,7 @@ func portDiscoveryProfileBindingMapsUpdateRestMetadata() vapiProtocol_.Operation
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package security
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type ExcludeListClient interface {
 
@@ -26,153 +27,147 @@ type ExcludeListClient interface {
 	// @param deepCheckParam Check all parents (optional, default to false)
 	// @param enforcementPointPathParam Path of the enforcement point (optional)
 	// @return com.vmware.nsx_policy.model.PolicyResourceReference
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Filter(intentPathParam string, deepCheckParam *bool, enforcementPointPathParam *string) (nsx_policyModel.PolicyResourceReference, error)
+	Filter(intentPathParam string, deepCheckParam *bool, enforcementPointPathParam *string) (model.PolicyResourceReference, error)
 
 	// Read exclude list for firewall
 	// @return com.vmware.nsx_policy.model.PolicyExcludeList
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get() (nsx_policyModel.PolicyExcludeList, error)
+	Get() (model.PolicyExcludeList, error)
 
 	// Read security policy exclude list including system and user excluded members.
 	// @return com.vmware.nsx_policy.model.PolicyExcludeList
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get0() (nsx_policyModel.PolicyExcludeList, error)
+	Get0() (model.PolicyExcludeList, error)
 }
 
 type excludeListClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewExcludeListClient(connector vapiProtocolClient_.Connector) *excludeListClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.global_infra.settings.firewall.security.exclude_list")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"filter": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "filter"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"get_0":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get_0"),
+func NewExcludeListClient(connector client.Connector) *excludeListClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.global_infra.settings.firewall.security.exclude_list")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"filter": core.NewMethodIdentifier(interfaceIdentifier, "filter"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"get_0":  core.NewMethodIdentifier(interfaceIdentifier, "get_0"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	eIface := excludeListClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &eIface
 }
 
-func (eIface *excludeListClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (eIface *excludeListClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := eIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (eIface *excludeListClient) Filter(intentPathParam string, deepCheckParam *bool, enforcementPointPathParam *string) (nsx_policyModel.PolicyResourceReference, error) {
+func (eIface *excludeListClient) Filter(intentPathParam string, deepCheckParam *bool, enforcementPointPathParam *string) (model.PolicyResourceReference, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
-	operationRestMetaData := excludeListFilterRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(excludeListFilterInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(excludeListFilterInputType(), typeConverter)
 	sv.AddStructField("IntentPath", intentPathParam)
 	sv.AddStructField("DeepCheck", deepCheckParam)
 	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.PolicyResourceReference
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.PolicyResourceReference
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := excludeListFilterRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.global_infra.settings.firewall.security.exclude_list", "filter", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.PolicyResourceReference
+	var emptyOutput model.PolicyResourceReference
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ExcludeListFilterOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), excludeListFilterOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.PolicyResourceReference), nil
+		return output.(model.PolicyResourceReference), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (eIface *excludeListClient) Get() (nsx_policyModel.PolicyExcludeList, error) {
+func (eIface *excludeListClient) Get() (model.PolicyExcludeList, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(excludeListGetInputType(), typeConverter)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput model.PolicyExcludeList
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+	}
 	operationRestMetaData := excludeListGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(excludeListGetInputType(), typeConverter)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput nsx_policyModel.PolicyExcludeList
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
-	}
-
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.global_infra.settings.firewall.security.exclude_list", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.PolicyExcludeList
+	var emptyOutput model.PolicyExcludeList
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ExcludeListGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), excludeListGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.PolicyExcludeList), nil
+		return output.(model.PolicyExcludeList), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (eIface *excludeListClient) Get0() (nsx_policyModel.PolicyExcludeList, error) {
+func (eIface *excludeListClient) Get0() (model.PolicyExcludeList, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
-	operationRestMetaData := excludeListGet0RestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(excludeListGet0InputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(excludeListGet0InputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.PolicyExcludeList
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.PolicyExcludeList
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := excludeListGet0RestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.global_infra.settings.firewall.security.exclude_list", "get_0", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.PolicyExcludeList
+	var emptyOutput model.PolicyExcludeList
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ExcludeListGet0OutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), excludeListGet0OutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.PolicyExcludeList), nil
+		return output.(model.PolicyExcludeList), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

@@ -11,30 +11,30 @@
 package privilege
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
 	"reflect"
 )
 
 // Resource type for vAPI component.
 const Component_RESOURCE_TYPE = "com.vmware.vapi.component"
 
-func componentListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func componentListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ComponentListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewListType(vapiBindings_.NewIdType([]string{"com.vmware.vapi.component"}, ""), reflect.TypeOf([]string{}))
+func componentListOutputType() bindings.BindingType {
+	return bindings.NewListType(bindings.NewIdType([]string{"com.vmware.vapi.component"}, ""), reflect.TypeOf([]string{}))
 }
 
-func componentListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func componentListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
@@ -42,7 +42,7 @@ func componentListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	bodyFieldsMap := map[string]string{}
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -63,36 +63,36 @@ func componentListRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{})
 }
 
-func componentGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func componentGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["component_id"] = vapiBindings_.NewIdType([]string{"com.vmware.vapi.component"}, "")
+	fields["component_id"] = bindings.NewIdType([]string{"com.vmware.vapi.component"}, "")
 	fieldNameMap["component_id"] = "ComponentId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ComponentGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(ComponentDataBindingType)
+func componentGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(ComponentDataBindingType)
 }
 
-func componentGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func componentGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["component_id"] = vapiBindings_.NewIdType([]string{"com.vmware.vapi.component"}, "")
+	fields["component_id"] = bindings.NewIdType([]string{"com.vmware.vapi.component"}, "")
 	fieldNameMap["component_id"] = "ComponentId"
-	paramsTypeMap["component_id"] = vapiBindings_.NewIdType([]string{"com.vmware.vapi.component"}, "")
-	paramsTypeMap["componentId"] = vapiBindings_.NewIdType([]string{"com.vmware.vapi.component"}, "")
+	paramsTypeMap["component_id"] = bindings.NewIdType([]string{"com.vmware.vapi.component"}, "")
+	paramsTypeMap["componentId"] = bindings.NewIdType([]string{"com.vmware.vapi.component"}, "")
 	pathParams["component_id"] = "componentId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -113,36 +113,36 @@ func componentGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func componentFingerprintInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func componentFingerprintInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["component_id"] = vapiBindings_.NewIdType([]string{"com.vmware.vapi.component"}, "")
+	fields["component_id"] = bindings.NewIdType([]string{"com.vmware.vapi.component"}, "")
 	fieldNameMap["component_id"] = "ComponentId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ComponentFingerprintOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewStringType()
+func componentFingerprintOutputType() bindings.BindingType {
+	return bindings.NewStringType()
 }
 
-func componentFingerprintRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func componentFingerprintRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["component_id"] = vapiBindings_.NewIdType([]string{"com.vmware.vapi.component"}, "")
+	fields["component_id"] = bindings.NewIdType([]string{"com.vmware.vapi.component"}, "")
 	fieldNameMap["component_id"] = "ComponentId"
-	paramsTypeMap["component_id"] = vapiBindings_.NewIdType([]string{"com.vmware.vapi.component"}, "")
-	paramsTypeMap["componentId"] = vapiBindings_.NewIdType([]string{"com.vmware.vapi.component"}, "")
+	paramsTypeMap["component_id"] = bindings.NewIdType([]string{"com.vmware.vapi.component"}, "")
+	paramsTypeMap["componentId"] = bindings.NewIdType([]string{"com.vmware.vapi.component"}, "")
 	pathParams["component_id"] = "componentId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

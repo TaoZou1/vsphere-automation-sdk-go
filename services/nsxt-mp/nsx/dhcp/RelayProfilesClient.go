@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,37 +9,32 @@
 package dhcp
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type RelayProfilesClient interface {
 
 	// Creates a dhcp relay profile.
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param dhcpRelayProfileParam (required)
 	// @return com.vmware.nsx.model.DhcpRelayProfile
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Create(dhcpRelayProfileParam nsxModel.DhcpRelayProfile) (nsxModel.DhcpRelayProfile, error)
+	Create(dhcpRelayProfileParam model.DhcpRelayProfile) (model.DhcpRelayProfile, error)
 
 	// Deletes the specified dhcp relay profile.
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param relayProfileIdParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -49,21 +44,16 @@ type RelayProfilesClient interface {
 
 	// Returns information about the specified dhcp relay profile.
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param relayProfileIdParam (required)
 	// @return com.vmware.nsx.model.DhcpRelayProfile
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(relayProfileIdParam string) (nsxModel.DhcpRelayProfile, error)
+	Get(relayProfileIdParam string) (model.DhcpRelayProfile, error)
 
 	// Returns information about all dhcp relay profiles.
-	//
-	// Deprecated: This API element is deprecated.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -71,86 +61,81 @@ type RelayProfilesClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx.model.DhcpRelayProfileListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsxModel.DhcpRelayProfileListResult, error)
+	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.DhcpRelayProfileListResult, error)
 
 	// Modifies the specified dhcp relay profile.
-	//
-	// Deprecated: This API element is deprecated.
 	//
 	// @param relayProfileIdParam (required)
 	// @param dhcpRelayProfileParam (required)
 	// @return com.vmware.nsx.model.DhcpRelayProfile
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(relayProfileIdParam string, dhcpRelayProfileParam nsxModel.DhcpRelayProfile) (nsxModel.DhcpRelayProfile, error)
+	Update(relayProfileIdParam string, dhcpRelayProfileParam model.DhcpRelayProfile) (model.DhcpRelayProfile, error)
 }
 
 type relayProfilesClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewRelayProfilesClient(connector vapiProtocolClient_.Connector) *relayProfilesClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.dhcp.relay_profiles")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"create": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewRelayProfilesClient(connector client.Connector) *relayProfilesClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.dhcp.relay_profiles")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"create": core.NewMethodIdentifier(interfaceIdentifier, "create"),
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	rIface := relayProfilesClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &rIface
 }
 
-func (rIface *relayProfilesClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (rIface *relayProfilesClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := rIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (rIface *relayProfilesClient) Create(dhcpRelayProfileParam nsxModel.DhcpRelayProfile) (nsxModel.DhcpRelayProfile, error) {
+func (rIface *relayProfilesClient) Create(dhcpRelayProfileParam model.DhcpRelayProfile) (model.DhcpRelayProfile, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
-	operationRestMetaData := relayProfilesCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(relayProfilesCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(relayProfilesCreateInputType(), typeConverter)
 	sv.AddStructField("DhcpRelayProfile", dhcpRelayProfileParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.DhcpRelayProfile
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.DhcpRelayProfile
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := relayProfilesCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := rIface.connector.GetApiProvider().Invoke("com.vmware.nsx.dhcp.relay_profiles", "create", inputDataValue, executionContext)
-	var emptyOutput nsxModel.DhcpRelayProfile
+	var emptyOutput model.DhcpRelayProfile
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), RelayProfilesCreateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), relayProfilesCreateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.DhcpRelayProfile), nil
+		return output.(model.DhcpRelayProfile), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), rIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
@@ -159,69 +144,63 @@ func (rIface *relayProfilesClient) Create(dhcpRelayProfileParam nsxModel.DhcpRel
 func (rIface *relayProfilesClient) Delete(relayProfileIdParam string) error {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
-	operationRestMetaData := relayProfilesDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(relayProfilesDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(relayProfilesDeleteInputType(), typeConverter)
 	sv.AddStructField("RelayProfileId", relayProfileIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := relayProfilesDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := rIface.connector.GetApiProvider().Invoke("com.vmware.nsx.dhcp.relay_profiles", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), rIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (rIface *relayProfilesClient) Get(relayProfileIdParam string) (nsxModel.DhcpRelayProfile, error) {
+func (rIface *relayProfilesClient) Get(relayProfileIdParam string) (model.DhcpRelayProfile, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
-	operationRestMetaData := relayProfilesGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(relayProfilesGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(relayProfilesGetInputType(), typeConverter)
 	sv.AddStructField("RelayProfileId", relayProfileIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.DhcpRelayProfile
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.DhcpRelayProfile
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := relayProfilesGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := rIface.connector.GetApiProvider().Invoke("com.vmware.nsx.dhcp.relay_profiles", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.DhcpRelayProfile
+	var emptyOutput model.DhcpRelayProfile
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), RelayProfilesGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), relayProfilesGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.DhcpRelayProfile), nil
+		return output.(model.DhcpRelayProfile), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), rIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (rIface *relayProfilesClient) List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsxModel.DhcpRelayProfileListResult, error) {
+func (rIface *relayProfilesClient) List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.DhcpRelayProfileListResult, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
-	operationRestMetaData := relayProfilesListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(relayProfilesListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(relayProfilesListInputType(), typeConverter)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)
 	sv.AddStructField("PageSize", pageSizeParam)
@@ -229,55 +208,57 @@ func (rIface *relayProfilesClient) List(cursorParam *string, includedFieldsParam
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.DhcpRelayProfileListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.DhcpRelayProfileListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := relayProfilesListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := rIface.connector.GetApiProvider().Invoke("com.vmware.nsx.dhcp.relay_profiles", "list", inputDataValue, executionContext)
-	var emptyOutput nsxModel.DhcpRelayProfileListResult
+	var emptyOutput model.DhcpRelayProfileListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), RelayProfilesListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), relayProfilesListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.DhcpRelayProfileListResult), nil
+		return output.(model.DhcpRelayProfileListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), rIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (rIface *relayProfilesClient) Update(relayProfileIdParam string, dhcpRelayProfileParam nsxModel.DhcpRelayProfile) (nsxModel.DhcpRelayProfile, error) {
+func (rIface *relayProfilesClient) Update(relayProfileIdParam string, dhcpRelayProfileParam model.DhcpRelayProfile) (model.DhcpRelayProfile, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
-	operationRestMetaData := relayProfilesUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(relayProfilesUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(relayProfilesUpdateInputType(), typeConverter)
 	sv.AddStructField("RelayProfileId", relayProfileIdParam)
 	sv.AddStructField("DhcpRelayProfile", dhcpRelayProfileParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.DhcpRelayProfile
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.DhcpRelayProfile
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := relayProfilesUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := rIface.connector.GetApiProvider().Invoke("com.vmware.nsx.dhcp.relay_profiles", "update", inputDataValue, executionContext)
-	var emptyOutput nsxModel.DhcpRelayProfile
+	var emptyOutput model.DhcpRelayProfile
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), RelayProfilesUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), relayProfilesUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.DhcpRelayProfile), nil
+		return output.(model.DhcpRelayProfile), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), rIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

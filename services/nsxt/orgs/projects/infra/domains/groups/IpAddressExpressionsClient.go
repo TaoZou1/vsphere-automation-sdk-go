@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package groups
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type IpAddressExpressionsClient interface {
 
@@ -29,13 +30,12 @@ type IpAddressExpressionsClient interface {
 	// @param expressionIdParam (required)
 	// @param ipAddressListParam (required)
 	// @param actionParam Add or Remove group members. (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Create(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, expressionIdParam string, ipAddressListParam nsx_policyModel.IPAddressList, actionParam string) error
+	Create(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, expressionIdParam string, ipAddressListParam model.IPAddressList, actionParam string) error
 
 	// Delete Group IPAddressExpression
 	//
@@ -44,7 +44,6 @@ type IpAddressExpressionsClient interface {
 	// @param domainIdParam Domain ID (required)
 	// @param groupIdParam Group ID (required)
 	// @param expressionIdParam IPAddressExpression ID (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -60,50 +59,45 @@ type IpAddressExpressionsClient interface {
 	// @param groupIdParam Group ID (required)
 	// @param expressionIdParam IPAddressExpression ID (required)
 	// @param ipAddressExpressionParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, expressionIdParam string, ipAddressExpressionParam nsx_policyModel.IPAddressExpression) error
+	Patch(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, expressionIdParam string, ipAddressExpressionParam model.IPAddressExpression) error
 }
 
 type ipAddressExpressionsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewIpAddressExpressionsClient(connector vapiProtocolClient_.Connector) *ipAddressExpressionsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.orgs.projects.infra.domains.groups.ip_address_expressions")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"create": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"patch":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "patch"),
+func NewIpAddressExpressionsClient(connector client.Connector) *ipAddressExpressionsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.orgs.projects.infra.domains.groups.ip_address_expressions")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"create": core.NewMethodIdentifier(interfaceIdentifier, "create"),
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	iIface := ipAddressExpressionsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &iIface
 }
 
-func (iIface *ipAddressExpressionsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (iIface *ipAddressExpressionsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := iIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (iIface *ipAddressExpressionsClient) Create(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, expressionIdParam string, ipAddressListParam nsx_policyModel.IPAddressList, actionParam string) error {
+func (iIface *ipAddressExpressionsClient) Create(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, expressionIdParam string, ipAddressListParam model.IPAddressList, actionParam string) error {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := ipAddressExpressionsCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ipAddressExpressionsCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ipAddressExpressionsCreateInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("DomainId", domainIdParam)
@@ -113,16 +107,19 @@ func (iIface *ipAddressExpressionsClient) Create(orgIdParam string, projectIdPar
 	sv.AddStructField("Action", actionParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ipAddressExpressionsCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.orgs.projects.infra.domains.groups.ip_address_expressions", "create", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
@@ -131,11 +128,7 @@ func (iIface *ipAddressExpressionsClient) Create(orgIdParam string, projectIdPar
 func (iIface *ipAddressExpressionsClient) Delete(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, expressionIdParam string) error {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := ipAddressExpressionsDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ipAddressExpressionsDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ipAddressExpressionsDeleteInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("DomainId", domainIdParam)
@@ -143,29 +136,28 @@ func (iIface *ipAddressExpressionsClient) Delete(orgIdParam string, projectIdPar
 	sv.AddStructField("ExpressionId", expressionIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ipAddressExpressionsDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.orgs.projects.infra.domains.groups.ip_address_expressions", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (iIface *ipAddressExpressionsClient) Patch(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, expressionIdParam string, ipAddressExpressionParam nsx_policyModel.IPAddressExpression) error {
+func (iIface *ipAddressExpressionsClient) Patch(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, expressionIdParam string, ipAddressExpressionParam model.IPAddressExpression) error {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := ipAddressExpressionsPatchRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ipAddressExpressionsPatchInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ipAddressExpressionsPatchInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("DomainId", domainIdParam)
@@ -174,16 +166,19 @@ func (iIface *ipAddressExpressionsClient) Patch(orgIdParam string, projectIdPara
 	sv.AddStructField("IpAddressExpression", ipAddressExpressionParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ipAddressExpressionsPatchRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.orgs.projects.infra.domains.groups.ip_address_expressions", "patch", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}

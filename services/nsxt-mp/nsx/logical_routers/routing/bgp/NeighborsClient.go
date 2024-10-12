@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package bgp
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type NeighborsClient interface {
 
@@ -25,29 +26,23 @@ type NeighborsClient interface {
 	//  Please use below Policy APIs.
 	//  POST /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/bgp/neighbors/<neighbor-id>
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param logicalRouterIdParam (required)
 	// @param bgpNeighborParam (required)
 	// @return com.vmware.nsx.model.BgpNeighbor
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Create(logicalRouterIdParam string, bgpNeighborParam nsxModel.BgpNeighbor) (nsxModel.BgpNeighbor, error)
+	Create(logicalRouterIdParam string, bgpNeighborParam model.BgpNeighbor) (model.BgpNeighbor, error)
 
 	// Delete a specific BGP Neighbor on a Logical Router
 	//
 	//  Please use below Policy APIs.
 	//  DELETE /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/bgp/neighbors/<neighbor-id>
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param logicalRouterIdParam (required)
 	// @param idParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -60,25 +55,20 @@ type NeighborsClient interface {
 	//  Please use below Policy APIs.
 	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/bgp/neighbors/<neighbor-id>
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param logicalRouterIdParam (required)
 	// @param idParam (required)
 	// @return com.vmware.nsx.model.BgpNeighbor
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(logicalRouterIdParam string, idParam string) (nsxModel.BgpNeighbor, error)
+	Get(logicalRouterIdParam string, idParam string) (model.BgpNeighbor, error)
 
 	// Paginated list of BGP Neighbors on a Logical Router
 	//
 	//  Please use below Policy APIs.
 	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/bgp/neighbors
-	//
-	// Deprecated: This API element is deprecated.
 	//
 	// @param logicalRouterIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -87,130 +77,119 @@ type NeighborsClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx.model.BgpNeighborListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(logicalRouterIdParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsxModel.BgpNeighborListResult, error)
+	List(logicalRouterIdParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.BgpNeighborListResult, error)
 
 	// Read a specific BGP Neighbor details with password on a Logical Router
 	//
 	//  Please use below Policy API.
 	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/bgp/neighbors/<neighbor-id>
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param logicalRouterIdParam (required)
 	// @param idParam (required)
 	// @return com.vmware.nsx.model.BgpNeighbor
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Showsensitivedata(logicalRouterIdParam string, idParam string) (nsxModel.BgpNeighbor, error)
+	Showsensitivedata(logicalRouterIdParam string, idParam string) (model.BgpNeighbor, error)
 
 	// Unset/Delete the password property on the specific BGP Neighbor. No other property of the BgpNeighbor can be updated using this API
 	//
 	//  Please use below Policy APIs.
 	//  POST /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/bgp/neighbors/<neighbor-id>
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param logicalRouterIdParam (required)
 	// @param idParam (required)
 	// @param actionParam (optional)
 	// @return com.vmware.nsx.model.BgpNeighbor
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Unsetpassword(logicalRouterIdParam string, idParam string, actionParam *string) (nsxModel.BgpNeighbor, error)
+	Unsetpassword(logicalRouterIdParam string, idParam string, actionParam *string) (model.BgpNeighbor, error)
 
 	// Update a specific BGP Neighbor on a Logical Router
 	//
 	//  Please use below Policy APIs.
 	//  PUT /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/bgp/neighbors/<neighbor-id>
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param logicalRouterIdParam (required)
 	// @param idParam (required)
 	// @param bgpNeighborParam (required)
 	// @return com.vmware.nsx.model.BgpNeighbor
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(logicalRouterIdParam string, idParam string, bgpNeighborParam nsxModel.BgpNeighbor) (nsxModel.BgpNeighbor, error)
+	Update(logicalRouterIdParam string, idParam string, bgpNeighborParam model.BgpNeighbor) (model.BgpNeighbor, error)
 }
 
 type neighborsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewNeighborsClient(connector vapiProtocolClient_.Connector) *neighborsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.logical_routers.routing.bgp.neighbors")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"create":            vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
-		"delete":            vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":               vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":              vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"showsensitivedata": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "showsensitivedata"),
-		"unsetpassword":     vapiCore_.NewMethodIdentifier(interfaceIdentifier, "unsetpassword"),
-		"update":            vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewNeighborsClient(connector client.Connector) *neighborsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.logical_routers.routing.bgp.neighbors")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"create":            core.NewMethodIdentifier(interfaceIdentifier, "create"),
+		"delete":            core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":               core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":              core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"showsensitivedata": core.NewMethodIdentifier(interfaceIdentifier, "showsensitivedata"),
+		"unsetpassword":     core.NewMethodIdentifier(interfaceIdentifier, "unsetpassword"),
+		"update":            core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	nIface := neighborsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &nIface
 }
 
-func (nIface *neighborsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (nIface *neighborsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := nIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (nIface *neighborsClient) Create(logicalRouterIdParam string, bgpNeighborParam nsxModel.BgpNeighbor) (nsxModel.BgpNeighbor, error) {
+func (nIface *neighborsClient) Create(logicalRouterIdParam string, bgpNeighborParam model.BgpNeighbor) (model.BgpNeighbor, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	executionContext := nIface.connector.NewExecutionContext()
-	operationRestMetaData := neighborsCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(neighborsCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(neighborsCreateInputType(), typeConverter)
 	sv.AddStructField("LogicalRouterId", logicalRouterIdParam)
 	sv.AddStructField("BgpNeighbor", bgpNeighborParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.BgpNeighbor
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.BgpNeighbor
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := neighborsCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := nIface.connector.GetApiProvider().Invoke("com.vmware.nsx.logical_routers.routing.bgp.neighbors", "create", inputDataValue, executionContext)
-	var emptyOutput nsxModel.BgpNeighbor
+	var emptyOutput model.BgpNeighbor
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), NeighborsCreateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), neighborsCreateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.BgpNeighbor), nil
+		return output.(model.BgpNeighbor), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), nIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
@@ -219,71 +198,65 @@ func (nIface *neighborsClient) Create(logicalRouterIdParam string, bgpNeighborPa
 func (nIface *neighborsClient) Delete(logicalRouterIdParam string, idParam string) error {
 	typeConverter := nIface.connector.TypeConverter()
 	executionContext := nIface.connector.NewExecutionContext()
-	operationRestMetaData := neighborsDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(neighborsDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(neighborsDeleteInputType(), typeConverter)
 	sv.AddStructField("LogicalRouterId", logicalRouterIdParam)
 	sv.AddStructField("Id", idParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := neighborsDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := nIface.connector.GetApiProvider().Invoke("com.vmware.nsx.logical_routers.routing.bgp.neighbors", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), nIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (nIface *neighborsClient) Get(logicalRouterIdParam string, idParam string) (nsxModel.BgpNeighbor, error) {
+func (nIface *neighborsClient) Get(logicalRouterIdParam string, idParam string) (model.BgpNeighbor, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	executionContext := nIface.connector.NewExecutionContext()
-	operationRestMetaData := neighborsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(neighborsGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(neighborsGetInputType(), typeConverter)
 	sv.AddStructField("LogicalRouterId", logicalRouterIdParam)
 	sv.AddStructField("Id", idParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.BgpNeighbor
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.BgpNeighbor
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := neighborsGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := nIface.connector.GetApiProvider().Invoke("com.vmware.nsx.logical_routers.routing.bgp.neighbors", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.BgpNeighbor
+	var emptyOutput model.BgpNeighbor
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), NeighborsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), neighborsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.BgpNeighbor), nil
+		return output.(model.BgpNeighbor), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), nIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (nIface *neighborsClient) List(logicalRouterIdParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsxModel.BgpNeighborListResult, error) {
+func (nIface *neighborsClient) List(logicalRouterIdParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.BgpNeighborListResult, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	executionContext := nIface.connector.NewExecutionContext()
-	operationRestMetaData := neighborsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(neighborsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(neighborsListInputType(), typeConverter)
 	sv.AddStructField("LogicalRouterId", logicalRouterIdParam)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)
@@ -292,123 +265,123 @@ func (nIface *neighborsClient) List(logicalRouterIdParam string, cursorParam *st
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.BgpNeighborListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.BgpNeighborListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := neighborsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := nIface.connector.GetApiProvider().Invoke("com.vmware.nsx.logical_routers.routing.bgp.neighbors", "list", inputDataValue, executionContext)
-	var emptyOutput nsxModel.BgpNeighborListResult
+	var emptyOutput model.BgpNeighborListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), NeighborsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), neighborsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.BgpNeighborListResult), nil
+		return output.(model.BgpNeighborListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), nIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (nIface *neighborsClient) Showsensitivedata(logicalRouterIdParam string, idParam string) (nsxModel.BgpNeighbor, error) {
+func (nIface *neighborsClient) Showsensitivedata(logicalRouterIdParam string, idParam string) (model.BgpNeighbor, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	executionContext := nIface.connector.NewExecutionContext()
-	operationRestMetaData := neighborsShowsensitivedataRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(neighborsShowsensitivedataInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(neighborsShowsensitivedataInputType(), typeConverter)
 	sv.AddStructField("LogicalRouterId", logicalRouterIdParam)
 	sv.AddStructField("Id", idParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.BgpNeighbor
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.BgpNeighbor
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := neighborsShowsensitivedataRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := nIface.connector.GetApiProvider().Invoke("com.vmware.nsx.logical_routers.routing.bgp.neighbors", "showsensitivedata", inputDataValue, executionContext)
-	var emptyOutput nsxModel.BgpNeighbor
+	var emptyOutput model.BgpNeighbor
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), NeighborsShowsensitivedataOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), neighborsShowsensitivedataOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.BgpNeighbor), nil
+		return output.(model.BgpNeighbor), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), nIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (nIface *neighborsClient) Unsetpassword(logicalRouterIdParam string, idParam string, actionParam *string) (nsxModel.BgpNeighbor, error) {
+func (nIface *neighborsClient) Unsetpassword(logicalRouterIdParam string, idParam string, actionParam *string) (model.BgpNeighbor, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	executionContext := nIface.connector.NewExecutionContext()
-	operationRestMetaData := neighborsUnsetpasswordRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(neighborsUnsetpasswordInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(neighborsUnsetpasswordInputType(), typeConverter)
 	sv.AddStructField("LogicalRouterId", logicalRouterIdParam)
 	sv.AddStructField("Id", idParam)
 	sv.AddStructField("Action", actionParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.BgpNeighbor
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.BgpNeighbor
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := neighborsUnsetpasswordRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := nIface.connector.GetApiProvider().Invoke("com.vmware.nsx.logical_routers.routing.bgp.neighbors", "unsetpassword", inputDataValue, executionContext)
-	var emptyOutput nsxModel.BgpNeighbor
+	var emptyOutput model.BgpNeighbor
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), NeighborsUnsetpasswordOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), neighborsUnsetpasswordOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.BgpNeighbor), nil
+		return output.(model.BgpNeighbor), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), nIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (nIface *neighborsClient) Update(logicalRouterIdParam string, idParam string, bgpNeighborParam nsxModel.BgpNeighbor) (nsxModel.BgpNeighbor, error) {
+func (nIface *neighborsClient) Update(logicalRouterIdParam string, idParam string, bgpNeighborParam model.BgpNeighbor) (model.BgpNeighbor, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	executionContext := nIface.connector.NewExecutionContext()
-	operationRestMetaData := neighborsUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(neighborsUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(neighborsUpdateInputType(), typeConverter)
 	sv.AddStructField("LogicalRouterId", logicalRouterIdParam)
 	sv.AddStructField("Id", idParam)
 	sv.AddStructField("BgpNeighbor", bgpNeighborParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.BgpNeighbor
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.BgpNeighbor
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := neighborsUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := nIface.connector.GetApiProvider().Invoke("com.vmware.nsx.logical_routers.routing.bgp.neighbors", "update", inputDataValue, executionContext)
-	var emptyOutput nsxModel.BgpNeighbor
+	var emptyOutput model.BgpNeighbor
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), NeighborsUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), neighborsUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.BgpNeighbor), nil
+		return output.(model.BgpNeighbor), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), nIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

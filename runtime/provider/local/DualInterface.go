@@ -1,11 +1,10 @@
-/* Copyright © 2020-2021 VMware, Inc. All Rights Reserved.
+/* Copyright © 2020 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
-
 package local
 
 import (
+	"github.com/gorilla/mux"
 	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/server/rest"
 	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/server/rest/contextbuilder"
 )
 
@@ -23,17 +22,14 @@ type (
 		// RegisterRoutesHandlers registers the operations in a given binding type
 		// to a router and links the binding to APIProvider and parsers for security
 		// and headers.
-		RegisterRoutesHandlers(router rest.Router, provider core.APIProvider,
+		RegisterRoutesHandlers(router *mux.Router, provider core.APIProvider,
 			appCtxBuilders []contextbuilder.ApplicationContextBuilder,
-			secCtxBuilders []contextbuilder.SecurityContextBuilder,
-			opts ...rest.RequestHandlerOption)
+			secCtxBuilders []contextbuilder.SecurityContextBuilder)
 	}
 )
 
 // RegisterRESTInterfaces registers interfaces in the router
-// Deprecated: This method does not allow configuring opentracing Tracer. Please use the bindings *ApiInterface
-// RegisterRoutesHandlers
-func RegisterRESTInterfaces(router rest.Router,
+func RegisterRESTInterfaces(router *mux.Router,
 	localProvider *LocalProvider,
 	appCtxBuilders []contextbuilder.ApplicationContextBuilder,
 	secCtxBuilders []contextbuilder.SecurityContextBuilder,

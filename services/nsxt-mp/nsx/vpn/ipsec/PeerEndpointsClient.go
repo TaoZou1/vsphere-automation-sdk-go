@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package ipsec
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type PeerEndpointsClient interface {
 
@@ -26,17 +27,14 @@ type PeerEndpointsClient interface {
 	//  PATCH /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>
 	//  PATCH /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param ipSecVPNPeerEndpointParam (required)
 	// @return com.vmware.nsx.model.IPSecVPNPeerEndpoint
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Create(ipSecVPNPeerEndpointParam nsxModel.IPSecVPNPeerEndpoint) (nsxModel.IPSecVPNPeerEndpoint, error)
+	Create(ipSecVPNPeerEndpointParam model.IPSecVPNPeerEndpoint) (model.IPSecVPNPeerEndpoint, error)
 
 	// Delete custom IPSec VPN peer endpoint. All references are strong references and dependent peer endpoints can not be deleted if being referenced.
 	//
@@ -44,11 +42,8 @@ type PeerEndpointsClient interface {
 	//  DELETE /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>
 	//  DELETE /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param ipsecVpnPeerEndpointIdParam (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -62,17 +57,14 @@ type PeerEndpointsClient interface {
 	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>
 	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param ipsecVpnPeerEndpointIdParam (required)
 	// @return com.vmware.nsx.model.IPSecVPNPeerEndpoint
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(ipsecVpnPeerEndpointIdParam string) (nsxModel.IPSecVPNPeerEndpoint, error)
+	Get(ipsecVpnPeerEndpointIdParam string) (model.IPSecVPNPeerEndpoint, error)
 
 	// Get paginated list of all peer endpoint.
 	//
@@ -80,21 +72,18 @@ type PeerEndpointsClient interface {
 	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/sessions
 	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>/sessions
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
 	// @param pageSizeParam Maximum number of results to return in this page (server may return fewer) (optional, default to 1000)
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx.model.IPSecVPNPeerEndpointListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsxModel.IPSecVPNPeerEndpointListResult, error)
+	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IPSecVPNPeerEndpointListResult, error)
 
 	// Get custom IPSec VPN peer endpoint with PSK.
 	//
@@ -102,17 +91,14 @@ type PeerEndpointsClient interface {
 	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>?action=show-sensitive-data
 	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>?action=show-sensitive-data
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param ipsecVpnPeerEndpointIdParam (required)
 	// @return com.vmware.nsx.model.IPSecVPNPeerEndpoint
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Showsensitivedata(ipsecVpnPeerEndpointIdParam string) (nsxModel.IPSecVPNPeerEndpoint, error)
+	Showsensitivedata(ipsecVpnPeerEndpointIdParam string) (model.IPSecVPNPeerEndpoint, error)
 
 	// Edit custom IPSec peer endpoint. System owned endpoints are non editable.
 	//
@@ -120,77 +106,73 @@ type PeerEndpointsClient interface {
 	//  PUT /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>
 	//  PUT /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param ipsecVpnPeerEndpointIdParam (required)
 	// @param ipSecVPNPeerEndpointParam (required)
 	// @return com.vmware.nsx.model.IPSecVPNPeerEndpoint
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(ipsecVpnPeerEndpointIdParam string, ipSecVPNPeerEndpointParam nsxModel.IPSecVPNPeerEndpoint) (nsxModel.IPSecVPNPeerEndpoint, error)
+	Update(ipsecVpnPeerEndpointIdParam string, ipSecVPNPeerEndpointParam model.IPSecVPNPeerEndpoint) (model.IPSecVPNPeerEndpoint, error)
 }
 
 type peerEndpointsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewPeerEndpointsClient(connector vapiProtocolClient_.Connector) *peerEndpointsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.vpn.ipsec.peer_endpoints")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"create":            vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
-		"delete":            vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":               vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":              vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"showsensitivedata": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "showsensitivedata"),
-		"update":            vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewPeerEndpointsClient(connector client.Connector) *peerEndpointsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.vpn.ipsec.peer_endpoints")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"create":            core.NewMethodIdentifier(interfaceIdentifier, "create"),
+		"delete":            core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":               core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":              core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"showsensitivedata": core.NewMethodIdentifier(interfaceIdentifier, "showsensitivedata"),
+		"update":            core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	pIface := peerEndpointsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &pIface
 }
 
-func (pIface *peerEndpointsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (pIface *peerEndpointsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := pIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (pIface *peerEndpointsClient) Create(ipSecVPNPeerEndpointParam nsxModel.IPSecVPNPeerEndpoint) (nsxModel.IPSecVPNPeerEndpoint, error) {
+func (pIface *peerEndpointsClient) Create(ipSecVPNPeerEndpointParam model.IPSecVPNPeerEndpoint) (model.IPSecVPNPeerEndpoint, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
-	operationRestMetaData := peerEndpointsCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(peerEndpointsCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(peerEndpointsCreateInputType(), typeConverter)
 	sv.AddStructField("IpSecVPNPeerEndpoint", ipSecVPNPeerEndpointParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.IPSecVPNPeerEndpoint
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IPSecVPNPeerEndpoint
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := peerEndpointsCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx.vpn.ipsec.peer_endpoints", "create", inputDataValue, executionContext)
-	var emptyOutput nsxModel.IPSecVPNPeerEndpoint
+	var emptyOutput model.IPSecVPNPeerEndpoint
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), PeerEndpointsCreateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), peerEndpointsCreateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.IPSecVPNPeerEndpoint), nil
+		return output.(model.IPSecVPNPeerEndpoint), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
@@ -199,70 +181,64 @@ func (pIface *peerEndpointsClient) Create(ipSecVPNPeerEndpointParam nsxModel.IPS
 func (pIface *peerEndpointsClient) Delete(ipsecVpnPeerEndpointIdParam string, forceParam *bool) error {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
-	operationRestMetaData := peerEndpointsDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(peerEndpointsDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(peerEndpointsDeleteInputType(), typeConverter)
 	sv.AddStructField("IpsecVpnPeerEndpointId", ipsecVpnPeerEndpointIdParam)
 	sv.AddStructField("Force", forceParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := peerEndpointsDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx.vpn.ipsec.peer_endpoints", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (pIface *peerEndpointsClient) Get(ipsecVpnPeerEndpointIdParam string) (nsxModel.IPSecVPNPeerEndpoint, error) {
+func (pIface *peerEndpointsClient) Get(ipsecVpnPeerEndpointIdParam string) (model.IPSecVPNPeerEndpoint, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
-	operationRestMetaData := peerEndpointsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(peerEndpointsGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(peerEndpointsGetInputType(), typeConverter)
 	sv.AddStructField("IpsecVpnPeerEndpointId", ipsecVpnPeerEndpointIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.IPSecVPNPeerEndpoint
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IPSecVPNPeerEndpoint
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := peerEndpointsGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx.vpn.ipsec.peer_endpoints", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.IPSecVPNPeerEndpoint
+	var emptyOutput model.IPSecVPNPeerEndpoint
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), PeerEndpointsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), peerEndpointsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.IPSecVPNPeerEndpoint), nil
+		return output.(model.IPSecVPNPeerEndpoint), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (pIface *peerEndpointsClient) List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsxModel.IPSecVPNPeerEndpointListResult, error) {
+func (pIface *peerEndpointsClient) List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IPSecVPNPeerEndpointListResult, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
-	operationRestMetaData := peerEndpointsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(peerEndpointsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(peerEndpointsListInputType(), typeConverter)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)
 	sv.AddStructField("PageSize", pageSizeParam)
@@ -270,87 +246,88 @@ func (pIface *peerEndpointsClient) List(cursorParam *string, includedFieldsParam
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.IPSecVPNPeerEndpointListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IPSecVPNPeerEndpointListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := peerEndpointsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx.vpn.ipsec.peer_endpoints", "list", inputDataValue, executionContext)
-	var emptyOutput nsxModel.IPSecVPNPeerEndpointListResult
+	var emptyOutput model.IPSecVPNPeerEndpointListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), PeerEndpointsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), peerEndpointsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.IPSecVPNPeerEndpointListResult), nil
+		return output.(model.IPSecVPNPeerEndpointListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (pIface *peerEndpointsClient) Showsensitivedata(ipsecVpnPeerEndpointIdParam string) (nsxModel.IPSecVPNPeerEndpoint, error) {
+func (pIface *peerEndpointsClient) Showsensitivedata(ipsecVpnPeerEndpointIdParam string) (model.IPSecVPNPeerEndpoint, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
-	operationRestMetaData := peerEndpointsShowsensitivedataRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(peerEndpointsShowsensitivedataInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(peerEndpointsShowsensitivedataInputType(), typeConverter)
 	sv.AddStructField("IpsecVpnPeerEndpointId", ipsecVpnPeerEndpointIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.IPSecVPNPeerEndpoint
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IPSecVPNPeerEndpoint
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := peerEndpointsShowsensitivedataRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx.vpn.ipsec.peer_endpoints", "showsensitivedata", inputDataValue, executionContext)
-	var emptyOutput nsxModel.IPSecVPNPeerEndpoint
+	var emptyOutput model.IPSecVPNPeerEndpoint
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), PeerEndpointsShowsensitivedataOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), peerEndpointsShowsensitivedataOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.IPSecVPNPeerEndpoint), nil
+		return output.(model.IPSecVPNPeerEndpoint), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (pIface *peerEndpointsClient) Update(ipsecVpnPeerEndpointIdParam string, ipSecVPNPeerEndpointParam nsxModel.IPSecVPNPeerEndpoint) (nsxModel.IPSecVPNPeerEndpoint, error) {
+func (pIface *peerEndpointsClient) Update(ipsecVpnPeerEndpointIdParam string, ipSecVPNPeerEndpointParam model.IPSecVPNPeerEndpoint) (model.IPSecVPNPeerEndpoint, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
-	operationRestMetaData := peerEndpointsUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(peerEndpointsUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(peerEndpointsUpdateInputType(), typeConverter)
 	sv.AddStructField("IpsecVpnPeerEndpointId", ipsecVpnPeerEndpointIdParam)
 	sv.AddStructField("IpSecVPNPeerEndpoint", ipSecVPNPeerEndpointParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.IPSecVPNPeerEndpoint
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IPSecVPNPeerEndpoint
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := peerEndpointsUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx.vpn.ipsec.peer_endpoints", "update", inputDataValue, executionContext)
-	var emptyOutput nsxModel.IPSecVPNPeerEndpoint
+	var emptyOutput model.IPSecVPNPeerEndpoint
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), PeerEndpointsUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), peerEndpointsUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.IPSecVPNPeerEndpoint), nil
+		return output.(model.IPSecVPNPeerEndpoint), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

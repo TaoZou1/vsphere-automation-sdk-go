@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,63 +11,63 @@
 package segments
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func segmentDiscoveryProfileBindingMapsDeleteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func segmentDiscoveryProfileBindingMapsDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["tier1_id"] = vapiBindings_.NewStringType()
-	fields["segment_id"] = vapiBindings_.NewStringType()
-	fields["segment_discovery_profile_binding_map_id"] = vapiBindings_.NewStringType()
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["tier1_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["segment_discovery_profile_binding_map_id"] = "SegmentDiscoveryProfileBindingMapId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SegmentDiscoveryProfileBindingMapsDeleteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func segmentDiscoveryProfileBindingMapsDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func segmentDiscoveryProfileBindingMapsDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func segmentDiscoveryProfileBindingMapsDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["tier1_id"] = vapiBindings_.NewStringType()
-	fields["segment_id"] = vapiBindings_.NewStringType()
-	fields["segment_discovery_profile_binding_map_id"] = vapiBindings_.NewStringType()
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["tier1_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["segment_discovery_profile_binding_map_id"] = "SegmentDiscoveryProfileBindingMapId"
-	paramsTypeMap["segment_discovery_profile_binding_map_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tier1_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segment_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tier1Id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segmentId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segmentDiscoveryProfileBindingMapId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
+	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["tier1_id"] = bindings.NewStringType()
+	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["segment_id"] = bindings.NewStringType()
+	paramsTypeMap["orgId"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
+	paramsTypeMap["tier1Id"] = bindings.NewStringType()
+	paramsTypeMap["segmentId"] = bindings.NewStringType()
+	paramsTypeMap["segmentDiscoveryProfileBindingMapId"] = bindings.NewStringType()
 	pathParams["segment_discovery_profile_binding_map_id"] = "segmentDiscoveryProfileBindingMapId"
 	pathParams["segment_id"] = "segmentId"
 	pathParams["tier1_id"] = "tier1Id"
@@ -75,7 +75,7 @@ func segmentDiscoveryProfileBindingMapsDeleteRestMetadata() vapiProtocol_.Operat
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -96,56 +96,56 @@ func segmentDiscoveryProfileBindingMapsDeleteRestMetadata() vapiProtocol_.Operat
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func segmentDiscoveryProfileBindingMapsGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func segmentDiscoveryProfileBindingMapsGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["tier1_id"] = vapiBindings_.NewStringType()
-	fields["segment_id"] = vapiBindings_.NewStringType()
-	fields["segment_discovery_profile_binding_map_id"] = vapiBindings_.NewStringType()
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["tier1_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["segment_discovery_profile_binding_map_id"] = "SegmentDiscoveryProfileBindingMapId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SegmentDiscoveryProfileBindingMapsGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.SegmentDiscoveryProfileBindingMapBindingType)
+func segmentDiscoveryProfileBindingMapsGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.SegmentDiscoveryProfileBindingMapBindingType)
 }
 
-func segmentDiscoveryProfileBindingMapsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func segmentDiscoveryProfileBindingMapsGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["tier1_id"] = vapiBindings_.NewStringType()
-	fields["segment_id"] = vapiBindings_.NewStringType()
-	fields["segment_discovery_profile_binding_map_id"] = vapiBindings_.NewStringType()
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["tier1_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["segment_discovery_profile_binding_map_id"] = "SegmentDiscoveryProfileBindingMapId"
-	paramsTypeMap["segment_discovery_profile_binding_map_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tier1_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segment_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tier1Id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segmentId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segmentDiscoveryProfileBindingMapId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
+	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["tier1_id"] = bindings.NewStringType()
+	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["segment_id"] = bindings.NewStringType()
+	paramsTypeMap["orgId"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
+	paramsTypeMap["tier1Id"] = bindings.NewStringType()
+	paramsTypeMap["segmentId"] = bindings.NewStringType()
+	paramsTypeMap["segmentDiscoveryProfileBindingMapId"] = bindings.NewStringType()
 	pathParams["segment_discovery_profile_binding_map_id"] = "segmentDiscoveryProfileBindingMapId"
 	pathParams["segment_id"] = "segmentId"
 	pathParams["tier1_id"] = "tier1Id"
@@ -153,7 +153,7 @@ func segmentDiscoveryProfileBindingMapsGetRestMetadata() vapiProtocol_.Operation
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -174,19 +174,19 @@ func segmentDiscoveryProfileBindingMapsGetRestMetadata() vapiProtocol_.Operation
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func segmentDiscoveryProfileBindingMapsListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func segmentDiscoveryProfileBindingMapsListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["tier1_id"] = vapiBindings_.NewStringType()
-	fields["segment_id"] = vapiBindings_.NewStringType()
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["tier1_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["tier1_id"] = "Tier1Id"
@@ -197,33 +197,33 @@ func segmentDiscoveryProfileBindingMapsListInputType() vapiBindings_.StructType 
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SegmentDiscoveryProfileBindingMapsListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.SegmentDiscoveryProfileBindingMapListResultBindingType)
+func segmentDiscoveryProfileBindingMapsListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.SegmentDiscoveryProfileBindingMapListResultBindingType)
 }
 
-func segmentDiscoveryProfileBindingMapsListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func segmentDiscoveryProfileBindingMapsListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["tier1_id"] = vapiBindings_.NewStringType()
-	fields["segment_id"] = vapiBindings_.NewStringType()
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["tier1_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["tier1_id"] = "Tier1Id"
@@ -234,20 +234,20 @@ func segmentDiscoveryProfileBindingMapsListRestMetadata() vapiProtocol_.Operatio
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tier1_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["segment_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tier1Id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segmentId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["tier1_id"] = bindings.NewStringType()
+	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["segment_id"] = bindings.NewStringType()
+	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["orgId"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
+	paramsTypeMap["tier1Id"] = bindings.NewStringType()
+	paramsTypeMap["segmentId"] = bindings.NewStringType()
 	pathParams["segment_id"] = "segmentId"
 	pathParams["tier1_id"] = "tier1Id"
 	pathParams["project_id"] = "projectId"
@@ -260,7 +260,7 @@ func segmentDiscoveryProfileBindingMapsListRestMetadata() vapiProtocol_.Operatio
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -281,61 +281,61 @@ func segmentDiscoveryProfileBindingMapsListRestMetadata() vapiProtocol_.Operatio
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func segmentDiscoveryProfileBindingMapsPatchInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func segmentDiscoveryProfileBindingMapsPatchInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["tier1_id"] = vapiBindings_.NewStringType()
-	fields["segment_id"] = vapiBindings_.NewStringType()
-	fields["segment_discovery_profile_binding_map_id"] = vapiBindings_.NewStringType()
-	fields["segment_discovery_profile_binding_map"] = vapiBindings_.NewReferenceType(nsx_policyModel.SegmentDiscoveryProfileBindingMapBindingType)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["tier1_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
+	fields["segment_discovery_profile_binding_map"] = bindings.NewReferenceType(model.SegmentDiscoveryProfileBindingMapBindingType)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["segment_discovery_profile_binding_map_id"] = "SegmentDiscoveryProfileBindingMapId"
 	fieldNameMap["segment_discovery_profile_binding_map"] = "SegmentDiscoveryProfileBindingMap"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SegmentDiscoveryProfileBindingMapsPatchOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func segmentDiscoveryProfileBindingMapsPatchOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func segmentDiscoveryProfileBindingMapsPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func segmentDiscoveryProfileBindingMapsPatchRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["tier1_id"] = vapiBindings_.NewStringType()
-	fields["segment_id"] = vapiBindings_.NewStringType()
-	fields["segment_discovery_profile_binding_map_id"] = vapiBindings_.NewStringType()
-	fields["segment_discovery_profile_binding_map"] = vapiBindings_.NewReferenceType(nsx_policyModel.SegmentDiscoveryProfileBindingMapBindingType)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["tier1_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
+	fields["segment_discovery_profile_binding_map"] = bindings.NewReferenceType(model.SegmentDiscoveryProfileBindingMapBindingType)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["segment_discovery_profile_binding_map_id"] = "SegmentDiscoveryProfileBindingMapId"
 	fieldNameMap["segment_discovery_profile_binding_map"] = "SegmentDiscoveryProfileBindingMap"
-	paramsTypeMap["segment_discovery_profile_binding_map_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tier1_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segment_discovery_profile_binding_map"] = vapiBindings_.NewReferenceType(nsx_policyModel.SegmentDiscoveryProfileBindingMapBindingType)
-	paramsTypeMap["segment_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tier1Id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segmentId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segmentDiscoveryProfileBindingMapId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
+	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["tier1_id"] = bindings.NewStringType()
+	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["segment_id"] = bindings.NewStringType()
+	paramsTypeMap["segment_discovery_profile_binding_map"] = bindings.NewReferenceType(model.SegmentDiscoveryProfileBindingMapBindingType)
+	paramsTypeMap["orgId"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
+	paramsTypeMap["tier1Id"] = bindings.NewStringType()
+	paramsTypeMap["segmentId"] = bindings.NewStringType()
+	paramsTypeMap["segmentDiscoveryProfileBindingMapId"] = bindings.NewStringType()
 	pathParams["segment_discovery_profile_binding_map_id"] = "segmentDiscoveryProfileBindingMapId"
 	pathParams["segment_id"] = "segmentId"
 	pathParams["tier1_id"] = "tier1Id"
@@ -343,7 +343,7 @@ func segmentDiscoveryProfileBindingMapsPatchRestMetadata() vapiProtocol_.Operati
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -364,61 +364,61 @@ func segmentDiscoveryProfileBindingMapsPatchRestMetadata() vapiProtocol_.Operati
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func segmentDiscoveryProfileBindingMapsUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func segmentDiscoveryProfileBindingMapsUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["tier1_id"] = vapiBindings_.NewStringType()
-	fields["segment_id"] = vapiBindings_.NewStringType()
-	fields["segment_discovery_profile_binding_map_id"] = vapiBindings_.NewStringType()
-	fields["segment_discovery_profile_binding_map"] = vapiBindings_.NewReferenceType(nsx_policyModel.SegmentDiscoveryProfileBindingMapBindingType)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["tier1_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
+	fields["segment_discovery_profile_binding_map"] = bindings.NewReferenceType(model.SegmentDiscoveryProfileBindingMapBindingType)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["segment_discovery_profile_binding_map_id"] = "SegmentDiscoveryProfileBindingMapId"
 	fieldNameMap["segment_discovery_profile_binding_map"] = "SegmentDiscoveryProfileBindingMap"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func SegmentDiscoveryProfileBindingMapsUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.SegmentDiscoveryProfileBindingMapBindingType)
+func segmentDiscoveryProfileBindingMapsUpdateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.SegmentDiscoveryProfileBindingMapBindingType)
 }
 
-func segmentDiscoveryProfileBindingMapsUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func segmentDiscoveryProfileBindingMapsUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = vapiBindings_.NewStringType()
-	fields["project_id"] = vapiBindings_.NewStringType()
-	fields["tier1_id"] = vapiBindings_.NewStringType()
-	fields["segment_id"] = vapiBindings_.NewStringType()
-	fields["segment_discovery_profile_binding_map_id"] = vapiBindings_.NewStringType()
-	fields["segment_discovery_profile_binding_map"] = vapiBindings_.NewReferenceType(nsx_policyModel.SegmentDiscoveryProfileBindingMapBindingType)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
+	fields["tier1_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
+	fields["segment_discovery_profile_binding_map"] = bindings.NewReferenceType(model.SegmentDiscoveryProfileBindingMapBindingType)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["segment_discovery_profile_binding_map_id"] = "SegmentDiscoveryProfileBindingMapId"
 	fieldNameMap["segment_discovery_profile_binding_map"] = "SegmentDiscoveryProfileBindingMap"
-	paramsTypeMap["segment_discovery_profile_binding_map_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tier1_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segment_discovery_profile_binding_map"] = vapiBindings_.NewReferenceType(nsx_policyModel.SegmentDiscoveryProfileBindingMapBindingType)
-	paramsTypeMap["segment_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tier1Id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segmentId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["segmentDiscoveryProfileBindingMapId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
+	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["tier1_id"] = bindings.NewStringType()
+	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["segment_id"] = bindings.NewStringType()
+	paramsTypeMap["segment_discovery_profile_binding_map"] = bindings.NewReferenceType(model.SegmentDiscoveryProfileBindingMapBindingType)
+	paramsTypeMap["orgId"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
+	paramsTypeMap["tier1Id"] = bindings.NewStringType()
+	paramsTypeMap["segmentId"] = bindings.NewStringType()
+	paramsTypeMap["segmentDiscoveryProfileBindingMapId"] = bindings.NewStringType()
 	pathParams["segment_discovery_profile_binding_map_id"] = "segmentDiscoveryProfileBindingMapId"
 	pathParams["segment_id"] = "segmentId"
 	pathParams["tier1_id"] = "tier1Id"
@@ -426,7 +426,7 @@ func segmentDiscoveryProfileBindingMapsUpdateRestMetadata() vapiProtocol_.Operat
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

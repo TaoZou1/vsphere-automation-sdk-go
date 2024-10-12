@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,15 +9,16 @@
 package ui_views
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type WidgetconfigurationsClient interface {
 
@@ -25,22 +26,20 @@ type WidgetconfigurationsClient interface {
 	//
 	// @param viewIdParam (required)
 	// @param widgetConfigurationParam (required)
-	// The parameter must contain all the properties defined in nsx_policyModel.WidgetConfiguration.
+	// The parameter must contain all the properties defined in model.WidgetConfiguration.
 	// @return com.vmware.nsx_policy.model.WidgetConfiguration
-	// The return value will contain all the properties defined in nsx_policyModel.WidgetConfiguration.
-	//
+	// The return value will contain all the properties defined in model.WidgetConfiguration.
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Create(viewIdParam string, widgetConfigurationParam *vapiData_.StructValue) (*vapiData_.StructValue, error)
+	Create(viewIdParam string, widgetConfigurationParam *data.StructValue) (*data.StructValue, error)
 
 	// Detaches widget from a given view. If the widget is no longer part of any view, then it will be purged.
 	//
 	// @param viewIdParam (required)
 	// @param widgetconfigurationIdParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -54,102 +53,98 @@ type WidgetconfigurationsClient interface {
 	// @param containerParam Id of the container (optional)
 	// @param widgetIdsParam Ids of the WidgetConfigurations (optional)
 	// @return com.vmware.nsx_policy.model.WidgetConfigurationList
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(viewIdParam string, containerParam *string, widgetIdsParam *string) (nsx_policyModel.WidgetConfigurationList, error)
+	Get(viewIdParam string, containerParam *string, widgetIdsParam *string) (model.WidgetConfigurationList, error)
 
 	// Returns Information about a specific Widget Configuration.
 	//
 	// @param viewIdParam (required)
 	// @param widgetconfigurationIdParam (required)
 	// @return com.vmware.nsx_policy.model.WidgetConfiguration
-	// The return value will contain all the properties defined in nsx_policyModel.WidgetConfiguration.
-	//
+	// The return value will contain all the properties defined in model.WidgetConfiguration.
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get0(viewIdParam string, widgetconfigurationIdParam string) (*vapiData_.StructValue, error)
+	Get0(viewIdParam string, widgetconfigurationIdParam string) (*data.StructValue, error)
 
 	// Updates the widget at the given view. If the widget is referenced by other views, then the widget will be updated in all the views that it is part of.
 	//
 	// @param viewIdParam (required)
 	// @param widgetconfigurationIdParam (required)
 	// @param widgetConfigurationParam (required)
-	// The parameter must contain all the properties defined in nsx_policyModel.WidgetConfiguration.
+	// The parameter must contain all the properties defined in model.WidgetConfiguration.
 	// @return com.vmware.nsx_policy.model.WidgetConfiguration
-	// The return value will contain all the properties defined in nsx_policyModel.WidgetConfiguration.
-	//
+	// The return value will contain all the properties defined in model.WidgetConfiguration.
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(viewIdParam string, widgetconfigurationIdParam string, widgetConfigurationParam *vapiData_.StructValue) (*vapiData_.StructValue, error)
+	Update(viewIdParam string, widgetconfigurationIdParam string, widgetConfigurationParam *data.StructValue) (*data.StructValue, error)
 }
 
 type widgetconfigurationsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewWidgetconfigurationsClient(connector vapiProtocolClient_.Connector) *widgetconfigurationsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.ui_views.widgetconfigurations")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"create": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"get_0":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get_0"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewWidgetconfigurationsClient(connector client.Connector) *widgetconfigurationsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.ui_views.widgetconfigurations")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"create": core.NewMethodIdentifier(interfaceIdentifier, "create"),
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"get_0":  core.NewMethodIdentifier(interfaceIdentifier, "get_0"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	wIface := widgetconfigurationsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &wIface
 }
 
-func (wIface *widgetconfigurationsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (wIface *widgetconfigurationsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := wIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (wIface *widgetconfigurationsClient) Create(viewIdParam string, widgetConfigurationParam *vapiData_.StructValue) (*vapiData_.StructValue, error) {
+func (wIface *widgetconfigurationsClient) Create(viewIdParam string, widgetConfigurationParam *data.StructValue) (*data.StructValue, error) {
 	typeConverter := wIface.connector.TypeConverter()
 	executionContext := wIface.connector.NewExecutionContext()
-	operationRestMetaData := widgetconfigurationsCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(widgetconfigurationsCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(widgetconfigurationsCreateInputType(), typeConverter)
 	sv.AddStructField("ViewId", viewIdParam)
 	sv.AddStructField("WidgetConfiguration", widgetConfigurationParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput *vapiData_.StructValue
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput *data.StructValue
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := widgetconfigurationsCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	wIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := wIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.ui_views.widgetconfigurations", "create", inputDataValue, executionContext)
-	var emptyOutput *vapiData_.StructValue
+	var emptyOutput *data.StructValue
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), WidgetconfigurationsCreateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), widgetconfigurationsCreateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(*vapiData_.StructValue), nil
+		return output.(*data.StructValue), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), wIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
@@ -158,126 +153,122 @@ func (wIface *widgetconfigurationsClient) Create(viewIdParam string, widgetConfi
 func (wIface *widgetconfigurationsClient) Delete(viewIdParam string, widgetconfigurationIdParam string) error {
 	typeConverter := wIface.connector.TypeConverter()
 	executionContext := wIface.connector.NewExecutionContext()
-	operationRestMetaData := widgetconfigurationsDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(widgetconfigurationsDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(widgetconfigurationsDeleteInputType(), typeConverter)
 	sv.AddStructField("ViewId", viewIdParam)
 	sv.AddStructField("WidgetconfigurationId", widgetconfigurationIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := widgetconfigurationsDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	wIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := wIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.ui_views.widgetconfigurations", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), wIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (wIface *widgetconfigurationsClient) Get(viewIdParam string, containerParam *string, widgetIdsParam *string) (nsx_policyModel.WidgetConfigurationList, error) {
+func (wIface *widgetconfigurationsClient) Get(viewIdParam string, containerParam *string, widgetIdsParam *string) (model.WidgetConfigurationList, error) {
 	typeConverter := wIface.connector.TypeConverter()
 	executionContext := wIface.connector.NewExecutionContext()
-	operationRestMetaData := widgetconfigurationsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(widgetconfigurationsGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(widgetconfigurationsGetInputType(), typeConverter)
 	sv.AddStructField("ViewId", viewIdParam)
 	sv.AddStructField("Container", containerParam)
 	sv.AddStructField("WidgetIds", widgetIdsParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.WidgetConfigurationList
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.WidgetConfigurationList
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := widgetconfigurationsGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	wIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := wIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.ui_views.widgetconfigurations", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.WidgetConfigurationList
+	var emptyOutput model.WidgetConfigurationList
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), WidgetconfigurationsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), widgetconfigurationsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.WidgetConfigurationList), nil
+		return output.(model.WidgetConfigurationList), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), wIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (wIface *widgetconfigurationsClient) Get0(viewIdParam string, widgetconfigurationIdParam string) (*vapiData_.StructValue, error) {
+func (wIface *widgetconfigurationsClient) Get0(viewIdParam string, widgetconfigurationIdParam string) (*data.StructValue, error) {
 	typeConverter := wIface.connector.TypeConverter()
 	executionContext := wIface.connector.NewExecutionContext()
-	operationRestMetaData := widgetconfigurationsGet0RestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(widgetconfigurationsGet0InputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(widgetconfigurationsGet0InputType(), typeConverter)
 	sv.AddStructField("ViewId", viewIdParam)
 	sv.AddStructField("WidgetconfigurationId", widgetconfigurationIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput *vapiData_.StructValue
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput *data.StructValue
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := widgetconfigurationsGet0RestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	wIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := wIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.ui_views.widgetconfigurations", "get_0", inputDataValue, executionContext)
-	var emptyOutput *vapiData_.StructValue
+	var emptyOutput *data.StructValue
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), WidgetconfigurationsGet0OutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), widgetconfigurationsGet0OutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(*vapiData_.StructValue), nil
+		return output.(*data.StructValue), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), wIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (wIface *widgetconfigurationsClient) Update(viewIdParam string, widgetconfigurationIdParam string, widgetConfigurationParam *vapiData_.StructValue) (*vapiData_.StructValue, error) {
+func (wIface *widgetconfigurationsClient) Update(viewIdParam string, widgetconfigurationIdParam string, widgetConfigurationParam *data.StructValue) (*data.StructValue, error) {
 	typeConverter := wIface.connector.TypeConverter()
 	executionContext := wIface.connector.NewExecutionContext()
-	operationRestMetaData := widgetconfigurationsUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(widgetconfigurationsUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(widgetconfigurationsUpdateInputType(), typeConverter)
 	sv.AddStructField("ViewId", viewIdParam)
 	sv.AddStructField("WidgetconfigurationId", widgetconfigurationIdParam)
 	sv.AddStructField("WidgetConfiguration", widgetConfigurationParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput *vapiData_.StructValue
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput *data.StructValue
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := widgetconfigurationsUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	wIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := wIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.ui_views.widgetconfigurations", "update", inputDataValue, executionContext)
-	var emptyOutput *vapiData_.StructValue
+	var emptyOutput *data.StructValue
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), WidgetconfigurationsUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), widgetconfigurationsUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(*vapiData_.StructValue), nil
+		return output.(*data.StructValue), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), wIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package ipsec
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type IkeProfilesClient interface {
 
@@ -25,28 +26,22 @@ type IkeProfilesClient interface {
 	//  Please use below Policy API.
 	//  PATCH /policy/api/v1/infra/ipsec-vpn-ike-profiles/<ike-profile-id>
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param ipSecVPNIKEProfileParam (required)
 	// @return com.vmware.nsx.model.IPSecVPNIKEProfile
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Create(ipSecVPNIKEProfileParam nsxModel.IPSecVPNIKEProfile) (nsxModel.IPSecVPNIKEProfile, error)
+	Create(ipSecVPNIKEProfileParam model.IPSecVPNIKEProfile) (model.IPSecVPNIKEProfile, error)
 
 	// Delete custom IKE Profile. Profile can not be deleted if profile has references to it.
 	//
 	//  Please use below Policy API.
 	//  DELETE /policy/api/v1/infra/ipsec-vpn-ike-profiles/<ike-profile-id>
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param ipsecVpnIkeProfileIdParam (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -59,24 +54,19 @@ type IkeProfilesClient interface {
 	//  Please use below Policy API.
 	//  GET /policy/api/v1/infra/ipsec-vpn-ike-profiles/<ike-profile-id>
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param ipsecVpnIkeProfileIdParam (required)
 	// @return com.vmware.nsx.model.IPSecVPNIKEProfile
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(ipsecVpnIkeProfileIdParam string) (nsxModel.IPSecVPNIKEProfile, error)
+	Get(ipsecVpnIkeProfileIdParam string) (model.IPSecVPNIKEProfile, error)
 
 	// Get paginated list of all IKE Profiles.
 	//
 	//  Please use below Policy API.
 	//  GET /policy/api/v1/infra/ipsec-vpn-ike-profiles
-	//
-	// Deprecated: This API element is deprecated.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -84,89 +74,84 @@ type IkeProfilesClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx.model.IPSecVPNIKEProfileListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsxModel.IPSecVPNIKEProfileListResult, error)
+	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IPSecVPNIKEProfileListResult, error)
 
 	// Edit custom IKE Profile. System owned profiles are non editable.
 	//
 	//  Please use below Policy API.
 	//  PUT /policy/api/v1/infra/ipsec-vpn-ike-profiles/<ike-profile-id>
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param ipsecVpnIkeProfileIdParam (required)
 	// @param ipSecVPNIKEProfileParam (required)
 	// @return com.vmware.nsx.model.IPSecVPNIKEProfile
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(ipsecVpnIkeProfileIdParam string, ipSecVPNIKEProfileParam nsxModel.IPSecVPNIKEProfile) (nsxModel.IPSecVPNIKEProfile, error)
+	Update(ipsecVpnIkeProfileIdParam string, ipSecVPNIKEProfileParam model.IPSecVPNIKEProfile) (model.IPSecVPNIKEProfile, error)
 }
 
 type ikeProfilesClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewIkeProfilesClient(connector vapiProtocolClient_.Connector) *ikeProfilesClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.vpn.ipsec.ike_profiles")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"create": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewIkeProfilesClient(connector client.Connector) *ikeProfilesClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.vpn.ipsec.ike_profiles")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"create": core.NewMethodIdentifier(interfaceIdentifier, "create"),
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	iIface := ikeProfilesClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &iIface
 }
 
-func (iIface *ikeProfilesClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (iIface *ikeProfilesClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := iIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (iIface *ikeProfilesClient) Create(ipSecVPNIKEProfileParam nsxModel.IPSecVPNIKEProfile) (nsxModel.IPSecVPNIKEProfile, error) {
+func (iIface *ikeProfilesClient) Create(ipSecVPNIKEProfileParam model.IPSecVPNIKEProfile) (model.IPSecVPNIKEProfile, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := ikeProfilesCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ikeProfilesCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ikeProfilesCreateInputType(), typeConverter)
 	sv.AddStructField("IpSecVPNIKEProfile", ipSecVPNIKEProfileParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.IPSecVPNIKEProfile
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IPSecVPNIKEProfile
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ikeProfilesCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx.vpn.ipsec.ike_profiles", "create", inputDataValue, executionContext)
-	var emptyOutput nsxModel.IPSecVPNIKEProfile
+	var emptyOutput model.IPSecVPNIKEProfile
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), IkeProfilesCreateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ikeProfilesCreateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.IPSecVPNIKEProfile), nil
+		return output.(model.IPSecVPNIKEProfile), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
@@ -175,70 +160,64 @@ func (iIface *ikeProfilesClient) Create(ipSecVPNIKEProfileParam nsxModel.IPSecVP
 func (iIface *ikeProfilesClient) Delete(ipsecVpnIkeProfileIdParam string, forceParam *bool) error {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := ikeProfilesDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ikeProfilesDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ikeProfilesDeleteInputType(), typeConverter)
 	sv.AddStructField("IpsecVpnIkeProfileId", ipsecVpnIkeProfileIdParam)
 	sv.AddStructField("Force", forceParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ikeProfilesDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx.vpn.ipsec.ike_profiles", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (iIface *ikeProfilesClient) Get(ipsecVpnIkeProfileIdParam string) (nsxModel.IPSecVPNIKEProfile, error) {
+func (iIface *ikeProfilesClient) Get(ipsecVpnIkeProfileIdParam string) (model.IPSecVPNIKEProfile, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := ikeProfilesGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ikeProfilesGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ikeProfilesGetInputType(), typeConverter)
 	sv.AddStructField("IpsecVpnIkeProfileId", ipsecVpnIkeProfileIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.IPSecVPNIKEProfile
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IPSecVPNIKEProfile
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ikeProfilesGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx.vpn.ipsec.ike_profiles", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.IPSecVPNIKEProfile
+	var emptyOutput model.IPSecVPNIKEProfile
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), IkeProfilesGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ikeProfilesGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.IPSecVPNIKEProfile), nil
+		return output.(model.IPSecVPNIKEProfile), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (iIface *ikeProfilesClient) List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsxModel.IPSecVPNIKEProfileListResult, error) {
+func (iIface *ikeProfilesClient) List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IPSecVPNIKEProfileListResult, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := ikeProfilesListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ikeProfilesListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ikeProfilesListInputType(), typeConverter)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)
 	sv.AddStructField("PageSize", pageSizeParam)
@@ -246,55 +225,57 @@ func (iIface *ikeProfilesClient) List(cursorParam *string, includedFieldsParam *
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.IPSecVPNIKEProfileListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IPSecVPNIKEProfileListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ikeProfilesListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx.vpn.ipsec.ike_profiles", "list", inputDataValue, executionContext)
-	var emptyOutput nsxModel.IPSecVPNIKEProfileListResult
+	var emptyOutput model.IPSecVPNIKEProfileListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), IkeProfilesListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ikeProfilesListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.IPSecVPNIKEProfileListResult), nil
+		return output.(model.IPSecVPNIKEProfileListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (iIface *ikeProfilesClient) Update(ipsecVpnIkeProfileIdParam string, ipSecVPNIKEProfileParam nsxModel.IPSecVPNIKEProfile) (nsxModel.IPSecVPNIKEProfile, error) {
+func (iIface *ikeProfilesClient) Update(ipsecVpnIkeProfileIdParam string, ipSecVPNIKEProfileParam model.IPSecVPNIKEProfile) (model.IPSecVPNIKEProfile, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
-	operationRestMetaData := ikeProfilesUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ikeProfilesUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ikeProfilesUpdateInputType(), typeConverter)
 	sv.AddStructField("IpsecVpnIkeProfileId", ipsecVpnIkeProfileIdParam)
 	sv.AddStructField("IpSecVPNIKEProfile", ipSecVPNIKEProfileParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.IPSecVPNIKEProfile
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IPSecVPNIKEProfile
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ikeProfilesUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx.vpn.ipsec.ike_profiles", "update", inputDataValue, executionContext)
-	var emptyOutput nsxModel.IPSecVPNIKEProfile
+	var emptyOutput model.IPSecVPNIKEProfile
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), IkeProfilesUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ikeProfilesUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.IPSecVPNIKEProfile), nil
+		return output.(model.IPSecVPNIKEProfile), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

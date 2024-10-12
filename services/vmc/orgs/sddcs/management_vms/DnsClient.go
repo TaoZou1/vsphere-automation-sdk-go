@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package management_vms
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	vmcModel "github.com/vmware/vsphere-automation-sdk-go/services/vmc/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vmc/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type DnsClient interface {
 
@@ -27,68 +28,66 @@ type DnsClient interface {
 	// @param managementVmIdParam the management VM ID (required)
 	// @param ipTypeParam the ip type to associate with FQDN in DNS (required)
 	// @return com.vmware.vmc.model.Task
-	//
 	// @throws Unauthenticated  Unauthorized
 	// @throws InvalidRequest  The sddc is not in a state that's valid for updates or invalid body
 	// @throws Unauthorized  Forbidden
-	Update(orgParam string, sddcParam string, managementVmIdParam string, ipTypeParam string) (vmcModel.Task, error)
+	Update(orgParam string, sddcParam string, managementVmIdParam string, ipTypeParam string) (model.Task, error)
 }
 
 type dnsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewDnsClient(connector vapiProtocolClient_.Connector) *dnsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.vmc.orgs.sddcs.management_vms.dns")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewDnsClient(connector client.Connector) *dnsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.vmc.orgs.sddcs.management_vms.dns")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	dIface := dnsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &dIface
 }
 
-func (dIface *dnsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (dIface *dnsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := dIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (dIface *dnsClient) Update(orgParam string, sddcParam string, managementVmIdParam string, ipTypeParam string) (vmcModel.Task, error) {
+func (dIface *dnsClient) Update(orgParam string, sddcParam string, managementVmIdParam string, ipTypeParam string) (model.Task, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
-	operationRestMetaData := dnsUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(dnsUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(dnsUpdateInputType(), typeConverter)
 	sv.AddStructField("Org", orgParam)
 	sv.AddStructField("Sddc", sddcParam)
 	sv.AddStructField("ManagementVmId", managementVmIdParam)
 	sv.AddStructField("IpType", ipTypeParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput vmcModel.Task
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.Task
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := dnsUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := dIface.connector.GetApiProvider().Invoke("com.vmware.vmc.orgs.sddcs.management_vms.dns", "update", inputDataValue, executionContext)
-	var emptyOutput vmcModel.Task
+	var emptyOutput model.Task
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), DnsUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), dnsUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(vmcModel.Task), nil
+		return output.(model.Task), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), dIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

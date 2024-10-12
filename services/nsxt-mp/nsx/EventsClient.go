@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package nsx
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type EventsClient interface {
 
@@ -24,201 +25,193 @@ type EventsClient interface {
 	//
 	// @param eventIdParam (required)
 	// @return com.vmware.nsx.model.MonitoringEvent
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(eventIdParam string) (nsxModel.MonitoringEvent, error)
+	Get(eventIdParam string) (model.MonitoringEvent, error)
 
 	// Returns a list of all Events defined in NSX.
 	// @return com.vmware.nsx.model.EventListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List() (nsxModel.EventListResult, error)
+	List() (model.EventListResult, error)
 
 	// Reset all user configurable values for event identified by event-id to factory defaults.
 	//
 	// @param eventIdParam (required)
 	// @return com.vmware.nsx.model.MonitoringEvent
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Setdefault(eventIdParam string) (nsxModel.MonitoringEvent, error)
+	Setdefault(eventIdParam string) (model.MonitoringEvent, error)
 
 	// Update event identified by event-id.
 	//
 	// @param eventIdParam (required)
 	// @param monitoringEventParam (required)
 	// @return com.vmware.nsx.model.MonitoringEvent
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(eventIdParam string, monitoringEventParam nsxModel.MonitoringEvent) (nsxModel.MonitoringEvent, error)
+	Update(eventIdParam string, monitoringEventParam model.MonitoringEvent) (model.MonitoringEvent, error)
 }
 
 type eventsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewEventsClient(connector vapiProtocolClient_.Connector) *eventsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.events")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"get":        vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":       vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"setdefault": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "setdefault"),
-		"update":     vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewEventsClient(connector client.Connector) *eventsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.events")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"get":        core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":       core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"setdefault": core.NewMethodIdentifier(interfaceIdentifier, "setdefault"),
+		"update":     core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	eIface := eventsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &eIface
 }
 
-func (eIface *eventsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (eIface *eventsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := eIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (eIface *eventsClient) Get(eventIdParam string) (nsxModel.MonitoringEvent, error) {
+func (eIface *eventsClient) Get(eventIdParam string) (model.MonitoringEvent, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(eventsGetInputType(), typeConverter)
+	sv.AddStructField("EventId", eventIdParam)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput model.MonitoringEvent
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+	}
 	operationRestMetaData := eventsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(eventsGetInputType(), typeConverter)
-	sv.AddStructField("EventId", eventIdParam)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput nsxModel.MonitoringEvent
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
-	}
-
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx.events", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.MonitoringEvent
+	var emptyOutput model.MonitoringEvent
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), EventsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), eventsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.MonitoringEvent), nil
+		return output.(model.MonitoringEvent), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (eIface *eventsClient) List() (nsxModel.EventListResult, error) {
+func (eIface *eventsClient) List() (model.EventListResult, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
-	operationRestMetaData := eventsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(eventsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(eventsListInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.EventListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.EventListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := eventsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx.events", "list", inputDataValue, executionContext)
-	var emptyOutput nsxModel.EventListResult
+	var emptyOutput model.EventListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), EventsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), eventsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.EventListResult), nil
+		return output.(model.EventListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (eIface *eventsClient) Setdefault(eventIdParam string) (nsxModel.MonitoringEvent, error) {
+func (eIface *eventsClient) Setdefault(eventIdParam string) (model.MonitoringEvent, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
-	operationRestMetaData := eventsSetdefaultRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(eventsSetdefaultInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(eventsSetdefaultInputType(), typeConverter)
 	sv.AddStructField("EventId", eventIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.MonitoringEvent
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.MonitoringEvent
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := eventsSetdefaultRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx.events", "setdefault", inputDataValue, executionContext)
-	var emptyOutput nsxModel.MonitoringEvent
+	var emptyOutput model.MonitoringEvent
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), EventsSetdefaultOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), eventsSetdefaultOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.MonitoringEvent), nil
+		return output.(model.MonitoringEvent), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (eIface *eventsClient) Update(eventIdParam string, monitoringEventParam nsxModel.MonitoringEvent) (nsxModel.MonitoringEvent, error) {
+func (eIface *eventsClient) Update(eventIdParam string, monitoringEventParam model.MonitoringEvent) (model.MonitoringEvent, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
-	operationRestMetaData := eventsUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(eventsUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(eventsUpdateInputType(), typeConverter)
 	sv.AddStructField("EventId", eventIdParam)
 	sv.AddStructField("MonitoringEvent", monitoringEventParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.MonitoringEvent
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.MonitoringEvent
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := eventsUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx.events", "update", inputDataValue, executionContext)
-	var emptyOutput nsxModel.MonitoringEvent
+	var emptyOutput model.MonitoringEvent
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), EventsUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), eventsUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.MonitoringEvent), nil
+		return output.(model.MonitoringEvent), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

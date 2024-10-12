@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package locale_services
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type OspfClient interface {
 
@@ -25,13 +26,12 @@ type OspfClient interface {
 	// @param tier0IdParam (required)
 	// @param localeServiceIdParam (required)
 	// @return com.vmware.nsx_policy.model.OspfRoutingConfig
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(tier0IdParam string, localeServiceIdParam string) (nsx_policyModel.OspfRoutingConfig, error)
+	Get(tier0IdParam string, localeServiceIdParam string) (model.OspfRoutingConfig, error)
 
 	// If OSPF routing config is not already present, create OSPF routing config. If it already exists, replace the OSPF routing config with this object.
 	//
@@ -39,13 +39,12 @@ type OspfClient interface {
 	// @param localeServiceIdParam (required)
 	// @param ospfRoutingConfigParam (required)
 	// @return com.vmware.nsx_policy.model.OspfRoutingConfig
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(tier0IdParam string, localeServiceIdParam string, ospfRoutingConfigParam nsx_policyModel.OspfRoutingConfig) (nsx_policyModel.OspfRoutingConfig, error)
+	Patch(tier0IdParam string, localeServiceIdParam string, ospfRoutingConfigParam model.OspfRoutingConfig) (model.OspfRoutingConfig, error)
 
 	// If OSPF routing config is not already present, create OSPF routing config. If it already exists, replace the OSPF routing config with this object.
 	//
@@ -53,138 +52,134 @@ type OspfClient interface {
 	// @param localeServiceIdParam (required)
 	// @param ospfRoutingConfigParam (required)
 	// @return com.vmware.nsx_policy.model.OspfRoutingConfig
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(tier0IdParam string, localeServiceIdParam string, ospfRoutingConfigParam nsx_policyModel.OspfRoutingConfig) (nsx_policyModel.OspfRoutingConfig, error)
+	Update(tier0IdParam string, localeServiceIdParam string, ospfRoutingConfigParam model.OspfRoutingConfig) (model.OspfRoutingConfig, error)
 }
 
 type ospfClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewOspfClient(connector vapiProtocolClient_.Connector) *ospfClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.tier_0s.locale_services.ospf")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"patch":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewOspfClient(connector client.Connector) *ospfClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.tier_0s.locale_services.ospf")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	oIface := ospfClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &oIface
 }
 
-func (oIface *ospfClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (oIface *ospfClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := oIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (oIface *ospfClient) Get(tier0IdParam string, localeServiceIdParam string) (nsx_policyModel.OspfRoutingConfig, error) {
+func (oIface *ospfClient) Get(tier0IdParam string, localeServiceIdParam string) (model.OspfRoutingConfig, error) {
 	typeConverter := oIface.connector.TypeConverter()
 	executionContext := oIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(ospfGetInputType(), typeConverter)
+	sv.AddStructField("Tier0Id", tier0IdParam)
+	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput model.OspfRoutingConfig
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+	}
 	operationRestMetaData := ospfGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ospfGetInputType(), typeConverter)
-	sv.AddStructField("Tier0Id", tier0IdParam)
-	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput nsx_policyModel.OspfRoutingConfig
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
-	}
-
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	oIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := oIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_0s.locale_services.ospf", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.OspfRoutingConfig
+	var emptyOutput model.OspfRoutingConfig
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), OspfGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ospfGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.OspfRoutingConfig), nil
+		return output.(model.OspfRoutingConfig), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), oIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (oIface *ospfClient) Patch(tier0IdParam string, localeServiceIdParam string, ospfRoutingConfigParam nsx_policyModel.OspfRoutingConfig) (nsx_policyModel.OspfRoutingConfig, error) {
+func (oIface *ospfClient) Patch(tier0IdParam string, localeServiceIdParam string, ospfRoutingConfigParam model.OspfRoutingConfig) (model.OspfRoutingConfig, error) {
 	typeConverter := oIface.connector.TypeConverter()
 	executionContext := oIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(ospfPatchInputType(), typeConverter)
+	sv.AddStructField("Tier0Id", tier0IdParam)
+	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
+	sv.AddStructField("OspfRoutingConfig", ospfRoutingConfigParam)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput model.OspfRoutingConfig
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+	}
 	operationRestMetaData := ospfPatchRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ospfPatchInputType(), typeConverter)
-	sv.AddStructField("Tier0Id", tier0IdParam)
-	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
-	sv.AddStructField("OspfRoutingConfig", ospfRoutingConfigParam)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput nsx_policyModel.OspfRoutingConfig
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
-	}
-
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	oIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := oIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_0s.locale_services.ospf", "patch", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.OspfRoutingConfig
+	var emptyOutput model.OspfRoutingConfig
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), OspfPatchOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ospfPatchOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.OspfRoutingConfig), nil
+		return output.(model.OspfRoutingConfig), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), oIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (oIface *ospfClient) Update(tier0IdParam string, localeServiceIdParam string, ospfRoutingConfigParam nsx_policyModel.OspfRoutingConfig) (nsx_policyModel.OspfRoutingConfig, error) {
+func (oIface *ospfClient) Update(tier0IdParam string, localeServiceIdParam string, ospfRoutingConfigParam model.OspfRoutingConfig) (model.OspfRoutingConfig, error) {
 	typeConverter := oIface.connector.TypeConverter()
 	executionContext := oIface.connector.NewExecutionContext()
-	operationRestMetaData := ospfUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ospfUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ospfUpdateInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
 	sv.AddStructField("OspfRoutingConfig", ospfRoutingConfigParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.OspfRoutingConfig
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.OspfRoutingConfig
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ospfUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	oIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := oIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_0s.locale_services.ospf", "update", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.OspfRoutingConfig
+	var emptyOutput model.OspfRoutingConfig
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), OspfUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ospfUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.OspfRoutingConfig), nil
+		return output.(model.OspfRoutingConfig), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), oIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

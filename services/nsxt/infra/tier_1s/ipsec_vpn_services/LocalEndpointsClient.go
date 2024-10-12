@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package ipsec_vpn_services
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type LocalEndpointsClient interface {
 
@@ -25,7 +26,6 @@ type LocalEndpointsClient interface {
 	// @param tier1IdParam (required)
 	// @param serviceIdParam (required)
 	// @param localEndpointIdParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -39,13 +39,12 @@ type LocalEndpointsClient interface {
 	// @param serviceIdParam (required)
 	// @param localEndpointIdParam (required)
 	// @return com.vmware.nsx_policy.model.IPSecVpnLocalEndpoint
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(tier1IdParam string, serviceIdParam string, localEndpointIdParam string) (nsx_policyModel.IPSecVpnLocalEndpoint, error)
+	Get(tier1IdParam string, serviceIdParam string, localEndpointIdParam string) (model.IPSecVpnLocalEndpoint, error)
 
 	// Get paginated list of all IPSec VPN local endpoints for a given ipsec vpn service under Tier-1.
 	//
@@ -58,13 +57,12 @@ type LocalEndpointsClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_policy.model.IPSecVpnLocalEndpointListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(tier1IdParam string, serviceIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.IPSecVpnLocalEndpointListResult, error)
+	List(tier1IdParam string, serviceIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IPSecVpnLocalEndpointListResult, error)
 
 	// Create or patch a custom IPSec VPN local endpoint for a given ipsec vpn service under Tier-1.
 	//
@@ -72,13 +70,12 @@ type LocalEndpointsClient interface {
 	// @param serviceIdParam (required)
 	// @param localEndpointIdParam (required)
 	// @param ipSecVpnLocalEndpointParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(tier1IdParam string, serviceIdParam string, localEndpointIdParam string, ipSecVpnLocalEndpointParam nsx_policyModel.IPSecVpnLocalEndpoint) error
+	Patch(tier1IdParam string, serviceIdParam string, localEndpointIdParam string, ipSecVpnLocalEndpointParam model.IPSecVpnLocalEndpoint) error
 
 	// Create or fully replace IPSec VPN local endpoint for a given ipsec vpn service under Tier-1. Revision is optional for creation and required for update.
 	//
@@ -87,114 +84,107 @@ type LocalEndpointsClient interface {
 	// @param localEndpointIdParam (required)
 	// @param ipSecVpnLocalEndpointParam (required)
 	// @return com.vmware.nsx_policy.model.IPSecVpnLocalEndpoint
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(tier1IdParam string, serviceIdParam string, localEndpointIdParam string, ipSecVpnLocalEndpointParam nsx_policyModel.IPSecVpnLocalEndpoint) (nsx_policyModel.IPSecVpnLocalEndpoint, error)
+	Update(tier1IdParam string, serviceIdParam string, localEndpointIdParam string, ipSecVpnLocalEndpointParam model.IPSecVpnLocalEndpoint) (model.IPSecVpnLocalEndpoint, error)
 }
 
 type localEndpointsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewLocalEndpointsClient(connector vapiProtocolClient_.Connector) *localEndpointsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.tier_1s.ipsec_vpn_services.local_endpoints")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"patch":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewLocalEndpointsClient(connector client.Connector) *localEndpointsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.tier_1s.ipsec_vpn_services.local_endpoints")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	lIface := localEndpointsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &lIface
 }
 
-func (lIface *localEndpointsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (lIface *localEndpointsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := lIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
 func (lIface *localEndpointsClient) Delete(tier1IdParam string, serviceIdParam string, localEndpointIdParam string) error {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
-	operationRestMetaData := localEndpointsDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(localEndpointsDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(localEndpointsDeleteInputType(), typeConverter)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("ServiceId", serviceIdParam)
 	sv.AddStructField("LocalEndpointId", localEndpointIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := localEndpointsDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_1s.ipsec_vpn_services.local_endpoints", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (lIface *localEndpointsClient) Get(tier1IdParam string, serviceIdParam string, localEndpointIdParam string) (nsx_policyModel.IPSecVpnLocalEndpoint, error) {
+func (lIface *localEndpointsClient) Get(tier1IdParam string, serviceIdParam string, localEndpointIdParam string) (model.IPSecVpnLocalEndpoint, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
-	operationRestMetaData := localEndpointsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(localEndpointsGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(localEndpointsGetInputType(), typeConverter)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("ServiceId", serviceIdParam)
 	sv.AddStructField("LocalEndpointId", localEndpointIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.IPSecVpnLocalEndpoint
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IPSecVpnLocalEndpoint
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := localEndpointsGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_1s.ipsec_vpn_services.local_endpoints", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.IPSecVpnLocalEndpoint
+	var emptyOutput model.IPSecVpnLocalEndpoint
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), LocalEndpointsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), localEndpointsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.IPSecVpnLocalEndpoint), nil
+		return output.(model.IPSecVpnLocalEndpoint), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (lIface *localEndpointsClient) List(tier1IdParam string, serviceIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.IPSecVpnLocalEndpointListResult, error) {
+func (lIface *localEndpointsClient) List(tier1IdParam string, serviceIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IPSecVpnLocalEndpointListResult, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
-	operationRestMetaData := localEndpointsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(localEndpointsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(localEndpointsListInputType(), typeConverter)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("ServiceId", serviceIdParam)
 	sv.AddStructField("Cursor", cursorParam)
@@ -205,86 +195,87 @@ func (lIface *localEndpointsClient) List(tier1IdParam string, serviceIdParam str
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.IPSecVpnLocalEndpointListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IPSecVpnLocalEndpointListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := localEndpointsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_1s.ipsec_vpn_services.local_endpoints", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.IPSecVpnLocalEndpointListResult
+	var emptyOutput model.IPSecVpnLocalEndpointListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), LocalEndpointsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), localEndpointsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.IPSecVpnLocalEndpointListResult), nil
+		return output.(model.IPSecVpnLocalEndpointListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (lIface *localEndpointsClient) Patch(tier1IdParam string, serviceIdParam string, localEndpointIdParam string, ipSecVpnLocalEndpointParam nsx_policyModel.IPSecVpnLocalEndpoint) error {
+func (lIface *localEndpointsClient) Patch(tier1IdParam string, serviceIdParam string, localEndpointIdParam string, ipSecVpnLocalEndpointParam model.IPSecVpnLocalEndpoint) error {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
-	operationRestMetaData := localEndpointsPatchRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(localEndpointsPatchInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(localEndpointsPatchInputType(), typeConverter)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("ServiceId", serviceIdParam)
 	sv.AddStructField("LocalEndpointId", localEndpointIdParam)
 	sv.AddStructField("IpSecVpnLocalEndpoint", ipSecVpnLocalEndpointParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := localEndpointsPatchRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_1s.ipsec_vpn_services.local_endpoints", "patch", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (lIface *localEndpointsClient) Update(tier1IdParam string, serviceIdParam string, localEndpointIdParam string, ipSecVpnLocalEndpointParam nsx_policyModel.IPSecVpnLocalEndpoint) (nsx_policyModel.IPSecVpnLocalEndpoint, error) {
+func (lIface *localEndpointsClient) Update(tier1IdParam string, serviceIdParam string, localEndpointIdParam string, ipSecVpnLocalEndpointParam model.IPSecVpnLocalEndpoint) (model.IPSecVpnLocalEndpoint, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
-	operationRestMetaData := localEndpointsUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(localEndpointsUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(localEndpointsUpdateInputType(), typeConverter)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("ServiceId", serviceIdParam)
 	sv.AddStructField("LocalEndpointId", localEndpointIdParam)
 	sv.AddStructField("IpSecVpnLocalEndpoint", ipSecVpnLocalEndpointParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.IPSecVpnLocalEndpoint
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IPSecVpnLocalEndpoint
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := localEndpointsUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_1s.ipsec_vpn_services.local_endpoints", "update", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.IPSecVpnLocalEndpoint
+	var emptyOutput model.IPSecVpnLocalEndpoint
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), LocalEndpointsUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), localEndpointsUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.IPSecVpnLocalEndpoint), nil
+		return output.(model.IPSecVpnLocalEndpoint), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

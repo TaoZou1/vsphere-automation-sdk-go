@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,41 +11,41 @@
 package ipsec
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 	"reflect"
 )
 
-func peerEndpointsCreateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func peerEndpointsCreateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["ip_sec_VPN_peer_endpoint"] = vapiBindings_.NewReferenceType(nsxModel.IPSecVPNPeerEndpointBindingType)
+	fields["ip_sec_VPN_peer_endpoint"] = bindings.NewReferenceType(model.IPSecVPNPeerEndpointBindingType)
 	fieldNameMap["ip_sec_VPN_peer_endpoint"] = "IpSecVPNPeerEndpoint"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func PeerEndpointsCreateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.IPSecVPNPeerEndpointBindingType)
+func peerEndpointsCreateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.IPSecVPNPeerEndpointBindingType)
 }
 
-func peerEndpointsCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func peerEndpointsCreateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["ip_sec_VPN_peer_endpoint"] = vapiBindings_.NewReferenceType(nsxModel.IPSecVPNPeerEndpointBindingType)
+	fields["ip_sec_VPN_peer_endpoint"] = bindings.NewReferenceType(model.IPSecVPNPeerEndpointBindingType)
 	fieldNameMap["ip_sec_VPN_peer_endpoint"] = "IpSecVPNPeerEndpoint"
-	paramsTypeMap["ip_sec_VPN_peer_endpoint"] = vapiBindings_.NewReferenceType(nsxModel.IPSecVPNPeerEndpointBindingType)
+	paramsTypeMap["ip_sec_VPN_peer_endpoint"] = bindings.NewReferenceType(model.IPSecVPNPeerEndpointBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -66,42 +66,42 @@ func peerEndpointsCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func peerEndpointsDeleteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func peerEndpointsDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["ipsec_vpn_peer_endpoint_id"] = vapiBindings_.NewStringType()
-	fields["force"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["ipsec_vpn_peer_endpoint_id"] = bindings.NewStringType()
+	fields["force"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["ipsec_vpn_peer_endpoint_id"] = "IpsecVpnPeerEndpointId"
 	fieldNameMap["force"] = "Force"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func PeerEndpointsDeleteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func peerEndpointsDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func peerEndpointsDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func peerEndpointsDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["ipsec_vpn_peer_endpoint_id"] = vapiBindings_.NewStringType()
-	fields["force"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["ipsec_vpn_peer_endpoint_id"] = bindings.NewStringType()
+	fields["force"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["ipsec_vpn_peer_endpoint_id"] = "IpsecVpnPeerEndpointId"
 	fieldNameMap["force"] = "Force"
-	paramsTypeMap["force"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["ipsec_vpn_peer_endpoint_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["ipsecVpnPeerEndpointId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["force"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["ipsec_vpn_peer_endpoint_id"] = bindings.NewStringType()
+	paramsTypeMap["ipsecVpnPeerEndpointId"] = bindings.NewStringType()
 	pathParams["ipsec_vpn_peer_endpoint_id"] = "ipsecVpnPeerEndpointId"
 	queryParams["force"] = "force"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -122,36 +122,36 @@ func peerEndpointsDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func peerEndpointsGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func peerEndpointsGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["ipsec_vpn_peer_endpoint_id"] = vapiBindings_.NewStringType()
+	fields["ipsec_vpn_peer_endpoint_id"] = bindings.NewStringType()
 	fieldNameMap["ipsec_vpn_peer_endpoint_id"] = "IpsecVpnPeerEndpointId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func PeerEndpointsGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.IPSecVPNPeerEndpointBindingType)
+func peerEndpointsGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.IPSecVPNPeerEndpointBindingType)
 }
 
-func peerEndpointsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func peerEndpointsGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["ipsec_vpn_peer_endpoint_id"] = vapiBindings_.NewStringType()
+	fields["ipsec_vpn_peer_endpoint_id"] = bindings.NewStringType()
 	fieldNameMap["ipsec_vpn_peer_endpoint_id"] = "IpsecVpnPeerEndpointId"
-	paramsTypeMap["ipsec_vpn_peer_endpoint_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["ipsecVpnPeerEndpointId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["ipsec_vpn_peer_endpoint_id"] = bindings.NewStringType()
+	paramsTypeMap["ipsecVpnPeerEndpointId"] = bindings.NewStringType()
 	pathParams["ipsec_vpn_peer_endpoint_id"] = "ipsecVpnPeerEndpointId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -172,51 +172,51 @@ func peerEndpointsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func peerEndpointsListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func peerEndpointsListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["included_fields"] = "IncludedFields"
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func PeerEndpointsListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.IPSecVPNPeerEndpointListResultBindingType)
+func peerEndpointsListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.IPSecVPNPeerEndpointListResultBindingType)
 }
 
-func peerEndpointsListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func peerEndpointsListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["included_fields"] = "IncludedFields"
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	queryParams["cursor"] = "cursor"
 	queryParams["sort_ascending"] = "sort_ascending"
 	queryParams["included_fields"] = "included_fields"
@@ -224,7 +224,7 @@ func peerEndpointsListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -245,36 +245,36 @@ func peerEndpointsListRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func peerEndpointsShowsensitivedataInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func peerEndpointsShowsensitivedataInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["ipsec_vpn_peer_endpoint_id"] = vapiBindings_.NewStringType()
+	fields["ipsec_vpn_peer_endpoint_id"] = bindings.NewStringType()
 	fieldNameMap["ipsec_vpn_peer_endpoint_id"] = "IpsecVpnPeerEndpointId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func PeerEndpointsShowsensitivedataOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.IPSecVPNPeerEndpointBindingType)
+func peerEndpointsShowsensitivedataOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.IPSecVPNPeerEndpointBindingType)
 }
 
-func peerEndpointsShowsensitivedataRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func peerEndpointsShowsensitivedataRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["ipsec_vpn_peer_endpoint_id"] = vapiBindings_.NewStringType()
+	fields["ipsec_vpn_peer_endpoint_id"] = bindings.NewStringType()
 	fieldNameMap["ipsec_vpn_peer_endpoint_id"] = "IpsecVpnPeerEndpointId"
-	paramsTypeMap["ipsec_vpn_peer_endpoint_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["ipsecVpnPeerEndpointId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["ipsec_vpn_peer_endpoint_id"] = bindings.NewStringType()
+	paramsTypeMap["ipsecVpnPeerEndpointId"] = bindings.NewStringType()
 	pathParams["ipsec_vpn_peer_endpoint_id"] = "ipsecVpnPeerEndpointId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -295,41 +295,41 @@ func peerEndpointsShowsensitivedataRestMetadata() vapiProtocol_.OperationRestMet
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func peerEndpointsUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func peerEndpointsUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["ipsec_vpn_peer_endpoint_id"] = vapiBindings_.NewStringType()
-	fields["ip_sec_VPN_peer_endpoint"] = vapiBindings_.NewReferenceType(nsxModel.IPSecVPNPeerEndpointBindingType)
+	fields["ipsec_vpn_peer_endpoint_id"] = bindings.NewStringType()
+	fields["ip_sec_VPN_peer_endpoint"] = bindings.NewReferenceType(model.IPSecVPNPeerEndpointBindingType)
 	fieldNameMap["ipsec_vpn_peer_endpoint_id"] = "IpsecVpnPeerEndpointId"
 	fieldNameMap["ip_sec_VPN_peer_endpoint"] = "IpSecVPNPeerEndpoint"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func PeerEndpointsUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.IPSecVPNPeerEndpointBindingType)
+func peerEndpointsUpdateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.IPSecVPNPeerEndpointBindingType)
 }
 
-func peerEndpointsUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func peerEndpointsUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["ipsec_vpn_peer_endpoint_id"] = vapiBindings_.NewStringType()
-	fields["ip_sec_VPN_peer_endpoint"] = vapiBindings_.NewReferenceType(nsxModel.IPSecVPNPeerEndpointBindingType)
+	fields["ipsec_vpn_peer_endpoint_id"] = bindings.NewStringType()
+	fields["ip_sec_VPN_peer_endpoint"] = bindings.NewReferenceType(model.IPSecVPNPeerEndpointBindingType)
 	fieldNameMap["ipsec_vpn_peer_endpoint_id"] = "IpsecVpnPeerEndpointId"
 	fieldNameMap["ip_sec_VPN_peer_endpoint"] = "IpSecVPNPeerEndpoint"
-	paramsTypeMap["ipsec_vpn_peer_endpoint_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["ip_sec_VPN_peer_endpoint"] = vapiBindings_.NewReferenceType(nsxModel.IPSecVPNPeerEndpointBindingType)
-	paramsTypeMap["ipsecVpnPeerEndpointId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["ip_sec_VPN_peer_endpoint"] = bindings.NewReferenceType(model.IPSecVPNPeerEndpointBindingType)
+	paramsTypeMap["ipsec_vpn_peer_endpoint_id"] = bindings.NewStringType()
+	paramsTypeMap["ipsecVpnPeerEndpointId"] = bindings.NewStringType()
 	pathParams["ipsec_vpn_peer_endpoint_id"] = "ipsecVpnPeerEndpointId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,21 +9,21 @@
 package routing_config
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type ProjectRouteFiltersClient interface {
 
 	// Delete a route filter
 	//
 	// @param routeFilterIdParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -35,13 +35,12 @@ type ProjectRouteFiltersClient interface {
 	//
 	// @param routeFilterIdParam (required)
 	// @return com.vmware.nsx_policy.model.ProjectRouteFilter
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(routeFilterIdParam string) (nsx_policyModel.ProjectRouteFilter, error)
+	Get(routeFilterIdParam string) (model.ProjectRouteFilter, error)
 
 	// Paginated list of all route filter lists
 	//
@@ -52,135 +51,126 @@ type ProjectRouteFiltersClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_policy.model.ProjectRouteFilterListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.ProjectRouteFilterListResult, error)
+	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ProjectRouteFilterListResult, error)
 
 	// Create or patch a route filter. This will create a mapping of projects to prefix lists. Prefix lists will be applied to all T-1 under the specified projects.
 	//
 	// @param routeFilterIdParam (required)
 	// @param projectRouteFilterParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(routeFilterIdParam string, projectRouteFilterParam nsx_policyModel.ProjectRouteFilter) error
+	Patch(routeFilterIdParam string, projectRouteFilterParam model.ProjectRouteFilter) error
 
 	// Create or update a route filter
 	//
 	// @param routeFilterIdParam (required)
 	// @param projectRouteFilterParam (required)
 	// @return com.vmware.nsx_policy.model.ProjectRouteFilter
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(routeFilterIdParam string, projectRouteFilterParam nsx_policyModel.ProjectRouteFilter) (nsx_policyModel.ProjectRouteFilter, error)
+	Update(routeFilterIdParam string, projectRouteFilterParam model.ProjectRouteFilter) (model.ProjectRouteFilter, error)
 }
 
 type projectRouteFiltersClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewProjectRouteFiltersClient(connector vapiProtocolClient_.Connector) *projectRouteFiltersClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.routing_config.project_route_filters")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"patch":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewProjectRouteFiltersClient(connector client.Connector) *projectRouteFiltersClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.routing_config.project_route_filters")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	pIface := projectRouteFiltersClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &pIface
 }
 
-func (pIface *projectRouteFiltersClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (pIface *projectRouteFiltersClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := pIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
 func (pIface *projectRouteFiltersClient) Delete(routeFilterIdParam string) error {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
-	operationRestMetaData := projectRouteFiltersDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(projectRouteFiltersDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(projectRouteFiltersDeleteInputType(), typeConverter)
 	sv.AddStructField("RouteFilterId", routeFilterIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := projectRouteFiltersDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.routing_config.project_route_filters", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (pIface *projectRouteFiltersClient) Get(routeFilterIdParam string) (nsx_policyModel.ProjectRouteFilter, error) {
+func (pIface *projectRouteFiltersClient) Get(routeFilterIdParam string) (model.ProjectRouteFilter, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
-	operationRestMetaData := projectRouteFiltersGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(projectRouteFiltersGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(projectRouteFiltersGetInputType(), typeConverter)
 	sv.AddStructField("RouteFilterId", routeFilterIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.ProjectRouteFilter
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.ProjectRouteFilter
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := projectRouteFiltersGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.routing_config.project_route_filters", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.ProjectRouteFilter
+	var emptyOutput model.ProjectRouteFilter
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ProjectRouteFiltersGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), projectRouteFiltersGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.ProjectRouteFilter), nil
+		return output.(model.ProjectRouteFilter), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (pIface *projectRouteFiltersClient) List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.ProjectRouteFilterListResult, error) {
+func (pIface *projectRouteFiltersClient) List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ProjectRouteFilterListResult, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
-	operationRestMetaData := projectRouteFiltersListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(projectRouteFiltersListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(projectRouteFiltersListInputType(), typeConverter)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IncludeMarkForDeleteObjects", includeMarkForDeleteObjectsParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)
@@ -189,82 +179,83 @@ func (pIface *projectRouteFiltersClient) List(cursorParam *string, includeMarkFo
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.ProjectRouteFilterListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.ProjectRouteFilterListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := projectRouteFiltersListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.routing_config.project_route_filters", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.ProjectRouteFilterListResult
+	var emptyOutput model.ProjectRouteFilterListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ProjectRouteFiltersListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), projectRouteFiltersListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.ProjectRouteFilterListResult), nil
+		return output.(model.ProjectRouteFilterListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (pIface *projectRouteFiltersClient) Patch(routeFilterIdParam string, projectRouteFilterParam nsx_policyModel.ProjectRouteFilter) error {
+func (pIface *projectRouteFiltersClient) Patch(routeFilterIdParam string, projectRouteFilterParam model.ProjectRouteFilter) error {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
-	operationRestMetaData := projectRouteFiltersPatchRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(projectRouteFiltersPatchInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(projectRouteFiltersPatchInputType(), typeConverter)
 	sv.AddStructField("RouteFilterId", routeFilterIdParam)
 	sv.AddStructField("ProjectRouteFilter", projectRouteFilterParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := projectRouteFiltersPatchRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.routing_config.project_route_filters", "patch", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (pIface *projectRouteFiltersClient) Update(routeFilterIdParam string, projectRouteFilterParam nsx_policyModel.ProjectRouteFilter) (nsx_policyModel.ProjectRouteFilter, error) {
+func (pIface *projectRouteFiltersClient) Update(routeFilterIdParam string, projectRouteFilterParam model.ProjectRouteFilter) (model.ProjectRouteFilter, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
-	operationRestMetaData := projectRouteFiltersUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(projectRouteFiltersUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(projectRouteFiltersUpdateInputType(), typeConverter)
 	sv.AddStructField("RouteFilterId", routeFilterIdParam)
 	sv.AddStructField("ProjectRouteFilter", projectRouteFilterParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.ProjectRouteFilter
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.ProjectRouteFilter
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := projectRouteFiltersUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.routing_config.project_route_filters", "update", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.ProjectRouteFilter
+	var emptyOutput model.ProjectRouteFilter
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ProjectRouteFiltersUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), projectRouteFiltersUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.ProjectRouteFilter), nil
+		return output.(model.ProjectRouteFilter), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

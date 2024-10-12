@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package security_policies
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type ContainerClusterSpanClient interface {
 
@@ -25,7 +26,6 @@ type ContainerClusterSpanClient interface {
 	// @param domainIdParam (required)
 	// @param securityPolicyIdParam (required)
 	// @param antreaCluster1Param (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -39,13 +39,12 @@ type ContainerClusterSpanClient interface {
 	// @param securityPolicyIdParam (required)
 	// @param antreaCluster1Param (required)
 	// @return com.vmware.nsx_policy.model.SecurityPolicyContainerCluster
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(domainIdParam string, securityPolicyIdParam string, antreaCluster1Param string) (nsx_policyModel.SecurityPolicyContainerCluster, error)
+	Get(domainIdParam string, securityPolicyIdParam string, antreaCluster1Param string) (model.SecurityPolicyContainerCluster, error)
 
 	// List all container cluster span of a security policy
 	//
@@ -58,13 +57,12 @@ type ContainerClusterSpanClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_policy.model.SecurityPolicyContainerClusterListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(domainIdParam string, securityPolicyIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.SecurityPolicyContainerClusterListResult, error)
+	List(domainIdParam string, securityPolicyIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.SecurityPolicyContainerClusterListResult, error)
 
 	// Add a container cluster as a span of this security policy. If there already exists another object containing the same container cluster path, an error will be thrown. The container cluster path cannot be modified If the path has to be modified, then delete this entity and add a new entity with the desired container cluster path
 	//
@@ -72,13 +70,12 @@ type ContainerClusterSpanClient interface {
 	// @param securityPolicyIdParam (required)
 	// @param containerClusterIdParam (required)
 	// @param securityPolicyContainerClusterParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(domainIdParam string, securityPolicyIdParam string, containerClusterIdParam string, securityPolicyContainerClusterParam nsx_policyModel.SecurityPolicyContainerCluster) error
+	Patch(domainIdParam string, securityPolicyIdParam string, containerClusterIdParam string, securityPolicyContainerClusterParam model.SecurityPolicyContainerCluster) error
 
 	// Add a container cluster as a span of this security policy. If there already exists another object containing the same container cluster path, an error will be thrown. The container cluster path cannot be modified If the path has to be modified, then delete this entity and add a new entity with the desired container cluster path
 	//
@@ -87,114 +84,107 @@ type ContainerClusterSpanClient interface {
 	// @param containerClusterIdParam (required)
 	// @param securityPolicyContainerClusterParam (required)
 	// @return com.vmware.nsx_policy.model.SecurityPolicyContainerCluster
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(domainIdParam string, securityPolicyIdParam string, containerClusterIdParam string, securityPolicyContainerClusterParam nsx_policyModel.SecurityPolicyContainerCluster) (nsx_policyModel.SecurityPolicyContainerCluster, error)
+	Update(domainIdParam string, securityPolicyIdParam string, containerClusterIdParam string, securityPolicyContainerClusterParam model.SecurityPolicyContainerCluster) (model.SecurityPolicyContainerCluster, error)
 }
 
 type containerClusterSpanClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewContainerClusterSpanClient(connector vapiProtocolClient_.Connector) *containerClusterSpanClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.domains.security_policies.container_cluster_span")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"patch":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewContainerClusterSpanClient(connector client.Connector) *containerClusterSpanClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.domains.security_policies.container_cluster_span")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	cIface := containerClusterSpanClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &cIface
 }
 
-func (cIface *containerClusterSpanClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (cIface *containerClusterSpanClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := cIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
 func (cIface *containerClusterSpanClient) Delete(domainIdParam string, securityPolicyIdParam string, antreaCluster1Param string) error {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
-	operationRestMetaData := containerClusterSpanDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(containerClusterSpanDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(containerClusterSpanDeleteInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("SecurityPolicyId", securityPolicyIdParam)
 	sv.AddStructField("AntreaCluster1", antreaCluster1Param)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := containerClusterSpanDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := cIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.domains.security_policies.container_cluster_span", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), cIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (cIface *containerClusterSpanClient) Get(domainIdParam string, securityPolicyIdParam string, antreaCluster1Param string) (nsx_policyModel.SecurityPolicyContainerCluster, error) {
+func (cIface *containerClusterSpanClient) Get(domainIdParam string, securityPolicyIdParam string, antreaCluster1Param string) (model.SecurityPolicyContainerCluster, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
-	operationRestMetaData := containerClusterSpanGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(containerClusterSpanGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(containerClusterSpanGetInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("SecurityPolicyId", securityPolicyIdParam)
 	sv.AddStructField("AntreaCluster1", antreaCluster1Param)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.SecurityPolicyContainerCluster
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.SecurityPolicyContainerCluster
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := containerClusterSpanGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := cIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.domains.security_policies.container_cluster_span", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.SecurityPolicyContainerCluster
+	var emptyOutput model.SecurityPolicyContainerCluster
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ContainerClusterSpanGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), containerClusterSpanGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.SecurityPolicyContainerCluster), nil
+		return output.(model.SecurityPolicyContainerCluster), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), cIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (cIface *containerClusterSpanClient) List(domainIdParam string, securityPolicyIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.SecurityPolicyContainerClusterListResult, error) {
+func (cIface *containerClusterSpanClient) List(domainIdParam string, securityPolicyIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.SecurityPolicyContainerClusterListResult, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
-	operationRestMetaData := containerClusterSpanListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(containerClusterSpanListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(containerClusterSpanListInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("SecurityPolicyId", securityPolicyIdParam)
 	sv.AddStructField("Cursor", cursorParam)
@@ -205,86 +195,87 @@ func (cIface *containerClusterSpanClient) List(domainIdParam string, securityPol
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.SecurityPolicyContainerClusterListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.SecurityPolicyContainerClusterListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := containerClusterSpanListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := cIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.domains.security_policies.container_cluster_span", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.SecurityPolicyContainerClusterListResult
+	var emptyOutput model.SecurityPolicyContainerClusterListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ContainerClusterSpanListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), containerClusterSpanListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.SecurityPolicyContainerClusterListResult), nil
+		return output.(model.SecurityPolicyContainerClusterListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), cIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (cIface *containerClusterSpanClient) Patch(domainIdParam string, securityPolicyIdParam string, containerClusterIdParam string, securityPolicyContainerClusterParam nsx_policyModel.SecurityPolicyContainerCluster) error {
+func (cIface *containerClusterSpanClient) Patch(domainIdParam string, securityPolicyIdParam string, containerClusterIdParam string, securityPolicyContainerClusterParam model.SecurityPolicyContainerCluster) error {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
-	operationRestMetaData := containerClusterSpanPatchRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(containerClusterSpanPatchInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(containerClusterSpanPatchInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("SecurityPolicyId", securityPolicyIdParam)
 	sv.AddStructField("ContainerClusterId", containerClusterIdParam)
 	sv.AddStructField("SecurityPolicyContainerCluster", securityPolicyContainerClusterParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := containerClusterSpanPatchRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := cIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.domains.security_policies.container_cluster_span", "patch", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), cIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (cIface *containerClusterSpanClient) Update(domainIdParam string, securityPolicyIdParam string, containerClusterIdParam string, securityPolicyContainerClusterParam nsx_policyModel.SecurityPolicyContainerCluster) (nsx_policyModel.SecurityPolicyContainerCluster, error) {
+func (cIface *containerClusterSpanClient) Update(domainIdParam string, securityPolicyIdParam string, containerClusterIdParam string, securityPolicyContainerClusterParam model.SecurityPolicyContainerCluster) (model.SecurityPolicyContainerCluster, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
-	operationRestMetaData := containerClusterSpanUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(containerClusterSpanUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(containerClusterSpanUpdateInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("SecurityPolicyId", securityPolicyIdParam)
 	sv.AddStructField("ContainerClusterId", containerClusterIdParam)
 	sv.AddStructField("SecurityPolicyContainerCluster", securityPolicyContainerClusterParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.SecurityPolicyContainerCluster
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.SecurityPolicyContainerCluster
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := containerClusterSpanUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := cIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.domains.security_policies.container_cluster_span", "update", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.SecurityPolicyContainerCluster
+	var emptyOutput model.SecurityPolicyContainerCluster
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ContainerClusterSpanUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), containerClusterSpanUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.SecurityPolicyContainerCluster), nil
+		return output.(model.SecurityPolicyContainerCluster), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), cIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

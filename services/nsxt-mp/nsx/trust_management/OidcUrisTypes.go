@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,50 +11,41 @@
 package trust_management
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 	"reflect"
 )
 
-// Possible value for ``oidcType`` of method OidcUris#list.
-const OidcUris_LIST_OIDC_TYPE_VCENTER = "vcenter"
-
-// Possible value for ``oidcType`` of method OidcUris#list.
-const OidcUris_LIST_OIDC_TYPE_WS_ONE = "ws_one"
-
-// Possible value for ``oidcType`` of method OidcUris#list.
-const OidcUris_LIST_OIDC_TYPE_CSP = "csp"
-
-func oidcUrisCreateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func oidcUrisCreateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["oidc_end_point"] = vapiBindings_.NewReferenceType(nsxModel.OidcEndPointBindingType)
+	fields["oidc_end_point"] = bindings.NewReferenceType(model.OidcEndPointBindingType)
 	fieldNameMap["oidc_end_point"] = "OidcEndPoint"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func OidcUrisCreateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.OidcEndPointBindingType)
+func oidcUrisCreateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.OidcEndPointBindingType)
 }
 
-func oidcUrisCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func oidcUrisCreateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["oidc_end_point"] = vapiBindings_.NewReferenceType(nsxModel.OidcEndPointBindingType)
+	fields["oidc_end_point"] = bindings.NewReferenceType(model.OidcEndPointBindingType)
 	fieldNameMap["oidc_end_point"] = "OidcEndPoint"
-	paramsTypeMap["oidc_end_point"] = vapiBindings_.NewReferenceType(nsxModel.OidcEndPointBindingType)
+	paramsTypeMap["oidc_end_point"] = bindings.NewReferenceType(model.OidcEndPointBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -75,42 +66,42 @@ func oidcUrisCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func oidcUrisGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func oidcUrisGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["id"] = vapiBindings_.NewStringType()
-	fields["refresh"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["id"] = bindings.NewStringType()
+	fields["refresh"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["id"] = "Id"
 	fieldNameMap["refresh"] = "Refresh"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func OidcUrisGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.OidcEndPointBindingType)
+func oidcUrisGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.OidcEndPointBindingType)
 }
 
-func oidcUrisGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func oidcUrisGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["id"] = vapiBindings_.NewStringType()
-	fields["refresh"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["id"] = bindings.NewStringType()
+	fields["refresh"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["id"] = "Id"
 	fieldNameMap["refresh"] = "Refresh"
-	paramsTypeMap["refresh"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["refresh"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["id"] = bindings.NewStringType()
+	paramsTypeMap["id"] = bindings.NewStringType()
 	pathParams["id"] = "id"
 	queryParams["refresh"] = "refresh"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -131,35 +122,29 @@ func oidcUrisGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func oidcUrisListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func oidcUrisListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["oidc_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fieldNameMap["oidc_type"] = "OidcType"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func OidcUrisListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.OidcEndPointListResultBindingType)
+func oidcUrisListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.OidcEndPointListResultBindingType)
 }
 
-func oidcUrisListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func oidcUrisListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["oidc_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fieldNameMap["oidc_type"] = "OidcType"
-	paramsTypeMap["oidc_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	queryParams["oidc_type"] = "oidc_type"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -180,36 +165,36 @@ func oidcUrisListRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func oidcUrisRefreshInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func oidcUrisRefreshInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["id"] = vapiBindings_.NewStringType()
+	fields["id"] = bindings.NewStringType()
 	fieldNameMap["id"] = "Id"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func OidcUrisRefreshOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.OidcEndPointBindingType)
+func oidcUrisRefreshOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.OidcEndPointBindingType)
 }
 
-func oidcUrisRefreshRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func oidcUrisRefreshRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["id"] = vapiBindings_.NewStringType()
+	fields["id"] = bindings.NewStringType()
 	fieldNameMap["id"] = "Id"
-	paramsTypeMap["id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["id"] = bindings.NewStringType()
+	paramsTypeMap["id"] = bindings.NewStringType()
 	pathParams["id"] = "id"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -230,41 +215,41 @@ func oidcUrisRefreshRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func oidcUrisUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func oidcUrisUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["id"] = vapiBindings_.NewStringType()
-	fields["oidc_end_point"] = vapiBindings_.NewReferenceType(nsxModel.OidcEndPointBindingType)
+	fields["id"] = bindings.NewStringType()
+	fields["oidc_end_point"] = bindings.NewReferenceType(model.OidcEndPointBindingType)
 	fieldNameMap["id"] = "Id"
 	fieldNameMap["oidc_end_point"] = "OidcEndPoint"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func OidcUrisUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.OidcEndPointBindingType)
+func oidcUrisUpdateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.OidcEndPointBindingType)
 }
 
-func oidcUrisUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func oidcUrisUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["id"] = vapiBindings_.NewStringType()
-	fields["oidc_end_point"] = vapiBindings_.NewReferenceType(nsxModel.OidcEndPointBindingType)
+	fields["id"] = bindings.NewStringType()
+	fields["oidc_end_point"] = bindings.NewReferenceType(model.OidcEndPointBindingType)
 	fieldNameMap["id"] = "Id"
 	fieldNameMap["oidc_end_point"] = "OidcEndPoint"
-	paramsTypeMap["id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["oidc_end_point"] = vapiBindings_.NewReferenceType(nsxModel.OidcEndPointBindingType)
-	paramsTypeMap["id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["oidc_end_point"] = bindings.NewReferenceType(model.OidcEndPointBindingType)
+	paramsTypeMap["id"] = bindings.NewStringType()
+	paramsTypeMap["id"] = bindings.NewStringType()
 	pathParams["id"] = "id"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -285,34 +270,34 @@ func oidcUrisUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func oidcUrisUpdatethumbprintInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func oidcUrisUpdatethumbprintInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["update_oidc_end_point_thumbprint_request"] = vapiBindings_.NewReferenceType(nsxModel.UpdateOidcEndPointThumbprintRequestBindingType)
+	fields["update_oidc_end_point_thumbprint_request"] = bindings.NewReferenceType(model.UpdateOidcEndPointThumbprintRequestBindingType)
 	fieldNameMap["update_oidc_end_point_thumbprint_request"] = "UpdateOidcEndPointThumbprintRequest"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func OidcUrisUpdatethumbprintOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.OidcEndPointBindingType)
+func oidcUrisUpdatethumbprintOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.OidcEndPointBindingType)
 }
 
-func oidcUrisUpdatethumbprintRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func oidcUrisUpdatethumbprintRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["update_oidc_end_point_thumbprint_request"] = vapiBindings_.NewReferenceType(nsxModel.UpdateOidcEndPointThumbprintRequestBindingType)
+	fields["update_oidc_end_point_thumbprint_request"] = bindings.NewReferenceType(model.UpdateOidcEndPointThumbprintRequestBindingType)
 	fieldNameMap["update_oidc_end_point_thumbprint_request"] = "UpdateOidcEndPointThumbprintRequest"
-	paramsTypeMap["update_oidc_end_point_thumbprint_request"] = vapiBindings_.NewReferenceType(nsxModel.UpdateOidcEndPointThumbprintRequestBindingType)
+	paramsTypeMap["update_oidc_end_point_thumbprint_request"] = bindings.NewReferenceType(model.UpdateOidcEndPointThumbprintRequestBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

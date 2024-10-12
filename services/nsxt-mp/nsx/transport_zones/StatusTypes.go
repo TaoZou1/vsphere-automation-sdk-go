@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,10 +11,10 @@
 package transport_zones
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 	"reflect"
 )
 
@@ -24,21 +24,21 @@ const Status_GET_0_SOURCE_REALTIME = "realtime"
 // Possible value for ``source`` of method Status#get0.
 const Status_GET_0_SOURCE_CACHED = "cached"
 
-func statusGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func statusGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func StatusGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.HeatMapTransportNodesAggregateStatusBindingType)
+func statusGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.HeatMapTransportNodesAggregateStatusBindingType)
 }
 
-func statusGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func statusGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
@@ -46,7 +46,7 @@ func statusGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 	bodyFieldsMap := map[string]string{}
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -67,42 +67,42 @@ func statusGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func statusGet0InputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func statusGet0InputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["zone_id"] = vapiBindings_.NewStringType()
-	fields["source"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["zone_id"] = bindings.NewStringType()
+	fields["source"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["zone_id"] = "ZoneId"
 	fieldNameMap["source"] = "Source"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func StatusGet0OutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.HeatMapTransportZoneStatusBindingType)
+func statusGet0OutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.HeatMapTransportZoneStatusBindingType)
 }
 
-func statusGet0RestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func statusGet0RestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["zone_id"] = vapiBindings_.NewStringType()
-	fields["source"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["zone_id"] = bindings.NewStringType()
+	fields["source"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["zone_id"] = "ZoneId"
 	fieldNameMap["source"] = "Source"
-	paramsTypeMap["zone_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["source"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["zoneId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["source"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["zone_id"] = bindings.NewStringType()
+	paramsTypeMap["zoneId"] = bindings.NewStringType()
 	pathParams["zone_id"] = "zoneId"
 	queryParams["source"] = "source"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

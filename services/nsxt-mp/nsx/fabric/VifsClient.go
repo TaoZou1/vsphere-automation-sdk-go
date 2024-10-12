@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package fabric
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type VifsClient interface {
 
@@ -32,48 +33,43 @@ type VifsClient interface {
 	// @param sortByParam Field by which records are sorted (optional)
 	// @param vmIdParam Internal identifier of the virtual machine. (optional)
 	// @return com.vmware.nsx.model.VirtualNetworkInterfaceListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(cursorParam *string, hostIdParam *string, includedFieldsParam *string, lportAttachmentIdParam *string, ownerVmIdParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, vmIdParam *string) (nsxModel.VirtualNetworkInterfaceListResult, error)
+	List(cursorParam *string, hostIdParam *string, includedFieldsParam *string, lportAttachmentIdParam *string, ownerVmIdParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, vmIdParam *string) (model.VirtualNetworkInterfaceListResult, error)
 }
 
 type vifsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewVifsClient(connector vapiProtocolClient_.Connector) *vifsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.fabric.vifs")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"list": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
+func NewVifsClient(connector client.Connector) *vifsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.fabric.vifs")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"list": core.NewMethodIdentifier(interfaceIdentifier, "list"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	vIface := vifsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &vIface
 }
 
-func (vIface *vifsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (vIface *vifsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := vIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (vIface *vifsClient) List(cursorParam *string, hostIdParam *string, includedFieldsParam *string, lportAttachmentIdParam *string, ownerVmIdParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, vmIdParam *string) (nsxModel.VirtualNetworkInterfaceListResult, error) {
+func (vIface *vifsClient) List(cursorParam *string, hostIdParam *string, includedFieldsParam *string, lportAttachmentIdParam *string, ownerVmIdParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, vmIdParam *string) (model.VirtualNetworkInterfaceListResult, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	executionContext := vIface.connector.NewExecutionContext()
-	operationRestMetaData := vifsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(vifsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(vifsListInputType(), typeConverter)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("HostId", hostIdParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)
@@ -85,22 +81,25 @@ func (vIface *vifsClient) List(cursorParam *string, hostIdParam *string, include
 	sv.AddStructField("VmId", vmIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.VirtualNetworkInterfaceListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.VirtualNetworkInterfaceListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := vifsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := vIface.connector.GetApiProvider().Invoke("com.vmware.nsx.fabric.vifs", "list", inputDataValue, executionContext)
-	var emptyOutput nsxModel.VirtualNetworkInterfaceListResult
+	var emptyOutput model.VirtualNetworkInterfaceListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), VifsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), vifsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.VirtualNetworkInterfaceListResult), nil
+		return output.(model.VirtualNetworkInterfaceListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), vIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

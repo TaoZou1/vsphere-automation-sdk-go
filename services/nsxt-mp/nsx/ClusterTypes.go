@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,10 +11,10 @@
 package nsx
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 	"reflect"
 )
 
@@ -48,41 +48,41 @@ const Cluster_REMOVENODE_IGNORE_REPOSITORY_IP_CHECK_TRUE = "true"
 // Possible value for ``ignoreRepositoryIpCheck`` of method Cluster#removenode.
 const Cluster_REMOVENODE_IGNORE_REPOSITORY_IP_CHECK_FALSE = "false"
 
-func clusterBackuptoremoteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func clusterBackuptoremoteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["frame_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["site_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["frame_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["site_id"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["frame_type"] = "FrameType"
 	fieldNameMap["site_id"] = "SiteId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ClusterBackuptoremoteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func clusterBackuptoremoteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func clusterBackuptoremoteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func clusterBackuptoremoteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["frame_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["site_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["frame_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["site_id"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["frame_type"] = "FrameType"
 	fieldNameMap["site_id"] = "SiteId"
-	paramsTypeMap["site_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["frame_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["frame_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["site_id"] = bindings.NewOptionalType(bindings.NewStringType())
 	queryParams["site_id"] = "site_id"
 	queryParams["frame_type"] = "frame_type"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -103,43 +103,43 @@ func clusterBackuptoremoteRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func clusterCreateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func clusterCreateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["target_node_id"] = vapiBindings_.NewStringType()
-	fields["target_uri"] = vapiBindings_.NewStringType()
+	fields["target_node_id"] = bindings.NewStringType()
+	fields["target_uri"] = bindings.NewStringType()
 	fieldNameMap["target_node_id"] = "TargetNodeId"
 	fieldNameMap["target_uri"] = "TargetUri"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ClusterCreateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func clusterCreateOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func clusterCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func clusterCreateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["target_node_id"] = vapiBindings_.NewStringType()
-	fields["target_uri"] = vapiBindings_.NewStringType()
+	fields["target_node_id"] = bindings.NewStringType()
+	fields["target_uri"] = bindings.NewStringType()
 	fieldNameMap["target_node_id"] = "TargetNodeId"
 	fieldNameMap["target_uri"] = "TargetUri"
-	paramsTypeMap["target_uri"] = vapiBindings_.NewStringType()
-	paramsTypeMap["target_node_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["targetNodeId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["targetUri"] = vapiBindings_.NewStringType()
+	paramsTypeMap["target_uri"] = bindings.NewStringType()
+	paramsTypeMap["target_node_id"] = bindings.NewStringType()
+	paramsTypeMap["targetNodeId"] = bindings.NewStringType()
+	paramsTypeMap["targetUri"] = bindings.NewStringType()
 	pathParams["target_uri"] = "targetUri"
 	pathParams["target_node_id"] = "targetNodeId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -160,43 +160,43 @@ func clusterCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.timed_out": 500, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func clusterDeleteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func clusterDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["target_node_id"] = vapiBindings_.NewStringType()
-	fields["target_uri"] = vapiBindings_.NewStringType()
+	fields["target_node_id"] = bindings.NewStringType()
+	fields["target_uri"] = bindings.NewStringType()
 	fieldNameMap["target_node_id"] = "TargetNodeId"
 	fieldNameMap["target_uri"] = "TargetUri"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ClusterDeleteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func clusterDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func clusterDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func clusterDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["target_node_id"] = vapiBindings_.NewStringType()
-	fields["target_uri"] = vapiBindings_.NewStringType()
+	fields["target_node_id"] = bindings.NewStringType()
+	fields["target_uri"] = bindings.NewStringType()
 	fieldNameMap["target_node_id"] = "TargetNodeId"
 	fieldNameMap["target_uri"] = "TargetUri"
-	paramsTypeMap["target_uri"] = vapiBindings_.NewStringType()
-	paramsTypeMap["target_node_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["targetNodeId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["targetUri"] = vapiBindings_.NewStringType()
+	paramsTypeMap["target_uri"] = bindings.NewStringType()
+	paramsTypeMap["target_node_id"] = bindings.NewStringType()
+	paramsTypeMap["targetNodeId"] = bindings.NewStringType()
+	paramsTypeMap["targetUri"] = bindings.NewStringType()
 	pathParams["target_uri"] = "targetUri"
 	pathParams["target_node_id"] = "targetNodeId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -217,21 +217,21 @@ func clusterDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.timed_out": 500, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func clusterGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func clusterGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ClusterGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.ClusterConfigBindingType)
+func clusterGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.ClusterConfigBindingType)
 }
 
-func clusterGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func clusterGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
@@ -239,7 +239,7 @@ func clusterGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 	bodyFieldsMap := map[string]string{}
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -260,36 +260,36 @@ func clusterGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func clusterGet0InputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func clusterGet0InputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["node_id"] = vapiBindings_.NewStringType()
+	fields["node_id"] = bindings.NewStringType()
 	fieldNameMap["node_id"] = "NodeId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ClusterGet0OutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.ClusterNodeInfoBindingType)
+func clusterGet0OutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.ClusterNodeInfoBindingType)
 }
 
-func clusterGet0RestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func clusterGet0RestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["node_id"] = vapiBindings_.NewStringType()
+	fields["node_id"] = bindings.NewStringType()
 	fieldNameMap["node_id"] = "NodeId"
-	paramsTypeMap["node_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["nodeId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["node_id"] = bindings.NewStringType()
+	paramsTypeMap["nodeId"] = bindings.NewStringType()
 	pathParams["node_id"] = "nodeId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -310,43 +310,43 @@ func clusterGet0RestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func clusterGet1InputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func clusterGet1InputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["target_node_id"] = vapiBindings_.NewStringType()
-	fields["target_uri"] = vapiBindings_.NewStringType()
+	fields["target_node_id"] = bindings.NewStringType()
+	fields["target_uri"] = bindings.NewStringType()
 	fieldNameMap["target_node_id"] = "TargetNodeId"
 	fieldNameMap["target_uri"] = "TargetUri"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ClusterGet1OutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func clusterGet1OutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func clusterGet1RestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func clusterGet1RestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["target_node_id"] = vapiBindings_.NewStringType()
-	fields["target_uri"] = vapiBindings_.NewStringType()
+	fields["target_node_id"] = bindings.NewStringType()
+	fields["target_uri"] = bindings.NewStringType()
 	fieldNameMap["target_node_id"] = "TargetNodeId"
 	fieldNameMap["target_uri"] = "TargetUri"
-	paramsTypeMap["target_uri"] = vapiBindings_.NewStringType()
-	paramsTypeMap["target_node_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["targetNodeId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["targetUri"] = vapiBindings_.NewStringType()
+	paramsTypeMap["target_uri"] = bindings.NewStringType()
+	paramsTypeMap["target_node_id"] = bindings.NewStringType()
+	paramsTypeMap["targetNodeId"] = bindings.NewStringType()
+	paramsTypeMap["targetUri"] = bindings.NewStringType()
 	pathParams["target_uri"] = "targetUri"
 	pathParams["target_node_id"] = "targetNodeId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -367,34 +367,34 @@ func clusterGet1RestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.timed_out": 500, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func clusterJoinclusterInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func clusterJoinclusterInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["join_cluster_parameters"] = vapiBindings_.NewReferenceType(nsxModel.JoinClusterParametersBindingType)
+	fields["join_cluster_parameters"] = bindings.NewReferenceType(model.JoinClusterParametersBindingType)
 	fieldNameMap["join_cluster_parameters"] = "JoinClusterParameters"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ClusterJoinclusterOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.ClusterConfigurationBindingType)
+func clusterJoinclusterOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.ClusterConfigurationBindingType)
 }
 
-func clusterJoinclusterRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func clusterJoinclusterRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["join_cluster_parameters"] = vapiBindings_.NewReferenceType(nsxModel.JoinClusterParametersBindingType)
+	fields["join_cluster_parameters"] = bindings.NewReferenceType(model.JoinClusterParametersBindingType)
 	fieldNameMap["join_cluster_parameters"] = "JoinClusterParameters"
-	paramsTypeMap["join_cluster_parameters"] = vapiBindings_.NewReferenceType(nsxModel.JoinClusterParametersBindingType)
+	paramsTypeMap["join_cluster_parameters"] = bindings.NewReferenceType(model.JoinClusterParametersBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -415,54 +415,54 @@ func clusterJoinclusterRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func clusterRemovenodeInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func clusterRemovenodeInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["node_id"] = vapiBindings_.NewStringType()
-	fields["force"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["graceful_shutdown"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["ignore_repository_ip_check"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["node_id"] = bindings.NewStringType()
+	fields["force"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["graceful_shutdown"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["ignore_repository_ip_check"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["node_id"] = "NodeId"
 	fieldNameMap["force"] = "Force"
 	fieldNameMap["graceful_shutdown"] = "GracefulShutdown"
 	fieldNameMap["ignore_repository_ip_check"] = "IgnoreRepositoryIpCheck"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ClusterRemovenodeOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.ClusterConfigurationBindingType)
+func clusterRemovenodeOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.ClusterConfigurationBindingType)
 }
 
-func clusterRemovenodeRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func clusterRemovenodeRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["node_id"] = vapiBindings_.NewStringType()
-	fields["force"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["graceful_shutdown"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["ignore_repository_ip_check"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["node_id"] = bindings.NewStringType()
+	fields["force"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["graceful_shutdown"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["ignore_repository_ip_check"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["node_id"] = "NodeId"
 	fieldNameMap["force"] = "Force"
 	fieldNameMap["graceful_shutdown"] = "GracefulShutdown"
 	fieldNameMap["ignore_repository_ip_check"] = "IgnoreRepositoryIpCheck"
-	paramsTypeMap["ignore_repository_ip_check"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["force"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["graceful_shutdown"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["node_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["nodeId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["force"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["ignore_repository_ip_check"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["graceful_shutdown"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["node_id"] = bindings.NewStringType()
+	paramsTypeMap["nodeId"] = bindings.NewStringType()
 	pathParams["node_id"] = "nodeId"
 	queryParams["graceful_shutdown"] = "graceful-shutdown"
 	queryParams["ignore_repository_ip_check"] = "ignore-repository-ip-check"
 	queryParams["force"] = "force"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -483,21 +483,21 @@ func clusterRemovenodeRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func clusterSummarizeinventorytoremoteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func clusterSummarizeinventorytoremoteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ClusterSummarizeinventorytoremoteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func clusterSummarizeinventorytoremoteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func clusterSummarizeinventorytoremoteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func clusterSummarizeinventorytoremoteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
@@ -505,7 +505,7 @@ func clusterSummarizeinventorytoremoteRestMetadata() vapiProtocol_.OperationRest
 	bodyFieldsMap := map[string]string{}
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -526,43 +526,43 @@ func clusterSummarizeinventorytoremoteRestMetadata() vapiProtocol_.OperationRest
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func clusterUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func clusterUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["target_node_id"] = vapiBindings_.NewStringType()
-	fields["target_uri"] = vapiBindings_.NewStringType()
+	fields["target_node_id"] = bindings.NewStringType()
+	fields["target_uri"] = bindings.NewStringType()
 	fieldNameMap["target_node_id"] = "TargetNodeId"
 	fieldNameMap["target_uri"] = "TargetUri"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ClusterUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func clusterUpdateOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func clusterUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func clusterUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["target_node_id"] = vapiBindings_.NewStringType()
-	fields["target_uri"] = vapiBindings_.NewStringType()
+	fields["target_node_id"] = bindings.NewStringType()
+	fields["target_uri"] = bindings.NewStringType()
 	fieldNameMap["target_node_id"] = "TargetNodeId"
 	fieldNameMap["target_uri"] = "TargetUri"
-	paramsTypeMap["target_uri"] = vapiBindings_.NewStringType()
-	paramsTypeMap["target_node_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["targetNodeId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["targetUri"] = vapiBindings_.NewStringType()
+	paramsTypeMap["target_uri"] = bindings.NewStringType()
+	paramsTypeMap["target_node_id"] = bindings.NewStringType()
+	paramsTypeMap["targetNodeId"] = bindings.NewStringType()
+	paramsTypeMap["targetUri"] = bindings.NewStringType()
 	pathParams["target_uri"] = "targetUri"
 	pathParams["target_node_id"] = "targetNodeId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

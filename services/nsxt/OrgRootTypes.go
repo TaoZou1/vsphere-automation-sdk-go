@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,54 +11,54 @@
 package nsx_policy
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func orgRootGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func orgRootGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["base_path"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["filter"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["type_filter"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["base_path"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["filter"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["type_filter"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["base_path"] = "BasePath"
 	fieldNameMap["filter"] = "Filter"
 	fieldNameMap["type_filter"] = "TypeFilter"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func OrgRootGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.OrgRootBindingType)
+func orgRootGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.OrgRootBindingType)
 }
 
-func orgRootGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func orgRootGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["base_path"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["filter"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["type_filter"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["base_path"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["filter"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["type_filter"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["base_path"] = "BasePath"
 	fieldNameMap["filter"] = "Filter"
 	fieldNameMap["type_filter"] = "TypeFilter"
-	paramsTypeMap["filter"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["base_path"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["type_filter"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["base_path"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["filter"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["type_filter"] = bindings.NewOptionalType(bindings.NewStringType())
 	queryParams["filter"] = "filter"
 	queryParams["base_path"] = "base_path"
 	queryParams["type_filter"] = "type_filter"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -79,40 +79,40 @@ func orgRootGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func orgRootPatchInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func orgRootPatchInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_root"] = vapiBindings_.NewReferenceType(nsx_policyModel.OrgRootBindingType)
-	fields["enforce_revision_check"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["org_root"] = bindings.NewReferenceType(model.OrgRootBindingType)
+	fields["enforce_revision_check"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["org_root"] = "OrgRoot"
 	fieldNameMap["enforce_revision_check"] = "EnforceRevisionCheck"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func OrgRootPatchOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func orgRootPatchOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func orgRootPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func orgRootPatchRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_root"] = vapiBindings_.NewReferenceType(nsx_policyModel.OrgRootBindingType)
-	fields["enforce_revision_check"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["org_root"] = bindings.NewReferenceType(model.OrgRootBindingType)
+	fields["enforce_revision_check"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["org_root"] = "OrgRoot"
 	fieldNameMap["enforce_revision_check"] = "EnforceRevisionCheck"
-	paramsTypeMap["org_root"] = vapiBindings_.NewReferenceType(nsx_policyModel.OrgRootBindingType)
-	paramsTypeMap["enforce_revision_check"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	paramsTypeMap["enforce_revision_check"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["org_root"] = bindings.NewReferenceType(model.OrgRootBindingType)
 	queryParams["enforce_revision_check"] = "enforce_revision_check"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

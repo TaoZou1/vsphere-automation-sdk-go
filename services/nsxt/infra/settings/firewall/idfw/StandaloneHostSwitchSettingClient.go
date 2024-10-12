@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,162 +9,157 @@
 package idfw
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type StandaloneHostSwitchSettingClient interface {
 
 	// Read identity firewall configuration for standalone host
 	// @return com.vmware.nsx_policy.model.StandaloneHostIdfwConfiguration
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get() (nsx_policyModel.StandaloneHostIdfwConfiguration, error)
+	Get() (model.StandaloneHostIdfwConfiguration, error)
 
 	// Patch identity firewall configuration for standalone host
 	//
 	// @param standaloneHostIdfwConfigurationParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(standaloneHostIdfwConfigurationParam nsx_policyModel.StandaloneHostIdfwConfiguration) error
+	Patch(standaloneHostIdfwConfigurationParam model.StandaloneHostIdfwConfiguration) error
 
 	// Update the idfw configuration for standalone host
 	//
 	// @param standaloneHostIdfwConfigurationParam (required)
 	// @return com.vmware.nsx_policy.model.StandaloneHostIdfwConfiguration
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(standaloneHostIdfwConfigurationParam nsx_policyModel.StandaloneHostIdfwConfiguration) (nsx_policyModel.StandaloneHostIdfwConfiguration, error)
+	Update(standaloneHostIdfwConfigurationParam model.StandaloneHostIdfwConfiguration) (model.StandaloneHostIdfwConfiguration, error)
 }
 
 type standaloneHostSwitchSettingClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewStandaloneHostSwitchSettingClient(connector vapiProtocolClient_.Connector) *standaloneHostSwitchSettingClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.settings.firewall.idfw.standalone_host_switch_setting")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"patch":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewStandaloneHostSwitchSettingClient(connector client.Connector) *standaloneHostSwitchSettingClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.settings.firewall.idfw.standalone_host_switch_setting")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	sIface := standaloneHostSwitchSettingClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &sIface
 }
 
-func (sIface *standaloneHostSwitchSettingClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (sIface *standaloneHostSwitchSettingClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := sIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (sIface *standaloneHostSwitchSettingClient) Get() (nsx_policyModel.StandaloneHostIdfwConfiguration, error) {
+func (sIface *standaloneHostSwitchSettingClient) Get() (model.StandaloneHostIdfwConfiguration, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := standaloneHostSwitchSettingGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(standaloneHostSwitchSettingGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(standaloneHostSwitchSettingGetInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.StandaloneHostIdfwConfiguration
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.StandaloneHostIdfwConfiguration
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := standaloneHostSwitchSettingGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.settings.firewall.idfw.standalone_host_switch_setting", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.StandaloneHostIdfwConfiguration
+	var emptyOutput model.StandaloneHostIdfwConfiguration
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), StandaloneHostSwitchSettingGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), standaloneHostSwitchSettingGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.StandaloneHostIdfwConfiguration), nil
+		return output.(model.StandaloneHostIdfwConfiguration), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (sIface *standaloneHostSwitchSettingClient) Patch(standaloneHostIdfwConfigurationParam nsx_policyModel.StandaloneHostIdfwConfiguration) error {
+func (sIface *standaloneHostSwitchSettingClient) Patch(standaloneHostIdfwConfigurationParam model.StandaloneHostIdfwConfiguration) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := standaloneHostSwitchSettingPatchRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(standaloneHostSwitchSettingPatchInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(standaloneHostSwitchSettingPatchInputType(), typeConverter)
 	sv.AddStructField("StandaloneHostIdfwConfiguration", standaloneHostIdfwConfigurationParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := standaloneHostSwitchSettingPatchRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.settings.firewall.idfw.standalone_host_switch_setting", "patch", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (sIface *standaloneHostSwitchSettingClient) Update(standaloneHostIdfwConfigurationParam nsx_policyModel.StandaloneHostIdfwConfiguration) (nsx_policyModel.StandaloneHostIdfwConfiguration, error) {
+func (sIface *standaloneHostSwitchSettingClient) Update(standaloneHostIdfwConfigurationParam model.StandaloneHostIdfwConfiguration) (model.StandaloneHostIdfwConfiguration, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := standaloneHostSwitchSettingUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(standaloneHostSwitchSettingUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(standaloneHostSwitchSettingUpdateInputType(), typeConverter)
 	sv.AddStructField("StandaloneHostIdfwConfiguration", standaloneHostIdfwConfigurationParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.StandaloneHostIdfwConfiguration
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.StandaloneHostIdfwConfiguration
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := standaloneHostSwitchSettingUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.settings.firewall.idfw.standalone_host_switch_setting", "update", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.StandaloneHostIdfwConfiguration
+	var emptyOutput model.StandaloneHostIdfwConfiguration
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), StandaloneHostSwitchSettingUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), standaloneHostSwitchSettingUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.StandaloneHostIdfwConfiguration), nil
+		return output.(model.StandaloneHostIdfwConfiguration), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,57 +9,49 @@
 package nat
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type RulesClient interface {
 
 	// Add a NAT rule in a specific logical router.
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param logicalRouterIdParam (required)
 	// @param natRuleParam (required)
 	// @return com.vmware.nsx.model.NatRule
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Create(logicalRouterIdParam string, natRuleParam nsxModel.NatRule) (nsxModel.NatRule, error)
+	Create(logicalRouterIdParam string, natRuleParam model.NatRule) (model.NatRule, error)
 
 	// Create multiple NAT rules in a specific logical router. The API succeeds only when all rules are accepted and created successfully. Any one validation voilation will fail the API, no rule will be created. The ruleIds of each rules can be found from the responsed message.
 	//
 	//  Please use below hierarchical Policy API to create multiple nat rule.
 	//  POST /policy/api/v1/infra
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param logicalRouterIdParam (required)
 	// @param natRuleListParam (required)
 	// @return com.vmware.nsx.model.NatRuleList
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Createmultiple(logicalRouterIdParam string, natRuleListParam nsxModel.NatRuleList) (nsxModel.NatRuleList, error)
+	Createmultiple(logicalRouterIdParam string, natRuleListParam model.NatRuleList) (model.NatRuleList, error)
 
 	// Delete a specific NAT rule from a logical router
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param logicalRouterIdParam (required)
 	// @param ruleIdParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -69,22 +61,17 @@ type RulesClient interface {
 
 	// Get a specific NAT rule from a given logical router
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param logicalRouterIdParam (required)
 	// @param ruleIdParam (required)
 	// @return com.vmware.nsx.model.NatRule
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(logicalRouterIdParam string, ruleIdParam string) (nsxModel.NatRule, error)
+	Get(logicalRouterIdParam string, ruleIdParam string) (model.NatRule, error)
 
 	// Returns paginated list of all user defined NAT rules of the specific logical router. If a rule_type is provided, only the given type of rules will be returned. If no rule_type is specified, the rule_type will be defaulted to NATv4, i.e. only the NATv4 rules will be listed.
-	//
-	// Deprecated: This API element is deprecated.
 	//
 	// @param logicalRouterIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -94,122 +81,116 @@ type RulesClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx.model.NatRuleListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(logicalRouterIdParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, ruleTypeParam *string, sortAscendingParam *bool, sortByParam *string) (nsxModel.NatRuleListResult, error)
+	List(logicalRouterIdParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, ruleTypeParam *string, sortAscendingParam *bool, sortByParam *string) (model.NatRuleListResult, error)
 
 	// Update a specific NAT rule from a given logical router.
-	//
-	// Deprecated: This API element is deprecated.
 	//
 	// @param logicalRouterIdParam (required)
 	// @param ruleIdParam (required)
 	// @param natRuleParam (required)
 	// @return com.vmware.nsx.model.NatRule
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(logicalRouterIdParam string, ruleIdParam string, natRuleParam nsxModel.NatRule) (nsxModel.NatRule, error)
+	Update(logicalRouterIdParam string, ruleIdParam string, natRuleParam model.NatRule) (model.NatRule, error)
 }
 
 type rulesClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewRulesClient(connector vapiProtocolClient_.Connector) *rulesClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.logical_routers.nat.rules")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"create":         vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
-		"createmultiple": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "createmultiple"),
-		"delete":         vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":            vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":           vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"update":         vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewRulesClient(connector client.Connector) *rulesClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.logical_routers.nat.rules")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"create":         core.NewMethodIdentifier(interfaceIdentifier, "create"),
+		"createmultiple": core.NewMethodIdentifier(interfaceIdentifier, "createmultiple"),
+		"delete":         core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":            core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":           core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"update":         core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	rIface := rulesClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &rIface
 }
 
-func (rIface *rulesClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (rIface *rulesClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := rIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (rIface *rulesClient) Create(logicalRouterIdParam string, natRuleParam nsxModel.NatRule) (nsxModel.NatRule, error) {
+func (rIface *rulesClient) Create(logicalRouterIdParam string, natRuleParam model.NatRule) (model.NatRule, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
-	operationRestMetaData := rulesCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(rulesCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(rulesCreateInputType(), typeConverter)
 	sv.AddStructField("LogicalRouterId", logicalRouterIdParam)
 	sv.AddStructField("NatRule", natRuleParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.NatRule
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.NatRule
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := rulesCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := rIface.connector.GetApiProvider().Invoke("com.vmware.nsx.logical_routers.nat.rules", "create", inputDataValue, executionContext)
-	var emptyOutput nsxModel.NatRule
+	var emptyOutput model.NatRule
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), RulesCreateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), rulesCreateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.NatRule), nil
+		return output.(model.NatRule), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), rIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (rIface *rulesClient) Createmultiple(logicalRouterIdParam string, natRuleListParam nsxModel.NatRuleList) (nsxModel.NatRuleList, error) {
+func (rIface *rulesClient) Createmultiple(logicalRouterIdParam string, natRuleListParam model.NatRuleList) (model.NatRuleList, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
-	operationRestMetaData := rulesCreatemultipleRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(rulesCreatemultipleInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(rulesCreatemultipleInputType(), typeConverter)
 	sv.AddStructField("LogicalRouterId", logicalRouterIdParam)
 	sv.AddStructField("NatRuleList", natRuleListParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.NatRuleList
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.NatRuleList
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := rulesCreatemultipleRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := rIface.connector.GetApiProvider().Invoke("com.vmware.nsx.logical_routers.nat.rules", "createmultiple", inputDataValue, executionContext)
-	var emptyOutput nsxModel.NatRuleList
+	var emptyOutput model.NatRuleList
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), RulesCreatemultipleOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), rulesCreatemultipleOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.NatRuleList), nil
+		return output.(model.NatRuleList), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), rIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
@@ -218,71 +199,65 @@ func (rIface *rulesClient) Createmultiple(logicalRouterIdParam string, natRuleLi
 func (rIface *rulesClient) Delete(logicalRouterIdParam string, ruleIdParam string) error {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
-	operationRestMetaData := rulesDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(rulesDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(rulesDeleteInputType(), typeConverter)
 	sv.AddStructField("LogicalRouterId", logicalRouterIdParam)
 	sv.AddStructField("RuleId", ruleIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := rulesDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := rIface.connector.GetApiProvider().Invoke("com.vmware.nsx.logical_routers.nat.rules", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), rIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (rIface *rulesClient) Get(logicalRouterIdParam string, ruleIdParam string) (nsxModel.NatRule, error) {
+func (rIface *rulesClient) Get(logicalRouterIdParam string, ruleIdParam string) (model.NatRule, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
-	operationRestMetaData := rulesGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(rulesGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(rulesGetInputType(), typeConverter)
 	sv.AddStructField("LogicalRouterId", logicalRouterIdParam)
 	sv.AddStructField("RuleId", ruleIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.NatRule
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.NatRule
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := rulesGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := rIface.connector.GetApiProvider().Invoke("com.vmware.nsx.logical_routers.nat.rules", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.NatRule
+	var emptyOutput model.NatRule
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), RulesGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), rulesGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.NatRule), nil
+		return output.(model.NatRule), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), rIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (rIface *rulesClient) List(logicalRouterIdParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, ruleTypeParam *string, sortAscendingParam *bool, sortByParam *string) (nsxModel.NatRuleListResult, error) {
+func (rIface *rulesClient) List(logicalRouterIdParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, ruleTypeParam *string, sortAscendingParam *bool, sortByParam *string) (model.NatRuleListResult, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
-	operationRestMetaData := rulesListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(rulesListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(rulesListInputType(), typeConverter)
 	sv.AddStructField("LogicalRouterId", logicalRouterIdParam)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)
@@ -292,56 +267,58 @@ func (rIface *rulesClient) List(logicalRouterIdParam string, cursorParam *string
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.NatRuleListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.NatRuleListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := rulesListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := rIface.connector.GetApiProvider().Invoke("com.vmware.nsx.logical_routers.nat.rules", "list", inputDataValue, executionContext)
-	var emptyOutput nsxModel.NatRuleListResult
+	var emptyOutput model.NatRuleListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), RulesListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), rulesListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.NatRuleListResult), nil
+		return output.(model.NatRuleListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), rIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (rIface *rulesClient) Update(logicalRouterIdParam string, ruleIdParam string, natRuleParam nsxModel.NatRule) (nsxModel.NatRule, error) {
+func (rIface *rulesClient) Update(logicalRouterIdParam string, ruleIdParam string, natRuleParam model.NatRule) (model.NatRule, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
-	operationRestMetaData := rulesUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(rulesUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(rulesUpdateInputType(), typeConverter)
 	sv.AddStructField("LogicalRouterId", logicalRouterIdParam)
 	sv.AddStructField("RuleId", ruleIdParam)
 	sv.AddStructField("NatRule", natRuleParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.NatRule
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.NatRule
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := rulesUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := rIface.connector.GetApiProvider().Invoke("com.vmware.nsx.logical_routers.nat.rules", "update", inputDataValue, executionContext)
-	var emptyOutput nsxModel.NatRule
+	var emptyOutput model.NatRule
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), RulesUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), rulesUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.NatRule), nil
+		return output.(model.NatRule), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), rIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package bgp
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_global_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-gm/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-gm/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type NeighborsClient interface {
 
@@ -26,7 +27,6 @@ type NeighborsClient interface {
 	// @param localeServiceIdParam (required)
 	// @param neighborIdParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -40,13 +40,12 @@ type NeighborsClient interface {
 	// @param localeServiceIdParam (required)
 	// @param neighborIdParam (required)
 	// @return com.vmware.nsx_global_policy.model.BgpNeighborConfig
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(tier0IdParam string, localeServiceIdParam string, neighborIdParam string) (nsx_global_policyModel.BgpNeighborConfig, error)
+	Get(tier0IdParam string, localeServiceIdParam string, neighborIdParam string) (model.BgpNeighborConfig, error)
 
 	// Paginated list of all BGP neighbor configurations
 	//
@@ -59,13 +58,12 @@ type NeighborsClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_global_policy.model.BgpNeighborConfigListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(tier0IdParam string, localeServiceIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_global_policyModel.BgpNeighborConfigListResult, error)
+	List(tier0IdParam string, localeServiceIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.BgpNeighborConfigListResult, error)
 
 	// If BGP neighbor config with the neighbor-id is not already present, create a new neighbor config. If it already exists, replace the BGP neighbor config with this object.
 	//
@@ -74,13 +72,12 @@ type NeighborsClient interface {
 	// @param neighborIdParam (required)
 	// @param bgpNeighborConfigParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(tier0IdParam string, localeServiceIdParam string, neighborIdParam string, bgpNeighborConfigParam nsx_global_policyModel.BgpNeighborConfig, overrideParam *bool) error
+	Patch(tier0IdParam string, localeServiceIdParam string, neighborIdParam string, bgpNeighborConfigParam model.BgpNeighborConfig, overrideParam *bool) error
 
 	// If BGP neighbor config with the neighbor-id is not already present, create a new neighbor config. If it already exists, replace the BGP neighbor config with this object.
 	//
@@ -90,115 +87,108 @@ type NeighborsClient interface {
 	// @param bgpNeighborConfigParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @return com.vmware.nsx_global_policy.model.BgpNeighborConfig
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(tier0IdParam string, localeServiceIdParam string, neighborIdParam string, bgpNeighborConfigParam nsx_global_policyModel.BgpNeighborConfig, overrideParam *bool) (nsx_global_policyModel.BgpNeighborConfig, error)
+	Update(tier0IdParam string, localeServiceIdParam string, neighborIdParam string, bgpNeighborConfigParam model.BgpNeighborConfig, overrideParam *bool) (model.BgpNeighborConfig, error)
 }
 
 type neighborsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewNeighborsClient(connector vapiProtocolClient_.Connector) *neighborsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_global_policy.global_infra.tier_0s.locale_services.bgp.neighbors")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"patch":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewNeighborsClient(connector client.Connector) *neighborsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_global_policy.global_infra.tier_0s.locale_services.bgp.neighbors")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	nIface := neighborsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &nIface
 }
 
-func (nIface *neighborsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (nIface *neighborsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := nIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
 func (nIface *neighborsClient) Delete(tier0IdParam string, localeServiceIdParam string, neighborIdParam string, overrideParam *bool) error {
 	typeConverter := nIface.connector.TypeConverter()
 	executionContext := nIface.connector.NewExecutionContext()
-	operationRestMetaData := neighborsDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(neighborsDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(neighborsDeleteInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
 	sv.AddStructField("NeighborId", neighborIdParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := neighborsDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := nIface.connector.GetApiProvider().Invoke("com.vmware.nsx_global_policy.global_infra.tier_0s.locale_services.bgp.neighbors", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), nIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (nIface *neighborsClient) Get(tier0IdParam string, localeServiceIdParam string, neighborIdParam string) (nsx_global_policyModel.BgpNeighborConfig, error) {
+func (nIface *neighborsClient) Get(tier0IdParam string, localeServiceIdParam string, neighborIdParam string) (model.BgpNeighborConfig, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	executionContext := nIface.connector.NewExecutionContext()
-	operationRestMetaData := neighborsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(neighborsGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(neighborsGetInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
 	sv.AddStructField("NeighborId", neighborIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_global_policyModel.BgpNeighborConfig
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.BgpNeighborConfig
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := neighborsGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := nIface.connector.GetApiProvider().Invoke("com.vmware.nsx_global_policy.global_infra.tier_0s.locale_services.bgp.neighbors", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_global_policyModel.BgpNeighborConfig
+	var emptyOutput model.BgpNeighborConfig
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), NeighborsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), neighborsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_global_policyModel.BgpNeighborConfig), nil
+		return output.(model.BgpNeighborConfig), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), nIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (nIface *neighborsClient) List(tier0IdParam string, localeServiceIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_global_policyModel.BgpNeighborConfigListResult, error) {
+func (nIface *neighborsClient) List(tier0IdParam string, localeServiceIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.BgpNeighborConfigListResult, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	executionContext := nIface.connector.NewExecutionContext()
-	operationRestMetaData := neighborsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(neighborsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(neighborsListInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
 	sv.AddStructField("Cursor", cursorParam)
@@ -209,35 +199,34 @@ func (nIface *neighborsClient) List(tier0IdParam string, localeServiceIdParam st
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_global_policyModel.BgpNeighborConfigListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.BgpNeighborConfigListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := neighborsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := nIface.connector.GetApiProvider().Invoke("com.vmware.nsx_global_policy.global_infra.tier_0s.locale_services.bgp.neighbors", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_global_policyModel.BgpNeighborConfigListResult
+	var emptyOutput model.BgpNeighborConfigListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), NeighborsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), neighborsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_global_policyModel.BgpNeighborConfigListResult), nil
+		return output.(model.BgpNeighborConfigListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), nIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (nIface *neighborsClient) Patch(tier0IdParam string, localeServiceIdParam string, neighborIdParam string, bgpNeighborConfigParam nsx_global_policyModel.BgpNeighborConfig, overrideParam *bool) error {
+func (nIface *neighborsClient) Patch(tier0IdParam string, localeServiceIdParam string, neighborIdParam string, bgpNeighborConfigParam model.BgpNeighborConfig, overrideParam *bool) error {
 	typeConverter := nIface.connector.TypeConverter()
 	executionContext := nIface.connector.NewExecutionContext()
-	operationRestMetaData := neighborsPatchRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(neighborsPatchInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(neighborsPatchInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
 	sv.AddStructField("NeighborId", neighborIdParam)
@@ -245,29 +234,28 @@ func (nIface *neighborsClient) Patch(tier0IdParam string, localeServiceIdParam s
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := neighborsPatchRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := nIface.connector.GetApiProvider().Invoke("com.vmware.nsx_global_policy.global_infra.tier_0s.locale_services.bgp.neighbors", "patch", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), nIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (nIface *neighborsClient) Update(tier0IdParam string, localeServiceIdParam string, neighborIdParam string, bgpNeighborConfigParam nsx_global_policyModel.BgpNeighborConfig, overrideParam *bool) (nsx_global_policyModel.BgpNeighborConfig, error) {
+func (nIface *neighborsClient) Update(tier0IdParam string, localeServiceIdParam string, neighborIdParam string, bgpNeighborConfigParam model.BgpNeighborConfig, overrideParam *bool) (model.BgpNeighborConfig, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	executionContext := nIface.connector.NewExecutionContext()
-	operationRestMetaData := neighborsUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(neighborsUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(neighborsUpdateInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
 	sv.AddStructField("NeighborId", neighborIdParam)
@@ -275,22 +263,25 @@ func (nIface *neighborsClient) Update(tier0IdParam string, localeServiceIdParam 
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_global_policyModel.BgpNeighborConfig
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.BgpNeighborConfig
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := neighborsUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := nIface.connector.GetApiProvider().Invoke("com.vmware.nsx_global_policy.global_infra.tier_0s.locale_services.bgp.neighbors", "update", inputDataValue, executionContext)
-	var emptyOutput nsx_global_policyModel.BgpNeighborConfig
+	var emptyOutput model.BgpNeighborConfig
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), NeighborsUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), neighborsUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_global_policyModel.BgpNeighborConfig), nil
+		return output.(model.BgpNeighborConfig), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), nIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

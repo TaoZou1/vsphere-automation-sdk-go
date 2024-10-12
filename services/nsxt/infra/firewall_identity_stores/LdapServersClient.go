@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package firewall_identity_stores
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type LdapServersClient interface {
 
@@ -26,7 +27,6 @@ type LdapServersClient interface {
 	// @param ldapServerIdParam LDAP server identifier (required)
 	// @param actionParam LDAP server test requested (required)
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -39,7 +39,6 @@ type LdapServersClient interface {
 	// @param firewallIdentityStoreIdParam Firewall Identity store identifier (required)
 	// @param ldapServerIdParam LDAP server identifier (required)
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -53,13 +52,12 @@ type LdapServersClient interface {
 	// @param ldapServerIdParam LDAP server identifier (required)
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)
 	// @return com.vmware.nsx_policy.model.DirectoryLdapServer
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(firewallIdentityStoreIdParam string, ldapServerIdParam string, enforcementPointPathParam *string) (nsx_policyModel.DirectoryLdapServer, error)
+	Get(firewallIdentityStoreIdParam string, ldapServerIdParam string, enforcementPointPathParam *string) (model.DirectoryLdapServer, error)
 
 	// List all configured domain LDAP servers
 	//
@@ -71,13 +69,12 @@ type LdapServersClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_policy.model.DirectoryLdapServerListResults
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(firewallIdentityStoreIdParam string, cursorParam *string, enforcementPointPathParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.DirectoryLdapServerListResults, error)
+	List(firewallIdentityStoreIdParam string, cursorParam *string, enforcementPointPathParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.DirectoryLdapServerListResults, error)
 
 	// More than one LDAP server can be created and only one LDAP server is used to synchronize directory objects. If more than one LDAP server is configured, NSX will try all the servers until it is able to successfully connect to one.
 	//
@@ -86,13 +83,12 @@ type LdapServersClient interface {
 	// @param directoryLdapServerParam (required)
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)
 	// @return com.vmware.nsx_policy.model.DirectoryLdapServer
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(firewallIdentityStoreIdParam string, ldapServerIdParam string, directoryLdapServerParam nsx_policyModel.DirectoryLdapServer, enforcementPointPathParam *string) (nsx_policyModel.DirectoryLdapServer, error)
+	Patch(firewallIdentityStoreIdParam string, ldapServerIdParam string, directoryLdapServerParam model.DirectoryLdapServer, enforcementPointPathParam *string) (model.DirectoryLdapServer, error)
 
 	// Update a LDAP server for Firewall Identity store
 	//
@@ -101,69 +97,67 @@ type LdapServersClient interface {
 	// @param directoryLdapServerParam (required)
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)
 	// @return com.vmware.nsx_policy.model.DirectoryLdapServer
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(firewallIdentityStoreIdParam string, ldapServerIdParam string, directoryLdapServerParam nsx_policyModel.DirectoryLdapServer, enforcementPointPathParam *string) (nsx_policyModel.DirectoryLdapServer, error)
+	Update(firewallIdentityStoreIdParam string, ldapServerIdParam string, directoryLdapServerParam model.DirectoryLdapServer, enforcementPointPathParam *string) (model.DirectoryLdapServer, error)
 }
 
 type ldapServersClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewLdapServersClient(connector vapiProtocolClient_.Connector) *ldapServersClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.firewall_identity_stores.ldap_servers")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"create": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"patch":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewLdapServersClient(connector client.Connector) *ldapServersClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.firewall_identity_stores.ldap_servers")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"create": core.NewMethodIdentifier(interfaceIdentifier, "create"),
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	lIface := ldapServersClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &lIface
 }
 
-func (lIface *ldapServersClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (lIface *ldapServersClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := lIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
 func (lIface *ldapServersClient) Create(firewallIdentityStoreIdParam string, ldapServerIdParam string, actionParam string, enforcementPointPathParam *string) error {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
-	operationRestMetaData := ldapServersCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ldapServersCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ldapServersCreateInputType(), typeConverter)
 	sv.AddStructField("FirewallIdentityStoreId", firewallIdentityStoreIdParam)
 	sv.AddStructField("LdapServerId", ldapServerIdParam)
 	sv.AddStructField("Action", actionParam)
 	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ldapServersCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.firewall_identity_stores.ldap_servers", "create", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
@@ -172,73 +166,67 @@ func (lIface *ldapServersClient) Create(firewallIdentityStoreIdParam string, lda
 func (lIface *ldapServersClient) Delete(firewallIdentityStoreIdParam string, ldapServerIdParam string, enforcementPointPathParam *string) error {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
-	operationRestMetaData := ldapServersDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ldapServersDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ldapServersDeleteInputType(), typeConverter)
 	sv.AddStructField("FirewallIdentityStoreId", firewallIdentityStoreIdParam)
 	sv.AddStructField("LdapServerId", ldapServerIdParam)
 	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ldapServersDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.firewall_identity_stores.ldap_servers", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (lIface *ldapServersClient) Get(firewallIdentityStoreIdParam string, ldapServerIdParam string, enforcementPointPathParam *string) (nsx_policyModel.DirectoryLdapServer, error) {
+func (lIface *ldapServersClient) Get(firewallIdentityStoreIdParam string, ldapServerIdParam string, enforcementPointPathParam *string) (model.DirectoryLdapServer, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
-	operationRestMetaData := ldapServersGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ldapServersGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ldapServersGetInputType(), typeConverter)
 	sv.AddStructField("FirewallIdentityStoreId", firewallIdentityStoreIdParam)
 	sv.AddStructField("LdapServerId", ldapServerIdParam)
 	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.DirectoryLdapServer
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.DirectoryLdapServer
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ldapServersGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.firewall_identity_stores.ldap_servers", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.DirectoryLdapServer
+	var emptyOutput model.DirectoryLdapServer
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), LdapServersGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ldapServersGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.DirectoryLdapServer), nil
+		return output.(model.DirectoryLdapServer), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (lIface *ldapServersClient) List(firewallIdentityStoreIdParam string, cursorParam *string, enforcementPointPathParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.DirectoryLdapServerListResults, error) {
+func (lIface *ldapServersClient) List(firewallIdentityStoreIdParam string, cursorParam *string, enforcementPointPathParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.DirectoryLdapServerListResults, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
-	operationRestMetaData := ldapServersListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ldapServersListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ldapServersListInputType(), typeConverter)
 	sv.AddStructField("FirewallIdentityStoreId", firewallIdentityStoreIdParam)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)
@@ -248,92 +236,93 @@ func (lIface *ldapServersClient) List(firewallIdentityStoreIdParam string, curso
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.DirectoryLdapServerListResults
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.DirectoryLdapServerListResults
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ldapServersListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.firewall_identity_stores.ldap_servers", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.DirectoryLdapServerListResults
+	var emptyOutput model.DirectoryLdapServerListResults
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), LdapServersListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ldapServersListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.DirectoryLdapServerListResults), nil
+		return output.(model.DirectoryLdapServerListResults), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (lIface *ldapServersClient) Patch(firewallIdentityStoreIdParam string, ldapServerIdParam string, directoryLdapServerParam nsx_policyModel.DirectoryLdapServer, enforcementPointPathParam *string) (nsx_policyModel.DirectoryLdapServer, error) {
+func (lIface *ldapServersClient) Patch(firewallIdentityStoreIdParam string, ldapServerIdParam string, directoryLdapServerParam model.DirectoryLdapServer, enforcementPointPathParam *string) (model.DirectoryLdapServer, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(ldapServersPatchInputType(), typeConverter)
+	sv.AddStructField("FirewallIdentityStoreId", firewallIdentityStoreIdParam)
+	sv.AddStructField("LdapServerId", ldapServerIdParam)
+	sv.AddStructField("DirectoryLdapServer", directoryLdapServerParam)
+	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput model.DirectoryLdapServer
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+	}
 	operationRestMetaData := ldapServersPatchRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ldapServersPatchInputType(), typeConverter)
-	sv.AddStructField("FirewallIdentityStoreId", firewallIdentityStoreIdParam)
-	sv.AddStructField("LdapServerId", ldapServerIdParam)
-	sv.AddStructField("DirectoryLdapServer", directoryLdapServerParam)
-	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput nsx_policyModel.DirectoryLdapServer
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
-	}
-
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.firewall_identity_stores.ldap_servers", "patch", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.DirectoryLdapServer
+	var emptyOutput model.DirectoryLdapServer
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), LdapServersPatchOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ldapServersPatchOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.DirectoryLdapServer), nil
+		return output.(model.DirectoryLdapServer), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (lIface *ldapServersClient) Update(firewallIdentityStoreIdParam string, ldapServerIdParam string, directoryLdapServerParam nsx_policyModel.DirectoryLdapServer, enforcementPointPathParam *string) (nsx_policyModel.DirectoryLdapServer, error) {
+func (lIface *ldapServersClient) Update(firewallIdentityStoreIdParam string, ldapServerIdParam string, directoryLdapServerParam model.DirectoryLdapServer, enforcementPointPathParam *string) (model.DirectoryLdapServer, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	executionContext := lIface.connector.NewExecutionContext()
-	operationRestMetaData := ldapServersUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(ldapServersUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(ldapServersUpdateInputType(), typeConverter)
 	sv.AddStructField("FirewallIdentityStoreId", firewallIdentityStoreIdParam)
 	sv.AddStructField("LdapServerId", ldapServerIdParam)
 	sv.AddStructField("DirectoryLdapServer", directoryLdapServerParam)
 	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.DirectoryLdapServer
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.DirectoryLdapServer
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := ldapServersUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.firewall_identity_stores.ldap_servers", "update", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.DirectoryLdapServer
+	var emptyOutput model.DirectoryLdapServer
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), LdapServersUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ldapServersUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.DirectoryLdapServer), nil
+		return output.(model.DirectoryLdapServer), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

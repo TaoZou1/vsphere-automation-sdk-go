@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,55 +11,55 @@
 package upgrade_unit_groups
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 	"reflect"
 )
 
-func upgradeUnitReorderInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func upgradeUnitReorderInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["upgrade_unit_id"] = vapiBindings_.NewStringType()
-	fields["reorder_request"] = vapiBindings_.NewReferenceType(nsxModel.ReorderRequestBindingType)
+	fields["group_id"] = bindings.NewStringType()
+	fields["upgrade_unit_id"] = bindings.NewStringType()
+	fields["reorder_request"] = bindings.NewReferenceType(model.ReorderRequestBindingType)
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["upgrade_unit_id"] = "UpgradeUnitId"
 	fieldNameMap["reorder_request"] = "ReorderRequest"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func UpgradeUnitReorderOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func upgradeUnitReorderOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func upgradeUnitReorderRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func upgradeUnitReorderRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["upgrade_unit_id"] = vapiBindings_.NewStringType()
-	fields["reorder_request"] = vapiBindings_.NewReferenceType(nsxModel.ReorderRequestBindingType)
+	fields["group_id"] = bindings.NewStringType()
+	fields["upgrade_unit_id"] = bindings.NewStringType()
+	fields["reorder_request"] = bindings.NewReferenceType(model.ReorderRequestBindingType)
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["upgrade_unit_id"] = "UpgradeUnitId"
 	fieldNameMap["reorder_request"] = "ReorderRequest"
-	paramsTypeMap["reorder_request"] = vapiBindings_.NewReferenceType(nsxModel.ReorderRequestBindingType)
-	paramsTypeMap["group_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["upgrade_unit_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["groupId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["upgradeUnitId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["group_id"] = bindings.NewStringType()
+	paramsTypeMap["upgrade_unit_id"] = bindings.NewStringType()
+	paramsTypeMap["reorder_request"] = bindings.NewReferenceType(model.ReorderRequestBindingType)
+	paramsTypeMap["groupId"] = bindings.NewStringType()
+	paramsTypeMap["upgradeUnitId"] = bindings.NewStringType()
 	pathParams["group_id"] = "groupId"
 	pathParams["upgrade_unit_id"] = "upgradeUnitId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

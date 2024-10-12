@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,52 +11,52 @@
 package reservations
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	vmcModel "github.com/vmware/vsphere-automation-sdk-go/services/vmc/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vmc/model"
 	"reflect"
 )
 
-func mwGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func mwGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org"] = vapiBindings_.NewStringType()
-	fields["reservation"] = vapiBindings_.NewStringType()
+	fields["org"] = bindings.NewStringType()
+	fields["reservation"] = bindings.NewStringType()
 	fieldNameMap["org"] = "Org"
 	fieldNameMap["reservation"] = "Reservation"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func MwGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(vmcModel.MaintenanceWindowGetBindingType)
+func mwGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.MaintenanceWindowGetBindingType)
 }
 
-func mwGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func mwGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org"] = vapiBindings_.NewStringType()
-	fields["reservation"] = vapiBindings_.NewStringType()
+	fields["org"] = bindings.NewStringType()
+	fields["reservation"] = bindings.NewStringType()
 	fieldNameMap["org"] = "Org"
 	fieldNameMap["reservation"] = "Reservation"
-	paramsTypeMap["org"] = vapiBindings_.NewStringType()
-	paramsTypeMap["reservation"] = vapiBindings_.NewStringType()
-	paramsTypeMap["org"] = vapiBindings_.NewStringType()
-	paramsTypeMap["reservation"] = vapiBindings_.NewStringType()
+	paramsTypeMap["org"] = bindings.NewStringType()
+	paramsTypeMap["reservation"] = bindings.NewStringType()
+	paramsTypeMap["org"] = bindings.NewStringType()
+	paramsTypeMap["reservation"] = bindings.NewStringType()
 	pathParams["org"] = "org"
 	pathParams["reservation"] = "reservation"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	errorHeaders["com.vmware.vapi.std.errors.unauthenticated"] = make(map[string]string)
 	errorHeaders["com.vmware.vapi.std.errors.unauthenticated"]["challenge"] = "WWW-Authenticate"
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -77,50 +77,50 @@ func mwGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.unauthenticated": 401, "com.vmware.vapi.std.errors.unauthorized": 403})
 }
 
-func mwPutInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func mwPutInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org"] = vapiBindings_.NewStringType()
-	fields["reservation"] = vapiBindings_.NewStringType()
-	fields["window"] = vapiBindings_.NewReferenceType(vmcModel.MaintenanceWindowBindingType)
+	fields["org"] = bindings.NewStringType()
+	fields["reservation"] = bindings.NewStringType()
+	fields["window"] = bindings.NewReferenceType(model.MaintenanceWindowBindingType)
 	fieldNameMap["org"] = "Org"
 	fieldNameMap["reservation"] = "Reservation"
 	fieldNameMap["window"] = "Window"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func MwPutOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(vmcModel.MaintenanceWindowBindingType)
+func mwPutOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.MaintenanceWindowBindingType)
 }
 
-func mwPutRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func mwPutRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org"] = vapiBindings_.NewStringType()
-	fields["reservation"] = vapiBindings_.NewStringType()
-	fields["window"] = vapiBindings_.NewReferenceType(vmcModel.MaintenanceWindowBindingType)
+	fields["org"] = bindings.NewStringType()
+	fields["reservation"] = bindings.NewStringType()
+	fields["window"] = bindings.NewReferenceType(model.MaintenanceWindowBindingType)
 	fieldNameMap["org"] = "Org"
 	fieldNameMap["reservation"] = "Reservation"
 	fieldNameMap["window"] = "Window"
-	paramsTypeMap["org"] = vapiBindings_.NewStringType()
-	paramsTypeMap["reservation"] = vapiBindings_.NewStringType()
-	paramsTypeMap["window"] = vapiBindings_.NewReferenceType(vmcModel.MaintenanceWindowBindingType)
-	paramsTypeMap["org"] = vapiBindings_.NewStringType()
-	paramsTypeMap["reservation"] = vapiBindings_.NewStringType()
+	paramsTypeMap["org"] = bindings.NewStringType()
+	paramsTypeMap["reservation"] = bindings.NewStringType()
+	paramsTypeMap["window"] = bindings.NewReferenceType(model.MaintenanceWindowBindingType)
+	paramsTypeMap["org"] = bindings.NewStringType()
+	paramsTypeMap["reservation"] = bindings.NewStringType()
 	pathParams["org"] = "org"
 	pathParams["reservation"] = "reservation"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	errorHeaders["com.vmware.vapi.std.errors.unauthenticated"] = make(map[string]string)
 	errorHeaders["com.vmware.vapi.std.errors.unauthenticated"]["challenge"] = "WWW-Authenticate"
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

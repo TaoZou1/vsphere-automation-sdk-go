@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,36 +9,33 @@
 package trust_management
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type PrincipalIdentitiesClient interface {
 
 	// Associates a principal's name with a certificate that is used to authenticate. The combination name and node_id needs to be unique across token-based and certificate-based principal identities.
 	//  Deprecated, use POST /trust-management/principal-identities/with-certificate instead.
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param principalIdentityParam (required)
 	// @return com.vmware.nsx.model.PrincipalIdentity
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Create(principalIdentityParam nsxModel.PrincipalIdentity) (nsxModel.PrincipalIdentity, error)
+	Create(principalIdentityParam model.PrincipalIdentity) (model.PrincipalIdentity, error)
 
 	// Delete a principal identity. It does not delete the certificate.
 	//
 	// @param principalIdentityIdParam Unique id of the principal identity to delete (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -50,93 +47,89 @@ type PrincipalIdentitiesClient interface {
 	//
 	// @param principalIdentityIdParam ID of the principal identity to get (required)
 	// @return com.vmware.nsx.model.PrincipalIdentity
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(principalIdentityIdParam string) (nsxModel.PrincipalIdentity, error)
+	Get(principalIdentityIdParam string) (model.PrincipalIdentity, error)
 
 	// Returns the list of principals registered with a certificate.
 	// @return com.vmware.nsx.model.PrincipalIdentityList
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List() (nsxModel.PrincipalIdentityList, error)
+	List() (model.PrincipalIdentityList, error)
 
 	// Update a principal identity's certificate
 	//
 	// @param updatePrincipalIdentityCertificateRequestParam (required)
 	// @return com.vmware.nsx.model.PrincipalIdentity
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Updatecertificate(updatePrincipalIdentityCertificateRequestParam nsxModel.UpdatePrincipalIdentityCertificateRequest) (nsxModel.PrincipalIdentity, error)
+	Updatecertificate(updatePrincipalIdentityCertificateRequestParam model.UpdatePrincipalIdentityCertificateRequest) (model.PrincipalIdentity, error)
 }
 
 type principalIdentitiesClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewPrincipalIdentitiesClient(connector vapiProtocolClient_.Connector) *principalIdentitiesClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.trust_management.principal_identities")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"create":            vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
-		"delete":            vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":               vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":              vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"updatecertificate": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "updatecertificate"),
+func NewPrincipalIdentitiesClient(connector client.Connector) *principalIdentitiesClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.trust_management.principal_identities")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"create":            core.NewMethodIdentifier(interfaceIdentifier, "create"),
+		"delete":            core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":               core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":              core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"updatecertificate": core.NewMethodIdentifier(interfaceIdentifier, "updatecertificate"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	pIface := principalIdentitiesClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &pIface
 }
 
-func (pIface *principalIdentitiesClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (pIface *principalIdentitiesClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := pIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (pIface *principalIdentitiesClient) Create(principalIdentityParam nsxModel.PrincipalIdentity) (nsxModel.PrincipalIdentity, error) {
+func (pIface *principalIdentitiesClient) Create(principalIdentityParam model.PrincipalIdentity) (model.PrincipalIdentity, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
-	operationRestMetaData := principalIdentitiesCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(principalIdentitiesCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(principalIdentitiesCreateInputType(), typeConverter)
 	sv.AddStructField("PrincipalIdentity", principalIdentityParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.PrincipalIdentity
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.PrincipalIdentity
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := principalIdentitiesCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx.trust_management.principal_identities", "create", inputDataValue, executionContext)
-	var emptyOutput nsxModel.PrincipalIdentity
+	var emptyOutput model.PrincipalIdentity
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), PrincipalIdentitiesCreateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), principalIdentitiesCreateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.PrincipalIdentity), nil
+		return output.(model.PrincipalIdentity), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
@@ -145,119 +138,115 @@ func (pIface *principalIdentitiesClient) Create(principalIdentityParam nsxModel.
 func (pIface *principalIdentitiesClient) Delete(principalIdentityIdParam string) error {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
-	operationRestMetaData := principalIdentitiesDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(principalIdentitiesDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(principalIdentitiesDeleteInputType(), typeConverter)
 	sv.AddStructField("PrincipalIdentityId", principalIdentityIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := principalIdentitiesDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx.trust_management.principal_identities", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (pIface *principalIdentitiesClient) Get(principalIdentityIdParam string) (nsxModel.PrincipalIdentity, error) {
+func (pIface *principalIdentitiesClient) Get(principalIdentityIdParam string) (model.PrincipalIdentity, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
-	operationRestMetaData := principalIdentitiesGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(principalIdentitiesGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(principalIdentitiesGetInputType(), typeConverter)
 	sv.AddStructField("PrincipalIdentityId", principalIdentityIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.PrincipalIdentity
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.PrincipalIdentity
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := principalIdentitiesGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx.trust_management.principal_identities", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.PrincipalIdentity
+	var emptyOutput model.PrincipalIdentity
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), PrincipalIdentitiesGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), principalIdentitiesGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.PrincipalIdentity), nil
+		return output.(model.PrincipalIdentity), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (pIface *principalIdentitiesClient) List() (nsxModel.PrincipalIdentityList, error) {
+func (pIface *principalIdentitiesClient) List() (model.PrincipalIdentityList, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
-	operationRestMetaData := principalIdentitiesListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(principalIdentitiesListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(principalIdentitiesListInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.PrincipalIdentityList
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.PrincipalIdentityList
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := principalIdentitiesListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx.trust_management.principal_identities", "list", inputDataValue, executionContext)
-	var emptyOutput nsxModel.PrincipalIdentityList
+	var emptyOutput model.PrincipalIdentityList
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), PrincipalIdentitiesListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), principalIdentitiesListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.PrincipalIdentityList), nil
+		return output.(model.PrincipalIdentityList), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (pIface *principalIdentitiesClient) Updatecertificate(updatePrincipalIdentityCertificateRequestParam nsxModel.UpdatePrincipalIdentityCertificateRequest) (nsxModel.PrincipalIdentity, error) {
+func (pIface *principalIdentitiesClient) Updatecertificate(updatePrincipalIdentityCertificateRequestParam model.UpdatePrincipalIdentityCertificateRequest) (model.PrincipalIdentity, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
-	operationRestMetaData := principalIdentitiesUpdatecertificateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(principalIdentitiesUpdatecertificateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(principalIdentitiesUpdatecertificateInputType(), typeConverter)
 	sv.AddStructField("UpdatePrincipalIdentityCertificateRequest", updatePrincipalIdentityCertificateRequestParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.PrincipalIdentity
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.PrincipalIdentity
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := principalIdentitiesUpdatecertificateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx.trust_management.principal_identities", "updatecertificate", inputDataValue, executionContext)
-	var emptyOutput nsxModel.PrincipalIdentity
+	var emptyOutput model.PrincipalIdentity
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), PrincipalIdentitiesUpdatecertificateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), principalIdentitiesUpdatecertificateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.PrincipalIdentity), nil
+		return output.(model.PrincipalIdentity), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

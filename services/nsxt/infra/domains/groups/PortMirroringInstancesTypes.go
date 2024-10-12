@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,57 +11,57 @@
 package groups
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func portMirroringInstancesDeleteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func portMirroringInstancesDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["domain_id"] = vapiBindings_.NewStringType()
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["port_mirroring_instance_id"] = vapiBindings_.NewStringType()
+	fields["domain_id"] = bindings.NewStringType()
+	fields["group_id"] = bindings.NewStringType()
+	fields["port_mirroring_instance_id"] = bindings.NewStringType()
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["port_mirroring_instance_id"] = "PortMirroringInstanceId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func PortMirroringInstancesDeleteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func portMirroringInstancesDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func portMirroringInstancesDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func portMirroringInstancesDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["domain_id"] = vapiBindings_.NewStringType()
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["port_mirroring_instance_id"] = vapiBindings_.NewStringType()
+	fields["domain_id"] = bindings.NewStringType()
+	fields["group_id"] = bindings.NewStringType()
+	fields["port_mirroring_instance_id"] = bindings.NewStringType()
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["port_mirroring_instance_id"] = "PortMirroringInstanceId"
-	paramsTypeMap["domain_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["port_mirroring_instance_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["group_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["domainId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["groupId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["portMirroringInstanceId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["domain_id"] = bindings.NewStringType()
+	paramsTypeMap["port_mirroring_instance_id"] = bindings.NewStringType()
+	paramsTypeMap["group_id"] = bindings.NewStringType()
+	paramsTypeMap["domainId"] = bindings.NewStringType()
+	paramsTypeMap["groupId"] = bindings.NewStringType()
+	paramsTypeMap["portMirroringInstanceId"] = bindings.NewStringType()
 	pathParams["port_mirroring_instance_id"] = "portMirroringInstanceId"
 	pathParams["group_id"] = "groupId"
 	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -82,50 +82,50 @@ func portMirroringInstancesDeleteRestMetadata() vapiProtocol_.OperationRestMetad
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func portMirroringInstancesGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func portMirroringInstancesGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["domain_id"] = vapiBindings_.NewStringType()
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["port_mirroring_instance_id"] = vapiBindings_.NewStringType()
+	fields["domain_id"] = bindings.NewStringType()
+	fields["group_id"] = bindings.NewStringType()
+	fields["port_mirroring_instance_id"] = bindings.NewStringType()
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["port_mirroring_instance_id"] = "PortMirroringInstanceId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func PortMirroringInstancesGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.PortMirroringInstanceBindingType)
+func portMirroringInstancesGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.PortMirroringInstanceBindingType)
 }
 
-func portMirroringInstancesGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func portMirroringInstancesGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["domain_id"] = vapiBindings_.NewStringType()
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["port_mirroring_instance_id"] = vapiBindings_.NewStringType()
+	fields["domain_id"] = bindings.NewStringType()
+	fields["group_id"] = bindings.NewStringType()
+	fields["port_mirroring_instance_id"] = bindings.NewStringType()
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["port_mirroring_instance_id"] = "PortMirroringInstanceId"
-	paramsTypeMap["domain_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["port_mirroring_instance_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["group_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["domainId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["groupId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["portMirroringInstanceId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["domain_id"] = bindings.NewStringType()
+	paramsTypeMap["port_mirroring_instance_id"] = bindings.NewStringType()
+	paramsTypeMap["group_id"] = bindings.NewStringType()
+	paramsTypeMap["domainId"] = bindings.NewStringType()
+	paramsTypeMap["groupId"] = bindings.NewStringType()
+	paramsTypeMap["portMirroringInstanceId"] = bindings.NewStringType()
 	pathParams["port_mirroring_instance_id"] = "portMirroringInstanceId"
 	pathParams["group_id"] = "groupId"
 	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -146,17 +146,17 @@ func portMirroringInstancesGetRestMetadata() vapiProtocol_.OperationRestMetadata
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func portMirroringInstancesListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func portMirroringInstancesListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["domain_id"] = vapiBindings_.NewStringType()
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["domain_id"] = bindings.NewStringType()
+	fields["group_id"] = bindings.NewStringType()
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["cursor"] = "Cursor"
@@ -165,31 +165,31 @@ func portMirroringInstancesListInputType() vapiBindings_.StructType {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func PortMirroringInstancesListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.PortMirroringInstanceListResultBindingType)
+func portMirroringInstancesListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.PortMirroringInstanceListResultBindingType)
 }
 
-func portMirroringInstancesListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func portMirroringInstancesListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["domain_id"] = vapiBindings_.NewStringType()
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["domain_id"] = bindings.NewStringType()
+	fields["group_id"] = bindings.NewStringType()
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["cursor"] = "Cursor"
@@ -198,16 +198,16 @@ func portMirroringInstancesListRestMetadata() vapiProtocol_.OperationRestMetadat
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	paramsTypeMap["domain_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["group_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	paramsTypeMap["domainId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["groupId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["domain_id"] = bindings.NewStringType()
+	paramsTypeMap["group_id"] = bindings.NewStringType()
+	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["domainId"] = bindings.NewStringType()
+	paramsTypeMap["groupId"] = bindings.NewStringType()
 	pathParams["group_id"] = "groupId"
 	pathParams["domain_id"] = "domainId"
 	queryParams["cursor"] = "cursor"
@@ -218,7 +218,7 @@ func portMirroringInstancesListRestMetadata() vapiProtocol_.OperationRestMetadat
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -239,55 +239,55 @@ func portMirroringInstancesListRestMetadata() vapiProtocol_.OperationRestMetadat
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func portMirroringInstancesPatchInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func portMirroringInstancesPatchInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["domain_id"] = vapiBindings_.NewStringType()
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["port_mirroring_instance_id"] = vapiBindings_.NewStringType()
-	fields["port_mirroring_instance"] = vapiBindings_.NewReferenceType(nsx_policyModel.PortMirroringInstanceBindingType)
+	fields["domain_id"] = bindings.NewStringType()
+	fields["group_id"] = bindings.NewStringType()
+	fields["port_mirroring_instance_id"] = bindings.NewStringType()
+	fields["port_mirroring_instance"] = bindings.NewReferenceType(model.PortMirroringInstanceBindingType)
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["port_mirroring_instance_id"] = "PortMirroringInstanceId"
 	fieldNameMap["port_mirroring_instance"] = "PortMirroringInstance"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func PortMirroringInstancesPatchOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func portMirroringInstancesPatchOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func portMirroringInstancesPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func portMirroringInstancesPatchRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["domain_id"] = vapiBindings_.NewStringType()
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["port_mirroring_instance_id"] = vapiBindings_.NewStringType()
-	fields["port_mirroring_instance"] = vapiBindings_.NewReferenceType(nsx_policyModel.PortMirroringInstanceBindingType)
+	fields["domain_id"] = bindings.NewStringType()
+	fields["group_id"] = bindings.NewStringType()
+	fields["port_mirroring_instance_id"] = bindings.NewStringType()
+	fields["port_mirroring_instance"] = bindings.NewReferenceType(model.PortMirroringInstanceBindingType)
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["port_mirroring_instance_id"] = "PortMirroringInstanceId"
 	fieldNameMap["port_mirroring_instance"] = "PortMirroringInstance"
-	paramsTypeMap["domain_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["port_mirroring_instance_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["port_mirroring_instance"] = vapiBindings_.NewReferenceType(nsx_policyModel.PortMirroringInstanceBindingType)
-	paramsTypeMap["group_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["domainId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["groupId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["portMirroringInstanceId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["domain_id"] = bindings.NewStringType()
+	paramsTypeMap["port_mirroring_instance_id"] = bindings.NewStringType()
+	paramsTypeMap["group_id"] = bindings.NewStringType()
+	paramsTypeMap["port_mirroring_instance"] = bindings.NewReferenceType(model.PortMirroringInstanceBindingType)
+	paramsTypeMap["domainId"] = bindings.NewStringType()
+	paramsTypeMap["groupId"] = bindings.NewStringType()
+	paramsTypeMap["portMirroringInstanceId"] = bindings.NewStringType()
 	pathParams["port_mirroring_instance_id"] = "portMirroringInstanceId"
 	pathParams["group_id"] = "groupId"
 	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -308,55 +308,55 @@ func portMirroringInstancesPatchRestMetadata() vapiProtocol_.OperationRestMetada
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func portMirroringInstancesUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func portMirroringInstancesUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["domain_id"] = vapiBindings_.NewStringType()
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["port_mirroring_instance_id"] = vapiBindings_.NewStringType()
-	fields["port_mirroring_instance"] = vapiBindings_.NewReferenceType(nsx_policyModel.PortMirroringInstanceBindingType)
+	fields["domain_id"] = bindings.NewStringType()
+	fields["group_id"] = bindings.NewStringType()
+	fields["port_mirroring_instance_id"] = bindings.NewStringType()
+	fields["port_mirroring_instance"] = bindings.NewReferenceType(model.PortMirroringInstanceBindingType)
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["port_mirroring_instance_id"] = "PortMirroringInstanceId"
 	fieldNameMap["port_mirroring_instance"] = "PortMirroringInstance"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func PortMirroringInstancesUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.PortMirroringInstanceBindingType)
+func portMirroringInstancesUpdateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.PortMirroringInstanceBindingType)
 }
 
-func portMirroringInstancesUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func portMirroringInstancesUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["domain_id"] = vapiBindings_.NewStringType()
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["port_mirroring_instance_id"] = vapiBindings_.NewStringType()
-	fields["port_mirroring_instance"] = vapiBindings_.NewReferenceType(nsx_policyModel.PortMirroringInstanceBindingType)
+	fields["domain_id"] = bindings.NewStringType()
+	fields["group_id"] = bindings.NewStringType()
+	fields["port_mirroring_instance_id"] = bindings.NewStringType()
+	fields["port_mirroring_instance"] = bindings.NewReferenceType(model.PortMirroringInstanceBindingType)
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["port_mirroring_instance_id"] = "PortMirroringInstanceId"
 	fieldNameMap["port_mirroring_instance"] = "PortMirroringInstance"
-	paramsTypeMap["domain_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["port_mirroring_instance_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["port_mirroring_instance"] = vapiBindings_.NewReferenceType(nsx_policyModel.PortMirroringInstanceBindingType)
-	paramsTypeMap["group_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["domainId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["groupId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["portMirroringInstanceId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["domain_id"] = bindings.NewStringType()
+	paramsTypeMap["port_mirroring_instance_id"] = bindings.NewStringType()
+	paramsTypeMap["group_id"] = bindings.NewStringType()
+	paramsTypeMap["port_mirroring_instance"] = bindings.NewReferenceType(model.PortMirroringInstanceBindingType)
+	paramsTypeMap["domainId"] = bindings.NewStringType()
+	paramsTypeMap["groupId"] = bindings.NewStringType()
+	paramsTypeMap["portMirroringInstanceId"] = bindings.NewStringType()
 	pathParams["port_mirroring_instance_id"] = "portMirroringInstanceId"
 	pathParams["group_id"] = "groupId"
 	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

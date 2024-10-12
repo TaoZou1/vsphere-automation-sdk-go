@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,10 +11,10 @@
 package rules
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 	"reflect"
 )
 
@@ -30,42 +30,42 @@ const Statistics_GETPERRULE_SOURCE_REALTIME = "realtime"
 // Possible value for ``source`` of method Statistics#getperrule.
 const Statistics_GETPERRULE_SOURCE_CACHED = "cached"
 
-func statisticsGetperlogicalrouterInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func statisticsGetperlogicalrouterInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["logical_router_id"] = vapiBindings_.NewStringType()
-	fields["source"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["logical_router_id"] = bindings.NewStringType()
+	fields["source"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["logical_router_id"] = "LogicalRouterId"
 	fieldNameMap["source"] = "Source"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func StatisticsGetperlogicalrouterOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.NatStatisticsPerLogicalRouterBindingType)
+func statisticsGetperlogicalrouterOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.NatStatisticsPerLogicalRouterBindingType)
 }
 
-func statisticsGetperlogicalrouterRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func statisticsGetperlogicalrouterRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["logical_router_id"] = vapiBindings_.NewStringType()
-	fields["source"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["logical_router_id"] = bindings.NewStringType()
+	fields["source"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["logical_router_id"] = "LogicalRouterId"
 	fieldNameMap["source"] = "Source"
-	paramsTypeMap["logical_router_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["source"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["logicalRouterId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["logical_router_id"] = bindings.NewStringType()
+	paramsTypeMap["source"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["logicalRouterId"] = bindings.NewStringType()
 	pathParams["logical_router_id"] = "logicalRouterId"
 	queryParams["source"] = "source"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -86,49 +86,49 @@ func statisticsGetperlogicalrouterRestMetadata() vapiProtocol_.OperationRestMeta
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func statisticsGetperruleInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func statisticsGetperruleInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["logical_router_id"] = vapiBindings_.NewStringType()
-	fields["rule_id"] = vapiBindings_.NewStringType()
-	fields["source"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["logical_router_id"] = bindings.NewStringType()
+	fields["rule_id"] = bindings.NewStringType()
+	fields["source"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["logical_router_id"] = "LogicalRouterId"
 	fieldNameMap["rule_id"] = "RuleId"
 	fieldNameMap["source"] = "Source"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func StatisticsGetperruleOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.NatStatisticsPerRuleBindingType)
+func statisticsGetperruleOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.NatStatisticsPerRuleBindingType)
 }
 
-func statisticsGetperruleRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func statisticsGetperruleRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["logical_router_id"] = vapiBindings_.NewStringType()
-	fields["rule_id"] = vapiBindings_.NewStringType()
-	fields["source"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["logical_router_id"] = bindings.NewStringType()
+	fields["rule_id"] = bindings.NewStringType()
+	fields["source"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["logical_router_id"] = "LogicalRouterId"
 	fieldNameMap["rule_id"] = "RuleId"
 	fieldNameMap["source"] = "Source"
-	paramsTypeMap["logical_router_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["rule_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["source"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["logicalRouterId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["ruleId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["logical_router_id"] = bindings.NewStringType()
+	paramsTypeMap["rule_id"] = bindings.NewStringType()
+	paramsTypeMap["source"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["logicalRouterId"] = bindings.NewStringType()
+	paramsTypeMap["ruleId"] = bindings.NewStringType()
 	pathParams["rule_id"] = "ruleId"
 	pathParams["logical_router_id"] = "logicalRouterId"
 	queryParams["source"] = "source"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

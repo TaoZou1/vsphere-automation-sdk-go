@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,42 +11,36 @@
 package infra
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func globalConfigGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func globalConfigGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["apply_locally"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fieldNameMap["apply_locally"] = "ApplyLocally"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func GlobalConfigGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.GlobalConfigBindingType)
+func globalConfigGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.GlobalConfigBindingType)
 }
 
-func globalConfigGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func globalConfigGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["apply_locally"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fieldNameMap["apply_locally"] = "ApplyLocally"
-	paramsTypeMap["apply_locally"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	queryParams["apply_locally"] = "apply_locally"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -67,40 +61,34 @@ func globalConfigGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func globalConfigPatchInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func globalConfigPatchInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["global_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.GlobalConfigBindingType)
-	fields["apply_locally"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["global_config"] = bindings.NewReferenceType(model.GlobalConfigBindingType)
 	fieldNameMap["global_config"] = "GlobalConfig"
-	fieldNameMap["apply_locally"] = "ApplyLocally"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func GlobalConfigPatchOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func globalConfigPatchOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func globalConfigPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func globalConfigPatchRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["global_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.GlobalConfigBindingType)
-	fields["apply_locally"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["global_config"] = bindings.NewReferenceType(model.GlobalConfigBindingType)
 	fieldNameMap["global_config"] = "GlobalConfig"
-	fieldNameMap["apply_locally"] = "ApplyLocally"
-	paramsTypeMap["global_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.GlobalConfigBindingType)
-	paramsTypeMap["apply_locally"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	queryParams["apply_locally"] = "apply_locally"
+	paramsTypeMap["global_config"] = bindings.NewReferenceType(model.GlobalConfigBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -121,40 +109,34 @@ func globalConfigPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func globalConfigUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func globalConfigUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["global_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.GlobalConfigBindingType)
-	fields["apply_locally"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["global_config"] = bindings.NewReferenceType(model.GlobalConfigBindingType)
 	fieldNameMap["global_config"] = "GlobalConfig"
-	fieldNameMap["apply_locally"] = "ApplyLocally"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func GlobalConfigUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.GlobalConfigBindingType)
+func globalConfigUpdateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.GlobalConfigBindingType)
 }
 
-func globalConfigUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func globalConfigUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["global_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.GlobalConfigBindingType)
-	fields["apply_locally"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["global_config"] = bindings.NewReferenceType(model.GlobalConfigBindingType)
 	fieldNameMap["global_config"] = "GlobalConfig"
-	fieldNameMap["apply_locally"] = "ApplyLocally"
-	paramsTypeMap["global_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.GlobalConfigBindingType)
-	paramsTypeMap["apply_locally"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	queryParams["apply_locally"] = "apply_locally"
+	paramsTypeMap["global_config"] = bindings.NewReferenceType(model.GlobalConfigBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

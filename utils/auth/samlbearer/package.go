@@ -6,7 +6,7 @@
 package samlbearer
 
 import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/args/keys"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/args/keys"
 )
 
 // CreateSAMLBearerAuthFromProperties defines and returns new Info for

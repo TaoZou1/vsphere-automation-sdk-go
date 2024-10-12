@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,48 +11,48 @@
 package notification_watchers
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 	"reflect"
 )
 
-func notificationsAddurifiltersInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func notificationsAddurifiltersInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["watcher_id"] = vapiBindings_.NewStringType()
-	fields["notification"] = vapiBindings_.NewReferenceType(nsxModel.NotificationBindingType)
+	fields["watcher_id"] = bindings.NewStringType()
+	fields["notification"] = bindings.NewReferenceType(model.NotificationBindingType)
 	fieldNameMap["watcher_id"] = "WatcherId"
 	fieldNameMap["notification"] = "Notification"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func NotificationsAddurifiltersOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.NotificationsListBindingType)
+func notificationsAddurifiltersOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.NotificationsListBindingType)
 }
 
-func notificationsAddurifiltersRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func notificationsAddurifiltersRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["watcher_id"] = vapiBindings_.NewStringType()
-	fields["notification"] = vapiBindings_.NewReferenceType(nsxModel.NotificationBindingType)
+	fields["watcher_id"] = bindings.NewStringType()
+	fields["notification"] = bindings.NewReferenceType(model.NotificationBindingType)
 	fieldNameMap["watcher_id"] = "WatcherId"
 	fieldNameMap["notification"] = "Notification"
-	paramsTypeMap["watcher_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["notification"] = vapiBindings_.NewReferenceType(nsxModel.NotificationBindingType)
-	paramsTypeMap["watcherId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["watcher_id"] = bindings.NewStringType()
+	paramsTypeMap["notification"] = bindings.NewReferenceType(model.NotificationBindingType)
+	paramsTypeMap["watcherId"] = bindings.NewStringType()
 	pathParams["watcher_id"] = "watcherId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -73,41 +73,41 @@ func notificationsAddurifiltersRestMetadata() vapiProtocol_.OperationRestMetadat
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func notificationsDeleteurifiltersInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func notificationsDeleteurifiltersInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["watcher_id"] = vapiBindings_.NewStringType()
-	fields["notification"] = vapiBindings_.NewReferenceType(nsxModel.NotificationBindingType)
+	fields["watcher_id"] = bindings.NewStringType()
+	fields["notification"] = bindings.NewReferenceType(model.NotificationBindingType)
 	fieldNameMap["watcher_id"] = "WatcherId"
 	fieldNameMap["notification"] = "Notification"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func NotificationsDeleteurifiltersOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.NotificationsListBindingType)
+func notificationsDeleteurifiltersOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.NotificationsListBindingType)
 }
 
-func notificationsDeleteurifiltersRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func notificationsDeleteurifiltersRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["watcher_id"] = vapiBindings_.NewStringType()
-	fields["notification"] = vapiBindings_.NewReferenceType(nsxModel.NotificationBindingType)
+	fields["watcher_id"] = bindings.NewStringType()
+	fields["notification"] = bindings.NewReferenceType(model.NotificationBindingType)
 	fieldNameMap["watcher_id"] = "WatcherId"
 	fieldNameMap["notification"] = "Notification"
-	paramsTypeMap["watcher_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["notification"] = vapiBindings_.NewReferenceType(nsxModel.NotificationBindingType)
-	paramsTypeMap["watcherId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["watcher_id"] = bindings.NewStringType()
+	paramsTypeMap["notification"] = bindings.NewReferenceType(model.NotificationBindingType)
+	paramsTypeMap["watcherId"] = bindings.NewStringType()
 	pathParams["watcher_id"] = "watcherId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -128,36 +128,36 @@ func notificationsDeleteurifiltersRestMetadata() vapiProtocol_.OperationRestMeta
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func notificationsGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func notificationsGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["watcher_id"] = vapiBindings_.NewStringType()
+	fields["watcher_id"] = bindings.NewStringType()
 	fieldNameMap["watcher_id"] = "WatcherId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func NotificationsGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.NotificationsListBindingType)
+func notificationsGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.NotificationsListBindingType)
 }
 
-func notificationsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func notificationsGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["watcher_id"] = vapiBindings_.NewStringType()
+	fields["watcher_id"] = bindings.NewStringType()
 	fieldNameMap["watcher_id"] = "WatcherId"
-	paramsTypeMap["watcher_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["watcherId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["watcher_id"] = bindings.NewStringType()
+	paramsTypeMap["watcherId"] = bindings.NewStringType()
 	pathParams["watcher_id"] = "watcherId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -178,41 +178,41 @@ func notificationsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func notificationsUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func notificationsUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["watcher_id"] = vapiBindings_.NewStringType()
-	fields["notifications_list"] = vapiBindings_.NewReferenceType(nsxModel.NotificationsListBindingType)
+	fields["watcher_id"] = bindings.NewStringType()
+	fields["notifications_list"] = bindings.NewReferenceType(model.NotificationsListBindingType)
 	fieldNameMap["watcher_id"] = "WatcherId"
 	fieldNameMap["notifications_list"] = "NotificationsList"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func NotificationsUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.NotificationsListBindingType)
+func notificationsUpdateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.NotificationsListBindingType)
 }
 
-func notificationsUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func notificationsUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["watcher_id"] = vapiBindings_.NewStringType()
-	fields["notifications_list"] = vapiBindings_.NewReferenceType(nsxModel.NotificationsListBindingType)
+	fields["watcher_id"] = bindings.NewStringType()
+	fields["notifications_list"] = bindings.NewReferenceType(model.NotificationsListBindingType)
 	fieldNameMap["watcher_id"] = "WatcherId"
 	fieldNameMap["notifications_list"] = "NotificationsList"
-	paramsTypeMap["watcher_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["notifications_list"] = vapiBindings_.NewReferenceType(nsxModel.NotificationsListBindingType)
-	paramsTypeMap["watcherId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["watcher_id"] = bindings.NewStringType()
+	paramsTypeMap["notifications_list"] = bindings.NewReferenceType(model.NotificationsListBindingType)
+	paramsTypeMap["watcherId"] = bindings.NewStringType()
 	pathParams["watcher_id"] = "watcherId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

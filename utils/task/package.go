@@ -5,7 +5,7 @@
 package task
 
 import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/session"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/session"
 )
 
 // Function is function prototype, implementation of which can be executed as Task on the Host server.

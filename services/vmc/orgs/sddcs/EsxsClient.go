@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package sddcs
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	vmcModel "github.com/vmware/vsphere-automation-sdk-go/services/vmc/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vmc/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type EsxsClient interface {
 
@@ -27,69 +28,67 @@ type EsxsClient interface {
 	// @param esxConfigParam esxConfig (required)
 	// @param actionParam If = 'add', will add the esx. If = 'remove', will delete the esx/esxs bound to a single cluster (Cluster Id is mandatory for non cluster 1 esx remove). If = 'force-remove', will delete the esx even if it can lead to data loss (This is an privileged operation). If = 'addToAll', will add esxs to all clusters in the SDDC (This is an privileged operation). If = 'removeFromAll', will delete the esxs from all clusters in the SDDC (This is an privileged operation). If = 'attach-diskgroup', will attach the provided diskgroups to a given host (privileged). If = 'detach-diskgroup', will detach the diskgroups of a given host (privileged). Default behaviour is 'add' (optional)
 	// @return com.vmware.vmc.model.Task
-	//
 	// @throws Unauthenticated  Unauthorized
 	// @throws InvalidRequest  The sddc is not in a state that's valid for updates
 	// @throws Unauthorized  Access not allowed to the operation for the current user
 	// @throws NotFound  Cannot find the SDDC with the given identifier
-	Create(orgParam string, sddcParam string, esxConfigParam vmcModel.EsxConfig, actionParam *string) (vmcModel.Task, error)
+	Create(orgParam string, sddcParam string, esxConfigParam model.EsxConfig, actionParam *string) (model.Task, error)
 }
 
 type esxsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewEsxsClient(connector vapiProtocolClient_.Connector) *esxsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.vmc.orgs.sddcs.esxs")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"create": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
+func NewEsxsClient(connector client.Connector) *esxsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.vmc.orgs.sddcs.esxs")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"create": core.NewMethodIdentifier(interfaceIdentifier, "create"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	eIface := esxsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &eIface
 }
 
-func (eIface *esxsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (eIface *esxsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := eIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (eIface *esxsClient) Create(orgParam string, sddcParam string, esxConfigParam vmcModel.EsxConfig, actionParam *string) (vmcModel.Task, error) {
+func (eIface *esxsClient) Create(orgParam string, sddcParam string, esxConfigParam model.EsxConfig, actionParam *string) (model.Task, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
-	operationRestMetaData := esxsCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(esxsCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(esxsCreateInputType(), typeConverter)
 	sv.AddStructField("Org", orgParam)
 	sv.AddStructField("Sddc", sddcParam)
 	sv.AddStructField("EsxConfig", esxConfigParam)
 	sv.AddStructField("Action", actionParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput vmcModel.Task
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.Task
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := esxsCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.vmc.orgs.sddcs.esxs", "create", inputDataValue, executionContext)
-	var emptyOutput vmcModel.Task
+	var emptyOutput model.Task
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), EsxsCreateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), esxsCreateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(vmcModel.Task), nil
+		return output.(model.Task), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

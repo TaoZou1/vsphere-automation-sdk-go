@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,41 +11,41 @@
 package controller_nodes
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func clusterconfigCreateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func clusterconfigCreateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["a_LB_controller_node_VM_cluster_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.ALBControllerNodeVMClusterConfigBindingType)
+	fields["a_LB_controller_node_VM_cluster_config"] = bindings.NewReferenceType(model.ALBControllerNodeVMClusterConfigBindingType)
 	fieldNameMap["a_LB_controller_node_VM_cluster_config"] = "ALBControllerNodeVMClusterConfig"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ClusterconfigCreateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.ALBControllerNodeVMClusterConfigBindingType)
+func clusterconfigCreateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.ALBControllerNodeVMClusterConfigBindingType)
 }
 
-func clusterconfigCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func clusterconfigCreateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["a_LB_controller_node_VM_cluster_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.ALBControllerNodeVMClusterConfigBindingType)
+	fields["a_LB_controller_node_VM_cluster_config"] = bindings.NewReferenceType(model.ALBControllerNodeVMClusterConfigBindingType)
 	fieldNameMap["a_LB_controller_node_VM_cluster_config"] = "ALBControllerNodeVMClusterConfig"
-	paramsTypeMap["a_LB_controller_node_VM_cluster_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.ALBControllerNodeVMClusterConfigBindingType)
+	paramsTypeMap["a_LB_controller_node_VM_cluster_config"] = bindings.NewReferenceType(model.ALBControllerNodeVMClusterConfigBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -66,35 +66,29 @@ func clusterconfigCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func clusterconfigGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func clusterconfigGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["clustering_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fieldNameMap["clustering_id"] = "ClusteringId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ClusterconfigGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.ALBControllerNodeVMClusterConfigBindingType)
+func clusterconfigGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.ALBControllerNodeVMClusterConfigBindingType)
 }
 
-func clusterconfigGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func clusterconfigGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["clustering_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fieldNameMap["clustering_id"] = "ClusteringId"
-	paramsTypeMap["clustering_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	queryParams["clustering_id"] = "clustering_id"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

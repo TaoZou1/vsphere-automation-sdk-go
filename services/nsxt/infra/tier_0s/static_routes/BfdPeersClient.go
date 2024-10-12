@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package static_routes
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type BfdPeersClient interface {
 
@@ -24,7 +25,6 @@ type BfdPeersClient interface {
 	//
 	// @param tier0IdParam Tier-0 ID (required)
 	// @param bfdPeerIdParam BFD peer ID (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -37,13 +37,12 @@ type BfdPeersClient interface {
 	// @param tier0IdParam Tier-0 ID (required)
 	// @param bfdPeerIdParam BFD peer ID (required)
 	// @return com.vmware.nsx_policy.model.StaticRouteBfdPeer
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(tier0IdParam string, bfdPeerIdParam string) (nsx_policyModel.StaticRouteBfdPeer, error)
+	Get(tier0IdParam string, bfdPeerIdParam string) (model.StaticRouteBfdPeer, error)
 
 	// Paginated list of all StaticRouteBfdPeers.
 	//
@@ -55,26 +54,24 @@ type BfdPeersClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_policy.model.StaticRouteBfdPeerListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(tier0IdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.StaticRouteBfdPeerListResult, error)
+	List(tier0IdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.StaticRouteBfdPeerListResult, error)
 
 	// If a StaticRouteBfdPeer with the bfd-peer-id is not already present, create a new StaticRouteBfdPeer. If it already exists, update the StaticRouteBfdPeer. This is a full replace.
 	//
 	// @param tier0IdParam Tier-0 ID (required)
 	// @param bfdPeerIdParam BFD peer ID (required)
 	// @param staticRouteBfdPeerParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(tier0IdParam string, bfdPeerIdParam string, staticRouteBfdPeerParam nsx_policyModel.StaticRouteBfdPeer) error
+	Patch(tier0IdParam string, bfdPeerIdParam string, staticRouteBfdPeerParam model.StaticRouteBfdPeer) error
 
 	// If a StaticRouteBfdPeer with the bfd-peer-id is not already present, create a new StaticRouteBfdPeer. If it already exists, update the StaticRouteBfdPeer. This operation will fully replace the object.
 	//
@@ -82,112 +79,105 @@ type BfdPeersClient interface {
 	// @param bfdPeerIdParam BFD peer ID (required)
 	// @param staticRouteBfdPeerParam (required)
 	// @return com.vmware.nsx_policy.model.StaticRouteBfdPeer
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(tier0IdParam string, bfdPeerIdParam string, staticRouteBfdPeerParam nsx_policyModel.StaticRouteBfdPeer) (nsx_policyModel.StaticRouteBfdPeer, error)
+	Update(tier0IdParam string, bfdPeerIdParam string, staticRouteBfdPeerParam model.StaticRouteBfdPeer) (model.StaticRouteBfdPeer, error)
 }
 
 type bfdPeersClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewBfdPeersClient(connector vapiProtocolClient_.Connector) *bfdPeersClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.tier_0s.static_routes.bfd_peers")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"patch":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewBfdPeersClient(connector client.Connector) *bfdPeersClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.tier_0s.static_routes.bfd_peers")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	bIface := bfdPeersClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &bIface
 }
 
-func (bIface *bfdPeersClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (bIface *bfdPeersClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := bIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
 func (bIface *bfdPeersClient) Delete(tier0IdParam string, bfdPeerIdParam string) error {
 	typeConverter := bIface.connector.TypeConverter()
 	executionContext := bIface.connector.NewExecutionContext()
-	operationRestMetaData := bfdPeersDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(bfdPeersDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(bfdPeersDeleteInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("BfdPeerId", bfdPeerIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := bfdPeersDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := bIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_0s.static_routes.bfd_peers", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), bIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (bIface *bfdPeersClient) Get(tier0IdParam string, bfdPeerIdParam string) (nsx_policyModel.StaticRouteBfdPeer, error) {
+func (bIface *bfdPeersClient) Get(tier0IdParam string, bfdPeerIdParam string) (model.StaticRouteBfdPeer, error) {
 	typeConverter := bIface.connector.TypeConverter()
 	executionContext := bIface.connector.NewExecutionContext()
-	operationRestMetaData := bfdPeersGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(bfdPeersGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(bfdPeersGetInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("BfdPeerId", bfdPeerIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.StaticRouteBfdPeer
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.StaticRouteBfdPeer
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := bfdPeersGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := bIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_0s.static_routes.bfd_peers", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.StaticRouteBfdPeer
+	var emptyOutput model.StaticRouteBfdPeer
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), BfdPeersGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), bfdPeersGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.StaticRouteBfdPeer), nil
+		return output.(model.StaticRouteBfdPeer), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), bIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (bIface *bfdPeersClient) List(tier0IdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.StaticRouteBfdPeerListResult, error) {
+func (bIface *bfdPeersClient) List(tier0IdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.StaticRouteBfdPeerListResult, error) {
 	typeConverter := bIface.connector.TypeConverter()
 	executionContext := bIface.connector.NewExecutionContext()
-	operationRestMetaData := bfdPeersListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(bfdPeersListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(bfdPeersListInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IncludeMarkForDeleteObjects", includeMarkForDeleteObjectsParam)
@@ -197,84 +187,85 @@ func (bIface *bfdPeersClient) List(tier0IdParam string, cursorParam *string, inc
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.StaticRouteBfdPeerListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.StaticRouteBfdPeerListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := bfdPeersListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := bIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_0s.static_routes.bfd_peers", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.StaticRouteBfdPeerListResult
+	var emptyOutput model.StaticRouteBfdPeerListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), BfdPeersListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), bfdPeersListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.StaticRouteBfdPeerListResult), nil
+		return output.(model.StaticRouteBfdPeerListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), bIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (bIface *bfdPeersClient) Patch(tier0IdParam string, bfdPeerIdParam string, staticRouteBfdPeerParam nsx_policyModel.StaticRouteBfdPeer) error {
+func (bIface *bfdPeersClient) Patch(tier0IdParam string, bfdPeerIdParam string, staticRouteBfdPeerParam model.StaticRouteBfdPeer) error {
 	typeConverter := bIface.connector.TypeConverter()
 	executionContext := bIface.connector.NewExecutionContext()
-	operationRestMetaData := bfdPeersPatchRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(bfdPeersPatchInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(bfdPeersPatchInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("BfdPeerId", bfdPeerIdParam)
 	sv.AddStructField("StaticRouteBfdPeer", staticRouteBfdPeerParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := bfdPeersPatchRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := bIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_0s.static_routes.bfd_peers", "patch", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), bIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (bIface *bfdPeersClient) Update(tier0IdParam string, bfdPeerIdParam string, staticRouteBfdPeerParam nsx_policyModel.StaticRouteBfdPeer) (nsx_policyModel.StaticRouteBfdPeer, error) {
+func (bIface *bfdPeersClient) Update(tier0IdParam string, bfdPeerIdParam string, staticRouteBfdPeerParam model.StaticRouteBfdPeer) (model.StaticRouteBfdPeer, error) {
 	typeConverter := bIface.connector.TypeConverter()
 	executionContext := bIface.connector.NewExecutionContext()
-	operationRestMetaData := bfdPeersUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(bfdPeersUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(bfdPeersUpdateInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("BfdPeerId", bfdPeerIdParam)
 	sv.AddStructField("StaticRouteBfdPeer", staticRouteBfdPeerParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.StaticRouteBfdPeer
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.StaticRouteBfdPeer
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := bfdPeersUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := bIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_0s.static_routes.bfd_peers", "update", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.StaticRouteBfdPeer
+	var emptyOutput model.StaticRouteBfdPeer
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), BfdPeersUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), bfdPeersUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.StaticRouteBfdPeer), nil
+		return output.(model.StaticRouteBfdPeer), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), bIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

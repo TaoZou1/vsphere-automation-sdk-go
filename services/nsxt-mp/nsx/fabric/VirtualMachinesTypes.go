@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,41 +11,41 @@
 package fabric
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 	"reflect"
 )
 
-func virtualMachinesAddtagsInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func virtualMachinesAddtagsInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["virtual_machine_tag_update"] = vapiBindings_.NewReferenceType(nsxModel.VirtualMachineTagUpdateBindingType)
+	fields["virtual_machine_tag_update"] = bindings.NewReferenceType(model.VirtualMachineTagUpdateBindingType)
 	fieldNameMap["virtual_machine_tag_update"] = "VirtualMachineTagUpdate"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func VirtualMachinesAddtagsOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func virtualMachinesAddtagsOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func virtualMachinesAddtagsRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func virtualMachinesAddtagsRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["virtual_machine_tag_update"] = vapiBindings_.NewReferenceType(nsxModel.VirtualMachineTagUpdateBindingType)
+	fields["virtual_machine_tag_update"] = bindings.NewReferenceType(model.VirtualMachineTagUpdateBindingType)
 	fieldNameMap["virtual_machine_tag_update"] = "VirtualMachineTagUpdate"
-	paramsTypeMap["virtual_machine_tag_update"] = vapiBindings_.NewReferenceType(nsxModel.VirtualMachineTagUpdateBindingType)
+	paramsTypeMap["virtual_machine_tag_update"] = bindings.NewReferenceType(model.VirtualMachineTagUpdateBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -66,18 +66,18 @@ func virtualMachinesAddtagsRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func virtualMachinesListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func virtualMachinesListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["display_name"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["exclude_vm_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["external_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["host_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["display_name"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["exclude_vm_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["external_id"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["host_id"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["display_name"] = "DisplayName"
 	fieldNameMap["exclude_vm_type"] = "ExcludeVmType"
@@ -87,32 +87,32 @@ func virtualMachinesListInputType() vapiBindings_.StructType {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func VirtualMachinesListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.VirtualMachineListResultBindingType)
+func virtualMachinesListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.VirtualMachineListResultBindingType)
 }
 
-func virtualMachinesListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func virtualMachinesListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["display_name"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["exclude_vm_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["external_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["host_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["display_name"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["exclude_vm_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["external_id"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["host_id"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["display_name"] = "DisplayName"
 	fieldNameMap["exclude_vm_type"] = "ExcludeVmType"
@@ -122,15 +122,15 @@ func virtualMachinesListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["exclude_vm_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["external_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["display_name"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["host_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	paramsTypeMap["external_id"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["exclude_vm_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["display_name"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["host_id"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	queryParams["cursor"] = "cursor"
 	queryParams["sort_ascending"] = "sort_ascending"
 	queryParams["included_fields"] = "included_fields"
@@ -142,7 +142,7 @@ func virtualMachinesListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -163,34 +163,34 @@ func virtualMachinesListRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func virtualMachinesRemovetagsInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func virtualMachinesRemovetagsInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["virtual_machine_tag_update"] = vapiBindings_.NewReferenceType(nsxModel.VirtualMachineTagUpdateBindingType)
+	fields["virtual_machine_tag_update"] = bindings.NewReferenceType(model.VirtualMachineTagUpdateBindingType)
 	fieldNameMap["virtual_machine_tag_update"] = "VirtualMachineTagUpdate"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func VirtualMachinesRemovetagsOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func virtualMachinesRemovetagsOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func virtualMachinesRemovetagsRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func virtualMachinesRemovetagsRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["virtual_machine_tag_update"] = vapiBindings_.NewReferenceType(nsxModel.VirtualMachineTagUpdateBindingType)
+	fields["virtual_machine_tag_update"] = bindings.NewReferenceType(model.VirtualMachineTagUpdateBindingType)
 	fieldNameMap["virtual_machine_tag_update"] = "VirtualMachineTagUpdate"
-	paramsTypeMap["virtual_machine_tag_update"] = vapiBindings_.NewReferenceType(nsxModel.VirtualMachineTagUpdateBindingType)
+	paramsTypeMap["virtual_machine_tag_update"] = bindings.NewReferenceType(model.VirtualMachineTagUpdateBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -211,34 +211,34 @@ func virtualMachinesRemovetagsRestMetadata() vapiProtocol_.OperationRestMetadata
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func virtualMachinesUpdatetagsInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func virtualMachinesUpdatetagsInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["virtual_machine_tag_update"] = vapiBindings_.NewReferenceType(nsxModel.VirtualMachineTagUpdateBindingType)
+	fields["virtual_machine_tag_update"] = bindings.NewReferenceType(model.VirtualMachineTagUpdateBindingType)
 	fieldNameMap["virtual_machine_tag_update"] = "VirtualMachineTagUpdate"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func VirtualMachinesUpdatetagsOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func virtualMachinesUpdatetagsOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func virtualMachinesUpdatetagsRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func virtualMachinesUpdatetagsRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["virtual_machine_tag_update"] = vapiBindings_.NewReferenceType(nsxModel.VirtualMachineTagUpdateBindingType)
+	fields["virtual_machine_tag_update"] = bindings.NewReferenceType(model.VirtualMachineTagUpdateBindingType)
 	fieldNameMap["virtual_machine_tag_update"] = "VirtualMachineTagUpdate"
-	paramsTypeMap["virtual_machine_tag_update"] = vapiBindings_.NewReferenceType(nsxModel.VirtualMachineTagUpdateBindingType)
+	paramsTypeMap["virtual_machine_tag_update"] = bindings.NewReferenceType(model.VirtualMachineTagUpdateBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

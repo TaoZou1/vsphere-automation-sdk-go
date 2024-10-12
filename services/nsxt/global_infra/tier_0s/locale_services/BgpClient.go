@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package locale_services
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type BgpClient interface {
 
@@ -25,7 +26,6 @@ type BgpClient interface {
 	// @param tier0IdParam (required)
 	// @param localeServiceIdParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -38,13 +38,12 @@ type BgpClient interface {
 	// @param tier0IdParam (required)
 	// @param localeServiceIdParam (required)
 	// @return com.vmware.nsx_policy.model.BgpRoutingConfig
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(tier0IdParam string, localeServiceIdParam string) (nsx_policyModel.BgpRoutingConfig, error)
+	Get(tier0IdParam string, localeServiceIdParam string) (model.BgpRoutingConfig, error)
 
 	// If an BGP routing config not present, create BGP routing config. If it already exists, update the routing config.
 	//
@@ -52,13 +51,12 @@ type BgpClient interface {
 	// @param localeServiceIdParam (required)
 	// @param bgpRoutingConfigParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(tier0IdParam string, localeServiceIdParam string, bgpRoutingConfigParam nsx_policyModel.BgpRoutingConfig, overrideParam *bool) error
+	Patch(tier0IdParam string, localeServiceIdParam string, bgpRoutingConfigParam model.BgpRoutingConfig, overrideParam *bool) error
 
 	// If BGP routing config is not already present, create BGP routing config. If it already exists, replace the BGP routing config with this object.
 	//
@@ -67,163 +65,158 @@ type BgpClient interface {
 	// @param bgpRoutingConfigParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @return com.vmware.nsx_policy.model.BgpRoutingConfig
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(tier0IdParam string, localeServiceIdParam string, bgpRoutingConfigParam nsx_policyModel.BgpRoutingConfig, overrideParam *bool) (nsx_policyModel.BgpRoutingConfig, error)
+	Update(tier0IdParam string, localeServiceIdParam string, bgpRoutingConfigParam model.BgpRoutingConfig, overrideParam *bool) (model.BgpRoutingConfig, error)
 }
 
 type bgpClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewBgpClient(connector vapiProtocolClient_.Connector) *bgpClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.global_infra.tier_0s.locale_services.bgp")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"patch":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewBgpClient(connector client.Connector) *bgpClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.global_infra.tier_0s.locale_services.bgp")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	bIface := bgpClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &bIface
 }
 
-func (bIface *bgpClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (bIface *bgpClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := bIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
 func (bIface *bgpClient) Delete(tier0IdParam string, localeServiceIdParam string, overrideParam *bool) error {
 	typeConverter := bIface.connector.TypeConverter()
 	executionContext := bIface.connector.NewExecutionContext()
-	operationRestMetaData := bgpDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(bgpDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(bgpDeleteInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := bgpDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := bIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.global_infra.tier_0s.locale_services.bgp", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), bIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (bIface *bgpClient) Get(tier0IdParam string, localeServiceIdParam string) (nsx_policyModel.BgpRoutingConfig, error) {
+func (bIface *bgpClient) Get(tier0IdParam string, localeServiceIdParam string) (model.BgpRoutingConfig, error) {
 	typeConverter := bIface.connector.TypeConverter()
 	executionContext := bIface.connector.NewExecutionContext()
-	operationRestMetaData := bgpGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(bgpGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(bgpGetInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.BgpRoutingConfig
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.BgpRoutingConfig
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := bgpGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := bIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.global_infra.tier_0s.locale_services.bgp", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.BgpRoutingConfig
+	var emptyOutput model.BgpRoutingConfig
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), BgpGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), bgpGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.BgpRoutingConfig), nil
+		return output.(model.BgpRoutingConfig), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), bIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (bIface *bgpClient) Patch(tier0IdParam string, localeServiceIdParam string, bgpRoutingConfigParam nsx_policyModel.BgpRoutingConfig, overrideParam *bool) error {
+func (bIface *bgpClient) Patch(tier0IdParam string, localeServiceIdParam string, bgpRoutingConfigParam model.BgpRoutingConfig, overrideParam *bool) error {
 	typeConverter := bIface.connector.TypeConverter()
 	executionContext := bIface.connector.NewExecutionContext()
-	operationRestMetaData := bgpPatchRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(bgpPatchInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(bgpPatchInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
 	sv.AddStructField("BgpRoutingConfig", bgpRoutingConfigParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := bgpPatchRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := bIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.global_infra.tier_0s.locale_services.bgp", "patch", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), bIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (bIface *bgpClient) Update(tier0IdParam string, localeServiceIdParam string, bgpRoutingConfigParam nsx_policyModel.BgpRoutingConfig, overrideParam *bool) (nsx_policyModel.BgpRoutingConfig, error) {
+func (bIface *bgpClient) Update(tier0IdParam string, localeServiceIdParam string, bgpRoutingConfigParam model.BgpRoutingConfig, overrideParam *bool) (model.BgpRoutingConfig, error) {
 	typeConverter := bIface.connector.TypeConverter()
 	executionContext := bIface.connector.NewExecutionContext()
-	operationRestMetaData := bgpUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(bgpUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(bgpUpdateInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
 	sv.AddStructField("BgpRoutingConfig", bgpRoutingConfigParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.BgpRoutingConfig
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.BgpRoutingConfig
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := bgpUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := bIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.global_infra.tier_0s.locale_services.bgp", "update", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.BgpRoutingConfig
+	var emptyOutput model.BgpRoutingConfig
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), BgpUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), bgpUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.BgpRoutingConfig), nil
+		return output.(model.BgpRoutingConfig), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), bIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

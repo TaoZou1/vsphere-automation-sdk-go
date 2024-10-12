@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,57 +11,57 @@
 package edge_clusters
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func fqdnAnalysisConfigDeleteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func fqdnAnalysisConfigDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["site_id"] = vapiBindings_.NewStringType()
-	fields["enforcement_point_id"] = vapiBindings_.NewStringType()
-	fields["edge_cluster_id"] = vapiBindings_.NewStringType()
+	fields["site_id"] = bindings.NewStringType()
+	fields["enforcement_point_id"] = bindings.NewStringType()
+	fields["edge_cluster_id"] = bindings.NewStringType()
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcement_point_id"] = "EnforcementPointId"
 	fieldNameMap["edge_cluster_id"] = "EdgeClusterId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func FqdnAnalysisConfigDeleteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func fqdnAnalysisConfigDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func fqdnAnalysisConfigDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func fqdnAnalysisConfigDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["site_id"] = vapiBindings_.NewStringType()
-	fields["enforcement_point_id"] = vapiBindings_.NewStringType()
-	fields["edge_cluster_id"] = vapiBindings_.NewStringType()
+	fields["site_id"] = bindings.NewStringType()
+	fields["enforcement_point_id"] = bindings.NewStringType()
+	fields["edge_cluster_id"] = bindings.NewStringType()
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcement_point_id"] = "EnforcementPointId"
 	fieldNameMap["edge_cluster_id"] = "EdgeClusterId"
-	paramsTypeMap["edge_cluster_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["site_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["enforcement_point_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["siteId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["enforcementPointId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["edgeClusterId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["edge_cluster_id"] = bindings.NewStringType()
+	paramsTypeMap["site_id"] = bindings.NewStringType()
+	paramsTypeMap["enforcement_point_id"] = bindings.NewStringType()
+	paramsTypeMap["siteId"] = bindings.NewStringType()
+	paramsTypeMap["enforcementPointId"] = bindings.NewStringType()
+	paramsTypeMap["edgeClusterId"] = bindings.NewStringType()
 	pathParams["site_id"] = "siteId"
 	pathParams["edge_cluster_id"] = "edgeClusterId"
 	pathParams["enforcement_point_id"] = "enforcementPointId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -82,50 +82,50 @@ func fqdnAnalysisConfigDeleteRestMetadata() vapiProtocol_.OperationRestMetadata 
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func fqdnAnalysisConfigGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func fqdnAnalysisConfigGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["site_id"] = vapiBindings_.NewStringType()
-	fields["enforcement_point_id"] = vapiBindings_.NewStringType()
-	fields["edge_cluster_id"] = vapiBindings_.NewStringType()
+	fields["site_id"] = bindings.NewStringType()
+	fields["enforcement_point_id"] = bindings.NewStringType()
+	fields["edge_cluster_id"] = bindings.NewStringType()
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcement_point_id"] = "EnforcementPointId"
 	fieldNameMap["edge_cluster_id"] = "EdgeClusterId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func FqdnAnalysisConfigGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.FqdnAnalysisConfigBindingType)
+func fqdnAnalysisConfigGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.FqdnAnalysisConfigBindingType)
 }
 
-func fqdnAnalysisConfigGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func fqdnAnalysisConfigGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["site_id"] = vapiBindings_.NewStringType()
-	fields["enforcement_point_id"] = vapiBindings_.NewStringType()
-	fields["edge_cluster_id"] = vapiBindings_.NewStringType()
+	fields["site_id"] = bindings.NewStringType()
+	fields["enforcement_point_id"] = bindings.NewStringType()
+	fields["edge_cluster_id"] = bindings.NewStringType()
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcement_point_id"] = "EnforcementPointId"
 	fieldNameMap["edge_cluster_id"] = "EdgeClusterId"
-	paramsTypeMap["edge_cluster_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["site_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["enforcement_point_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["siteId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["enforcementPointId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["edgeClusterId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["edge_cluster_id"] = bindings.NewStringType()
+	paramsTypeMap["site_id"] = bindings.NewStringType()
+	paramsTypeMap["enforcement_point_id"] = bindings.NewStringType()
+	paramsTypeMap["siteId"] = bindings.NewStringType()
+	paramsTypeMap["enforcementPointId"] = bindings.NewStringType()
+	paramsTypeMap["edgeClusterId"] = bindings.NewStringType()
 	pathParams["site_id"] = "siteId"
 	pathParams["edge_cluster_id"] = "edgeClusterId"
 	pathParams["enforcement_point_id"] = "enforcementPointId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -146,55 +146,55 @@ func fqdnAnalysisConfigGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func fqdnAnalysisConfigPatchInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func fqdnAnalysisConfigPatchInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["site_id"] = vapiBindings_.NewStringType()
-	fields["enforcement_point_id"] = vapiBindings_.NewStringType()
-	fields["edge_cluster_id"] = vapiBindings_.NewStringType()
-	fields["fqdn_analysis_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.FqdnAnalysisConfigBindingType)
+	fields["site_id"] = bindings.NewStringType()
+	fields["enforcement_point_id"] = bindings.NewStringType()
+	fields["edge_cluster_id"] = bindings.NewStringType()
+	fields["fqdn_analysis_config"] = bindings.NewReferenceType(model.FqdnAnalysisConfigBindingType)
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcement_point_id"] = "EnforcementPointId"
 	fieldNameMap["edge_cluster_id"] = "EdgeClusterId"
 	fieldNameMap["fqdn_analysis_config"] = "FqdnAnalysisConfig"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func FqdnAnalysisConfigPatchOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.FqdnAnalysisConfigBindingType)
+func fqdnAnalysisConfigPatchOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.FqdnAnalysisConfigBindingType)
 }
 
-func fqdnAnalysisConfigPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func fqdnAnalysisConfigPatchRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["site_id"] = vapiBindings_.NewStringType()
-	fields["enforcement_point_id"] = vapiBindings_.NewStringType()
-	fields["edge_cluster_id"] = vapiBindings_.NewStringType()
-	fields["fqdn_analysis_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.FqdnAnalysisConfigBindingType)
+	fields["site_id"] = bindings.NewStringType()
+	fields["enforcement_point_id"] = bindings.NewStringType()
+	fields["edge_cluster_id"] = bindings.NewStringType()
+	fields["fqdn_analysis_config"] = bindings.NewReferenceType(model.FqdnAnalysisConfigBindingType)
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcement_point_id"] = "EnforcementPointId"
 	fieldNameMap["edge_cluster_id"] = "EdgeClusterId"
 	fieldNameMap["fqdn_analysis_config"] = "FqdnAnalysisConfig"
-	paramsTypeMap["edge_cluster_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["site_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["enforcement_point_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["fqdn_analysis_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.FqdnAnalysisConfigBindingType)
-	paramsTypeMap["siteId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["enforcementPointId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["edgeClusterId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["edge_cluster_id"] = bindings.NewStringType()
+	paramsTypeMap["fqdn_analysis_config"] = bindings.NewReferenceType(model.FqdnAnalysisConfigBindingType)
+	paramsTypeMap["site_id"] = bindings.NewStringType()
+	paramsTypeMap["enforcement_point_id"] = bindings.NewStringType()
+	paramsTypeMap["siteId"] = bindings.NewStringType()
+	paramsTypeMap["enforcementPointId"] = bindings.NewStringType()
+	paramsTypeMap["edgeClusterId"] = bindings.NewStringType()
 	pathParams["site_id"] = "siteId"
 	pathParams["edge_cluster_id"] = "edgeClusterId"
 	pathParams["enforcement_point_id"] = "enforcementPointId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -215,55 +215,55 @@ func fqdnAnalysisConfigPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func fqdnAnalysisConfigUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func fqdnAnalysisConfigUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["site_id"] = vapiBindings_.NewStringType()
-	fields["enforcement_point_id"] = vapiBindings_.NewStringType()
-	fields["edge_cluster_id"] = vapiBindings_.NewStringType()
-	fields["fqdn_analysis_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.FqdnAnalysisConfigBindingType)
+	fields["site_id"] = bindings.NewStringType()
+	fields["enforcement_point_id"] = bindings.NewStringType()
+	fields["edge_cluster_id"] = bindings.NewStringType()
+	fields["fqdn_analysis_config"] = bindings.NewReferenceType(model.FqdnAnalysisConfigBindingType)
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcement_point_id"] = "EnforcementPointId"
 	fieldNameMap["edge_cluster_id"] = "EdgeClusterId"
 	fieldNameMap["fqdn_analysis_config"] = "FqdnAnalysisConfig"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func FqdnAnalysisConfigUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.FqdnAnalysisConfigBindingType)
+func fqdnAnalysisConfigUpdateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.FqdnAnalysisConfigBindingType)
 }
 
-func fqdnAnalysisConfigUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func fqdnAnalysisConfigUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["site_id"] = vapiBindings_.NewStringType()
-	fields["enforcement_point_id"] = vapiBindings_.NewStringType()
-	fields["edge_cluster_id"] = vapiBindings_.NewStringType()
-	fields["fqdn_analysis_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.FqdnAnalysisConfigBindingType)
+	fields["site_id"] = bindings.NewStringType()
+	fields["enforcement_point_id"] = bindings.NewStringType()
+	fields["edge_cluster_id"] = bindings.NewStringType()
+	fields["fqdn_analysis_config"] = bindings.NewReferenceType(model.FqdnAnalysisConfigBindingType)
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcement_point_id"] = "EnforcementPointId"
 	fieldNameMap["edge_cluster_id"] = "EdgeClusterId"
 	fieldNameMap["fqdn_analysis_config"] = "FqdnAnalysisConfig"
-	paramsTypeMap["edge_cluster_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["site_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["enforcement_point_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["fqdn_analysis_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.FqdnAnalysisConfigBindingType)
-	paramsTypeMap["siteId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["enforcementPointId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["edgeClusterId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["edge_cluster_id"] = bindings.NewStringType()
+	paramsTypeMap["fqdn_analysis_config"] = bindings.NewReferenceType(model.FqdnAnalysisConfigBindingType)
+	paramsTypeMap["site_id"] = bindings.NewStringType()
+	paramsTypeMap["enforcement_point_id"] = bindings.NewStringType()
+	paramsTypeMap["siteId"] = bindings.NewStringType()
+	paramsTypeMap["enforcementPointId"] = bindings.NewStringType()
+	paramsTypeMap["edgeClusterId"] = bindings.NewStringType()
 	pathParams["site_id"] = "siteId"
 	pathParams["edge_cluster_id"] = "edgeClusterId"
 	pathParams["enforcement_point_id"] = "enforcementPointId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

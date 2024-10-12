@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,50 +11,50 @@
 package tier_1s
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func floodProtectionProfileBindingsGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func floodProtectionProfileBindingsGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["tier1_id"] = vapiBindings_.NewStringType()
-	fields["flood_protection_profile_binding_id"] = vapiBindings_.NewStringType()
+	fields["tier1_id"] = bindings.NewStringType()
+	fields["flood_protection_profile_binding_id"] = bindings.NewStringType()
 	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["flood_protection_profile_binding_id"] = "FloodProtectionProfileBindingId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func FloodProtectionProfileBindingsGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.FloodProtectionProfileBindingMapBindingType)
+func floodProtectionProfileBindingsGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.FloodProtectionProfileBindingMapBindingType)
 }
 
-func floodProtectionProfileBindingsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func floodProtectionProfileBindingsGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["tier1_id"] = vapiBindings_.NewStringType()
-	fields["flood_protection_profile_binding_id"] = vapiBindings_.NewStringType()
+	fields["tier1_id"] = bindings.NewStringType()
+	fields["flood_protection_profile_binding_id"] = bindings.NewStringType()
 	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["flood_protection_profile_binding_id"] = "FloodProtectionProfileBindingId"
-	paramsTypeMap["tier1_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["flood_protection_profile_binding_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["tier1Id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["floodProtectionProfileBindingId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["tier1_id"] = bindings.NewStringType()
+	paramsTypeMap["flood_protection_profile_binding_id"] = bindings.NewStringType()
+	paramsTypeMap["tier1Id"] = bindings.NewStringType()
+	paramsTypeMap["floodProtectionProfileBindingId"] = bindings.NewStringType()
 	pathParams["tier1_id"] = "tier1Id"
 	pathParams["flood_protection_profile_binding_id"] = "floodProtectionProfileBindingId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

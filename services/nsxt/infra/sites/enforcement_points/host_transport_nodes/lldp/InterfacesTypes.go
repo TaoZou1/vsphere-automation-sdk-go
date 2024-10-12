@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,64 +11,64 @@
 package lldp
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func interfacesGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func interfacesGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["site_id"] = vapiBindings_.NewStringType()
-	fields["enforcement_point_id"] = vapiBindings_.NewStringType()
-	fields["node_id"] = vapiBindings_.NewStringType()
-	fields["interface_name"] = vapiBindings_.NewStringType()
+	fields["site_id"] = bindings.NewStringType()
+	fields["enforcement_point_id"] = bindings.NewStringType()
+	fields["node_id"] = bindings.NewStringType()
+	fields["interface_name"] = bindings.NewStringType()
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcement_point_id"] = "EnforcementPointId"
 	fieldNameMap["node_id"] = "NodeId"
 	fieldNameMap["interface_name"] = "InterfaceName"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func InterfacesGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.InterfaceNeighborPropertiesBindingType)
+func interfacesGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.InterfaceNeighborPropertiesBindingType)
 }
 
-func interfacesGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func interfacesGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["site_id"] = vapiBindings_.NewStringType()
-	fields["enforcement_point_id"] = vapiBindings_.NewStringType()
-	fields["node_id"] = vapiBindings_.NewStringType()
-	fields["interface_name"] = vapiBindings_.NewStringType()
+	fields["site_id"] = bindings.NewStringType()
+	fields["enforcement_point_id"] = bindings.NewStringType()
+	fields["node_id"] = bindings.NewStringType()
+	fields["interface_name"] = bindings.NewStringType()
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcement_point_id"] = "EnforcementPointId"
 	fieldNameMap["node_id"] = "NodeId"
 	fieldNameMap["interface_name"] = "InterfaceName"
-	paramsTypeMap["site_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["interface_name"] = vapiBindings_.NewStringType()
-	paramsTypeMap["enforcement_point_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["node_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["siteId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["enforcementPointId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["nodeId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["interfaceName"] = vapiBindings_.NewStringType()
+	paramsTypeMap["site_id"] = bindings.NewStringType()
+	paramsTypeMap["interface_name"] = bindings.NewStringType()
+	paramsTypeMap["enforcement_point_id"] = bindings.NewStringType()
+	paramsTypeMap["node_id"] = bindings.NewStringType()
+	paramsTypeMap["siteId"] = bindings.NewStringType()
+	paramsTypeMap["enforcementPointId"] = bindings.NewStringType()
+	paramsTypeMap["nodeId"] = bindings.NewStringType()
+	paramsTypeMap["interfaceName"] = bindings.NewStringType()
 	pathParams["site_id"] = "siteId"
 	pathParams["interface_name"] = "interfaceName"
 	pathParams["node_id"] = "nodeId"
 	pathParams["enforcement_point_id"] = "enforcementPointId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -89,50 +89,50 @@ func interfacesGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func interfacesListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func interfacesListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["site_id"] = vapiBindings_.NewStringType()
-	fields["enforcement_point_id"] = vapiBindings_.NewStringType()
-	fields["node_id"] = vapiBindings_.NewStringType()
+	fields["site_id"] = bindings.NewStringType()
+	fields["enforcement_point_id"] = bindings.NewStringType()
+	fields["node_id"] = bindings.NewStringType()
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcement_point_id"] = "EnforcementPointId"
 	fieldNameMap["node_id"] = "NodeId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func InterfacesListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsx_policyModel.InterfaceNeighborPropertyListResultBindingType)
+func interfacesListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.InterfaceNeighborPropertyListResultBindingType)
 }
 
-func interfacesListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func interfacesListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["site_id"] = vapiBindings_.NewStringType()
-	fields["enforcement_point_id"] = vapiBindings_.NewStringType()
-	fields["node_id"] = vapiBindings_.NewStringType()
+	fields["site_id"] = bindings.NewStringType()
+	fields["enforcement_point_id"] = bindings.NewStringType()
+	fields["node_id"] = bindings.NewStringType()
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcement_point_id"] = "EnforcementPointId"
 	fieldNameMap["node_id"] = "NodeId"
-	paramsTypeMap["site_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["enforcement_point_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["node_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["siteId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["enforcementPointId"] = vapiBindings_.NewStringType()
-	paramsTypeMap["nodeId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["site_id"] = bindings.NewStringType()
+	paramsTypeMap["enforcement_point_id"] = bindings.NewStringType()
+	paramsTypeMap["node_id"] = bindings.NewStringType()
+	paramsTypeMap["siteId"] = bindings.NewStringType()
+	paramsTypeMap["enforcementPointId"] = bindings.NewStringType()
+	paramsTypeMap["nodeId"] = bindings.NewStringType()
 	pathParams["site_id"] = "siteId"
 	pathParams["node_id"] = "nodeId"
 	pathParams["enforcement_point_id"] = "enforcementPointId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

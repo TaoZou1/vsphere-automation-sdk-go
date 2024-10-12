@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package nsx_global_policy
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_global_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-gm/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-gm/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type ErrorResolverClient interface {
 
@@ -24,147 +25,141 @@ type ErrorResolverClient interface {
 	//
 	// @param errorIdParam (required)
 	// @return com.vmware.nsx_global_policy.model.ErrorResolverInfo
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(errorIdParam string) (nsx_global_policyModel.ErrorResolverInfo, error)
+	Get(errorIdParam string) (model.ErrorResolverInfo, error)
 
 	// Returns a list of metadata for all the error resolvers registered.
 	// @return com.vmware.nsx_global_policy.model.ErrorResolverInfoList
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List() (nsx_global_policyModel.ErrorResolverInfoList, error)
+	List() (model.ErrorResolverInfoList, error)
 
 	// Invokes the corresponding error resolver for the given error(s) present in the payload
 	//
 	// @param errorResolverMetadataListParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Resolveerror(errorResolverMetadataListParam nsx_global_policyModel.ErrorResolverMetadataList) error
+	Resolveerror(errorResolverMetadataListParam model.ErrorResolverMetadataList) error
 }
 
 type errorResolverClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewErrorResolverClient(connector vapiProtocolClient_.Connector) *errorResolverClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_global_policy.error_resolver")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"get":          vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":         vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"resolveerror": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "resolveerror"),
+func NewErrorResolverClient(connector client.Connector) *errorResolverClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_global_policy.error_resolver")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"get":          core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":         core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"resolveerror": core.NewMethodIdentifier(interfaceIdentifier, "resolveerror"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	eIface := errorResolverClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &eIface
 }
 
-func (eIface *errorResolverClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (eIface *errorResolverClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := eIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (eIface *errorResolverClient) Get(errorIdParam string) (nsx_global_policyModel.ErrorResolverInfo, error) {
+func (eIface *errorResolverClient) Get(errorIdParam string) (model.ErrorResolverInfo, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
-	operationRestMetaData := errorResolverGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(errorResolverGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(errorResolverGetInputType(), typeConverter)
 	sv.AddStructField("ErrorId", errorIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_global_policyModel.ErrorResolverInfo
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.ErrorResolverInfo
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := errorResolverGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx_global_policy.error_resolver", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_global_policyModel.ErrorResolverInfo
+	var emptyOutput model.ErrorResolverInfo
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ErrorResolverGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), errorResolverGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_global_policyModel.ErrorResolverInfo), nil
+		return output.(model.ErrorResolverInfo), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (eIface *errorResolverClient) List() (nsx_global_policyModel.ErrorResolverInfoList, error) {
+func (eIface *errorResolverClient) List() (model.ErrorResolverInfoList, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
-	operationRestMetaData := errorResolverListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(errorResolverListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(errorResolverListInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_global_policyModel.ErrorResolverInfoList
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.ErrorResolverInfoList
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := errorResolverListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx_global_policy.error_resolver", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_global_policyModel.ErrorResolverInfoList
+	var emptyOutput model.ErrorResolverInfoList
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ErrorResolverListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), errorResolverListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_global_policyModel.ErrorResolverInfoList), nil
+		return output.(model.ErrorResolverInfoList), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (eIface *errorResolverClient) Resolveerror(errorResolverMetadataListParam nsx_global_policyModel.ErrorResolverMetadataList) error {
+func (eIface *errorResolverClient) Resolveerror(errorResolverMetadataListParam model.ErrorResolverMetadataList) error {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
-	operationRestMetaData := errorResolverResolveerrorRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(errorResolverResolveerrorInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(errorResolverResolveerrorInputType(), typeConverter)
 	sv.AddStructField("ErrorResolverMetadataList", errorResolverMetadataListParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := errorResolverResolveerrorRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx_global_policy.error_resolver", "resolveerror", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}

@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,41 +11,41 @@
 package loadbalancer
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 	"reflect"
 )
 
-func virtualServersCreateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func virtualServersCreateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["lb_virtual_server"] = vapiBindings_.NewReferenceType(nsxModel.LbVirtualServerBindingType)
+	fields["lb_virtual_server"] = bindings.NewReferenceType(model.LbVirtualServerBindingType)
 	fieldNameMap["lb_virtual_server"] = "LbVirtualServer"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func VirtualServersCreateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.LbVirtualServerBindingType)
+func virtualServersCreateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.LbVirtualServerBindingType)
 }
 
-func virtualServersCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func virtualServersCreateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["lb_virtual_server"] = vapiBindings_.NewReferenceType(nsxModel.LbVirtualServerBindingType)
+	fields["lb_virtual_server"] = bindings.NewReferenceType(model.LbVirtualServerBindingType)
 	fieldNameMap["lb_virtual_server"] = "LbVirtualServer"
-	paramsTypeMap["lb_virtual_server"] = vapiBindings_.NewReferenceType(nsxModel.LbVirtualServerBindingType)
+	paramsTypeMap["lb_virtual_server"] = bindings.NewReferenceType(model.LbVirtualServerBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -66,34 +66,34 @@ func virtualServersCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func virtualServersCreatewithrulesInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func virtualServersCreatewithrulesInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["lb_virtual_server_with_rule"] = vapiBindings_.NewReferenceType(nsxModel.LbVirtualServerWithRuleBindingType)
+	fields["lb_virtual_server_with_rule"] = bindings.NewReferenceType(model.LbVirtualServerWithRuleBindingType)
 	fieldNameMap["lb_virtual_server_with_rule"] = "LbVirtualServerWithRule"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func VirtualServersCreatewithrulesOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.LbVirtualServerWithRuleBindingType)
+func virtualServersCreatewithrulesOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.LbVirtualServerWithRuleBindingType)
 }
 
-func virtualServersCreatewithrulesRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func virtualServersCreatewithrulesRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["lb_virtual_server_with_rule"] = vapiBindings_.NewReferenceType(nsxModel.LbVirtualServerWithRuleBindingType)
+	fields["lb_virtual_server_with_rule"] = bindings.NewReferenceType(model.LbVirtualServerWithRuleBindingType)
 	fieldNameMap["lb_virtual_server_with_rule"] = "LbVirtualServerWithRule"
-	paramsTypeMap["lb_virtual_server_with_rule"] = vapiBindings_.NewReferenceType(nsxModel.LbVirtualServerWithRuleBindingType)
+	paramsTypeMap["lb_virtual_server_with_rule"] = bindings.NewReferenceType(model.LbVirtualServerWithRuleBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -114,42 +114,42 @@ func virtualServersCreatewithrulesRestMetadata() vapiProtocol_.OperationRestMeta
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func virtualServersDeleteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func virtualServersDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["virtual_server_id"] = vapiBindings_.NewStringType()
-	fields["delete_associated_rules"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["virtual_server_id"] = bindings.NewStringType()
+	fields["delete_associated_rules"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["virtual_server_id"] = "VirtualServerId"
 	fieldNameMap["delete_associated_rules"] = "DeleteAssociatedRules"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func VirtualServersDeleteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func virtualServersDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func virtualServersDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func virtualServersDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["virtual_server_id"] = vapiBindings_.NewStringType()
-	fields["delete_associated_rules"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["virtual_server_id"] = bindings.NewStringType()
+	fields["delete_associated_rules"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["virtual_server_id"] = "VirtualServerId"
 	fieldNameMap["delete_associated_rules"] = "DeleteAssociatedRules"
-	paramsTypeMap["virtual_server_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["delete_associated_rules"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["virtualServerId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["delete_associated_rules"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["virtual_server_id"] = bindings.NewStringType()
+	paramsTypeMap["virtualServerId"] = bindings.NewStringType()
 	pathParams["virtual_server_id"] = "virtualServerId"
 	queryParams["delete_associated_rules"] = "delete_associated_rules"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -170,36 +170,36 @@ func virtualServersDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func virtualServersGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func virtualServersGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["virtual_server_id"] = vapiBindings_.NewStringType()
+	fields["virtual_server_id"] = bindings.NewStringType()
 	fieldNameMap["virtual_server_id"] = "VirtualServerId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func VirtualServersGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.LbVirtualServerBindingType)
+func virtualServersGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.LbVirtualServerBindingType)
 }
 
-func virtualServersGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func virtualServersGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["virtual_server_id"] = vapiBindings_.NewStringType()
+	fields["virtual_server_id"] = bindings.NewStringType()
 	fieldNameMap["virtual_server_id"] = "VirtualServerId"
-	paramsTypeMap["virtual_server_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["virtualServerId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["virtual_server_id"] = bindings.NewStringType()
+	paramsTypeMap["virtualServerId"] = bindings.NewStringType()
 	pathParams["virtual_server_id"] = "virtualServerId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -220,51 +220,51 @@ func virtualServersGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func virtualServersListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func virtualServersListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["included_fields"] = "IncludedFields"
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func VirtualServersListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.LbVirtualServerListResultBindingType)
+func virtualServersListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.LbVirtualServerListResultBindingType)
 }
 
-func virtualServersListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func virtualServersListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["included_fields"] = "IncludedFields"
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	queryParams["cursor"] = "cursor"
 	queryParams["sort_ascending"] = "sort_ascending"
 	queryParams["included_fields"] = "included_fields"
@@ -272,7 +272,7 @@ func virtualServersListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -293,41 +293,41 @@ func virtualServersListRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func virtualServersUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func virtualServersUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["virtual_server_id"] = vapiBindings_.NewStringType()
-	fields["lb_virtual_server"] = vapiBindings_.NewReferenceType(nsxModel.LbVirtualServerBindingType)
+	fields["virtual_server_id"] = bindings.NewStringType()
+	fields["lb_virtual_server"] = bindings.NewReferenceType(model.LbVirtualServerBindingType)
 	fieldNameMap["virtual_server_id"] = "VirtualServerId"
 	fieldNameMap["lb_virtual_server"] = "LbVirtualServer"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func VirtualServersUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.LbVirtualServerBindingType)
+func virtualServersUpdateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.LbVirtualServerBindingType)
 }
 
-func virtualServersUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func virtualServersUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["virtual_server_id"] = vapiBindings_.NewStringType()
-	fields["lb_virtual_server"] = vapiBindings_.NewReferenceType(nsxModel.LbVirtualServerBindingType)
+	fields["virtual_server_id"] = bindings.NewStringType()
+	fields["lb_virtual_server"] = bindings.NewReferenceType(model.LbVirtualServerBindingType)
 	fieldNameMap["virtual_server_id"] = "VirtualServerId"
 	fieldNameMap["lb_virtual_server"] = "LbVirtualServer"
-	paramsTypeMap["lb_virtual_server"] = vapiBindings_.NewReferenceType(nsxModel.LbVirtualServerBindingType)
-	paramsTypeMap["virtual_server_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["virtualServerId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["lb_virtual_server"] = bindings.NewReferenceType(model.LbVirtualServerBindingType)
+	paramsTypeMap["virtual_server_id"] = bindings.NewStringType()
+	paramsTypeMap["virtualServerId"] = bindings.NewStringType()
 	pathParams["virtual_server_id"] = "virtualServerId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -348,41 +348,41 @@ func virtualServersUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func virtualServersUpdatewithrulesInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func virtualServersUpdatewithrulesInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["virtual_server_id"] = vapiBindings_.NewStringType()
-	fields["lb_virtual_server_with_rule"] = vapiBindings_.NewReferenceType(nsxModel.LbVirtualServerWithRuleBindingType)
+	fields["virtual_server_id"] = bindings.NewStringType()
+	fields["lb_virtual_server_with_rule"] = bindings.NewReferenceType(model.LbVirtualServerWithRuleBindingType)
 	fieldNameMap["virtual_server_id"] = "VirtualServerId"
 	fieldNameMap["lb_virtual_server_with_rule"] = "LbVirtualServerWithRule"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func VirtualServersUpdatewithrulesOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.LbVirtualServerWithRuleBindingType)
+func virtualServersUpdatewithrulesOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.LbVirtualServerWithRuleBindingType)
 }
 
-func virtualServersUpdatewithrulesRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func virtualServersUpdatewithrulesRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["virtual_server_id"] = vapiBindings_.NewStringType()
-	fields["lb_virtual_server_with_rule"] = vapiBindings_.NewReferenceType(nsxModel.LbVirtualServerWithRuleBindingType)
+	fields["virtual_server_id"] = bindings.NewStringType()
+	fields["lb_virtual_server_with_rule"] = bindings.NewReferenceType(model.LbVirtualServerWithRuleBindingType)
 	fieldNameMap["virtual_server_id"] = "VirtualServerId"
 	fieldNameMap["lb_virtual_server_with_rule"] = "LbVirtualServerWithRule"
-	paramsTypeMap["lb_virtual_server_with_rule"] = vapiBindings_.NewReferenceType(nsxModel.LbVirtualServerWithRuleBindingType)
-	paramsTypeMap["virtual_server_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["virtualServerId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["lb_virtual_server_with_rule"] = bindings.NewReferenceType(model.LbVirtualServerWithRuleBindingType)
+	paramsTypeMap["virtual_server_id"] = bindings.NewStringType()
+	paramsTypeMap["virtualServerId"] = bindings.NewStringType()
 	pathParams["virtual_server_id"] = "virtualServerId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

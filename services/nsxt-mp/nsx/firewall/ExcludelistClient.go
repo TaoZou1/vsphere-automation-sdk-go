@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package firewall
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type ExcludelistClient interface {
 
@@ -25,17 +26,14 @@ type ExcludelistClient interface {
 	//  Use the following Policy API -
 	//  PUT|PATCH /policy/api/v1/infra/settings/firewall/security/exclude-list
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param resourceReferenceParam (required)
 	// @return com.vmware.nsx.model.ResourceReference
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Addmember(resourceReferenceParam nsxModel.ResourceReference) (nsxModel.ResourceReference, error)
+	Addmember(resourceReferenceParam model.ResourceReference) (model.ResourceReference, error)
 
 	// Check if the object a member of the exclude list
 	//
@@ -43,253 +41,238 @@ type ExcludelistClient interface {
 	// @param deepCheckParam Check all parents (optional, default to false)
 	// @param objectTypeParam Object type of an entity (optional)
 	// @return com.vmware.nsx.model.ResourceReference
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Checkifexists(objectIdParam string, deepCheckParam *bool, objectTypeParam *string) (nsxModel.ResourceReference, error)
+	Checkifexists(objectIdParam string, deepCheckParam *bool, objectTypeParam *string) (model.ResourceReference, error)
 
 	// Get list of entities in exclude list.
 	//
 	//  Use the following Policy API -
 	//  GET /policy/api/v1/infra/settings/firewall/security/exclude-list
-	//
-	// Deprecated: This API element is deprecated.
 	// @return com.vmware.nsx.model.ExcludeList
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get() (nsxModel.ExcludeList, error)
+	Get() (model.ExcludeList, error)
 
 	// Remove an existing object from the exclude list.
 	//
 	//  Use the following Policy API -
 	//  PUT|PATCH /policy/api/v1/infra/settings/firewall/security/exclude-list
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param objectIdParam identifier of the object (required)
 	// @param deepCheckParam Check all parents (optional, default to false)
 	// @param objectTypeParam Object type of an entity (optional)
 	// @return com.vmware.nsx.model.ResourceReference
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Removemember(objectIdParam string, deepCheckParam *bool, objectTypeParam *string) (nsxModel.ResourceReference, error)
+	Removemember(objectIdParam string, deepCheckParam *bool, objectTypeParam *string) (model.ResourceReference, error)
 
 	// Modify exclude list.
 	//
 	//  Use the following Policy API -
 	//  PUT|PATCH /policy/api/v1/infra/settings/firewall/security/exclude-list
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param excludeListParam (required)
 	// @return com.vmware.nsx.model.ExcludeList
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(excludeListParam nsxModel.ExcludeList) (nsxModel.ExcludeList, error)
+	Update(excludeListParam model.ExcludeList) (model.ExcludeList, error)
 }
 
 type excludelistClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewExcludelistClient(connector vapiProtocolClient_.Connector) *excludelistClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.firewall.excludelist")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"addmember":     vapiCore_.NewMethodIdentifier(interfaceIdentifier, "addmember"),
-		"checkifexists": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "checkifexists"),
-		"get":           vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"removemember":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "removemember"),
-		"update":        vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewExcludelistClient(connector client.Connector) *excludelistClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.firewall.excludelist")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"addmember":     core.NewMethodIdentifier(interfaceIdentifier, "addmember"),
+		"checkifexists": core.NewMethodIdentifier(interfaceIdentifier, "checkifexists"),
+		"get":           core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"removemember":  core.NewMethodIdentifier(interfaceIdentifier, "removemember"),
+		"update":        core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	eIface := excludelistClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &eIface
 }
 
-func (eIface *excludelistClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (eIface *excludelistClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := eIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (eIface *excludelistClient) Addmember(resourceReferenceParam nsxModel.ResourceReference) (nsxModel.ResourceReference, error) {
+func (eIface *excludelistClient) Addmember(resourceReferenceParam model.ResourceReference) (model.ResourceReference, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
-	operationRestMetaData := excludelistAddmemberRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(excludelistAddmemberInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(excludelistAddmemberInputType(), typeConverter)
 	sv.AddStructField("ResourceReference", resourceReferenceParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.ResourceReference
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.ResourceReference
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := excludelistAddmemberRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx.firewall.excludelist", "addmember", inputDataValue, executionContext)
-	var emptyOutput nsxModel.ResourceReference
+	var emptyOutput model.ResourceReference
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ExcludelistAddmemberOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), excludelistAddmemberOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.ResourceReference), nil
+		return output.(model.ResourceReference), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (eIface *excludelistClient) Checkifexists(objectIdParam string, deepCheckParam *bool, objectTypeParam *string) (nsxModel.ResourceReference, error) {
+func (eIface *excludelistClient) Checkifexists(objectIdParam string, deepCheckParam *bool, objectTypeParam *string) (model.ResourceReference, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(excludelistCheckifexistsInputType(), typeConverter)
+	sv.AddStructField("ObjectId", objectIdParam)
+	sv.AddStructField("DeepCheck", deepCheckParam)
+	sv.AddStructField("ObjectType", objectTypeParam)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput model.ResourceReference
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+	}
 	operationRestMetaData := excludelistCheckifexistsRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(excludelistCheckifexistsInputType(), typeConverter)
-	sv.AddStructField("ObjectId", objectIdParam)
-	sv.AddStructField("DeepCheck", deepCheckParam)
-	sv.AddStructField("ObjectType", objectTypeParam)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput nsxModel.ResourceReference
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
-	}
-
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx.firewall.excludelist", "checkifexists", inputDataValue, executionContext)
-	var emptyOutput nsxModel.ResourceReference
+	var emptyOutput model.ResourceReference
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ExcludelistCheckifexistsOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), excludelistCheckifexistsOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.ResourceReference), nil
+		return output.(model.ResourceReference), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (eIface *excludelistClient) Get() (nsxModel.ExcludeList, error) {
+func (eIface *excludelistClient) Get() (model.ExcludeList, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
-	operationRestMetaData := excludelistGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(excludelistGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(excludelistGetInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.ExcludeList
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.ExcludeList
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := excludelistGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx.firewall.excludelist", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.ExcludeList
+	var emptyOutput model.ExcludeList
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ExcludelistGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), excludelistGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.ExcludeList), nil
+		return output.(model.ExcludeList), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (eIface *excludelistClient) Removemember(objectIdParam string, deepCheckParam *bool, objectTypeParam *string) (nsxModel.ResourceReference, error) {
+func (eIface *excludelistClient) Removemember(objectIdParam string, deepCheckParam *bool, objectTypeParam *string) (model.ResourceReference, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
-	operationRestMetaData := excludelistRemovememberRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(excludelistRemovememberInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(excludelistRemovememberInputType(), typeConverter)
 	sv.AddStructField("ObjectId", objectIdParam)
 	sv.AddStructField("DeepCheck", deepCheckParam)
 	sv.AddStructField("ObjectType", objectTypeParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.ResourceReference
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.ResourceReference
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := excludelistRemovememberRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx.firewall.excludelist", "removemember", inputDataValue, executionContext)
-	var emptyOutput nsxModel.ResourceReference
+	var emptyOutput model.ResourceReference
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ExcludelistRemovememberOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), excludelistRemovememberOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.ResourceReference), nil
+		return output.(model.ResourceReference), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (eIface *excludelistClient) Update(excludeListParam nsxModel.ExcludeList) (nsxModel.ExcludeList, error) {
+func (eIface *excludelistClient) Update(excludeListParam model.ExcludeList) (model.ExcludeList, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
-	operationRestMetaData := excludelistUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(excludelistUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(excludelistUpdateInputType(), typeConverter)
 	sv.AddStructField("ExcludeList", excludeListParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.ExcludeList
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.ExcludeList
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := excludelistUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx.firewall.excludelist", "update", inputDataValue, executionContext)
-	var emptyOutput nsxModel.ExcludeList
+	var emptyOutput model.ExcludeList
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ExcludelistUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), excludelistUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.ExcludeList), nil
+		return output.(model.ExcludeList), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

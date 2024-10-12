@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package servicequotas
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	vmcModel "github.com/vmware/vsphere-automation-sdk-go/services/vmc/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vmc/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type RequestsClient interface {
 
@@ -25,106 +26,102 @@ type RequestsClient interface {
 	// @param orgParam Organization identifier (required)
 	// @param serviceQuotaRequestIdParam The UUID of the service quota request (required)
 	// @return com.vmware.vmc.model.ServiceQuotaRequest
-	//
 	// @throws Unauthenticated  Unauthorized
 	// @throws Unauthorized  Forbidden
-	Get(orgParam string, serviceQuotaRequestIdParam string) (vmcModel.ServiceQuotaRequest, error)
+	Get(orgParam string, serviceQuotaRequestIdParam string) (model.ServiceQuotaRequest, error)
 
 	// List all service quota requests of an org
 	//
 	// @param orgParam Organization identifier (required)
-	//
 	// @throws Unauthenticated  Unauthorized
 	// @throws Unauthorized  Forbidden
-	List(orgParam string) ([]vmcModel.ServiceQuotaRequest, error)
+	List(orgParam string) ([]model.ServiceQuotaRequest, error)
 }
 
 type requestsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewRequestsClient(connector vapiProtocolClient_.Connector) *requestsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.vmc.orgs.aws.resources.servicequotas.requests")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"get":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
+func NewRequestsClient(connector client.Connector) *requestsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.vmc.orgs.aws.resources.servicequotas.requests")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"get":  core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list": core.NewMethodIdentifier(interfaceIdentifier, "list"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	rIface := requestsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &rIface
 }
 
-func (rIface *requestsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (rIface *requestsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := rIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (rIface *requestsClient) Get(orgParam string, serviceQuotaRequestIdParam string) (vmcModel.ServiceQuotaRequest, error) {
+func (rIface *requestsClient) Get(orgParam string, serviceQuotaRequestIdParam string) (model.ServiceQuotaRequest, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
-	operationRestMetaData := requestsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(requestsGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(requestsGetInputType(), typeConverter)
 	sv.AddStructField("Org", orgParam)
 	sv.AddStructField("ServiceQuotaRequestId", serviceQuotaRequestIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput vmcModel.ServiceQuotaRequest
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.ServiceQuotaRequest
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := requestsGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := rIface.connector.GetApiProvider().Invoke("com.vmware.vmc.orgs.aws.resources.servicequotas.requests", "get", inputDataValue, executionContext)
-	var emptyOutput vmcModel.ServiceQuotaRequest
+	var emptyOutput model.ServiceQuotaRequest
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), RequestsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), requestsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(vmcModel.ServiceQuotaRequest), nil
+		return output.(model.ServiceQuotaRequest), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), rIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (rIface *requestsClient) List(orgParam string) ([]vmcModel.ServiceQuotaRequest, error) {
+func (rIface *requestsClient) List(orgParam string) ([]model.ServiceQuotaRequest, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
-	operationRestMetaData := requestsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(requestsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(requestsListInputType(), typeConverter)
 	sv.AddStructField("Org", orgParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput []vmcModel.ServiceQuotaRequest
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput []model.ServiceQuotaRequest
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := requestsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := rIface.connector.GetApiProvider().Invoke("com.vmware.vmc.orgs.aws.resources.servicequotas.requests", "list", inputDataValue, executionContext)
-	var emptyOutput []vmcModel.ServiceQuotaRequest
+	var emptyOutput []model.ServiceQuotaRequest
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), RequestsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), requestsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.([]vmcModel.ServiceQuotaRequest), nil
+		return output.([]model.ServiceQuotaRequest), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), rIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

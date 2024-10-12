@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package aaa
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type RoleBindingsClient interface {
 
@@ -24,13 +25,12 @@ type RoleBindingsClient interface {
 	//
 	// @param roleBindingParam (required)
 	// @return com.vmware.nsx.model.RoleBinding
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Create(roleBindingParam nsxModel.RoleBinding) (nsxModel.RoleBinding, error)
+	Create(roleBindingParam model.RoleBinding) (model.RoleBinding, error)
 
 	// Delete the user/group's role assignment. If the path is provided then deletes only the roles_for_paths that matches the path. If path is provided for the last roles_for_paths then the whole role binding is deleted provided it is not that of a local user.
 	//
@@ -47,7 +47,6 @@ type RoleBindingsClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @param type_Param Type (optional)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -69,7 +68,6 @@ type RoleBindingsClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @param type_Param Type (optional)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -93,13 +91,12 @@ type RoleBindingsClient interface {
 	// @param sortByParam Field by which records are sorted (optional)
 	// @param type_Param Type (optional)
 	// @return com.vmware.nsx.model.RoleBinding
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(bindingIdParam string, cursorParam *string, identitySourceIdParam *string, identitySourceTypeParam *string, includedFieldsParam *string, nameParam *string, pageSizeParam *int64, pathParam *string, roleParam *string, rootPathParam *string, sortAscendingParam *bool, sortByParam *string, type_Param *string) (nsxModel.RoleBinding, error)
+	Get(bindingIdParam string, cursorParam *string, identitySourceIdParam *string, identitySourceTypeParam *string, includedFieldsParam *string, nameParam *string, pageSizeParam *int64, pathParam *string, roleParam *string, rootPathParam *string, sortAscendingParam *bool, sortByParam *string, type_Param *string) (model.RoleBinding, error)
 
 	// Get all users and groups with their roles. If the root_path is provided then only return role bindings that start-with or are sub-trees of the provided root path. Also filter the roles_for_paths such that only those roles_for_paths appear that start-with or are sub-tree of the provided root path.
 	//
@@ -116,85 +113,82 @@ type RoleBindingsClient interface {
 	// @param sortByParam Field by which records are sorted (optional)
 	// @param type_Param Type (optional)
 	// @return com.vmware.nsx.model.RoleBindingListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(cursorParam *string, identitySourceIdParam *string, identitySourceTypeParam *string, includedFieldsParam *string, nameParam *string, pageSizeParam *int64, pathParam *string, roleParam *string, rootPathParam *string, sortAscendingParam *bool, sortByParam *string, type_Param *string) (nsxModel.RoleBindingListResult, error)
+	List(cursorParam *string, identitySourceIdParam *string, identitySourceTypeParam *string, includedFieldsParam *string, nameParam *string, pageSizeParam *int64, pathParam *string, roleParam *string, rootPathParam *string, sortAscendingParam *bool, sortByParam *string, type_Param *string) (model.RoleBindingListResult, error)
 
-	// This API is used to update a user/group any role(s) of choice. It is recommended to use the new property roles_for_paths instead of roles. When using the roles_for_paths, set the read_roles_for_paths as true. User has union of all the roles assigned to it on a particular path and its sub-tree. User name is dealt case-insensitively. This API will merge the existing roles_for_paths with the newly provided roles_for_paths excluding roles_for_paths those are marked for deletion.
+	// This API is used to update a user/group any role(s) of choice. It is recommended to use the new property roles_for_paths instead of roles. When using the roles_for_paths, set the read_roles_for_paths as true. User has union of all the roles assigned to it on a particular path and its sub-tree. User name is dealt case-insensitively.
 	//
 	// @param bindingIdParam User/Group's id (required)
 	// @param roleBindingParam (required)
 	// @return com.vmware.nsx.model.RoleBinding
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(bindingIdParam string, roleBindingParam nsxModel.RoleBinding) (nsxModel.RoleBinding, error)
+	Update(bindingIdParam string, roleBindingParam model.RoleBinding) (model.RoleBinding, error)
 }
 
 type roleBindingsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewRoleBindingsClient(connector vapiProtocolClient_.Connector) *roleBindingsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.aaa.role_bindings")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"create":              vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
-		"delete":              vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"deletestalebindings": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "deletestalebindings"),
-		"get":                 vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":                vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"update":              vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewRoleBindingsClient(connector client.Connector) *roleBindingsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.aaa.role_bindings")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"create":              core.NewMethodIdentifier(interfaceIdentifier, "create"),
+		"delete":              core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"deletestalebindings": core.NewMethodIdentifier(interfaceIdentifier, "deletestalebindings"),
+		"get":                 core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":                core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"update":              core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	rIface := roleBindingsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &rIface
 }
 
-func (rIface *roleBindingsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (rIface *roleBindingsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := rIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (rIface *roleBindingsClient) Create(roleBindingParam nsxModel.RoleBinding) (nsxModel.RoleBinding, error) {
+func (rIface *roleBindingsClient) Create(roleBindingParam model.RoleBinding) (model.RoleBinding, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
-	operationRestMetaData := roleBindingsCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(roleBindingsCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(roleBindingsCreateInputType(), typeConverter)
 	sv.AddStructField("RoleBinding", roleBindingParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.RoleBinding
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.RoleBinding
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := roleBindingsCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := rIface.connector.GetApiProvider().Invoke("com.vmware.nsx.aaa.role_bindings", "create", inputDataValue, executionContext)
-	var emptyOutput nsxModel.RoleBinding
+	var emptyOutput model.RoleBinding
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), RoleBindingsCreateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), roleBindingsCreateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.RoleBinding), nil
+		return output.(model.RoleBinding), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), rIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
@@ -203,11 +197,7 @@ func (rIface *roleBindingsClient) Create(roleBindingParam nsxModel.RoleBinding) 
 func (rIface *roleBindingsClient) Delete(bindingIdParam string, cursorParam *string, identitySourceIdParam *string, identitySourceTypeParam *string, includedFieldsParam *string, nameParam *string, pageSizeParam *int64, pathParam *string, roleParam *string, rootPathParam *string, sortAscendingParam *bool, sortByParam *string, type_Param *string) error {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
-	operationRestMetaData := roleBindingsDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(roleBindingsDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(roleBindingsDeleteInputType(), typeConverter)
 	sv.AddStructField("BindingId", bindingIdParam)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IdentitySourceId", identitySourceIdParam)
@@ -223,16 +213,19 @@ func (rIface *roleBindingsClient) Delete(bindingIdParam string, cursorParam *str
 	sv.AddStructField("Type_", type_Param)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := roleBindingsDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := rIface.connector.GetApiProvider().Invoke("com.vmware.nsx.aaa.role_bindings", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), rIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
@@ -241,11 +234,7 @@ func (rIface *roleBindingsClient) Delete(bindingIdParam string, cursorParam *str
 func (rIface *roleBindingsClient) Deletestalebindings(cursorParam *string, identitySourceIdParam *string, identitySourceTypeParam *string, includedFieldsParam *string, nameParam *string, pageSizeParam *int64, pathParam *string, roleParam *string, rootPathParam *string, sortAscendingParam *bool, sortByParam *string, type_Param *string) error {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
-	operationRestMetaData := roleBindingsDeletestalebindingsRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(roleBindingsDeletestalebindingsInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(roleBindingsDeletestalebindingsInputType(), typeConverter)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IdentitySourceId", identitySourceIdParam)
 	sv.AddStructField("IdentitySourceType", identitySourceTypeParam)
@@ -260,29 +249,28 @@ func (rIface *roleBindingsClient) Deletestalebindings(cursorParam *string, ident
 	sv.AddStructField("Type_", type_Param)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := roleBindingsDeletestalebindingsRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := rIface.connector.GetApiProvider().Invoke("com.vmware.nsx.aaa.role_bindings", "deletestalebindings", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), rIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (rIface *roleBindingsClient) Get(bindingIdParam string, cursorParam *string, identitySourceIdParam *string, identitySourceTypeParam *string, includedFieldsParam *string, nameParam *string, pageSizeParam *int64, pathParam *string, roleParam *string, rootPathParam *string, sortAscendingParam *bool, sortByParam *string, type_Param *string) (nsxModel.RoleBinding, error) {
+func (rIface *roleBindingsClient) Get(bindingIdParam string, cursorParam *string, identitySourceIdParam *string, identitySourceTypeParam *string, includedFieldsParam *string, nameParam *string, pageSizeParam *int64, pathParam *string, roleParam *string, rootPathParam *string, sortAscendingParam *bool, sortByParam *string, type_Param *string) (model.RoleBinding, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
-	operationRestMetaData := roleBindingsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(roleBindingsGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(roleBindingsGetInputType(), typeConverter)
 	sv.AddStructField("BindingId", bindingIdParam)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IdentitySourceId", identitySourceIdParam)
@@ -298,35 +286,34 @@ func (rIface *roleBindingsClient) Get(bindingIdParam string, cursorParam *string
 	sv.AddStructField("Type_", type_Param)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.RoleBinding
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.RoleBinding
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := roleBindingsGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := rIface.connector.GetApiProvider().Invoke("com.vmware.nsx.aaa.role_bindings", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.RoleBinding
+	var emptyOutput model.RoleBinding
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), RoleBindingsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), roleBindingsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.RoleBinding), nil
+		return output.(model.RoleBinding), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), rIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (rIface *roleBindingsClient) List(cursorParam *string, identitySourceIdParam *string, identitySourceTypeParam *string, includedFieldsParam *string, nameParam *string, pageSizeParam *int64, pathParam *string, roleParam *string, rootPathParam *string, sortAscendingParam *bool, sortByParam *string, type_Param *string) (nsxModel.RoleBindingListResult, error) {
+func (rIface *roleBindingsClient) List(cursorParam *string, identitySourceIdParam *string, identitySourceTypeParam *string, includedFieldsParam *string, nameParam *string, pageSizeParam *int64, pathParam *string, roleParam *string, rootPathParam *string, sortAscendingParam *bool, sortByParam *string, type_Param *string) (model.RoleBindingListResult, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
-	operationRestMetaData := roleBindingsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(roleBindingsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(roleBindingsListInputType(), typeConverter)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IdentitySourceId", identitySourceIdParam)
 	sv.AddStructField("IdentitySourceType", identitySourceTypeParam)
@@ -341,55 +328,57 @@ func (rIface *roleBindingsClient) List(cursorParam *string, identitySourceIdPara
 	sv.AddStructField("Type_", type_Param)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.RoleBindingListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.RoleBindingListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := roleBindingsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := rIface.connector.GetApiProvider().Invoke("com.vmware.nsx.aaa.role_bindings", "list", inputDataValue, executionContext)
-	var emptyOutput nsxModel.RoleBindingListResult
+	var emptyOutput model.RoleBindingListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), RoleBindingsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), roleBindingsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.RoleBindingListResult), nil
+		return output.(model.RoleBindingListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), rIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (rIface *roleBindingsClient) Update(bindingIdParam string, roleBindingParam nsxModel.RoleBinding) (nsxModel.RoleBinding, error) {
+func (rIface *roleBindingsClient) Update(bindingIdParam string, roleBindingParam model.RoleBinding) (model.RoleBinding, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
-	operationRestMetaData := roleBindingsUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(roleBindingsUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(roleBindingsUpdateInputType(), typeConverter)
 	sv.AddStructField("BindingId", bindingIdParam)
 	sv.AddStructField("RoleBinding", roleBindingParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.RoleBinding
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.RoleBinding
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := roleBindingsUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := rIface.connector.GetApiProvider().Invoke("com.vmware.nsx.aaa.role_bindings", "update", inputDataValue, executionContext)
-	var emptyOutput nsxModel.RoleBinding
+	var emptyOutput model.RoleBinding
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), RoleBindingsUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), roleBindingsUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.RoleBinding), nil
+		return output.(model.RoleBinding), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), rIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

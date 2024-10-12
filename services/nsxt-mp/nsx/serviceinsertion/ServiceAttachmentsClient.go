@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package serviceinsertion
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type ServiceAttachmentsClient interface {
 
@@ -26,17 +27,14 @@ type ServiceAttachmentsClient interface {
 	//  PUT /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/service-interfaces/<interface-id> PATCH /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/service-interfaces/<interface-id> PUT /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/service-interfaces/<interface-id> PATCH /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/service-interfaces/<interface-id> For East-West service insertion
 	//  PUT /policy/api/v1/infra/segments/service-segments/<service-segment-id> PATCH /policy/api/v1/infra/segments/service-segments/<service-segment-id>
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param serviceAttachmentParam (required)
 	// @return com.vmware.nsx.model.ServiceAttachment
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Create(serviceAttachmentParam nsxModel.ServiceAttachment) (nsxModel.ServiceAttachment, error)
+	Create(serviceAttachmentParam model.ServiceAttachment) (model.ServiceAttachment, error)
 
 	// Delete existing service attachment from system. Before deletion, please make sure that, no instance endpoints are connected to this attachment. In turn no appliance should be connected to this attachment.
 	//  This API has been deprecated, please use below Policy API
@@ -44,10 +42,7 @@ type ServiceAttachmentsClient interface {
 	//  DELETE /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/service-interfaces/<interface-id> DELETE /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/service-interfaces/<interface-id> For East-West service insertion
 	//  DELETE /policy/api/v1/infra/segments/service-segments/>service-segment-id>
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param serviceAttachmentIdParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -61,33 +56,27 @@ type ServiceAttachmentsClient interface {
 	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/service-interfaces/<interface-id> GET /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/service-interfaces/<interface-id> For East-West service insertion
 	//  GET /policy/api/v1/infra/segments/service-segments/<service-segment-id>
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param serviceAttachmentIdParam (required)
 	// @return com.vmware.nsx.model.ServiceAttachment
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(serviceAttachmentIdParam string) (nsxModel.ServiceAttachment, error)
+	Get(serviceAttachmentIdParam string) (model.ServiceAttachment, error)
 
 	// Returns all Service-Attachement(s) present in the system.
 	//  This API has been deprecated, please use below Policy API
 	//  For North-South service insertion
 	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/service-interfaces GET /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/service-interfaces For East-West service insertion
 	//  GET /policy/api/v1/infra/segments/service-segments
-	//
-	// Deprecated: This API element is deprecated.
 	// @return com.vmware.nsx.model.ServiceAttachmentListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List() (nsxModel.ServiceAttachmentListResult, error)
+	List() (model.ServiceAttachmentListResult, error)
 
 	// Modifies an existing service attachment. Updates to name, description and Logical Router list only supported.
 	//  This API has been deprecated, please use below Policy API
@@ -95,76 +84,72 @@ type ServiceAttachmentsClient interface {
 	//  PUT /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/service-interfaces/<interface-id> PATCH /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/service-interfaces/<interface-id> PUT /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/service-interfaces/<interface-id> PATCH /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/service-interfaces/<interface-id> For East-West service insertion
 	//  PUT /policy/api/v1/infra/segments/service-segments/<service-segment-id> PATCH /policy/api/v1/infra/segments/service-segments/<service-segment-id>
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param serviceAttachmentIdParam (required)
 	// @param serviceAttachmentParam (required)
 	// @return com.vmware.nsx.model.ServiceAttachment
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(serviceAttachmentIdParam string, serviceAttachmentParam nsxModel.ServiceAttachment) (nsxModel.ServiceAttachment, error)
+	Update(serviceAttachmentIdParam string, serviceAttachmentParam model.ServiceAttachment) (model.ServiceAttachment, error)
 }
 
 type serviceAttachmentsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewServiceAttachmentsClient(connector vapiProtocolClient_.Connector) *serviceAttachmentsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.serviceinsertion.service_attachments")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"create": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewServiceAttachmentsClient(connector client.Connector) *serviceAttachmentsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.serviceinsertion.service_attachments")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"create": core.NewMethodIdentifier(interfaceIdentifier, "create"),
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	sIface := serviceAttachmentsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &sIface
 }
 
-func (sIface *serviceAttachmentsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (sIface *serviceAttachmentsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := sIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (sIface *serviceAttachmentsClient) Create(serviceAttachmentParam nsxModel.ServiceAttachment) (nsxModel.ServiceAttachment, error) {
+func (sIface *serviceAttachmentsClient) Create(serviceAttachmentParam model.ServiceAttachment) (model.ServiceAttachment, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := serviceAttachmentsCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(serviceAttachmentsCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(serviceAttachmentsCreateInputType(), typeConverter)
 	sv.AddStructField("ServiceAttachment", serviceAttachmentParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.ServiceAttachment
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.ServiceAttachment
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := serviceAttachmentsCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx.serviceinsertion.service_attachments", "create", inputDataValue, executionContext)
-	var emptyOutput nsxModel.ServiceAttachment
+	var emptyOutput model.ServiceAttachment
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ServiceAttachmentsCreateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), serviceAttachmentsCreateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.ServiceAttachment), nil
+		return output.(model.ServiceAttachment), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
@@ -173,120 +158,116 @@ func (sIface *serviceAttachmentsClient) Create(serviceAttachmentParam nsxModel.S
 func (sIface *serviceAttachmentsClient) Delete(serviceAttachmentIdParam string) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := serviceAttachmentsDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(serviceAttachmentsDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(serviceAttachmentsDeleteInputType(), typeConverter)
 	sv.AddStructField("ServiceAttachmentId", serviceAttachmentIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := serviceAttachmentsDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx.serviceinsertion.service_attachments", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (sIface *serviceAttachmentsClient) Get(serviceAttachmentIdParam string) (nsxModel.ServiceAttachment, error) {
+func (sIface *serviceAttachmentsClient) Get(serviceAttachmentIdParam string) (model.ServiceAttachment, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := serviceAttachmentsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(serviceAttachmentsGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(serviceAttachmentsGetInputType(), typeConverter)
 	sv.AddStructField("ServiceAttachmentId", serviceAttachmentIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.ServiceAttachment
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.ServiceAttachment
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := serviceAttachmentsGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx.serviceinsertion.service_attachments", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.ServiceAttachment
+	var emptyOutput model.ServiceAttachment
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ServiceAttachmentsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), serviceAttachmentsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.ServiceAttachment), nil
+		return output.(model.ServiceAttachment), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (sIface *serviceAttachmentsClient) List() (nsxModel.ServiceAttachmentListResult, error) {
+func (sIface *serviceAttachmentsClient) List() (model.ServiceAttachmentListResult, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := serviceAttachmentsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(serviceAttachmentsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(serviceAttachmentsListInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.ServiceAttachmentListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.ServiceAttachmentListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := serviceAttachmentsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx.serviceinsertion.service_attachments", "list", inputDataValue, executionContext)
-	var emptyOutput nsxModel.ServiceAttachmentListResult
+	var emptyOutput model.ServiceAttachmentListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ServiceAttachmentsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), serviceAttachmentsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.ServiceAttachmentListResult), nil
+		return output.(model.ServiceAttachmentListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (sIface *serviceAttachmentsClient) Update(serviceAttachmentIdParam string, serviceAttachmentParam nsxModel.ServiceAttachment) (nsxModel.ServiceAttachment, error) {
+func (sIface *serviceAttachmentsClient) Update(serviceAttachmentIdParam string, serviceAttachmentParam model.ServiceAttachment) (model.ServiceAttachment, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := serviceAttachmentsUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(serviceAttachmentsUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(serviceAttachmentsUpdateInputType(), typeConverter)
 	sv.AddStructField("ServiceAttachmentId", serviceAttachmentIdParam)
 	sv.AddStructField("ServiceAttachment", serviceAttachmentParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.ServiceAttachment
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.ServiceAttachment
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := serviceAttachmentsUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx.serviceinsertion.service_attachments", "update", inputDataValue, executionContext)
-	var emptyOutput nsxModel.ServiceAttachment
+	var emptyOutput model.ServiceAttachment
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ServiceAttachmentsUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), serviceAttachmentsUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.ServiceAttachment), nil
+		return output.(model.ServiceAttachment), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

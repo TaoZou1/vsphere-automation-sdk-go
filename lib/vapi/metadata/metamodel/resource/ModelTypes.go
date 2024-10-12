@@ -11,42 +11,42 @@
 package resource
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
 	"reflect"
 )
 
-func modelListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func modelListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["resource_id"] = vapiBindings_.NewIdType([]string{"com.vmware.vapi.resource"}, "")
+	fields["resource_id"] = bindings.NewIdType([]string{"com.vmware.vapi.resource"}, "")
 	fieldNameMap["resource_id"] = "ResourceId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func ModelListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewSetType(vapiBindings_.NewIdType([]string{"com.vmware.vapi.structure"}, ""), reflect.TypeOf(map[string]bool{}))
+func modelListOutputType() bindings.BindingType {
+	return bindings.NewSetType(bindings.NewIdType([]string{"com.vmware.vapi.structure"}, ""), reflect.TypeOf(map[string]bool{}))
 }
 
-func modelListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func modelListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["resource_id"] = vapiBindings_.NewIdType([]string{"com.vmware.vapi.resource"}, "")
+	fields["resource_id"] = bindings.NewIdType([]string{"com.vmware.vapi.resource"}, "")
 	fieldNameMap["resource_id"] = "ResourceId"
-	paramsTypeMap["resource_id"] = vapiBindings_.NewIdType([]string{"com.vmware.vapi.resource"}, "")
-	paramsTypeMap["resourceId"] = vapiBindings_.NewIdType([]string{"com.vmware.vapi.resource"}, "")
+	paramsTypeMap["resource_id"] = bindings.NewIdType([]string{"com.vmware.vapi.resource"}, "")
+	paramsTypeMap["resourceId"] = bindings.NewIdType([]string{"com.vmware.vapi.resource"}, "")
 	pathParams["resource_id"] = "resourceId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,43 +11,43 @@
 package network
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 	"reflect"
 )
 
-func interfacesGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func interfacesGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["interface_id"] = vapiBindings_.NewStringType()
+	fields["interface_id"] = bindings.NewStringType()
 	fieldNameMap["interface_id"] = "InterfaceId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func InterfacesGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.NodeNetworkInterfacePropertiesBindingType)
+func interfacesGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.NodeNetworkInterfacePropertiesBindingType)
 }
 
-func interfacesGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func interfacesGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["interface_id"] = vapiBindings_.NewStringType()
+	fields["interface_id"] = bindings.NewStringType()
 	fieldNameMap["interface_id"] = "InterfaceId"
-	paramsTypeMap["interface_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["interfaceId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["interface_id"] = bindings.NewStringType()
+	paramsTypeMap["interfaceId"] = bindings.NewStringType()
 	pathParams["interface_id"] = "interfaceId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -68,21 +68,21 @@ func interfacesGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func interfacesListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func interfacesListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func InterfacesListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.NodeNetworkInterfacePropertiesListResultBindingType)
+func interfacesListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.NodeNetworkInterfacePropertiesListResultBindingType)
 }
 
-func interfacesListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func interfacesListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
@@ -90,7 +90,7 @@ func interfacesListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	bodyFieldsMap := map[string]string{}
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -111,41 +111,41 @@ func interfacesListRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func interfacesUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func interfacesUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["interface_id"] = vapiBindings_.NewStringType()
-	fields["node_network_interface_properties"] = vapiBindings_.NewReferenceType(nsxModel.NodeNetworkInterfacePropertiesBindingType)
+	fields["interface_id"] = bindings.NewStringType()
+	fields["node_network_interface_properties"] = bindings.NewReferenceType(model.NodeNetworkInterfacePropertiesBindingType)
 	fieldNameMap["interface_id"] = "InterfaceId"
 	fieldNameMap["node_network_interface_properties"] = "NodeNetworkInterfaceProperties"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func InterfacesUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.NodeNetworkInterfacePropertiesBindingType)
+func interfacesUpdateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.NodeNetworkInterfacePropertiesBindingType)
 }
 
-func interfacesUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func interfacesUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["interface_id"] = vapiBindings_.NewStringType()
-	fields["node_network_interface_properties"] = vapiBindings_.NewReferenceType(nsxModel.NodeNetworkInterfacePropertiesBindingType)
+	fields["interface_id"] = bindings.NewStringType()
+	fields["node_network_interface_properties"] = bindings.NewReferenceType(model.NodeNetworkInterfacePropertiesBindingType)
 	fieldNameMap["interface_id"] = "InterfaceId"
 	fieldNameMap["node_network_interface_properties"] = "NodeNetworkInterfaceProperties"
-	paramsTypeMap["node_network_interface_properties"] = vapiBindings_.NewReferenceType(nsxModel.NodeNetworkInterfacePropertiesBindingType)
-	paramsTypeMap["interface_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["interfaceId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["interface_id"] = bindings.NewStringType()
+	paramsTypeMap["node_network_interface_properties"] = bindings.NewReferenceType(model.NodeNetworkInterfacePropertiesBindingType)
+	paramsTypeMap["interfaceId"] = bindings.NewStringType()
 	pathParams["interface_id"] = "interfaceId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

@@ -1,11 +1,23 @@
 #! /bin/bash
 set -e
-set -x 
 
 modulePath=$(echo $CI_COMMIT_TAG | rev | cut -d "/" -f 2- | rev)
 
-cd $CI_PROJECT_DIR/$DESTINATION_REPO/$modulePath
+git clone -b master --single-branch https://oauth2:${ACCESS_TOKEN}@${DESTINATION_REPO}.git github-repo
 
-git log -5 --no-walk --tags --pretty="%h %d %s" --decorate=full
-REPO="https://oauth2:${CI_ACCESS_TOKEN}@${DESTINATION_REPO}.git"
-git push --follow-tags $REPO HEAD:master
+mkdir -p github-repo/$modulePath
+cd github-repo/$modulePath
+
+# Delete old files of the module.
+moduleRepoPath="${DESTINATION_REPO}/$modulePath/"
+go list all | grep "$moduleRepoPath" | sed "s#$moduleRepoPath##" | sort -r -t /
+rm -rf $(go list all | grep "$moduleRepoPath" | sed "s#$moduleRepoPath##" | sort -r -t /)
+find . -type f -maxdepth 1 -delete
+
+cp -r $DESTINATION_REPO/$modulePath/* github-repo/$modulePath/
+
+cd github-repo
+git add $modulePath
+git commit -m "$CI_COMMIT_MESSAGE"
+git tag -a -m "$CI_COMMIT_TAG" $CI_COMMIT_TAG
+git push --follow-tags https://oauth2:${ACCESS_TOKEN}@${DESTINATION_REPO}.git HEAD:master $CI_COMMIT_TAG

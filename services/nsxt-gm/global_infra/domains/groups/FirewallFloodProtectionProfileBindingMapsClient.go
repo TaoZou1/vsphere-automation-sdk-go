@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package groups
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_global_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-gm/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-gm/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type FirewallFloodProtectionProfileBindingMapsClient interface {
 
@@ -25,7 +26,6 @@ type FirewallFloodProtectionProfileBindingMapsClient interface {
 	// @param domainIdParam Domain ID (required)
 	// @param groupIdParam Group ID (required)
 	// @param firewallFloodProtectionProfileBindingMapIdParam Firewall Flood Protection Profile Binding Map ID (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -39,13 +39,12 @@ type FirewallFloodProtectionProfileBindingMapsClient interface {
 	// @param groupIdParam Group ID (required)
 	// @param firewallFloodProtectionProfileBindingMapIdParam Firewall Flood Protection Profile Binding Map ID (required)
 	// @return com.vmware.nsx_global_policy.model.PolicyFirewallFloodProtectionProfileBindingMap
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(domainIdParam string, groupIdParam string, firewallFloodProtectionProfileBindingMapIdParam string) (nsx_global_policyModel.PolicyFirewallFloodProtectionProfileBindingMap, error)
+	Get(domainIdParam string, groupIdParam string, firewallFloodProtectionProfileBindingMapIdParam string) (model.PolicyFirewallFloodProtectionProfileBindingMap, error)
 
 	// API will list all Firewall Flood Protection Profile Binding Maps in current group id.
 	//
@@ -58,13 +57,12 @@ type FirewallFloodProtectionProfileBindingMapsClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_global_policy.model.PolicyFirewallFloodProtectionProfileBindingMapListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(domainIdParam string, groupIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_global_policyModel.PolicyFirewallFloodProtectionProfileBindingMapListResult, error)
+	List(domainIdParam string, groupIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyFirewallFloodProtectionProfileBindingMapListResult, error)
 
 	// API will create or update Firewall Flood Protection profile binding map
 	//
@@ -72,13 +70,12 @@ type FirewallFloodProtectionProfileBindingMapsClient interface {
 	// @param groupIdParam Group ID (required)
 	// @param firewallFloodProtectionProfileBindingMapIdParam Firewall Flood Protection Profile Binding Map ID (required)
 	// @param policyFirewallFloodProtectionProfileBindingMapParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(domainIdParam string, groupIdParam string, firewallFloodProtectionProfileBindingMapIdParam string, policyFirewallFloodProtectionProfileBindingMapParam nsx_global_policyModel.PolicyFirewallFloodProtectionProfileBindingMap) error
+	Patch(domainIdParam string, groupIdParam string, firewallFloodProtectionProfileBindingMapIdParam string, policyFirewallFloodProtectionProfileBindingMapParam model.PolicyFirewallFloodProtectionProfileBindingMap) error
 
 	// API will update Firewall Flood Protection Profile Binding Map
 	//
@@ -87,114 +84,107 @@ type FirewallFloodProtectionProfileBindingMapsClient interface {
 	// @param firewallFloodProtectionProfileBindingMapIdParam Firewall Flood Protection Profile Binding Map ID (required)
 	// @param policyFirewallFloodProtectionProfileBindingMapParam (required)
 	// @return com.vmware.nsx_global_policy.model.PolicyFirewallFloodProtectionProfileBindingMap
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(domainIdParam string, groupIdParam string, firewallFloodProtectionProfileBindingMapIdParam string, policyFirewallFloodProtectionProfileBindingMapParam nsx_global_policyModel.PolicyFirewallFloodProtectionProfileBindingMap) (nsx_global_policyModel.PolicyFirewallFloodProtectionProfileBindingMap, error)
+	Update(domainIdParam string, groupIdParam string, firewallFloodProtectionProfileBindingMapIdParam string, policyFirewallFloodProtectionProfileBindingMapParam model.PolicyFirewallFloodProtectionProfileBindingMap) (model.PolicyFirewallFloodProtectionProfileBindingMap, error)
 }
 
 type firewallFloodProtectionProfileBindingMapsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewFirewallFloodProtectionProfileBindingMapsClient(connector vapiProtocolClient_.Connector) *firewallFloodProtectionProfileBindingMapsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_global_policy.global_infra.domains.groups.firewall_flood_protection_profile_binding_maps")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"patch":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewFirewallFloodProtectionProfileBindingMapsClient(connector client.Connector) *firewallFloodProtectionProfileBindingMapsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_global_policy.global_infra.domains.groups.firewall_flood_protection_profile_binding_maps")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	fIface := firewallFloodProtectionProfileBindingMapsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &fIface
 }
 
-func (fIface *firewallFloodProtectionProfileBindingMapsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (fIface *firewallFloodProtectionProfileBindingMapsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := fIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
 func (fIface *firewallFloodProtectionProfileBindingMapsClient) Delete(domainIdParam string, groupIdParam string, firewallFloodProtectionProfileBindingMapIdParam string) error {
 	typeConverter := fIface.connector.TypeConverter()
 	executionContext := fIface.connector.NewExecutionContext()
-	operationRestMetaData := firewallFloodProtectionProfileBindingMapsDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(firewallFloodProtectionProfileBindingMapsDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(firewallFloodProtectionProfileBindingMapsDeleteInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("FirewallFloodProtectionProfileBindingMapId", firewallFloodProtectionProfileBindingMapIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := firewallFloodProtectionProfileBindingMapsDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	fIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := fIface.connector.GetApiProvider().Invoke("com.vmware.nsx_global_policy.global_infra.domains.groups.firewall_flood_protection_profile_binding_maps", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), fIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (fIface *firewallFloodProtectionProfileBindingMapsClient) Get(domainIdParam string, groupIdParam string, firewallFloodProtectionProfileBindingMapIdParam string) (nsx_global_policyModel.PolicyFirewallFloodProtectionProfileBindingMap, error) {
+func (fIface *firewallFloodProtectionProfileBindingMapsClient) Get(domainIdParam string, groupIdParam string, firewallFloodProtectionProfileBindingMapIdParam string) (model.PolicyFirewallFloodProtectionProfileBindingMap, error) {
 	typeConverter := fIface.connector.TypeConverter()
 	executionContext := fIface.connector.NewExecutionContext()
-	operationRestMetaData := firewallFloodProtectionProfileBindingMapsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(firewallFloodProtectionProfileBindingMapsGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(firewallFloodProtectionProfileBindingMapsGetInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("FirewallFloodProtectionProfileBindingMapId", firewallFloodProtectionProfileBindingMapIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_global_policyModel.PolicyFirewallFloodProtectionProfileBindingMap
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.PolicyFirewallFloodProtectionProfileBindingMap
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := firewallFloodProtectionProfileBindingMapsGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	fIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := fIface.connector.GetApiProvider().Invoke("com.vmware.nsx_global_policy.global_infra.domains.groups.firewall_flood_protection_profile_binding_maps", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_global_policyModel.PolicyFirewallFloodProtectionProfileBindingMap
+	var emptyOutput model.PolicyFirewallFloodProtectionProfileBindingMap
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), FirewallFloodProtectionProfileBindingMapsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), firewallFloodProtectionProfileBindingMapsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_global_policyModel.PolicyFirewallFloodProtectionProfileBindingMap), nil
+		return output.(model.PolicyFirewallFloodProtectionProfileBindingMap), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), fIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (fIface *firewallFloodProtectionProfileBindingMapsClient) List(domainIdParam string, groupIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_global_policyModel.PolicyFirewallFloodProtectionProfileBindingMapListResult, error) {
+func (fIface *firewallFloodProtectionProfileBindingMapsClient) List(domainIdParam string, groupIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyFirewallFloodProtectionProfileBindingMapListResult, error) {
 	typeConverter := fIface.connector.TypeConverter()
 	executionContext := fIface.connector.NewExecutionContext()
-	operationRestMetaData := firewallFloodProtectionProfileBindingMapsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(firewallFloodProtectionProfileBindingMapsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(firewallFloodProtectionProfileBindingMapsListInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("Cursor", cursorParam)
@@ -205,86 +195,87 @@ func (fIface *firewallFloodProtectionProfileBindingMapsClient) List(domainIdPara
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_global_policyModel.PolicyFirewallFloodProtectionProfileBindingMapListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.PolicyFirewallFloodProtectionProfileBindingMapListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := firewallFloodProtectionProfileBindingMapsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	fIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := fIface.connector.GetApiProvider().Invoke("com.vmware.nsx_global_policy.global_infra.domains.groups.firewall_flood_protection_profile_binding_maps", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_global_policyModel.PolicyFirewallFloodProtectionProfileBindingMapListResult
+	var emptyOutput model.PolicyFirewallFloodProtectionProfileBindingMapListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), FirewallFloodProtectionProfileBindingMapsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), firewallFloodProtectionProfileBindingMapsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_global_policyModel.PolicyFirewallFloodProtectionProfileBindingMapListResult), nil
+		return output.(model.PolicyFirewallFloodProtectionProfileBindingMapListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), fIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (fIface *firewallFloodProtectionProfileBindingMapsClient) Patch(domainIdParam string, groupIdParam string, firewallFloodProtectionProfileBindingMapIdParam string, policyFirewallFloodProtectionProfileBindingMapParam nsx_global_policyModel.PolicyFirewallFloodProtectionProfileBindingMap) error {
+func (fIface *firewallFloodProtectionProfileBindingMapsClient) Patch(domainIdParam string, groupIdParam string, firewallFloodProtectionProfileBindingMapIdParam string, policyFirewallFloodProtectionProfileBindingMapParam model.PolicyFirewallFloodProtectionProfileBindingMap) error {
 	typeConverter := fIface.connector.TypeConverter()
 	executionContext := fIface.connector.NewExecutionContext()
-	operationRestMetaData := firewallFloodProtectionProfileBindingMapsPatchRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(firewallFloodProtectionProfileBindingMapsPatchInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(firewallFloodProtectionProfileBindingMapsPatchInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("FirewallFloodProtectionProfileBindingMapId", firewallFloodProtectionProfileBindingMapIdParam)
 	sv.AddStructField("PolicyFirewallFloodProtectionProfileBindingMap", policyFirewallFloodProtectionProfileBindingMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := firewallFloodProtectionProfileBindingMapsPatchRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	fIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := fIface.connector.GetApiProvider().Invoke("com.vmware.nsx_global_policy.global_infra.domains.groups.firewall_flood_protection_profile_binding_maps", "patch", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), fIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (fIface *firewallFloodProtectionProfileBindingMapsClient) Update(domainIdParam string, groupIdParam string, firewallFloodProtectionProfileBindingMapIdParam string, policyFirewallFloodProtectionProfileBindingMapParam nsx_global_policyModel.PolicyFirewallFloodProtectionProfileBindingMap) (nsx_global_policyModel.PolicyFirewallFloodProtectionProfileBindingMap, error) {
+func (fIface *firewallFloodProtectionProfileBindingMapsClient) Update(domainIdParam string, groupIdParam string, firewallFloodProtectionProfileBindingMapIdParam string, policyFirewallFloodProtectionProfileBindingMapParam model.PolicyFirewallFloodProtectionProfileBindingMap) (model.PolicyFirewallFloodProtectionProfileBindingMap, error) {
 	typeConverter := fIface.connector.TypeConverter()
 	executionContext := fIface.connector.NewExecutionContext()
-	operationRestMetaData := firewallFloodProtectionProfileBindingMapsUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(firewallFloodProtectionProfileBindingMapsUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(firewallFloodProtectionProfileBindingMapsUpdateInputType(), typeConverter)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("FirewallFloodProtectionProfileBindingMapId", firewallFloodProtectionProfileBindingMapIdParam)
 	sv.AddStructField("PolicyFirewallFloodProtectionProfileBindingMap", policyFirewallFloodProtectionProfileBindingMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_global_policyModel.PolicyFirewallFloodProtectionProfileBindingMap
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.PolicyFirewallFloodProtectionProfileBindingMap
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := firewallFloodProtectionProfileBindingMapsUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	fIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := fIface.connector.GetApiProvider().Invoke("com.vmware.nsx_global_policy.global_infra.domains.groups.firewall_flood_protection_profile_binding_maps", "update", inputDataValue, executionContext)
-	var emptyOutput nsx_global_policyModel.PolicyFirewallFloodProtectionProfileBindingMap
+	var emptyOutput model.PolicyFirewallFloodProtectionProfileBindingMap
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), FirewallFloodProtectionProfileBindingMapsUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), firewallFloodProtectionProfileBindingMapsUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_global_policyModel.PolicyFirewallFloodProtectionProfileBindingMap), nil
+		return output.(model.PolicyFirewallFloodProtectionProfileBindingMap), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), fIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

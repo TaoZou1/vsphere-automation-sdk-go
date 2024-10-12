@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package migration
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type MigrationUnitGroupsClient interface {
 
@@ -25,30 +26,27 @@ type MigrationUnitGroupsClient interface {
 	// @param groupIdParam (required)
 	// @param migrationUnitListParam (required)
 	// @return com.vmware.nsx.model.MigrationUnitList
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Addmigrationunits(groupIdParam string, migrationUnitListParam nsxModel.MigrationUnitList) (nsxModel.MigrationUnitList, error)
+	Addmigrationunits(groupIdParam string, migrationUnitListParam model.MigrationUnitList) (model.MigrationUnitList, error)
 
 	// Create a group of migration units.
 	//
 	// @param migrationUnitGroupParam (required)
 	// @return com.vmware.nsx.model.MigrationUnitGroup
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Create(migrationUnitGroupParam nsxModel.MigrationUnitGroup) (nsxModel.MigrationUnitGroup, error)
+	Create(migrationUnitGroupParam model.MigrationUnitGroup) (model.MigrationUnitGroup, error)
 
 	// Delete the specified group. NOTE - A group can be deleted only if it is empty. If user tries to delete a group containing one or more migration units, the operation will fail and an error will be returned.
 	//
 	// @param groupIdParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -61,13 +59,12 @@ type MigrationUnitGroupsClient interface {
 	// @param groupIdParam (required)
 	// @param summaryParam Flag indicating whether to return the summary (optional, default to false)
 	// @return com.vmware.nsx.model.MigrationUnitGroup
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(groupIdParam string, summaryParam *bool) (nsxModel.MigrationUnitGroup, error)
+	Get(groupIdParam string, summaryParam *bool) (model.MigrationUnitGroup, error)
 
 	// Return information of all migration unit groups in the migration plan. If request parameter summary is set to true, then only count of migration units will be returned, migration units list will be empty. If request parameter component type is specified, then all migration unit groups for that component will be returned.
 	//
@@ -80,131 +77,126 @@ type MigrationUnitGroupsClient interface {
 	// @param summaryParam Flag indicating whether to return summary (optional, default to false)
 	// @param syncParam Synchronize before returning migration unit groups (optional, default to false)
 	// @return com.vmware.nsx.model.MigrationUnitGroupListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(componentTypeParam *string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, summaryParam *bool, syncParam *bool) (nsxModel.MigrationUnitGroupListResult, error)
+	List(componentTypeParam *string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, summaryParam *bool, syncParam *bool) (model.MigrationUnitGroupListResult, error)
 
 	// Reorder an migration unit group by placing it before/after the specified migration unit group.
 	//
 	// @param groupIdParam (required)
 	// @param reorderMigrationRequestParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Reorder(groupIdParam string, reorderMigrationRequestParam nsxModel.ReorderMigrationRequest) error
+	Reorder(groupIdParam string, reorderMigrationRequestParam model.ReorderMigrationRequest) error
 
 	// Update the specified migration unit group. Removal of migration units from the group using this is not allowed. An error will be returned in that case.
 	//
 	// @param groupIdParam (required)
 	// @param migrationUnitGroupParam (required)
 	// @return com.vmware.nsx.model.MigrationUnitGroup
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(groupIdParam string, migrationUnitGroupParam nsxModel.MigrationUnitGroup) (nsxModel.MigrationUnitGroup, error)
+	Update(groupIdParam string, migrationUnitGroupParam model.MigrationUnitGroup) (model.MigrationUnitGroup, error)
 }
 
 type migrationUnitGroupsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewMigrationUnitGroupsClient(connector vapiProtocolClient_.Connector) *migrationUnitGroupsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.migration.migration_unit_groups")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"addmigrationunits": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "addmigrationunits"),
-		"create":            vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
-		"delete":            vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":               vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":              vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"reorder":           vapiCore_.NewMethodIdentifier(interfaceIdentifier, "reorder"),
-		"update":            vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewMigrationUnitGroupsClient(connector client.Connector) *migrationUnitGroupsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.migration.migration_unit_groups")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"addmigrationunits": core.NewMethodIdentifier(interfaceIdentifier, "addmigrationunits"),
+		"create":            core.NewMethodIdentifier(interfaceIdentifier, "create"),
+		"delete":            core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":               core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":              core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"reorder":           core.NewMethodIdentifier(interfaceIdentifier, "reorder"),
+		"update":            core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	mIface := migrationUnitGroupsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &mIface
 }
 
-func (mIface *migrationUnitGroupsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (mIface *migrationUnitGroupsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := mIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (mIface *migrationUnitGroupsClient) Addmigrationunits(groupIdParam string, migrationUnitListParam nsxModel.MigrationUnitList) (nsxModel.MigrationUnitList, error) {
+func (mIface *migrationUnitGroupsClient) Addmigrationunits(groupIdParam string, migrationUnitListParam model.MigrationUnitList) (model.MigrationUnitList, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	executionContext := mIface.connector.NewExecutionContext()
-	operationRestMetaData := migrationUnitGroupsAddmigrationunitsRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(migrationUnitGroupsAddmigrationunitsInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(migrationUnitGroupsAddmigrationunitsInputType(), typeConverter)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("MigrationUnitList", migrationUnitListParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.MigrationUnitList
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.MigrationUnitList
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := migrationUnitGroupsAddmigrationunitsRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := mIface.connector.GetApiProvider().Invoke("com.vmware.nsx.migration.migration_unit_groups", "addmigrationunits", inputDataValue, executionContext)
-	var emptyOutput nsxModel.MigrationUnitList
+	var emptyOutput model.MigrationUnitList
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), MigrationUnitGroupsAddmigrationunitsOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), migrationUnitGroupsAddmigrationunitsOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.MigrationUnitList), nil
+		return output.(model.MigrationUnitList), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), mIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (mIface *migrationUnitGroupsClient) Create(migrationUnitGroupParam nsxModel.MigrationUnitGroup) (nsxModel.MigrationUnitGroup, error) {
+func (mIface *migrationUnitGroupsClient) Create(migrationUnitGroupParam model.MigrationUnitGroup) (model.MigrationUnitGroup, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	executionContext := mIface.connector.NewExecutionContext()
-	operationRestMetaData := migrationUnitGroupsCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(migrationUnitGroupsCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(migrationUnitGroupsCreateInputType(), typeConverter)
 	sv.AddStructField("MigrationUnitGroup", migrationUnitGroupParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.MigrationUnitGroup
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.MigrationUnitGroup
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := migrationUnitGroupsCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := mIface.connector.GetApiProvider().Invoke("com.vmware.nsx.migration.migration_unit_groups", "create", inputDataValue, executionContext)
-	var emptyOutput nsxModel.MigrationUnitGroup
+	var emptyOutput model.MigrationUnitGroup
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), MigrationUnitGroupsCreateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), migrationUnitGroupsCreateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.MigrationUnitGroup), nil
+		return output.(model.MigrationUnitGroup), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), mIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
@@ -213,70 +205,64 @@ func (mIface *migrationUnitGroupsClient) Create(migrationUnitGroupParam nsxModel
 func (mIface *migrationUnitGroupsClient) Delete(groupIdParam string) error {
 	typeConverter := mIface.connector.TypeConverter()
 	executionContext := mIface.connector.NewExecutionContext()
-	operationRestMetaData := migrationUnitGroupsDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(migrationUnitGroupsDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(migrationUnitGroupsDeleteInputType(), typeConverter)
 	sv.AddStructField("GroupId", groupIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := migrationUnitGroupsDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := mIface.connector.GetApiProvider().Invoke("com.vmware.nsx.migration.migration_unit_groups", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), mIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (mIface *migrationUnitGroupsClient) Get(groupIdParam string, summaryParam *bool) (nsxModel.MigrationUnitGroup, error) {
+func (mIface *migrationUnitGroupsClient) Get(groupIdParam string, summaryParam *bool) (model.MigrationUnitGroup, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	executionContext := mIface.connector.NewExecutionContext()
-	operationRestMetaData := migrationUnitGroupsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(migrationUnitGroupsGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(migrationUnitGroupsGetInputType(), typeConverter)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("Summary", summaryParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.MigrationUnitGroup
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.MigrationUnitGroup
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := migrationUnitGroupsGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := mIface.connector.GetApiProvider().Invoke("com.vmware.nsx.migration.migration_unit_groups", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.MigrationUnitGroup
+	var emptyOutput model.MigrationUnitGroup
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), MigrationUnitGroupsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), migrationUnitGroupsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.MigrationUnitGroup), nil
+		return output.(model.MigrationUnitGroup), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), mIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (mIface *migrationUnitGroupsClient) List(componentTypeParam *string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, summaryParam *bool, syncParam *bool) (nsxModel.MigrationUnitGroupListResult, error) {
+func (mIface *migrationUnitGroupsClient) List(componentTypeParam *string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, summaryParam *bool, syncParam *bool) (model.MigrationUnitGroupListResult, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	executionContext := mIface.connector.NewExecutionContext()
-	operationRestMetaData := migrationUnitGroupsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(migrationUnitGroupsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(migrationUnitGroupsListInputType(), typeConverter)
 	sv.AddStructField("ComponentType", componentTypeParam)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)
@@ -287,82 +273,83 @@ func (mIface *migrationUnitGroupsClient) List(componentTypeParam *string, cursor
 	sv.AddStructField("Sync", syncParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.MigrationUnitGroupListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.MigrationUnitGroupListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := migrationUnitGroupsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := mIface.connector.GetApiProvider().Invoke("com.vmware.nsx.migration.migration_unit_groups", "list", inputDataValue, executionContext)
-	var emptyOutput nsxModel.MigrationUnitGroupListResult
+	var emptyOutput model.MigrationUnitGroupListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), MigrationUnitGroupsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), migrationUnitGroupsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.MigrationUnitGroupListResult), nil
+		return output.(model.MigrationUnitGroupListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), mIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (mIface *migrationUnitGroupsClient) Reorder(groupIdParam string, reorderMigrationRequestParam nsxModel.ReorderMigrationRequest) error {
+func (mIface *migrationUnitGroupsClient) Reorder(groupIdParam string, reorderMigrationRequestParam model.ReorderMigrationRequest) error {
 	typeConverter := mIface.connector.TypeConverter()
 	executionContext := mIface.connector.NewExecutionContext()
-	operationRestMetaData := migrationUnitGroupsReorderRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(migrationUnitGroupsReorderInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(migrationUnitGroupsReorderInputType(), typeConverter)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("ReorderMigrationRequest", reorderMigrationRequestParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := migrationUnitGroupsReorderRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := mIface.connector.GetApiProvider().Invoke("com.vmware.nsx.migration.migration_unit_groups", "reorder", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), mIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (mIface *migrationUnitGroupsClient) Update(groupIdParam string, migrationUnitGroupParam nsxModel.MigrationUnitGroup) (nsxModel.MigrationUnitGroup, error) {
+func (mIface *migrationUnitGroupsClient) Update(groupIdParam string, migrationUnitGroupParam model.MigrationUnitGroup) (model.MigrationUnitGroup, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	executionContext := mIface.connector.NewExecutionContext()
-	operationRestMetaData := migrationUnitGroupsUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(migrationUnitGroupsUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(migrationUnitGroupsUpdateInputType(), typeConverter)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("MigrationUnitGroup", migrationUnitGroupParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.MigrationUnitGroup
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.MigrationUnitGroup
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := migrationUnitGroupsUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := mIface.connector.GetApiProvider().Invoke("com.vmware.nsx.migration.migration_unit_groups", "update", inputDataValue, executionContext)
-	var emptyOutput nsxModel.MigrationUnitGroup
+	var emptyOutput model.MigrationUnitGroup
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), MigrationUnitGroupsUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), migrationUnitGroupsUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.MigrationUnitGroup), nil
+		return output.(model.MigrationUnitGroup), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), mIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

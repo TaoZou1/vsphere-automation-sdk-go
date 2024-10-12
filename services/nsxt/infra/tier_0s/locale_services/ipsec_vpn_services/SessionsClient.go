@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,28 +9,26 @@
 package ipsec_vpn_services
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type SessionsClient interface {
 
 	// Delete IPSec VPN session for a given locale service under Tier-0.
 	//  This API is deprecated. Please use DELETE /infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/sessions/<session-id> instead. Note: Please note that request is validated and any error messages returned from validation may include the new VPN path instead of the deprecated path. Both new path and old path refer to same resource. Also VPN path returned in the Alarm, GPRR payload may include the new VPN path
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param tier0IdParam (required)
 	// @param localeServiceIdParam (required)
 	// @param serviceIdParam (required)
 	// @param sessionIdParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -41,26 +39,21 @@ type SessionsClient interface {
 	// Get IPSec VPN session without sensitive data for a given locale service under Tier-0.
 	//  This API is deprecated. Please use GET /infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/sessions/<session-id> instead. Note: Please note that request is validated and any error messages returned from validation may include the new VPN path instead of the deprecated path. Both new path and old path refer to same resource.
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param tier0IdParam (required)
 	// @param localeServiceIdParam (required)
 	// @param serviceIdParam (required)
 	// @param sessionIdParam (required)
 	// @return com.vmware.nsx_policy.model.IPSecVpnSession
-	// The return value will contain all the properties defined in nsx_policyModel.IPSecVpnSession.
-	//
+	// The return value will contain all the properties defined in model.IPSecVpnSession.
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, sessionIdParam string) (*vapiData_.StructValue, error)
+	Get(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, sessionIdParam string) (*data.StructValue, error)
 
 	// Get paginated list of all IPSec VPN sessions for a given locale service under Tier-0.
 	//  This API is deprecated. Please use GET /infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/sessions instead. Note: Please note that request is validated and any error messages returned from validation may include the new VPN path instead of the deprecated path. Both new path and old path refer to same resource.
-	//
-	// Deprecated: This API element is deprecated.
 	//
 	// @param tier0IdParam (required)
 	// @param localeServiceIdParam (required)
@@ -72,176 +65,160 @@ type SessionsClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_policy.model.IPSecVpnSessionListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.IPSecVpnSessionListResult, error)
+	List(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IPSecVpnSessionListResult, error)
 
 	// Create or patch an IPSec VPN session for a given locale service under Tier-0.
 	//  This API is deprecated. Please use PATCH /infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/sessions/<session-id> instead. Note: Please note that request is validated and any error messages returned from validation may include the new VPN path instead of the deprecated path. Both new path and old path refer to same resource. Also VPN path returned in the Alarm, GPRR payload may include the new VPN path
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param tier0IdParam (required)
 	// @param localeServiceIdParam (required)
 	// @param serviceIdParam (required)
 	// @param sessionIdParam (required)
 	// @param ipSecVpnSessionParam (required)
-	// The parameter must contain all the properties defined in nsx_policyModel.IPSecVpnSession.
-	//
+	// The parameter must contain all the properties defined in model.IPSecVpnSession.
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, sessionIdParam string, ipSecVpnSessionParam *vapiData_.StructValue) error
+	Patch(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, sessionIdParam string, ipSecVpnSessionParam *data.StructValue) error
 
 	// Get IPSec VPN session with senstive data for a given locale service under Tier-0.
 	//  This API is deprecated. Please use GET /infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>?action=show_sensitive_data instead. Note: Please note that request is validated and any error messages returned from validation may include the new VPN path instead of the deprecated path. Both new path and old path refer to same resource.
 	//
-	// Deprecated: This API element is deprecated.
-	//
 	// @param tier0IdParam (required)
 	// @param localeServiceIdParam (required)
 	// @param serviceIdParam (required)
 	// @param sessionIdParam (required)
 	// @return com.vmware.nsx_policy.model.IPSecVpnSession
-	// The return value will contain all the properties defined in nsx_policyModel.IPSecVpnSession.
-	//
+	// The return value will contain all the properties defined in model.IPSecVpnSession.
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Showsensitivedata(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, sessionIdParam string) (*vapiData_.StructValue, error)
+	Showsensitivedata(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, sessionIdParam string) (*data.StructValue, error)
 
 	// Create or fully replace IPSec VPN session for a given locale service under Tier-0. Revision is optional for creation and required for update.
 	//  This API is deprecated. Please use PUT /infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/sessions/<session-id> instead. Note: Please note that request is validated and any error messages returned from validation may include the new VPN path instead of the deprecated path. Both new path and old path refer to same resource. Also VPN path returned in the Alarm, GPRR payload may include the new VPN path
-	//
-	// Deprecated: This API element is deprecated.
 	//
 	// @param tier0IdParam (required)
 	// @param localeServiceIdParam (required)
 	// @param serviceIdParam (required)
 	// @param sessionIdParam (required)
 	// @param ipSecVpnSessionParam (required)
-	// The parameter must contain all the properties defined in nsx_policyModel.IPSecVpnSession.
+	// The parameter must contain all the properties defined in model.IPSecVpnSession.
 	// @return com.vmware.nsx_policy.model.IPSecVpnSession
-	// The return value will contain all the properties defined in nsx_policyModel.IPSecVpnSession.
-	//
+	// The return value will contain all the properties defined in model.IPSecVpnSession.
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, sessionIdParam string, ipSecVpnSessionParam *vapiData_.StructValue) (*vapiData_.StructValue, error)
+	Update(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, sessionIdParam string, ipSecVpnSessionParam *data.StructValue) (*data.StructValue, error)
 }
 
 type sessionsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewSessionsClient(connector vapiProtocolClient_.Connector) *sessionsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.tier_0s.locale_services.ipsec_vpn_services.sessions")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"delete":            vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":               vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":              vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"patch":             vapiCore_.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"showsensitivedata": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "showsensitivedata"),
-		"update":            vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewSessionsClient(connector client.Connector) *sessionsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.tier_0s.locale_services.ipsec_vpn_services.sessions")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"delete":            core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":               core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":              core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"patch":             core.NewMethodIdentifier(interfaceIdentifier, "patch"),
+		"showsensitivedata": core.NewMethodIdentifier(interfaceIdentifier, "showsensitivedata"),
+		"update":            core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	sIface := sessionsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &sIface
 }
 
-func (sIface *sessionsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (sIface *sessionsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := sIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
 func (sIface *sessionsClient) Delete(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, sessionIdParam string) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := sessionsDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(sessionsDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(sessionsDeleteInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
 	sv.AddStructField("ServiceId", serviceIdParam)
 	sv.AddStructField("SessionId", sessionIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := sessionsDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_0s.locale_services.ipsec_vpn_services.sessions", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (sIface *sessionsClient) Get(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, sessionIdParam string) (*vapiData_.StructValue, error) {
+func (sIface *sessionsClient) Get(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, sessionIdParam string) (*data.StructValue, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := sessionsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(sessionsGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(sessionsGetInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
 	sv.AddStructField("ServiceId", serviceIdParam)
 	sv.AddStructField("SessionId", sessionIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput *vapiData_.StructValue
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput *data.StructValue
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := sessionsGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_0s.locale_services.ipsec_vpn_services.sessions", "get", inputDataValue, executionContext)
-	var emptyOutput *vapiData_.StructValue
+	var emptyOutput *data.StructValue
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), SessionsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), sessionsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(*vapiData_.StructValue), nil
+		return output.(*data.StructValue), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (sIface *sessionsClient) List(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.IPSecVpnSessionListResult, error) {
+func (sIface *sessionsClient) List(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IPSecVpnSessionListResult, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := sessionsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(sessionsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(sessionsListInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
 	sv.AddStructField("ServiceId", serviceIdParam)
@@ -253,35 +230,34 @@ func (sIface *sessionsClient) List(tier0IdParam string, localeServiceIdParam str
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.IPSecVpnSessionListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.IPSecVpnSessionListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := sessionsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_0s.locale_services.ipsec_vpn_services.sessions", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.IPSecVpnSessionListResult
+	var emptyOutput model.IPSecVpnSessionListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), SessionsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), sessionsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.IPSecVpnSessionListResult), nil
+		return output.(model.IPSecVpnSessionListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (sIface *sessionsClient) Patch(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, sessionIdParam string, ipSecVpnSessionParam *vapiData_.StructValue) error {
+func (sIface *sessionsClient) Patch(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, sessionIdParam string, ipSecVpnSessionParam *data.StructValue) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := sessionsPatchRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(sessionsPatchInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(sessionsPatchInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
 	sv.AddStructField("ServiceId", serviceIdParam)
@@ -289,64 +265,62 @@ func (sIface *sessionsClient) Patch(tier0IdParam string, localeServiceIdParam st
 	sv.AddStructField("IpSecVpnSession", ipSecVpnSessionParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := sessionsPatchRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_0s.locale_services.ipsec_vpn_services.sessions", "patch", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (sIface *sessionsClient) Showsensitivedata(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, sessionIdParam string) (*vapiData_.StructValue, error) {
+func (sIface *sessionsClient) Showsensitivedata(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, sessionIdParam string) (*data.StructValue, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := sessionsShowsensitivedataRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(sessionsShowsensitivedataInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(sessionsShowsensitivedataInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
 	sv.AddStructField("ServiceId", serviceIdParam)
 	sv.AddStructField("SessionId", sessionIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput *vapiData_.StructValue
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput *data.StructValue
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := sessionsShowsensitivedataRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_0s.locale_services.ipsec_vpn_services.sessions", "showsensitivedata", inputDataValue, executionContext)
-	var emptyOutput *vapiData_.StructValue
+	var emptyOutput *data.StructValue
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), SessionsShowsensitivedataOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), sessionsShowsensitivedataOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(*vapiData_.StructValue), nil
+		return output.(*data.StructValue), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (sIface *sessionsClient) Update(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, sessionIdParam string, ipSecVpnSessionParam *vapiData_.StructValue) (*vapiData_.StructValue, error) {
+func (sIface *sessionsClient) Update(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, sessionIdParam string, ipSecVpnSessionParam *data.StructValue) (*data.StructValue, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
-	operationRestMetaData := sessionsUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(sessionsUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(sessionsUpdateInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
 	sv.AddStructField("ServiceId", serviceIdParam)
@@ -354,22 +328,25 @@ func (sIface *sessionsClient) Update(tier0IdParam string, localeServiceIdParam s
 	sv.AddStructField("IpSecVpnSession", ipSecVpnSessionParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput *vapiData_.StructValue
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput *data.StructValue
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := sessionsUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_0s.locale_services.ipsec_vpn_services.sessions", "update", inputDataValue, executionContext)
-	var emptyOutput *vapiData_.StructValue
+	var emptyOutput *data.StructValue
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), SessionsUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), sessionsUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(*vapiData_.StructValue), nil
+		return output.(*data.StructValue), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

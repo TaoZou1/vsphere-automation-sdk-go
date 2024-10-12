@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package upgrade
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type UpgradeUnitGroupsClient interface {
 
@@ -25,30 +26,27 @@ type UpgradeUnitGroupsClient interface {
 	// @param groupIdParam (required)
 	// @param upgradeUnitListParam (required)
 	// @return com.vmware.nsx.model.UpgradeUnitList
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Addupgradeunits(groupIdParam string, upgradeUnitListParam nsxModel.UpgradeUnitList) (nsxModel.UpgradeUnitList, error)
+	Addupgradeunits(groupIdParam string, upgradeUnitListParam model.UpgradeUnitList) (model.UpgradeUnitList, error)
 
 	// Create a group of upgrade units.
 	//
 	// @param upgradeUnitGroupParam (required)
 	// @return com.vmware.nsx.model.UpgradeUnitGroup
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Create(upgradeUnitGroupParam nsxModel.UpgradeUnitGroup) (nsxModel.UpgradeUnitGroup, error)
+	Create(upgradeUnitGroupParam model.UpgradeUnitGroup) (model.UpgradeUnitGroup, error)
 
 	// Delete the specified group. NOTE - A group can be deleted only if it is empty. If user tries to delete a group containing one or more upgrade units, the operation will fail and an error will be returned.
 	//
 	// @param groupIdParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -61,13 +59,12 @@ type UpgradeUnitGroupsClient interface {
 	// @param groupIdParam (required)
 	// @param summaryParam Flag indicating whether to return the summary (optional, default to false)
 	// @return com.vmware.nsx.model.UpgradeUnitGroup
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(groupIdParam string, summaryParam *bool) (nsxModel.UpgradeUnitGroup, error)
+	Get(groupIdParam string, summaryParam *bool) (model.UpgradeUnitGroup, error)
 
 	// Return information of all upgrade unit groups in the upgrade plan. If request parameter summary is set to true, then only count of upgrade units will be returned, upgrade units list will be empty. If request parameter component type is specified, then all upgrade unit groups for that component will be returned.
 	//
@@ -80,131 +77,126 @@ type UpgradeUnitGroupsClient interface {
 	// @param summaryParam Flag indicating whether to return summary (optional, default to false)
 	// @param syncParam Synchronize before returning upgrade unit groups (optional, default to false)
 	// @return com.vmware.nsx.model.UpgradeUnitGroupListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(componentTypeParam *string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, summaryParam *bool, syncParam *bool) (nsxModel.UpgradeUnitGroupListResult, error)
+	List(componentTypeParam *string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, summaryParam *bool, syncParam *bool) (model.UpgradeUnitGroupListResult, error)
 
 	// Reorder an upgrade unit group by placing it before/after the specified upgrade unit group.
 	//
 	// @param groupIdParam (required)
 	// @param reorderRequestParam (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Reorder(groupIdParam string, reorderRequestParam nsxModel.ReorderRequest) error
+	Reorder(groupIdParam string, reorderRequestParam model.ReorderRequest) error
 
 	// Update the specified upgrade unit group. Removal of upgrade units from the group using this is not allowed. An error will be returned in that case.
 	//
 	// @param groupIdParam (required)
 	// @param upgradeUnitGroupParam (required)
 	// @return com.vmware.nsx.model.UpgradeUnitGroup
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(groupIdParam string, upgradeUnitGroupParam nsxModel.UpgradeUnitGroup) (nsxModel.UpgradeUnitGroup, error)
+	Update(groupIdParam string, upgradeUnitGroupParam model.UpgradeUnitGroup) (model.UpgradeUnitGroup, error)
 }
 
 type upgradeUnitGroupsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewUpgradeUnitGroupsClient(connector vapiProtocolClient_.Connector) *upgradeUnitGroupsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.upgrade.upgrade_unit_groups")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"addupgradeunits": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "addupgradeunits"),
-		"create":          vapiCore_.NewMethodIdentifier(interfaceIdentifier, "create"),
-		"delete":          vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":             vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":            vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"reorder":         vapiCore_.NewMethodIdentifier(interfaceIdentifier, "reorder"),
-		"update":          vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewUpgradeUnitGroupsClient(connector client.Connector) *upgradeUnitGroupsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.upgrade.upgrade_unit_groups")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"addupgradeunits": core.NewMethodIdentifier(interfaceIdentifier, "addupgradeunits"),
+		"create":          core.NewMethodIdentifier(interfaceIdentifier, "create"),
+		"delete":          core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":             core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":            core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"reorder":         core.NewMethodIdentifier(interfaceIdentifier, "reorder"),
+		"update":          core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	uIface := upgradeUnitGroupsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &uIface
 }
 
-func (uIface *upgradeUnitGroupsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (uIface *upgradeUnitGroupsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := uIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (uIface *upgradeUnitGroupsClient) Addupgradeunits(groupIdParam string, upgradeUnitListParam nsxModel.UpgradeUnitList) (nsxModel.UpgradeUnitList, error) {
+func (uIface *upgradeUnitGroupsClient) Addupgradeunits(groupIdParam string, upgradeUnitListParam model.UpgradeUnitList) (model.UpgradeUnitList, error) {
 	typeConverter := uIface.connector.TypeConverter()
 	executionContext := uIface.connector.NewExecutionContext()
-	operationRestMetaData := upgradeUnitGroupsAddupgradeunitsRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(upgradeUnitGroupsAddupgradeunitsInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(upgradeUnitGroupsAddupgradeunitsInputType(), typeConverter)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("UpgradeUnitList", upgradeUnitListParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.UpgradeUnitList
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.UpgradeUnitList
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := upgradeUnitGroupsAddupgradeunitsRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	uIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := uIface.connector.GetApiProvider().Invoke("com.vmware.nsx.upgrade.upgrade_unit_groups", "addupgradeunits", inputDataValue, executionContext)
-	var emptyOutput nsxModel.UpgradeUnitList
+	var emptyOutput model.UpgradeUnitList
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), UpgradeUnitGroupsAddupgradeunitsOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), upgradeUnitGroupsAddupgradeunitsOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.UpgradeUnitList), nil
+		return output.(model.UpgradeUnitList), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), uIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (uIface *upgradeUnitGroupsClient) Create(upgradeUnitGroupParam nsxModel.UpgradeUnitGroup) (nsxModel.UpgradeUnitGroup, error) {
+func (uIface *upgradeUnitGroupsClient) Create(upgradeUnitGroupParam model.UpgradeUnitGroup) (model.UpgradeUnitGroup, error) {
 	typeConverter := uIface.connector.TypeConverter()
 	executionContext := uIface.connector.NewExecutionContext()
-	operationRestMetaData := upgradeUnitGroupsCreateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(upgradeUnitGroupsCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(upgradeUnitGroupsCreateInputType(), typeConverter)
 	sv.AddStructField("UpgradeUnitGroup", upgradeUnitGroupParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.UpgradeUnitGroup
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.UpgradeUnitGroup
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := upgradeUnitGroupsCreateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	uIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := uIface.connector.GetApiProvider().Invoke("com.vmware.nsx.upgrade.upgrade_unit_groups", "create", inputDataValue, executionContext)
-	var emptyOutput nsxModel.UpgradeUnitGroup
+	var emptyOutput model.UpgradeUnitGroup
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), UpgradeUnitGroupsCreateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), upgradeUnitGroupsCreateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.UpgradeUnitGroup), nil
+		return output.(model.UpgradeUnitGroup), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), uIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
@@ -213,70 +205,64 @@ func (uIface *upgradeUnitGroupsClient) Create(upgradeUnitGroupParam nsxModel.Upg
 func (uIface *upgradeUnitGroupsClient) Delete(groupIdParam string) error {
 	typeConverter := uIface.connector.TypeConverter()
 	executionContext := uIface.connector.NewExecutionContext()
-	operationRestMetaData := upgradeUnitGroupsDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(upgradeUnitGroupsDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(upgradeUnitGroupsDeleteInputType(), typeConverter)
 	sv.AddStructField("GroupId", groupIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := upgradeUnitGroupsDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	uIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := uIface.connector.GetApiProvider().Invoke("com.vmware.nsx.upgrade.upgrade_unit_groups", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), uIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (uIface *upgradeUnitGroupsClient) Get(groupIdParam string, summaryParam *bool) (nsxModel.UpgradeUnitGroup, error) {
+func (uIface *upgradeUnitGroupsClient) Get(groupIdParam string, summaryParam *bool) (model.UpgradeUnitGroup, error) {
 	typeConverter := uIface.connector.TypeConverter()
 	executionContext := uIface.connector.NewExecutionContext()
-	operationRestMetaData := upgradeUnitGroupsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(upgradeUnitGroupsGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(upgradeUnitGroupsGetInputType(), typeConverter)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("Summary", summaryParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.UpgradeUnitGroup
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.UpgradeUnitGroup
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := upgradeUnitGroupsGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	uIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := uIface.connector.GetApiProvider().Invoke("com.vmware.nsx.upgrade.upgrade_unit_groups", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.UpgradeUnitGroup
+	var emptyOutput model.UpgradeUnitGroup
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), UpgradeUnitGroupsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), upgradeUnitGroupsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.UpgradeUnitGroup), nil
+		return output.(model.UpgradeUnitGroup), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), uIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (uIface *upgradeUnitGroupsClient) List(componentTypeParam *string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, summaryParam *bool, syncParam *bool) (nsxModel.UpgradeUnitGroupListResult, error) {
+func (uIface *upgradeUnitGroupsClient) List(componentTypeParam *string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, summaryParam *bool, syncParam *bool) (model.UpgradeUnitGroupListResult, error) {
 	typeConverter := uIface.connector.TypeConverter()
 	executionContext := uIface.connector.NewExecutionContext()
-	operationRestMetaData := upgradeUnitGroupsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(upgradeUnitGroupsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(upgradeUnitGroupsListInputType(), typeConverter)
 	sv.AddStructField("ComponentType", componentTypeParam)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)
@@ -287,82 +273,83 @@ func (uIface *upgradeUnitGroupsClient) List(componentTypeParam *string, cursorPa
 	sv.AddStructField("Sync", syncParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.UpgradeUnitGroupListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.UpgradeUnitGroupListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := upgradeUnitGroupsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	uIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := uIface.connector.GetApiProvider().Invoke("com.vmware.nsx.upgrade.upgrade_unit_groups", "list", inputDataValue, executionContext)
-	var emptyOutput nsxModel.UpgradeUnitGroupListResult
+	var emptyOutput model.UpgradeUnitGroupListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), UpgradeUnitGroupsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), upgradeUnitGroupsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.UpgradeUnitGroupListResult), nil
+		return output.(model.UpgradeUnitGroupListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), uIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (uIface *upgradeUnitGroupsClient) Reorder(groupIdParam string, reorderRequestParam nsxModel.ReorderRequest) error {
+func (uIface *upgradeUnitGroupsClient) Reorder(groupIdParam string, reorderRequestParam model.ReorderRequest) error {
 	typeConverter := uIface.connector.TypeConverter()
 	executionContext := uIface.connector.NewExecutionContext()
-	operationRestMetaData := upgradeUnitGroupsReorderRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(upgradeUnitGroupsReorderInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(upgradeUnitGroupsReorderInputType(), typeConverter)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("ReorderRequest", reorderRequestParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := upgradeUnitGroupsReorderRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	uIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := uIface.connector.GetApiProvider().Invoke("com.vmware.nsx.upgrade.upgrade_unit_groups", "reorder", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), uIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (uIface *upgradeUnitGroupsClient) Update(groupIdParam string, upgradeUnitGroupParam nsxModel.UpgradeUnitGroup) (nsxModel.UpgradeUnitGroup, error) {
+func (uIface *upgradeUnitGroupsClient) Update(groupIdParam string, upgradeUnitGroupParam model.UpgradeUnitGroup) (model.UpgradeUnitGroup, error) {
 	typeConverter := uIface.connector.TypeConverter()
 	executionContext := uIface.connector.NewExecutionContext()
-	operationRestMetaData := upgradeUnitGroupsUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(upgradeUnitGroupsUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(upgradeUnitGroupsUpdateInputType(), typeConverter)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("UpgradeUnitGroup", upgradeUnitGroupParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.UpgradeUnitGroup
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.UpgradeUnitGroup
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := upgradeUnitGroupsUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	uIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := uIface.connector.GetApiProvider().Invoke("com.vmware.nsx.upgrade.upgrade_unit_groups", "update", inputDataValue, executionContext)
-	var emptyOutput nsxModel.UpgradeUnitGroup
+	var emptyOutput model.UpgradeUnitGroup
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), UpgradeUnitGroupsUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), upgradeUnitGroupsUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.UpgradeUnitGroup), nil
+		return output.(model.UpgradeUnitGroup), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), uIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

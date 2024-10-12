@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package endpoints
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type VirtualEndpointsClient interface {
 
@@ -25,7 +26,6 @@ type VirtualEndpointsClient interface {
 	// @param tier0IdParam Tier-0 id (required)
 	// @param localeServiceIdParam Locale service id (required)
 	// @param virtualEndpointIdParam Virtual endpoint id (required)
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -39,13 +39,12 @@ type VirtualEndpointsClient interface {
 	// @param localeServiceIdParam Locale service id (required)
 	// @param virtualEndpointIdParam Virtual endpoint id (required)
 	// @return com.vmware.nsx_policy.model.VirtualEndpoint
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(tier0IdParam string, localeServiceIdParam string, virtualEndpointIdParam string) (nsx_policyModel.VirtualEndpoint, error)
+	Get(tier0IdParam string, localeServiceIdParam string, virtualEndpointIdParam string) (model.VirtualEndpoint, error)
 
 	// List all virtual endpoints
 	//
@@ -58,13 +57,12 @@ type VirtualEndpointsClient interface {
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_policy.model.VirtualEndpointListResult
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(tier0IdParam string, localeServiceIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.VirtualEndpointListResult, error)
+	List(tier0IdParam string, localeServiceIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.VirtualEndpointListResult, error)
 
 	// Create or update virtual endpoint.
 	//
@@ -73,13 +71,12 @@ type VirtualEndpointsClient interface {
 	// @param virtualEndpointIdParam Virtual endpoint id (required)
 	// @param virtualEndpointParam (required)
 	// @return com.vmware.nsx_policy.model.VirtualEndpoint
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(tier0IdParam string, localeServiceIdParam string, virtualEndpointIdParam string, virtualEndpointParam nsx_policyModel.VirtualEndpoint) (nsx_policyModel.VirtualEndpoint, error)
+	Patch(tier0IdParam string, localeServiceIdParam string, virtualEndpointIdParam string, virtualEndpointParam model.VirtualEndpoint) (model.VirtualEndpoint, error)
 
 	// Create or update virtual endpoint.
 	//
@@ -88,114 +85,107 @@ type VirtualEndpointsClient interface {
 	// @param virtualEndpointIdParam Virtual endpoint id (required)
 	// @param virtualEndpointParam (required)
 	// @return com.vmware.nsx_policy.model.VirtualEndpoint
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(tier0IdParam string, localeServiceIdParam string, virtualEndpointIdParam string, virtualEndpointParam nsx_policyModel.VirtualEndpoint) (nsx_policyModel.VirtualEndpoint, error)
+	Update(tier0IdParam string, localeServiceIdParam string, virtualEndpointIdParam string, virtualEndpointParam model.VirtualEndpoint) (model.VirtualEndpoint, error)
 }
 
 type virtualEndpointsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewVirtualEndpointsClient(connector vapiProtocolClient_.Connector) *virtualEndpointsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.tier_0s.locale_services.endpoints.virtual_endpoints")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"delete": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"patch":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"update": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewVirtualEndpointsClient(connector client.Connector) *virtualEndpointsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.tier_0s.locale_services.endpoints.virtual_endpoints")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	vIface := virtualEndpointsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &vIface
 }
 
-func (vIface *virtualEndpointsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (vIface *virtualEndpointsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := vIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
 func (vIface *virtualEndpointsClient) Delete(tier0IdParam string, localeServiceIdParam string, virtualEndpointIdParam string) error {
 	typeConverter := vIface.connector.TypeConverter()
 	executionContext := vIface.connector.NewExecutionContext()
-	operationRestMetaData := virtualEndpointsDeleteRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(virtualEndpointsDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(virtualEndpointsDeleteInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
 	sv.AddStructField("VirtualEndpointId", virtualEndpointIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return vapiBindings_.VAPIerrorsToError(inputError)
+		return bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := virtualEndpointsDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := vIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_0s.locale_services.endpoints.virtual_endpoints", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), vIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return vapiBindings_.VAPIerrorsToError(errorInError)
+			return bindings.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (vIface *virtualEndpointsClient) Get(tier0IdParam string, localeServiceIdParam string, virtualEndpointIdParam string) (nsx_policyModel.VirtualEndpoint, error) {
+func (vIface *virtualEndpointsClient) Get(tier0IdParam string, localeServiceIdParam string, virtualEndpointIdParam string) (model.VirtualEndpoint, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	executionContext := vIface.connector.NewExecutionContext()
-	operationRestMetaData := virtualEndpointsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(virtualEndpointsGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(virtualEndpointsGetInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
 	sv.AddStructField("VirtualEndpointId", virtualEndpointIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.VirtualEndpoint
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.VirtualEndpoint
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := virtualEndpointsGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := vIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_0s.locale_services.endpoints.virtual_endpoints", "get", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.VirtualEndpoint
+	var emptyOutput model.VirtualEndpoint
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), VirtualEndpointsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), virtualEndpointsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.VirtualEndpoint), nil
+		return output.(model.VirtualEndpoint), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), vIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (vIface *virtualEndpointsClient) List(tier0IdParam string, localeServiceIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (nsx_policyModel.VirtualEndpointListResult, error) {
+func (vIface *virtualEndpointsClient) List(tier0IdParam string, localeServiceIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.VirtualEndpointListResult, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	executionContext := vIface.connector.NewExecutionContext()
-	operationRestMetaData := virtualEndpointsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(virtualEndpointsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(virtualEndpointsListInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
 	sv.AddStructField("Cursor", cursorParam)
@@ -206,92 +196,93 @@ func (vIface *virtualEndpointsClient) List(tier0IdParam string, localeServiceIdP
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.VirtualEndpointListResult
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.VirtualEndpointListResult
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := virtualEndpointsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := vIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_0s.locale_services.endpoints.virtual_endpoints", "list", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.VirtualEndpointListResult
+	var emptyOutput model.VirtualEndpointListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), VirtualEndpointsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), virtualEndpointsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.VirtualEndpointListResult), nil
+		return output.(model.VirtualEndpointListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), vIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (vIface *virtualEndpointsClient) Patch(tier0IdParam string, localeServiceIdParam string, virtualEndpointIdParam string, virtualEndpointParam nsx_policyModel.VirtualEndpoint) (nsx_policyModel.VirtualEndpoint, error) {
+func (vIface *virtualEndpointsClient) Patch(tier0IdParam string, localeServiceIdParam string, virtualEndpointIdParam string, virtualEndpointParam model.VirtualEndpoint) (model.VirtualEndpoint, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	executionContext := vIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(virtualEndpointsPatchInputType(), typeConverter)
+	sv.AddStructField("Tier0Id", tier0IdParam)
+	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
+	sv.AddStructField("VirtualEndpointId", virtualEndpointIdParam)
+	sv.AddStructField("VirtualEndpoint", virtualEndpointParam)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput model.VirtualEndpoint
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+	}
 	operationRestMetaData := virtualEndpointsPatchRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(virtualEndpointsPatchInputType(), typeConverter)
-	sv.AddStructField("Tier0Id", tier0IdParam)
-	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
-	sv.AddStructField("VirtualEndpointId", virtualEndpointIdParam)
-	sv.AddStructField("VirtualEndpoint", virtualEndpointParam)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput nsx_policyModel.VirtualEndpoint
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
-	}
-
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := vIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_0s.locale_services.endpoints.virtual_endpoints", "patch", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.VirtualEndpoint
+	var emptyOutput model.VirtualEndpoint
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), VirtualEndpointsPatchOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), virtualEndpointsPatchOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.VirtualEndpoint), nil
+		return output.(model.VirtualEndpoint), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), vIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (vIface *virtualEndpointsClient) Update(tier0IdParam string, localeServiceIdParam string, virtualEndpointIdParam string, virtualEndpointParam nsx_policyModel.VirtualEndpoint) (nsx_policyModel.VirtualEndpoint, error) {
+func (vIface *virtualEndpointsClient) Update(tier0IdParam string, localeServiceIdParam string, virtualEndpointIdParam string, virtualEndpointParam model.VirtualEndpoint) (model.VirtualEndpoint, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	executionContext := vIface.connector.NewExecutionContext()
-	operationRestMetaData := virtualEndpointsUpdateRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(virtualEndpointsUpdateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(virtualEndpointsUpdateInputType(), typeConverter)
 	sv.AddStructField("Tier0Id", tier0IdParam)
 	sv.AddStructField("LocaleServiceId", localeServiceIdParam)
 	sv.AddStructField("VirtualEndpointId", virtualEndpointIdParam)
 	sv.AddStructField("VirtualEndpoint", virtualEndpointParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsx_policyModel.VirtualEndpoint
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.VirtualEndpoint
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := virtualEndpointsUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := vIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_0s.locale_services.endpoints.virtual_endpoints", "update", inputDataValue, executionContext)
-	var emptyOutput nsx_policyModel.VirtualEndpoint
+	var emptyOutput model.VirtualEndpoint
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), VirtualEndpointsUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), virtualEndpointsUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsx_policyModel.VirtualEndpoint), nil
+		return output.(model.VirtualEndpoint), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), vIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

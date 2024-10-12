@@ -11,7 +11,7 @@
 package item
 
 import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/content/library/item/Storage"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vsphere/content/library/item/Storage"
 )
 
 // ``Storage`` is a resource that represents a specific instance of a file stored on a storage backing. Unlike File, which is abstract, storage represents concrete files on the various storage backings. A file is only represented once in File, but will be represented multiple times (once for each storage backing) in ``Storage``. The ``Storage`` interface provides information on the storage backing and the specific location of the file in that backing to privileged users who want direct access to the file on the storage medium.

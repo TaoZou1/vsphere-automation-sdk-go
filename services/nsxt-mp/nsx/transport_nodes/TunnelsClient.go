@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,14 +9,15 @@
 package transport_nodes
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type TunnelsClient interface {
 
@@ -26,13 +27,12 @@ type TunnelsClient interface {
 	// @param tunnelNameParam Tunnel name (required)
 	// @param sourceParam Data source type. (optional)
 	// @return com.vmware.nsx.model.TunnelProperties
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(nodeIdParam string, tunnelNameParam string, sourceParam *string) (nsxModel.TunnelProperties, error)
+	Get(nodeIdParam string, tunnelNameParam string, sourceParam *string) (model.TunnelProperties, error)
 
 	// List of tunnels
 	//
@@ -48,83 +48,77 @@ type TunnelsClient interface {
 	// @param sourceParam Data source type. (optional)
 	// @param statusParam Tunnel status (optional)
 	// @return com.vmware.nsx.model.TunnelList
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(nodeIdParam string, bfdDiagnosticCodeParam *string, cursorParam *string, encapParam *string, includedFieldsParam *string, pageSizeParam *int64, remoteNodeIdParam *string, sortAscendingParam *bool, sortByParam *string, sourceParam *string, statusParam *string) (nsxModel.TunnelList, error)
+	List(nodeIdParam string, bfdDiagnosticCodeParam *string, cursorParam *string, encapParam *string, includedFieldsParam *string, pageSizeParam *int64, remoteNodeIdParam *string, sortAscendingParam *bool, sortByParam *string, sourceParam *string, statusParam *string) (model.TunnelList, error)
 }
 
 type tunnelsClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewTunnelsClient(connector vapiProtocolClient_.Connector) *tunnelsClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.transport_nodes.tunnels")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"get":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
+func NewTunnelsClient(connector client.Connector) *tunnelsClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.transport_nodes.tunnels")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"get":  core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list": core.NewMethodIdentifier(interfaceIdentifier, "list"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	tIface := tunnelsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &tIface
 }
 
-func (tIface *tunnelsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (tIface *tunnelsClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := tIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (tIface *tunnelsClient) Get(nodeIdParam string, tunnelNameParam string, sourceParam *string) (nsxModel.TunnelProperties, error) {
+func (tIface *tunnelsClient) Get(nodeIdParam string, tunnelNameParam string, sourceParam *string) (model.TunnelProperties, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	executionContext := tIface.connector.NewExecutionContext()
-	operationRestMetaData := tunnelsGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(tunnelsGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(tunnelsGetInputType(), typeConverter)
 	sv.AddStructField("NodeId", nodeIdParam)
 	sv.AddStructField("TunnelName", tunnelNameParam)
 	sv.AddStructField("Source", sourceParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.TunnelProperties
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.TunnelProperties
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := tunnelsGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := tIface.connector.GetApiProvider().Invoke("com.vmware.nsx.transport_nodes.tunnels", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.TunnelProperties
+	var emptyOutput model.TunnelProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), TunnelsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), tunnelsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.TunnelProperties), nil
+		return output.(model.TunnelProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), tIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (tIface *tunnelsClient) List(nodeIdParam string, bfdDiagnosticCodeParam *string, cursorParam *string, encapParam *string, includedFieldsParam *string, pageSizeParam *int64, remoteNodeIdParam *string, sortAscendingParam *bool, sortByParam *string, sourceParam *string, statusParam *string) (nsxModel.TunnelList, error) {
+func (tIface *tunnelsClient) List(nodeIdParam string, bfdDiagnosticCodeParam *string, cursorParam *string, encapParam *string, includedFieldsParam *string, pageSizeParam *int64, remoteNodeIdParam *string, sortAscendingParam *bool, sortByParam *string, sourceParam *string, statusParam *string) (model.TunnelList, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	executionContext := tIface.connector.NewExecutionContext()
-	operationRestMetaData := tunnelsListRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(tunnelsListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(tunnelsListInputType(), typeConverter)
 	sv.AddStructField("NodeId", nodeIdParam)
 	sv.AddStructField("BfdDiagnosticCode", bfdDiagnosticCodeParam)
 	sv.AddStructField("Cursor", cursorParam)
@@ -138,22 +132,25 @@ func (tIface *tunnelsClient) List(nodeIdParam string, bfdDiagnosticCodeParam *st
 	sv.AddStructField("Status", statusParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.TunnelList
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.TunnelList
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := tunnelsListRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := tIface.connector.GetApiProvider().Invoke("com.vmware.nsx.transport_nodes.tunnels", "list", inputDataValue, executionContext)
-	var emptyOutput nsxModel.TunnelList
+	var emptyOutput model.TunnelList
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), TunnelsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), tunnelsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.TunnelList), nil
+		return output.(model.TunnelList), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), tIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

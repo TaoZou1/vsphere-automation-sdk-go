@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,143 +9,136 @@
 package nvds_urt
 
 import (
-	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = vapiCore_.SupportedByRuntimeVersion2
+const _ = core.SupportedByRuntimeVersion1
 
 type TopologyByClusterClient interface {
 
 	// Set VDS configuration and create it in vCenter
-	//
-	// Deprecated: This API element is deprecated.
 	//
 	// @param precheckIdParam (required)
 	// @param upgradeTopologyParam (required)
 	// @param clusterIdParam cluster identifier (optional)
 	// @param useRecommendedTopologyConfigParam Flag to indicate if use recommended topology got from the latest precheck (optional)
 	// @return com.vmware.nsx.model.UpgradeTopology
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Apply(precheckIdParam string, upgradeTopologyParam nsxModel.UpgradeTopology, clusterIdParam *string, useRecommendedTopologyConfigParam *bool) (nsxModel.UpgradeTopology, error)
+	Apply(precheckIdParam string, upgradeTopologyParam model.UpgradeTopology, clusterIdParam *string, useRecommendedTopologyConfigParam *bool) (model.UpgradeTopology, error)
 
 	// Recommmended topology
-	//
-	// Deprecated: This API element is deprecated.
 	//
 	// @param precheckIdParam (required)
 	// @param clusterIdParam cluster identifier (optional)
 	// @param computeManagerIdParam vCenter identifier (optional)
 	// @param showVdsConfigParam Flag to indicate if VdsTopology should contain VDS configuration (optional)
 	// @return com.vmware.nsx.model.UpgradeTopology
-	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(precheckIdParam string, clusterIdParam *string, computeManagerIdParam *string, showVdsConfigParam *bool) (nsxModel.UpgradeTopology, error)
+	Get(precheckIdParam string, clusterIdParam *string, computeManagerIdParam *string, showVdsConfigParam *bool) (model.UpgradeTopology, error)
 }
 
 type topologyByClusterClient struct {
-	connector           vapiProtocolClient_.Connector
-	interfaceDefinition vapiCore_.InterfaceDefinition
-	errorsBindingMap    map[string]vapiBindings_.BindingType
+	connector           client.Connector
+	interfaceDefinition core.InterfaceDefinition
+	errorsBindingMap    map[string]bindings.BindingType
 }
 
-func NewTopologyByClusterClient(connector vapiProtocolClient_.Connector) *topologyByClusterClient {
-	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.nvds_urt.topology_by_cluster")
-	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
-		"apply": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "apply"),
-		"get":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
+func NewTopologyByClusterClient(connector client.Connector) *topologyByClusterClient {
+	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.nvds_urt.topology_by_cluster")
+	methodIdentifiers := map[string]core.MethodIdentifier{
+		"apply": core.NewMethodIdentifier(interfaceIdentifier, "apply"),
+		"get":   core.NewMethodIdentifier(interfaceIdentifier, "get"),
 	}
-	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]bindings.BindingType)
 
 	tIface := topologyByClusterClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &tIface
 }
 
-func (tIface *topologyByClusterClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
+func (tIface *topologyByClusterClient) GetErrorBindingType(errorName string) bindings.BindingType {
 	if entry, ok := tIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
+	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (tIface *topologyByClusterClient) Apply(precheckIdParam string, upgradeTopologyParam nsxModel.UpgradeTopology, clusterIdParam *string, useRecommendedTopologyConfigParam *bool) (nsxModel.UpgradeTopology, error) {
+func (tIface *topologyByClusterClient) Apply(precheckIdParam string, upgradeTopologyParam model.UpgradeTopology, clusterIdParam *string, useRecommendedTopologyConfigParam *bool) (model.UpgradeTopology, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	executionContext := tIface.connector.NewExecutionContext()
-	operationRestMetaData := topologyByClusterApplyRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(topologyByClusterApplyInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(topologyByClusterApplyInputType(), typeConverter)
 	sv.AddStructField("PrecheckId", precheckIdParam)
 	sv.AddStructField("UpgradeTopology", upgradeTopologyParam)
 	sv.AddStructField("ClusterId", clusterIdParam)
 	sv.AddStructField("UseRecommendedTopologyConfig", useRecommendedTopologyConfigParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.UpgradeTopology
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.UpgradeTopology
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := topologyByClusterApplyRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := tIface.connector.GetApiProvider().Invoke("com.vmware.nsx.nvds_urt.topology_by_cluster", "apply", inputDataValue, executionContext)
-	var emptyOutput nsxModel.UpgradeTopology
+	var emptyOutput model.UpgradeTopology
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), TopologyByClusterApplyOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), topologyByClusterApplyOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.UpgradeTopology), nil
+		return output.(model.UpgradeTopology), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), tIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (tIface *topologyByClusterClient) Get(precheckIdParam string, clusterIdParam *string, computeManagerIdParam *string, showVdsConfigParam *bool) (nsxModel.UpgradeTopology, error) {
+func (tIface *topologyByClusterClient) Get(precheckIdParam string, clusterIdParam *string, computeManagerIdParam *string, showVdsConfigParam *bool) (model.UpgradeTopology, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	executionContext := tIface.connector.NewExecutionContext()
-	operationRestMetaData := topologyByClusterGetRestMetadata()
-	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
-	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
-
-	sv := vapiBindings_.NewStructValueBuilder(topologyByClusterGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(topologyByClusterGetInputType(), typeConverter)
 	sv.AddStructField("PrecheckId", precheckIdParam)
 	sv.AddStructField("ClusterId", clusterIdParam)
 	sv.AddStructField("ComputeManagerId", computeManagerIdParam)
 	sv.AddStructField("ShowVdsConfig", showVdsConfigParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput nsxModel.UpgradeTopology
-		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+		var emptyOutput model.UpgradeTopology
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-
+	operationRestMetaData := topologyByClusterGetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := tIface.connector.GetApiProvider().Invoke("com.vmware.nsx.nvds_urt.topology_by_cluster", "get", inputDataValue, executionContext)
-	var emptyOutput nsxModel.UpgradeTopology
+	var emptyOutput model.UpgradeTopology
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), TopologyByClusterGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), topologyByClusterGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(nsxModel.UpgradeTopology), nil
+		return output.(model.UpgradeTopology), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), tIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

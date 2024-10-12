@@ -1,4 +1,4 @@
-// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,48 +11,48 @@
 package upgrade
 
 import (
-	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 	"reflect"
 )
 
-func upgradeUnitGroupsAddupgradeunitsInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func upgradeUnitGroupsAddupgradeunitsInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["upgrade_unit_list"] = vapiBindings_.NewReferenceType(nsxModel.UpgradeUnitListBindingType)
+	fields["group_id"] = bindings.NewStringType()
+	fields["upgrade_unit_list"] = bindings.NewReferenceType(model.UpgradeUnitListBindingType)
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["upgrade_unit_list"] = "UpgradeUnitList"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func UpgradeUnitGroupsAddupgradeunitsOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.UpgradeUnitListBindingType)
+func upgradeUnitGroupsAddupgradeunitsOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.UpgradeUnitListBindingType)
 }
 
-func upgradeUnitGroupsAddupgradeunitsRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func upgradeUnitGroupsAddupgradeunitsRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["upgrade_unit_list"] = vapiBindings_.NewReferenceType(nsxModel.UpgradeUnitListBindingType)
+	fields["group_id"] = bindings.NewStringType()
+	fields["upgrade_unit_list"] = bindings.NewReferenceType(model.UpgradeUnitListBindingType)
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["upgrade_unit_list"] = "UpgradeUnitList"
-	paramsTypeMap["group_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["upgrade_unit_list"] = vapiBindings_.NewReferenceType(nsxModel.UpgradeUnitListBindingType)
-	paramsTypeMap["groupId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["upgrade_unit_list"] = bindings.NewReferenceType(model.UpgradeUnitListBindingType)
+	paramsTypeMap["group_id"] = bindings.NewStringType()
+	paramsTypeMap["groupId"] = bindings.NewStringType()
 	pathParams["group_id"] = "groupId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -73,34 +73,34 @@ func upgradeUnitGroupsAddupgradeunitsRestMetadata() vapiProtocol_.OperationRestM
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func upgradeUnitGroupsCreateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func upgradeUnitGroupsCreateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["upgrade_unit_group"] = vapiBindings_.NewReferenceType(nsxModel.UpgradeUnitGroupBindingType)
+	fields["upgrade_unit_group"] = bindings.NewReferenceType(model.UpgradeUnitGroupBindingType)
 	fieldNameMap["upgrade_unit_group"] = "UpgradeUnitGroup"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func UpgradeUnitGroupsCreateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.UpgradeUnitGroupBindingType)
+func upgradeUnitGroupsCreateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.UpgradeUnitGroupBindingType)
 }
 
-func upgradeUnitGroupsCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func upgradeUnitGroupsCreateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["upgrade_unit_group"] = vapiBindings_.NewReferenceType(nsxModel.UpgradeUnitGroupBindingType)
+	fields["upgrade_unit_group"] = bindings.NewReferenceType(model.UpgradeUnitGroupBindingType)
 	fieldNameMap["upgrade_unit_group"] = "UpgradeUnitGroup"
-	paramsTypeMap["upgrade_unit_group"] = vapiBindings_.NewReferenceType(nsxModel.UpgradeUnitGroupBindingType)
+	paramsTypeMap["upgrade_unit_group"] = bindings.NewReferenceType(model.UpgradeUnitGroupBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -121,36 +121,36 @@ func upgradeUnitGroupsCreateRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func upgradeUnitGroupsDeleteInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func upgradeUnitGroupsDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["group_id"] = vapiBindings_.NewStringType()
+	fields["group_id"] = bindings.NewStringType()
 	fieldNameMap["group_id"] = "GroupId"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func UpgradeUnitGroupsDeleteOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func upgradeUnitGroupsDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func upgradeUnitGroupsDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func upgradeUnitGroupsDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["group_id"] = vapiBindings_.NewStringType()
+	fields["group_id"] = bindings.NewStringType()
 	fieldNameMap["group_id"] = "GroupId"
-	paramsTypeMap["group_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["groupId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["group_id"] = bindings.NewStringType()
+	paramsTypeMap["groupId"] = bindings.NewStringType()
 	pathParams["group_id"] = "groupId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -171,42 +171,42 @@ func upgradeUnitGroupsDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func upgradeUnitGroupsGetInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func upgradeUnitGroupsGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["summary"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["group_id"] = bindings.NewStringType()
+	fields["summary"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["summary"] = "Summary"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func UpgradeUnitGroupsGetOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.UpgradeUnitGroupBindingType)
+func upgradeUnitGroupsGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.UpgradeUnitGroupBindingType)
 }
 
-func upgradeUnitGroupsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func upgradeUnitGroupsGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["summary"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["group_id"] = bindings.NewStringType()
+	fields["summary"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["summary"] = "Summary"
-	paramsTypeMap["summary"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["group_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["groupId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["group_id"] = bindings.NewStringType()
+	paramsTypeMap["summary"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["groupId"] = bindings.NewStringType()
 	pathParams["group_id"] = "groupId"
 	queryParams["summary"] = "summary"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -227,17 +227,17 @@ func upgradeUnitGroupsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func upgradeUnitGroupsListInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func upgradeUnitGroupsListInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["component_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["summary"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sync"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["component_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["summary"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sync"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["component_type"] = "ComponentType"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["included_fields"] = "IncludedFields"
@@ -246,31 +246,31 @@ func upgradeUnitGroupsListInputType() vapiBindings_.StructType {
 	fieldNameMap["sort_by"] = "SortBy"
 	fieldNameMap["summary"] = "Summary"
 	fieldNameMap["sync"] = "Sync"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func UpgradeUnitGroupsListOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.UpgradeUnitGroupListResultBindingType)
+func upgradeUnitGroupsListOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.UpgradeUnitGroupListResultBindingType)
 }
 
-func upgradeUnitGroupsListRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func upgradeUnitGroupsListRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["component_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
-	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	fields["summary"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	fields["sync"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["component_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["summary"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sync"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["component_type"] = "ComponentType"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["included_fields"] = "IncludedFields"
@@ -279,14 +279,14 @@ func upgradeUnitGroupsListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	fieldNameMap["sort_by"] = "SortBy"
 	fieldNameMap["summary"] = "Summary"
 	fieldNameMap["sync"] = "Sync"
-	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["summary"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["component_type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
-	paramsTypeMap["sync"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
-	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	paramsTypeMap["sync"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["component_type"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["summary"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	queryParams["cursor"] = "cursor"
 	queryParams["summary"] = "summary"
 	queryParams["component_type"] = "component_type"
@@ -297,7 +297,7 @@ func upgradeUnitGroupsListRestMetadata() vapiProtocol_.OperationRestMetadata {
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -318,41 +318,41 @@ func upgradeUnitGroupsListRestMetadata() vapiProtocol_.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func upgradeUnitGroupsReorderInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func upgradeUnitGroupsReorderInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["reorder_request"] = vapiBindings_.NewReferenceType(nsxModel.ReorderRequestBindingType)
+	fields["group_id"] = bindings.NewStringType()
+	fields["reorder_request"] = bindings.NewReferenceType(model.ReorderRequestBindingType)
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["reorder_request"] = "ReorderRequest"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func UpgradeUnitGroupsReorderOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewVoidType()
+func upgradeUnitGroupsReorderOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
 }
 
-func upgradeUnitGroupsReorderRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func upgradeUnitGroupsReorderRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["reorder_request"] = vapiBindings_.NewReferenceType(nsxModel.ReorderRequestBindingType)
+	fields["group_id"] = bindings.NewStringType()
+	fields["reorder_request"] = bindings.NewReferenceType(model.ReorderRequestBindingType)
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["reorder_request"] = "ReorderRequest"
-	paramsTypeMap["reorder_request"] = vapiBindings_.NewReferenceType(nsxModel.ReorderRequestBindingType)
-	paramsTypeMap["group_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["groupId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["group_id"] = bindings.NewStringType()
+	paramsTypeMap["reorder_request"] = bindings.NewReferenceType(model.ReorderRequestBindingType)
+	paramsTypeMap["groupId"] = bindings.NewStringType()
 	pathParams["group_id"] = "groupId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -373,41 +373,41 @@ func upgradeUnitGroupsReorderRestMetadata() vapiProtocol_.OperationRestMetadata 
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func upgradeUnitGroupsUpdateInputType() vapiBindings_.StructType {
-	fields := make(map[string]vapiBindings_.BindingType)
+func upgradeUnitGroupsUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["upgrade_unit_group"] = vapiBindings_.NewReferenceType(nsxModel.UpgradeUnitGroupBindingType)
+	fields["group_id"] = bindings.NewStringType()
+	fields["upgrade_unit_group"] = bindings.NewReferenceType(model.UpgradeUnitGroupBindingType)
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["upgrade_unit_group"] = "UpgradeUnitGroup"
-	var validators = []vapiBindings_.Validator{}
-	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func UpgradeUnitGroupsUpdateOutputType() vapiBindings_.BindingType {
-	return vapiBindings_.NewReferenceType(nsxModel.UpgradeUnitGroupBindingType)
+func upgradeUnitGroupsUpdateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.UpgradeUnitGroupBindingType)
 }
 
-func upgradeUnitGroupsUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
-	fields := map[string]vapiBindings_.BindingType{}
+func upgradeUnitGroupsUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]vapiBindings_.BindingType{}
+	paramsTypeMap := map[string]bindings.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["group_id"] = vapiBindings_.NewStringType()
-	fields["upgrade_unit_group"] = vapiBindings_.NewReferenceType(nsxModel.UpgradeUnitGroupBindingType)
+	fields["group_id"] = bindings.NewStringType()
+	fields["upgrade_unit_group"] = bindings.NewReferenceType(model.UpgradeUnitGroupBindingType)
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["upgrade_unit_group"] = "UpgradeUnitGroup"
-	paramsTypeMap["upgrade_unit_group"] = vapiBindings_.NewReferenceType(nsxModel.UpgradeUnitGroupBindingType)
-	paramsTypeMap["group_id"] = vapiBindings_.NewStringType()
-	paramsTypeMap["groupId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["group_id"] = bindings.NewStringType()
+	paramsTypeMap["upgrade_unit_group"] = bindings.NewReferenceType(model.UpgradeUnitGroupBindingType)
+	paramsTypeMap["groupId"] = bindings.NewStringType()
 	pathParams["group_id"] = "groupId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return vapiProtocol_.NewOperationRestMetadata(
+	return protocol.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
