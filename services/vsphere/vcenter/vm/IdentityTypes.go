@@ -14,7 +14,7 @@ package vm
 
 import (
 	"reflect"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/bindings"
 )
 
 

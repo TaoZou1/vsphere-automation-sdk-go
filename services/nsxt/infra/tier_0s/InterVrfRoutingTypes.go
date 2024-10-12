@@ -1,4 +1,4 @@
-// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,50 +11,50 @@
 package tier_0s
 
 import (
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func interVrfRoutingDeleteInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func interVrfRoutingDeleteInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["tier0_id"] = bindings.NewStringType()
-	fields["inter_vrf_routing_id"] = bindings.NewStringType()
+	fields["tier0_id"] = vapiBindings_.NewStringType()
+	fields["inter_vrf_routing_id"] = vapiBindings_.NewStringType()
 	fieldNameMap["tier0_id"] = "Tier0Id"
 	fieldNameMap["inter_vrf_routing_id"] = "InterVrfRoutingId"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func interVrfRoutingDeleteOutputType() bindings.BindingType {
-	return bindings.NewVoidType()
+func InterVrfRoutingDeleteOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewVoidType()
 }
 
-func interVrfRoutingDeleteRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func interVrfRoutingDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["tier0_id"] = bindings.NewStringType()
-	fields["inter_vrf_routing_id"] = bindings.NewStringType()
+	fields["tier0_id"] = vapiBindings_.NewStringType()
+	fields["inter_vrf_routing_id"] = vapiBindings_.NewStringType()
 	fieldNameMap["tier0_id"] = "Tier0Id"
 	fieldNameMap["inter_vrf_routing_id"] = "InterVrfRoutingId"
-	paramsTypeMap["tier0_id"] = bindings.NewStringType()
-	paramsTypeMap["inter_vrf_routing_id"] = bindings.NewStringType()
-	paramsTypeMap["tier0Id"] = bindings.NewStringType()
-	paramsTypeMap["interVrfRoutingId"] = bindings.NewStringType()
+	paramsTypeMap["tier0_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["inter_vrf_routing_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["tier0Id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["interVrfRoutingId"] = vapiBindings_.NewStringType()
 	pathParams["inter_vrf_routing_id"] = "interVrfRoutingId"
 	pathParams["tier0_id"] = "tier0Id"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -75,43 +75,43 @@ func interVrfRoutingDeleteRestMetadata() protocol.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func interVrfRoutingGetInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func interVrfRoutingGetInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["tier0_id"] = bindings.NewStringType()
-	fields["inter_vrf_routing_id"] = bindings.NewStringType()
+	fields["tier0_id"] = vapiBindings_.NewStringType()
+	fields["inter_vrf_routing_id"] = vapiBindings_.NewStringType()
 	fieldNameMap["tier0_id"] = "Tier0Id"
 	fieldNameMap["inter_vrf_routing_id"] = "InterVrfRoutingId"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func interVrfRoutingGetOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.PolicyInterVrfRoutingConfigBindingType)
+func InterVrfRoutingGetOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewReferenceType(nsx_policyModel.PolicyInterVrfRoutingConfigBindingType)
 }
 
-func interVrfRoutingGetRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func interVrfRoutingGetRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["tier0_id"] = bindings.NewStringType()
-	fields["inter_vrf_routing_id"] = bindings.NewStringType()
+	fields["tier0_id"] = vapiBindings_.NewStringType()
+	fields["inter_vrf_routing_id"] = vapiBindings_.NewStringType()
 	fieldNameMap["tier0_id"] = "Tier0Id"
 	fieldNameMap["inter_vrf_routing_id"] = "InterVrfRoutingId"
-	paramsTypeMap["tier0_id"] = bindings.NewStringType()
-	paramsTypeMap["inter_vrf_routing_id"] = bindings.NewStringType()
-	paramsTypeMap["tier0Id"] = bindings.NewStringType()
-	paramsTypeMap["interVrfRoutingId"] = bindings.NewStringType()
+	paramsTypeMap["tier0_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["inter_vrf_routing_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["tier0Id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["interVrfRoutingId"] = vapiBindings_.NewStringType()
 	pathParams["inter_vrf_routing_id"] = "interVrfRoutingId"
 	pathParams["tier0_id"] = "tier0Id"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -132,16 +132,16 @@ func interVrfRoutingGetRestMetadata() protocol.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func interVrfRoutingListInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func interVrfRoutingListInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["tier0_id"] = bindings.NewStringType()
-	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
-	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["tier0_id"] = vapiBindings_.NewStringType()
+	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
 	fieldNameMap["tier0_id"] = "Tier0Id"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["include_mark_for_delete_objects"] = "IncludeMarkForDeleteObjects"
@@ -149,30 +149,30 @@ func interVrfRoutingListInputType() bindings.StructType {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func interVrfRoutingListOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.PolicyInterVrfRoutingConfigListResultBindingType)
+func InterVrfRoutingListOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewReferenceType(nsx_policyModel.PolicyInterVrfRoutingConfigListResultBindingType)
 }
 
-func interVrfRoutingListRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func interVrfRoutingListRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["tier0_id"] = bindings.NewStringType()
-	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
-	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["tier0_id"] = vapiBindings_.NewStringType()
+	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
 	fieldNameMap["tier0_id"] = "Tier0Id"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["include_mark_for_delete_objects"] = "IncludeMarkForDeleteObjects"
@@ -180,14 +180,14 @@ func interVrfRoutingListRestMetadata() protocol.OperationRestMetadata {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	paramsTypeMap["tier0_id"] = bindings.NewStringType()
-	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
-	paramsTypeMap["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	paramsTypeMap["tier0Id"] = bindings.NewStringType()
+	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["tier0_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	paramsTypeMap["tier0Id"] = vapiBindings_.NewStringType()
 	pathParams["tier0_id"] = "tier0Id"
 	queryParams["cursor"] = "cursor"
 	queryParams["sort_ascending"] = "sort_ascending"
@@ -197,7 +197,7 @@ func interVrfRoutingListRestMetadata() protocol.OperationRestMetadata {
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -218,48 +218,48 @@ func interVrfRoutingListRestMetadata() protocol.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func interVrfRoutingPatchInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func interVrfRoutingPatchInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["tier0_id"] = bindings.NewStringType()
-	fields["inter_vrf_routing_id"] = bindings.NewStringType()
-	fields["policy_inter_vrf_routing_config"] = bindings.NewReferenceType(model.PolicyInterVrfRoutingConfigBindingType)
+	fields["tier0_id"] = vapiBindings_.NewStringType()
+	fields["inter_vrf_routing_id"] = vapiBindings_.NewStringType()
+	fields["policy_inter_vrf_routing_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.PolicyInterVrfRoutingConfigBindingType)
 	fieldNameMap["tier0_id"] = "Tier0Id"
 	fieldNameMap["inter_vrf_routing_id"] = "InterVrfRoutingId"
 	fieldNameMap["policy_inter_vrf_routing_config"] = "PolicyInterVrfRoutingConfig"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func interVrfRoutingPatchOutputType() bindings.BindingType {
-	return bindings.NewVoidType()
+func InterVrfRoutingPatchOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewVoidType()
 }
 
-func interVrfRoutingPatchRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func interVrfRoutingPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["tier0_id"] = bindings.NewStringType()
-	fields["inter_vrf_routing_id"] = bindings.NewStringType()
-	fields["policy_inter_vrf_routing_config"] = bindings.NewReferenceType(model.PolicyInterVrfRoutingConfigBindingType)
+	fields["tier0_id"] = vapiBindings_.NewStringType()
+	fields["inter_vrf_routing_id"] = vapiBindings_.NewStringType()
+	fields["policy_inter_vrf_routing_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.PolicyInterVrfRoutingConfigBindingType)
 	fieldNameMap["tier0_id"] = "Tier0Id"
 	fieldNameMap["inter_vrf_routing_id"] = "InterVrfRoutingId"
 	fieldNameMap["policy_inter_vrf_routing_config"] = "PolicyInterVrfRoutingConfig"
-	paramsTypeMap["tier0_id"] = bindings.NewStringType()
-	paramsTypeMap["inter_vrf_routing_id"] = bindings.NewStringType()
-	paramsTypeMap["policy_inter_vrf_routing_config"] = bindings.NewReferenceType(model.PolicyInterVrfRoutingConfigBindingType)
-	paramsTypeMap["tier0Id"] = bindings.NewStringType()
-	paramsTypeMap["interVrfRoutingId"] = bindings.NewStringType()
+	paramsTypeMap["tier0_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["inter_vrf_routing_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["policy_inter_vrf_routing_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.PolicyInterVrfRoutingConfigBindingType)
+	paramsTypeMap["tier0Id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["interVrfRoutingId"] = vapiBindings_.NewStringType()
 	pathParams["inter_vrf_routing_id"] = "interVrfRoutingId"
 	pathParams["tier0_id"] = "tier0Id"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -280,48 +280,48 @@ func interVrfRoutingPatchRestMetadata() protocol.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func interVrfRoutingUpdateInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func interVrfRoutingUpdateInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["tier0_id"] = bindings.NewStringType()
-	fields["inter_vrf_routing_id"] = bindings.NewStringType()
-	fields["policy_inter_vrf_routing_config"] = bindings.NewReferenceType(model.PolicyInterVrfRoutingConfigBindingType)
+	fields["tier0_id"] = vapiBindings_.NewStringType()
+	fields["inter_vrf_routing_id"] = vapiBindings_.NewStringType()
+	fields["policy_inter_vrf_routing_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.PolicyInterVrfRoutingConfigBindingType)
 	fieldNameMap["tier0_id"] = "Tier0Id"
 	fieldNameMap["inter_vrf_routing_id"] = "InterVrfRoutingId"
 	fieldNameMap["policy_inter_vrf_routing_config"] = "PolicyInterVrfRoutingConfig"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func interVrfRoutingUpdateOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.PolicyInterVrfRoutingConfigBindingType)
+func InterVrfRoutingUpdateOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewReferenceType(nsx_policyModel.PolicyInterVrfRoutingConfigBindingType)
 }
 
-func interVrfRoutingUpdateRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func interVrfRoutingUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["tier0_id"] = bindings.NewStringType()
-	fields["inter_vrf_routing_id"] = bindings.NewStringType()
-	fields["policy_inter_vrf_routing_config"] = bindings.NewReferenceType(model.PolicyInterVrfRoutingConfigBindingType)
+	fields["tier0_id"] = vapiBindings_.NewStringType()
+	fields["inter_vrf_routing_id"] = vapiBindings_.NewStringType()
+	fields["policy_inter_vrf_routing_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.PolicyInterVrfRoutingConfigBindingType)
 	fieldNameMap["tier0_id"] = "Tier0Id"
 	fieldNameMap["inter_vrf_routing_id"] = "InterVrfRoutingId"
 	fieldNameMap["policy_inter_vrf_routing_config"] = "PolicyInterVrfRoutingConfig"
-	paramsTypeMap["tier0_id"] = bindings.NewStringType()
-	paramsTypeMap["inter_vrf_routing_id"] = bindings.NewStringType()
-	paramsTypeMap["policy_inter_vrf_routing_config"] = bindings.NewReferenceType(model.PolicyInterVrfRoutingConfigBindingType)
-	paramsTypeMap["tier0Id"] = bindings.NewStringType()
-	paramsTypeMap["interVrfRoutingId"] = bindings.NewStringType()
+	paramsTypeMap["tier0_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["inter_vrf_routing_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["policy_inter_vrf_routing_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.PolicyInterVrfRoutingConfigBindingType)
+	paramsTypeMap["tier0Id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["interVrfRoutingId"] = vapiBindings_.NewStringType()
 	pathParams["inter_vrf_routing_id"] = "interVrfRoutingId"
 	pathParams["tier0_id"] = "tier0Id"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

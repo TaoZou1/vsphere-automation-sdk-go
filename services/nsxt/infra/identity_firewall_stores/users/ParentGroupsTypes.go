@@ -1,4 +1,4 @@
-// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,50 +11,50 @@
 package users
 
 import (
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func parentGroupsListInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func parentGroupsListInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["identity_firewall_store_id"] = bindings.NewStringType()
-	fields["user_id"] = bindings.NewStringType()
+	fields["identity_firewall_store_id"] = vapiBindings_.NewStringType()
+	fields["user_id"] = vapiBindings_.NewStringType()
 	fieldNameMap["identity_firewall_store_id"] = "IdentityFirewallStoreId"
 	fieldNameMap["user_id"] = "UserId"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func parentGroupsListOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.IdentityFirewallStoreUserOrGrouptListResultsBindingType)
+func ParentGroupsListOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewReferenceType(nsx_policyModel.IdentityFirewallStoreUserOrGrouptListResultsBindingType)
 }
 
-func parentGroupsListRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func parentGroupsListRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["identity_firewall_store_id"] = bindings.NewStringType()
-	fields["user_id"] = bindings.NewStringType()
+	fields["identity_firewall_store_id"] = vapiBindings_.NewStringType()
+	fields["user_id"] = vapiBindings_.NewStringType()
 	fieldNameMap["identity_firewall_store_id"] = "IdentityFirewallStoreId"
 	fieldNameMap["user_id"] = "UserId"
-	paramsTypeMap["user_id"] = bindings.NewStringType()
-	paramsTypeMap["identity_firewall_store_id"] = bindings.NewStringType()
-	paramsTypeMap["identityFirewallStoreId"] = bindings.NewStringType()
-	paramsTypeMap["userId"] = bindings.NewStringType()
+	paramsTypeMap["user_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["identity_firewall_store_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["identityFirewallStoreId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["userId"] = vapiBindings_.NewStringType()
 	pathParams["identity_firewall_store_id"] = "identityFirewallStoreId"
 	pathParams["user_id"] = "userId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

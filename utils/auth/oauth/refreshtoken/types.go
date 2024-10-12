@@ -4,7 +4,7 @@
 package refreshtoken
 
 import (
-	"github.com/vmware/vsphere-automation-sdk-go/utils/auth/model"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/auth/model"
 )
 
 // Info represents the details of OAuth Authentication Scheme by Refresh Token.

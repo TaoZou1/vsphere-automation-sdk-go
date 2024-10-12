@@ -1,4 +1,4 @@
-// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,15 +9,14 @@
 package nsx
 
 import (
-	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = core.SupportedByRuntimeVersion1
+const _ = vapiCore_.SupportedByRuntimeVersion2
 
 type AlarmsClient interface {
 
@@ -25,12 +24,13 @@ type AlarmsClient interface {
 	//
 	// @param alarmIdParam (required)
 	// @return com.vmware.nsx.model.Alarm
+	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(alarmIdParam string) (model.Alarm, error)
+	Get(alarmIdParam string) (nsxModel.Alarm, error)
 
 	// Returns a list of all Alarms currently known to the system.
 	//
@@ -53,12 +53,13 @@ type AlarmsClient interface {
 	// @param statusParam Status (optional)
 	// @param vpcParam VPC ID (optional)
 	// @return com.vmware.nsx.model.AlarmsListResult
+	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(afterParam *int64, beforeParam *int64, cursorParam *string, eventTagParam *string, eventTypeParam *string, featureNameParam *string, idParam *string, intentPathParam *string, nodeIdParam *string, nodeResourceTypeParam *string, orgParam *string, pageSizeParam *int64, projectParam *string, severityParam *string, sortAscendingParam *bool, sortByParam *string, statusParam *string, vpcParam *string) (model.AlarmsListResult, error)
+	List(afterParam *int64, beforeParam *int64, cursorParam *string, eventTagParam *string, eventTypeParam *string, featureNameParam *string, idParam *string, intentPathParam *string, nodeIdParam *string, nodeResourceTypeParam *string, orgParam *string, pageSizeParam *int64, projectParam *string, severityParam *string, sortAscendingParam *bool, sortByParam *string, statusParam *string, vpcParam *string) (nsxModel.AlarmsListResult, error)
 
 	// Update status of an Alarm. The new_status value can be OPEN, ACKNOWLEDGED, SUPPRESSED, or RESOLVED. If new_status is SUPPRESSED, the suppress_duration query parameter must also be specified.
 	//
@@ -66,12 +67,13 @@ type AlarmsClient interface {
 	// @param newStatusParam Status (required)
 	// @param suppressDurationParam Duration in hours for which Alarm should be suppressed (optional)
 	// @return com.vmware.nsx.model.Alarm
+	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Setstatus(alarmIdParam string, newStatusParam string, suppressDurationParam *int64) (model.Alarm, error)
+	Setstatus(alarmIdParam string, newStatusParam string, suppressDurationParam *int64) (nsxModel.Alarm, error)
 
 	// Bulk update the status of zero or more Alarms that match the specified filters. The new_status value can be OPEN, ACKNOWLEDGED, SUPPRESSED, or RESOLVED. If new_status is SUPPRESSED, the suppress_duration query parameter must also be specified.
 	//
@@ -95,6 +97,7 @@ type AlarmsClient interface {
 	// @param statusParam Status (optional)
 	// @param suppressDurationParam Duration in hours for which Alarm should be suppressed (optional)
 	// @param vpcParam VPC ID (optional)
+	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -104,68 +107,73 @@ type AlarmsClient interface {
 }
 
 type alarmsClient struct {
-	connector           client.Connector
-	interfaceDefinition core.InterfaceDefinition
-	errorsBindingMap    map[string]bindings.BindingType
+	connector           vapiProtocolClient_.Connector
+	interfaceDefinition vapiCore_.InterfaceDefinition
+	errorsBindingMap    map[string]vapiBindings_.BindingType
 }
 
-func NewAlarmsClient(connector client.Connector) *alarmsClient {
-	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.alarms")
-	methodIdentifiers := map[string]core.MethodIdentifier{
-		"get":         core.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":        core.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"setstatus":   core.NewMethodIdentifier(interfaceIdentifier, "setstatus"),
-		"setstatus_0": core.NewMethodIdentifier(interfaceIdentifier, "setstatus_0"),
+func NewAlarmsClient(connector vapiProtocolClient_.Connector) *alarmsClient {
+	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.alarms")
+	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
+		"get":         vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":        vapiCore_.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"setstatus":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "setstatus"),
+		"setstatus_0": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "setstatus_0"),
 	}
-	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]bindings.BindingType)
+	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
 
 	aIface := alarmsClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &aIface
 }
 
-func (aIface *alarmsClient) GetErrorBindingType(errorName string) bindings.BindingType {
+func (aIface *alarmsClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
 	if entry, ok := aIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return errors.ERROR_BINDINGS_MAP[errorName]
+	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (aIface *alarmsClient) Get(alarmIdParam string) (model.Alarm, error) {
+func (aIface *alarmsClient) Get(alarmIdParam string) (nsxModel.Alarm, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	executionContext := aIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(alarmsGetInputType(), typeConverter)
+	operationRestMetaData := alarmsGetRestMetadata()
+	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
+	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
+
+	sv := vapiBindings_.NewStructValueBuilder(alarmsGetInputType(), typeConverter)
 	sv.AddStructField("AlarmId", alarmIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput model.Alarm
-		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+		var emptyOutput nsxModel.Alarm
+		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := alarmsGetRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	aIface.connector.SetConnectionMetadata(connectionMetadata)
+
 	methodResult := aIface.connector.GetApiProvider().Invoke("com.vmware.nsx.alarms", "get", inputDataValue, executionContext)
-	var emptyOutput model.Alarm
+	var emptyOutput nsxModel.Alarm
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), alarmsGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), AlarmsGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(model.Alarm), nil
+		return output.(nsxModel.Alarm), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), aIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (aIface *alarmsClient) List(afterParam *int64, beforeParam *int64, cursorParam *string, eventTagParam *string, eventTypeParam *string, featureNameParam *string, idParam *string, intentPathParam *string, nodeIdParam *string, nodeResourceTypeParam *string, orgParam *string, pageSizeParam *int64, projectParam *string, severityParam *string, sortAscendingParam *bool, sortByParam *string, statusParam *string, vpcParam *string) (model.AlarmsListResult, error) {
+func (aIface *alarmsClient) List(afterParam *int64, beforeParam *int64, cursorParam *string, eventTagParam *string, eventTypeParam *string, featureNameParam *string, idParam *string, intentPathParam *string, nodeIdParam *string, nodeResourceTypeParam *string, orgParam *string, pageSizeParam *int64, projectParam *string, severityParam *string, sortAscendingParam *bool, sortByParam *string, statusParam *string, vpcParam *string) (nsxModel.AlarmsListResult, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	executionContext := aIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(alarmsListInputType(), typeConverter)
+	operationRestMetaData := alarmsListRestMetadata()
+	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
+	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
+
+	sv := vapiBindings_.NewStructValueBuilder(alarmsListInputType(), typeConverter)
 	sv.AddStructField("After", afterParam)
 	sv.AddStructField("Before", beforeParam)
 	sv.AddStructField("Cursor", cursorParam)
@@ -186,58 +194,56 @@ func (aIface *alarmsClient) List(afterParam *int64, beforeParam *int64, cursorPa
 	sv.AddStructField("Vpc", vpcParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput model.AlarmsListResult
-		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+		var emptyOutput nsxModel.AlarmsListResult
+		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := alarmsListRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	aIface.connector.SetConnectionMetadata(connectionMetadata)
+
 	methodResult := aIface.connector.GetApiProvider().Invoke("com.vmware.nsx.alarms", "list", inputDataValue, executionContext)
-	var emptyOutput model.AlarmsListResult
+	var emptyOutput nsxModel.AlarmsListResult
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), alarmsListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), AlarmsListOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(model.AlarmsListResult), nil
+		return output.(nsxModel.AlarmsListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), aIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (aIface *alarmsClient) Setstatus(alarmIdParam string, newStatusParam string, suppressDurationParam *int64) (model.Alarm, error) {
+func (aIface *alarmsClient) Setstatus(alarmIdParam string, newStatusParam string, suppressDurationParam *int64) (nsxModel.Alarm, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	executionContext := aIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(alarmsSetstatusInputType(), typeConverter)
+	operationRestMetaData := alarmsSetstatusRestMetadata()
+	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
+	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
+
+	sv := vapiBindings_.NewStructValueBuilder(alarmsSetstatusInputType(), typeConverter)
 	sv.AddStructField("AlarmId", alarmIdParam)
 	sv.AddStructField("NewStatus", newStatusParam)
 	sv.AddStructField("SuppressDuration", suppressDurationParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput model.Alarm
-		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+		var emptyOutput nsxModel.Alarm
+		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := alarmsSetstatusRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	aIface.connector.SetConnectionMetadata(connectionMetadata)
+
 	methodResult := aIface.connector.GetApiProvider().Invoke("com.vmware.nsx.alarms", "setstatus", inputDataValue, executionContext)
-	var emptyOutput model.Alarm
+	var emptyOutput nsxModel.Alarm
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), alarmsSetstatusOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), AlarmsSetstatusOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(model.Alarm), nil
+		return output.(nsxModel.Alarm), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), aIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
@@ -246,7 +252,11 @@ func (aIface *alarmsClient) Setstatus(alarmIdParam string, newStatusParam string
 func (aIface *alarmsClient) Setstatus0(newStatusParam string, afterParam *int64, beforeParam *int64, cursorParam *string, eventTagParam *string, eventTypeParam *string, featureNameParam *string, idParam *string, intentPathParam *string, nodeIdParam *string, nodeResourceTypeParam *string, orgParam *string, pageSizeParam *int64, projectParam *string, severityParam *string, sortAscendingParam *bool, sortByParam *string, statusParam *string, suppressDurationParam *int64, vpcParam *string) error {
 	typeConverter := aIface.connector.TypeConverter()
 	executionContext := aIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(alarmsSetstatus0InputType(), typeConverter)
+	operationRestMetaData := alarmsSetstatus0RestMetadata()
+	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
+	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
+
+	sv := vapiBindings_.NewStructValueBuilder(alarmsSetstatus0InputType(), typeConverter)
 	sv.AddStructField("NewStatus", newStatusParam)
 	sv.AddStructField("After", afterParam)
 	sv.AddStructField("Before", beforeParam)
@@ -269,19 +279,16 @@ func (aIface *alarmsClient) Setstatus0(newStatusParam string, afterParam *int64,
 	sv.AddStructField("Vpc", vpcParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return bindings.VAPIerrorsToError(inputError)
+		return vapiBindings_.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := alarmsSetstatus0RestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	aIface.connector.SetConnectionMetadata(connectionMetadata)
+
 	methodResult := aIface.connector.GetApiProvider().Invoke("com.vmware.nsx.alarms", "setstatus_0", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), aIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return bindings.VAPIerrorsToError(errorInError)
+			return vapiBindings_.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}

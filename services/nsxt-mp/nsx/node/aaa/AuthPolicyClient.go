@@ -1,4 +1,4 @@
-// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,26 +9,26 @@
 package aaa
 
 import (
-	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = core.SupportedByRuntimeVersion1
+const _ = vapiCore_.SupportedByRuntimeVersion2
 
 type AuthPolicyClient interface {
 
 	// Returns information about the currently configured authentication policies and password complexity on the node.
 	// @return com.vmware.nsx.model.AuthenticationPolicyProperties
+	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get() (model.AuthenticationPolicyProperties, error)
+	Get() (nsxModel.AuthenticationPolicyProperties, error)
 
 	// Resets to default, currently configured authentication policy and password complexity on the node. Administrators need to enforce password change for existing user accounts in order to match newly configured complexity requirements in system.
 	//
@@ -39,12 +39,13 @@ type AuthPolicyClient interface {
 	//
 	// **reset-pwd-complexity**: resets only configured Password complexity
 	// @return com.vmware.nsx.model.AuthenticationPolicyProperties
+	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Resetall() (model.AuthenticationPolicyProperties, error)
+	Resetall() (nsxModel.AuthenticationPolicyProperties, error)
 
 	// Resets to default, currently configured authentication policy and password complexity on the node. Administrators need to enforce password change for existing user accounts in order to match newly configured complexity requirements in system.
 	//
@@ -55,12 +56,13 @@ type AuthPolicyClient interface {
 	//
 	// **reset-pwd-complexity**: resets only configured Password complexity
 	// @return com.vmware.nsx.model.AuthenticationPolicyProperties
+	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Resetauthpolicies() (model.AuthenticationPolicyProperties, error)
+	Resetauthpolicies() (nsxModel.AuthenticationPolicyProperties, error)
 
 	// Resets to default, currently configured authentication policy and password complexity on the node. Administrators need to enforce password change for existing user accounts in order to match newly configured complexity requirements in system.
 	//
@@ -71,201 +73,208 @@ type AuthPolicyClient interface {
 	//
 	// **reset-pwd-complexity**: resets only configured Password complexity
 	// @return com.vmware.nsx.model.AuthenticationPolicyProperties
+	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Resetpwdcomplexity() (model.AuthenticationPolicyProperties, error)
+	Resetpwdcomplexity() (nsxModel.AuthenticationPolicyProperties, error)
 
 	// Update the currently configured authentication policy and password complexity on the node. If any of api_max_auth_failures, api_failed_auth_reset_period, or api_failed_auth_lockout_period are modified, the http service is automatically restarted. Whereas change in any password complexity will not be applicable on already configured user passwords. Administrators need to enforce password change for existing user accounts in order to match newly configured complexity requirements enforced in system. All values from AuthenticationPolicyProperties are in sync among the management cluster nodes.
 	//
 	// @param authenticationPolicyPropertiesParam (required)
 	// @return com.vmware.nsx.model.AuthenticationPolicyProperties
+	//
 	// @throws ConcurrentChange  Conflict
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(authenticationPolicyPropertiesParam model.AuthenticationPolicyProperties) (model.AuthenticationPolicyProperties, error)
+	Update(authenticationPolicyPropertiesParam nsxModel.AuthenticationPolicyProperties) (nsxModel.AuthenticationPolicyProperties, error)
 }
 
 type authPolicyClient struct {
-	connector           client.Connector
-	interfaceDefinition core.InterfaceDefinition
-	errorsBindingMap    map[string]bindings.BindingType
+	connector           vapiProtocolClient_.Connector
+	interfaceDefinition vapiCore_.InterfaceDefinition
+	errorsBindingMap    map[string]vapiBindings_.BindingType
 }
 
-func NewAuthPolicyClient(connector client.Connector) *authPolicyClient {
-	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.node.aaa.auth_policy")
-	methodIdentifiers := map[string]core.MethodIdentifier{
-		"get":                core.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"resetall":           core.NewMethodIdentifier(interfaceIdentifier, "resetall"),
-		"resetauthpolicies":  core.NewMethodIdentifier(interfaceIdentifier, "resetauthpolicies"),
-		"resetpwdcomplexity": core.NewMethodIdentifier(interfaceIdentifier, "resetpwdcomplexity"),
-		"update":             core.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewAuthPolicyClient(connector vapiProtocolClient_.Connector) *authPolicyClient {
+	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.node.aaa.auth_policy")
+	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
+		"get":                vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"resetall":           vapiCore_.NewMethodIdentifier(interfaceIdentifier, "resetall"),
+		"resetauthpolicies":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "resetauthpolicies"),
+		"resetpwdcomplexity": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "resetpwdcomplexity"),
+		"update":             vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]bindings.BindingType)
+	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
 
 	aIface := authPolicyClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &aIface
 }
 
-func (aIface *authPolicyClient) GetErrorBindingType(errorName string) bindings.BindingType {
+func (aIface *authPolicyClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
 	if entry, ok := aIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return errors.ERROR_BINDINGS_MAP[errorName]
+	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (aIface *authPolicyClient) Get() (model.AuthenticationPolicyProperties, error) {
+func (aIface *authPolicyClient) Get() (nsxModel.AuthenticationPolicyProperties, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	executionContext := aIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(authPolicyGetInputType(), typeConverter)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput model.AuthenticationPolicyProperties
-		return emptyOutput, bindings.VAPIerrorsToError(inputError)
-	}
 	operationRestMetaData := authPolicyGetRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	aIface.connector.SetConnectionMetadata(connectionMetadata)
+	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
+	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
+
+	sv := vapiBindings_.NewStructValueBuilder(authPolicyGetInputType(), typeConverter)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput nsxModel.AuthenticationPolicyProperties
+		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+	}
+
 	methodResult := aIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.aaa.auth_policy", "get", inputDataValue, executionContext)
-	var emptyOutput model.AuthenticationPolicyProperties
+	var emptyOutput nsxModel.AuthenticationPolicyProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), authPolicyGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), AuthPolicyGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(model.AuthenticationPolicyProperties), nil
+		return output.(nsxModel.AuthenticationPolicyProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), aIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (aIface *authPolicyClient) Resetall() (model.AuthenticationPolicyProperties, error) {
+func (aIface *authPolicyClient) Resetall() (nsxModel.AuthenticationPolicyProperties, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	executionContext := aIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(authPolicyResetallInputType(), typeConverter)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput model.AuthenticationPolicyProperties
-		return emptyOutput, bindings.VAPIerrorsToError(inputError)
-	}
 	operationRestMetaData := authPolicyResetallRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	aIface.connector.SetConnectionMetadata(connectionMetadata)
+	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
+	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
+
+	sv := vapiBindings_.NewStructValueBuilder(authPolicyResetallInputType(), typeConverter)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput nsxModel.AuthenticationPolicyProperties
+		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+	}
+
 	methodResult := aIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.aaa.auth_policy", "resetall", inputDataValue, executionContext)
-	var emptyOutput model.AuthenticationPolicyProperties
+	var emptyOutput nsxModel.AuthenticationPolicyProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), authPolicyResetallOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), AuthPolicyResetallOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(model.AuthenticationPolicyProperties), nil
+		return output.(nsxModel.AuthenticationPolicyProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), aIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (aIface *authPolicyClient) Resetauthpolicies() (model.AuthenticationPolicyProperties, error) {
+func (aIface *authPolicyClient) Resetauthpolicies() (nsxModel.AuthenticationPolicyProperties, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	executionContext := aIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(authPolicyResetauthpoliciesInputType(), typeConverter)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput model.AuthenticationPolicyProperties
-		return emptyOutput, bindings.VAPIerrorsToError(inputError)
-	}
 	operationRestMetaData := authPolicyResetauthpoliciesRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	aIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := aIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.aaa.auth_policy", "resetauthpolicies", inputDataValue, executionContext)
-	var emptyOutput model.AuthenticationPolicyProperties
-	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), authPolicyResetauthpoliciesOutputType())
-		if errorInOutput != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
-		}
-		return output.(model.AuthenticationPolicyProperties), nil
-	} else {
-		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), aIface.GetErrorBindingType(methodResult.Error().Name()))
-		if errorInError != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
-		}
-		return emptyOutput, methodError.(error)
-	}
-}
+	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
+	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
 
-func (aIface *authPolicyClient) Resetpwdcomplexity() (model.AuthenticationPolicyProperties, error) {
-	typeConverter := aIface.connector.TypeConverter()
-	executionContext := aIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(authPolicyResetpwdcomplexityInputType(), typeConverter)
+	sv := vapiBindings_.NewStructValueBuilder(authPolicyResetauthpoliciesInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput model.AuthenticationPolicyProperties
-		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+		var emptyOutput nsxModel.AuthenticationPolicyProperties
+		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := authPolicyResetpwdcomplexityRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	aIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := aIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.aaa.auth_policy", "resetpwdcomplexity", inputDataValue, executionContext)
-	var emptyOutput model.AuthenticationPolicyProperties
+
+	methodResult := aIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.aaa.auth_policy", "resetauthpolicies", inputDataValue, executionContext)
+	var emptyOutput nsxModel.AuthenticationPolicyProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), authPolicyResetpwdcomplexityOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), AuthPolicyResetauthpoliciesOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(model.AuthenticationPolicyProperties), nil
+		return output.(nsxModel.AuthenticationPolicyProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), aIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (aIface *authPolicyClient) Update(authenticationPolicyPropertiesParam model.AuthenticationPolicyProperties) (model.AuthenticationPolicyProperties, error) {
+func (aIface *authPolicyClient) Resetpwdcomplexity() (nsxModel.AuthenticationPolicyProperties, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	executionContext := aIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(authPolicyUpdateInputType(), typeConverter)
+	operationRestMetaData := authPolicyResetpwdcomplexityRestMetadata()
+	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
+	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
+
+	sv := vapiBindings_.NewStructValueBuilder(authPolicyResetpwdcomplexityInputType(), typeConverter)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput nsxModel.AuthenticationPolicyProperties
+		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+	}
+
+	methodResult := aIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.aaa.auth_policy", "resetpwdcomplexity", inputDataValue, executionContext)
+	var emptyOutput nsxModel.AuthenticationPolicyProperties
+	if methodResult.IsSuccess() {
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), AuthPolicyResetpwdcomplexityOutputType())
+		if errorInOutput != nil {
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
+		}
+		return output.(nsxModel.AuthenticationPolicyProperties), nil
+	} else {
+		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), aIface.GetErrorBindingType(methodResult.Error().Name()))
+		if errorInError != nil {
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
+		}
+		return emptyOutput, methodError.(error)
+	}
+}
+
+func (aIface *authPolicyClient) Update(authenticationPolicyPropertiesParam nsxModel.AuthenticationPolicyProperties) (nsxModel.AuthenticationPolicyProperties, error) {
+	typeConverter := aIface.connector.TypeConverter()
+	executionContext := aIface.connector.NewExecutionContext()
+	operationRestMetaData := authPolicyUpdateRestMetadata()
+	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
+	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
+
+	sv := vapiBindings_.NewStructValueBuilder(authPolicyUpdateInputType(), typeConverter)
 	sv.AddStructField("AuthenticationPolicyProperties", authenticationPolicyPropertiesParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput model.AuthenticationPolicyProperties
-		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+		var emptyOutput nsxModel.AuthenticationPolicyProperties
+		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := authPolicyUpdateRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	aIface.connector.SetConnectionMetadata(connectionMetadata)
+
 	methodResult := aIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.aaa.auth_policy", "update", inputDataValue, executionContext)
-	var emptyOutput model.AuthenticationPolicyProperties
+	var emptyOutput nsxModel.AuthenticationPolicyProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), authPolicyUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), AuthPolicyUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(model.AuthenticationPolicyProperties), nil
+		return output.(nsxModel.AuthenticationPolicyProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), aIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

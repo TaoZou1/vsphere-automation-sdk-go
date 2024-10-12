@@ -12,8 +12,8 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/security"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/core"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/security"
 )
 
 type info struct {

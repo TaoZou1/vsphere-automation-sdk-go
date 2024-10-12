@@ -1,4 +1,4 @@
-// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,10 +11,10 @@
 package cluster
 
 import (
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 	"reflect"
 )
 
@@ -24,21 +24,21 @@ const ApiVirtualIp_SETVIRTUALIP_FORCE_TRUE = "true"
 // Possible value for ``force`` of method ApiVirtualIp#setvirtualip.
 const ApiVirtualIp_SETVIRTUALIP_FORCE_FALSE = "false"
 
-func apiVirtualIpClearvirtualipInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func apiVirtualIpClearvirtualipInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func apiVirtualIpClearvirtualipOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.ClusterVirtualIpPropertiesBindingType)
+func ApiVirtualIpClearvirtualipOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewReferenceType(nsxModel.ClusterVirtualIpPropertiesBindingType)
 }
 
-func apiVirtualIpClearvirtualipRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func apiVirtualIpClearvirtualipRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
@@ -46,7 +46,7 @@ func apiVirtualIpClearvirtualipRestMetadata() protocol.OperationRestMetadata {
 	bodyFieldsMap := map[string]string{}
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -67,21 +67,21 @@ func apiVirtualIpClearvirtualipRestMetadata() protocol.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func apiVirtualIpClearvirtualip6InputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func apiVirtualIpClearvirtualip6InputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func apiVirtualIpClearvirtualip6OutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.ClusterVirtualIpPropertiesBindingType)
+func ApiVirtualIpClearvirtualip6OutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewReferenceType(nsxModel.ClusterVirtualIpPropertiesBindingType)
 }
 
-func apiVirtualIpClearvirtualip6RestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func apiVirtualIpClearvirtualip6RestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
@@ -89,7 +89,7 @@ func apiVirtualIpClearvirtualip6RestMetadata() protocol.OperationRestMetadata {
 	bodyFieldsMap := map[string]string{}
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -110,21 +110,21 @@ func apiVirtualIpClearvirtualip6RestMetadata() protocol.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func apiVirtualIpGetInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func apiVirtualIpGetInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func apiVirtualIpGetOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.ClusterVirtualIpPropertiesBindingType)
+func ApiVirtualIpGetOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewReferenceType(nsxModel.ClusterVirtualIpPropertiesBindingType)
 }
 
-func apiVirtualIpGetRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func apiVirtualIpGetRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
@@ -132,7 +132,7 @@ func apiVirtualIpGetRestMetadata() protocol.OperationRestMetadata {
 	bodyFieldsMap := map[string]string{}
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -153,47 +153,47 @@ func apiVirtualIpGetRestMetadata() protocol.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func apiVirtualIpSetvirtualipInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func apiVirtualIpSetvirtualipInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["force"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["ip6_address"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["ip_address"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["force"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["ip6_address"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["ip_address"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
 	fieldNameMap["force"] = "Force"
 	fieldNameMap["ip6_address"] = "Ip6Address"
 	fieldNameMap["ip_address"] = "IpAddress"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func apiVirtualIpSetvirtualipOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.ClusterVirtualIpPropertiesBindingType)
+func ApiVirtualIpSetvirtualipOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewReferenceType(nsxModel.ClusterVirtualIpPropertiesBindingType)
 }
 
-func apiVirtualIpSetvirtualipRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func apiVirtualIpSetvirtualipRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["force"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["ip6_address"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["ip_address"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["force"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["ip6_address"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["ip_address"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
 	fieldNameMap["force"] = "Force"
 	fieldNameMap["ip6_address"] = "Ip6Address"
 	fieldNameMap["ip_address"] = "IpAddress"
-	paramsTypeMap["force"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["ip_address"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["ip6_address"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["ip6_address"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["force"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["ip_address"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
 	queryParams["ip6_address"] = "ip6_address"
 	queryParams["force"] = "force"
 	queryParams["ip_address"] = "ip_address"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

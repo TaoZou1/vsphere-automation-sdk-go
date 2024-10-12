@@ -1,4 +1,4 @@
-// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,63 +11,63 @@
 package nat
 
 import (
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func natRulesDeleteInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func natRulesDeleteInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["vpc_id"] = bindings.NewStringType()
-	fields["nat_id"] = bindings.NewStringType()
-	fields["nat_rule_id"] = bindings.NewStringType()
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["vpc_id"] = vapiBindings_.NewStringType()
+	fields["nat_id"] = vapiBindings_.NewStringType()
+	fields["nat_rule_id"] = vapiBindings_.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["vpc_id"] = "VpcId"
 	fieldNameMap["nat_id"] = "NatId"
 	fieldNameMap["nat_rule_id"] = "NatRuleId"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func natRulesDeleteOutputType() bindings.BindingType {
-	return bindings.NewVoidType()
+func NatRulesDeleteOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewVoidType()
 }
 
-func natRulesDeleteRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func natRulesDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["vpc_id"] = bindings.NewStringType()
-	fields["nat_id"] = bindings.NewStringType()
-	fields["nat_rule_id"] = bindings.NewStringType()
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["vpc_id"] = vapiBindings_.NewStringType()
+	fields["nat_id"] = vapiBindings_.NewStringType()
+	fields["nat_rule_id"] = vapiBindings_.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["vpc_id"] = "VpcId"
 	fieldNameMap["nat_id"] = "NatId"
 	fieldNameMap["nat_rule_id"] = "NatRuleId"
-	paramsTypeMap["project_id"] = bindings.NewStringType()
-	paramsTypeMap["vpc_id"] = bindings.NewStringType()
-	paramsTypeMap["org_id"] = bindings.NewStringType()
-	paramsTypeMap["nat_rule_id"] = bindings.NewStringType()
-	paramsTypeMap["nat_id"] = bindings.NewStringType()
-	paramsTypeMap["orgId"] = bindings.NewStringType()
-	paramsTypeMap["projectId"] = bindings.NewStringType()
-	paramsTypeMap["vpcId"] = bindings.NewStringType()
-	paramsTypeMap["natId"] = bindings.NewStringType()
-	paramsTypeMap["natRuleId"] = bindings.NewStringType()
+	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["vpc_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["nat_rule_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["nat_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["vpcId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["natId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["natRuleId"] = vapiBindings_.NewStringType()
 	pathParams["nat_rule_id"] = "natRuleId"
 	pathParams["vpc_id"] = "vpcId"
 	pathParams["nat_id"] = "natId"
@@ -75,7 +75,7 @@ func natRulesDeleteRestMetadata() protocol.OperationRestMetadata {
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -96,56 +96,56 @@ func natRulesDeleteRestMetadata() protocol.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func natRulesGetInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func natRulesGetInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["vpc_id"] = bindings.NewStringType()
-	fields["nat_id"] = bindings.NewStringType()
-	fields["nat_rule_id"] = bindings.NewStringType()
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["vpc_id"] = vapiBindings_.NewStringType()
+	fields["nat_id"] = vapiBindings_.NewStringType()
+	fields["nat_rule_id"] = vapiBindings_.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["vpc_id"] = "VpcId"
 	fieldNameMap["nat_id"] = "NatId"
 	fieldNameMap["nat_rule_id"] = "NatRuleId"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func natRulesGetOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.PolicyNatRuleBindingType)
+func NatRulesGetOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewReferenceType(nsx_policyModel.PolicyVpcNatRuleBindingType)
 }
 
-func natRulesGetRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func natRulesGetRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["vpc_id"] = bindings.NewStringType()
-	fields["nat_id"] = bindings.NewStringType()
-	fields["nat_rule_id"] = bindings.NewStringType()
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["vpc_id"] = vapiBindings_.NewStringType()
+	fields["nat_id"] = vapiBindings_.NewStringType()
+	fields["nat_rule_id"] = vapiBindings_.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["vpc_id"] = "VpcId"
 	fieldNameMap["nat_id"] = "NatId"
 	fieldNameMap["nat_rule_id"] = "NatRuleId"
-	paramsTypeMap["project_id"] = bindings.NewStringType()
-	paramsTypeMap["vpc_id"] = bindings.NewStringType()
-	paramsTypeMap["org_id"] = bindings.NewStringType()
-	paramsTypeMap["nat_rule_id"] = bindings.NewStringType()
-	paramsTypeMap["nat_id"] = bindings.NewStringType()
-	paramsTypeMap["orgId"] = bindings.NewStringType()
-	paramsTypeMap["projectId"] = bindings.NewStringType()
-	paramsTypeMap["vpcId"] = bindings.NewStringType()
-	paramsTypeMap["natId"] = bindings.NewStringType()
-	paramsTypeMap["natRuleId"] = bindings.NewStringType()
+	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["vpc_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["nat_rule_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["nat_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["vpcId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["natId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["natRuleId"] = vapiBindings_.NewStringType()
 	pathParams["nat_rule_id"] = "natRuleId"
 	pathParams["vpc_id"] = "vpcId"
 	pathParams["nat_id"] = "natId"
@@ -153,7 +153,7 @@ func natRulesGetRestMetadata() protocol.OperationRestMetadata {
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -174,19 +174,19 @@ func natRulesGetRestMetadata() protocol.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func natRulesListInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func natRulesListInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["vpc_id"] = bindings.NewStringType()
-	fields["nat_id"] = bindings.NewStringType()
-	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
-	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["vpc_id"] = vapiBindings_.NewStringType()
+	fields["nat_id"] = vapiBindings_.NewStringType()
+	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["vpc_id"] = "VpcId"
@@ -197,33 +197,33 @@ func natRulesListInputType() bindings.StructType {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func natRulesListOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.PolicyNatRuleListResultBindingType)
+func NatRulesListOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewReferenceType(nsx_policyModel.PolicyVpcNatRuleListResultBindingType)
 }
 
-func natRulesListRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func natRulesListRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["vpc_id"] = bindings.NewStringType()
-	fields["nat_id"] = bindings.NewStringType()
-	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
-	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["vpc_id"] = vapiBindings_.NewStringType()
+	fields["nat_id"] = vapiBindings_.NewStringType()
+	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["vpc_id"] = "VpcId"
@@ -234,20 +234,20 @@ func natRulesListRestMetadata() protocol.OperationRestMetadata {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	paramsTypeMap["project_id"] = bindings.NewStringType()
-	paramsTypeMap["vpc_id"] = bindings.NewStringType()
-	paramsTypeMap["org_id"] = bindings.NewStringType()
-	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
-	paramsTypeMap["nat_id"] = bindings.NewStringType()
-	paramsTypeMap["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	paramsTypeMap["orgId"] = bindings.NewStringType()
-	paramsTypeMap["projectId"] = bindings.NewStringType()
-	paramsTypeMap["vpcId"] = bindings.NewStringType()
-	paramsTypeMap["natId"] = bindings.NewStringType()
+	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["vpc_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["nat_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["vpcId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["natId"] = vapiBindings_.NewStringType()
 	pathParams["vpc_id"] = "vpcId"
 	pathParams["nat_id"] = "natId"
 	pathParams["project_id"] = "projectId"
@@ -260,7 +260,7 @@ func natRulesListRestMetadata() protocol.OperationRestMetadata {
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -281,61 +281,61 @@ func natRulesListRestMetadata() protocol.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func natRulesPatchInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func natRulesPatchInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["vpc_id"] = bindings.NewStringType()
-	fields["nat_id"] = bindings.NewStringType()
-	fields["nat_rule_id"] = bindings.NewStringType()
-	fields["policy_nat_rule"] = bindings.NewReferenceType(model.PolicyNatRuleBindingType)
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["vpc_id"] = vapiBindings_.NewStringType()
+	fields["nat_id"] = vapiBindings_.NewStringType()
+	fields["nat_rule_id"] = vapiBindings_.NewStringType()
+	fields["policy_vpc_nat_rule"] = vapiBindings_.NewReferenceType(nsx_policyModel.PolicyVpcNatRuleBindingType)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["vpc_id"] = "VpcId"
 	fieldNameMap["nat_id"] = "NatId"
 	fieldNameMap["nat_rule_id"] = "NatRuleId"
-	fieldNameMap["policy_nat_rule"] = "PolicyNatRule"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	fieldNameMap["policy_vpc_nat_rule"] = "PolicyVpcNatRule"
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func natRulesPatchOutputType() bindings.BindingType {
-	return bindings.NewVoidType()
+func NatRulesPatchOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewVoidType()
 }
 
-func natRulesPatchRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func natRulesPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["vpc_id"] = bindings.NewStringType()
-	fields["nat_id"] = bindings.NewStringType()
-	fields["nat_rule_id"] = bindings.NewStringType()
-	fields["policy_nat_rule"] = bindings.NewReferenceType(model.PolicyNatRuleBindingType)
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["vpc_id"] = vapiBindings_.NewStringType()
+	fields["nat_id"] = vapiBindings_.NewStringType()
+	fields["nat_rule_id"] = vapiBindings_.NewStringType()
+	fields["policy_vpc_nat_rule"] = vapiBindings_.NewReferenceType(nsx_policyModel.PolicyVpcNatRuleBindingType)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["vpc_id"] = "VpcId"
 	fieldNameMap["nat_id"] = "NatId"
 	fieldNameMap["nat_rule_id"] = "NatRuleId"
-	fieldNameMap["policy_nat_rule"] = "PolicyNatRule"
-	paramsTypeMap["project_id"] = bindings.NewStringType()
-	paramsTypeMap["vpc_id"] = bindings.NewStringType()
-	paramsTypeMap["policy_nat_rule"] = bindings.NewReferenceType(model.PolicyNatRuleBindingType)
-	paramsTypeMap["org_id"] = bindings.NewStringType()
-	paramsTypeMap["nat_rule_id"] = bindings.NewStringType()
-	paramsTypeMap["nat_id"] = bindings.NewStringType()
-	paramsTypeMap["orgId"] = bindings.NewStringType()
-	paramsTypeMap["projectId"] = bindings.NewStringType()
-	paramsTypeMap["vpcId"] = bindings.NewStringType()
-	paramsTypeMap["natId"] = bindings.NewStringType()
-	paramsTypeMap["natRuleId"] = bindings.NewStringType()
+	fieldNameMap["policy_vpc_nat_rule"] = "PolicyVpcNatRule"
+	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["vpc_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["nat_rule_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["nat_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["policy_vpc_nat_rule"] = vapiBindings_.NewReferenceType(nsx_policyModel.PolicyVpcNatRuleBindingType)
+	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["vpcId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["natId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["natRuleId"] = vapiBindings_.NewStringType()
 	pathParams["nat_rule_id"] = "natRuleId"
 	pathParams["vpc_id"] = "vpcId"
 	pathParams["nat_id"] = "natId"
@@ -343,7 +343,7 @@ func natRulesPatchRestMetadata() protocol.OperationRestMetadata {
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -353,7 +353,7 @@ func natRulesPatchRestMetadata() protocol.OperationRestMetadata {
 		dispatchHeaderParams,
 		bodyFieldsMap,
 		"",
-		"policy_nat_rule",
+		"policy_vpc_nat_rule",
 		"PATCH",
 		"/policy/api/v1/orgs/{orgId}/projects/{projectId}/vpcs/{vpcId}/nat/{natId}/nat-rules/{natRuleId}",
 		"",
@@ -364,61 +364,61 @@ func natRulesPatchRestMetadata() protocol.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func natRulesUpdateInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func natRulesUpdateInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["vpc_id"] = bindings.NewStringType()
-	fields["nat_id"] = bindings.NewStringType()
-	fields["nat_rule_id"] = bindings.NewStringType()
-	fields["policy_nat_rule"] = bindings.NewReferenceType(model.PolicyNatRuleBindingType)
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["vpc_id"] = vapiBindings_.NewStringType()
+	fields["nat_id"] = vapiBindings_.NewStringType()
+	fields["nat_rule_id"] = vapiBindings_.NewStringType()
+	fields["policy_vpc_nat_rule"] = vapiBindings_.NewReferenceType(nsx_policyModel.PolicyVpcNatRuleBindingType)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["vpc_id"] = "VpcId"
 	fieldNameMap["nat_id"] = "NatId"
 	fieldNameMap["nat_rule_id"] = "NatRuleId"
-	fieldNameMap["policy_nat_rule"] = "PolicyNatRule"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	fieldNameMap["policy_vpc_nat_rule"] = "PolicyVpcNatRule"
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func natRulesUpdateOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.PolicyNatRuleBindingType)
+func NatRulesUpdateOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewReferenceType(nsx_policyModel.PolicyVpcNatRuleBindingType)
 }
 
-func natRulesUpdateRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func natRulesUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["vpc_id"] = bindings.NewStringType()
-	fields["nat_id"] = bindings.NewStringType()
-	fields["nat_rule_id"] = bindings.NewStringType()
-	fields["policy_nat_rule"] = bindings.NewReferenceType(model.PolicyNatRuleBindingType)
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["vpc_id"] = vapiBindings_.NewStringType()
+	fields["nat_id"] = vapiBindings_.NewStringType()
+	fields["nat_rule_id"] = vapiBindings_.NewStringType()
+	fields["policy_vpc_nat_rule"] = vapiBindings_.NewReferenceType(nsx_policyModel.PolicyVpcNatRuleBindingType)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["vpc_id"] = "VpcId"
 	fieldNameMap["nat_id"] = "NatId"
 	fieldNameMap["nat_rule_id"] = "NatRuleId"
-	fieldNameMap["policy_nat_rule"] = "PolicyNatRule"
-	paramsTypeMap["project_id"] = bindings.NewStringType()
-	paramsTypeMap["vpc_id"] = bindings.NewStringType()
-	paramsTypeMap["policy_nat_rule"] = bindings.NewReferenceType(model.PolicyNatRuleBindingType)
-	paramsTypeMap["org_id"] = bindings.NewStringType()
-	paramsTypeMap["nat_rule_id"] = bindings.NewStringType()
-	paramsTypeMap["nat_id"] = bindings.NewStringType()
-	paramsTypeMap["orgId"] = bindings.NewStringType()
-	paramsTypeMap["projectId"] = bindings.NewStringType()
-	paramsTypeMap["vpcId"] = bindings.NewStringType()
-	paramsTypeMap["natId"] = bindings.NewStringType()
-	paramsTypeMap["natRuleId"] = bindings.NewStringType()
+	fieldNameMap["policy_vpc_nat_rule"] = "PolicyVpcNatRule"
+	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["vpc_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["nat_rule_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["nat_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["policy_vpc_nat_rule"] = vapiBindings_.NewReferenceType(nsx_policyModel.PolicyVpcNatRuleBindingType)
+	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["vpcId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["natId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["natRuleId"] = vapiBindings_.NewStringType()
 	pathParams["nat_rule_id"] = "natRuleId"
 	pathParams["vpc_id"] = "vpcId"
 	pathParams["nat_id"] = "natId"
@@ -426,7 +426,7 @@ func natRulesUpdateRestMetadata() protocol.OperationRestMetadata {
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -436,7 +436,7 @@ func natRulesUpdateRestMetadata() protocol.OperationRestMetadata {
 		dispatchHeaderParams,
 		bodyFieldsMap,
 		"",
-		"policy_nat_rule",
+		"policy_vpc_nat_rule",
 		"PUT",
 		"/policy/api/v1/orgs/{orgId}/projects/{projectId}/vpcs/{vpcId}/nat/{natId}/nat-rules/{natRuleId}",
 		"",

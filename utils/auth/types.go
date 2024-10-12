@@ -4,7 +4,7 @@
 package auth
 
 import (
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/core"
 )
 
 // Scheme represents the Authentication Scheme.
