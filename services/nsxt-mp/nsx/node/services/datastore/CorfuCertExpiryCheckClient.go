@@ -1,4 +1,4 @@
-// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,158 +9,163 @@
 package datastore
 
 import (
-	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = core.SupportedByRuntimeVersion1
+const _ = vapiCore_.SupportedByRuntimeVersion2
 
 type Corfu_cert_expiry_checkClient interface {
 
 	// Enable or Disable Corfu Certificate Expiry Check. Default is enabled
 	// @return com.vmware.nsx.model.CorfuCertificateExpiryCheckProperties
+	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Disable() (model.CorfuCertificateExpiryCheckProperties, error)
+	Disable() (nsxModel.CorfuCertificateExpiryCheckProperties, error)
 
 	// Enable or Disable Corfu Certificate Expiry Check. Default is enabled
 	// @return com.vmware.nsx.model.CorfuCertificateExpiryCheckProperties
+	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Enable() (model.CorfuCertificateExpiryCheckProperties, error)
+	Enable() (nsxModel.CorfuCertificateExpiryCheckProperties, error)
 
 	// Get the status of Corfu Certificate Expiry Check. Enabled or disabled
 	// @return com.vmware.nsx.model.CorfuCertificateExpiryCheckProperties
+	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get() (model.CorfuCertificateExpiryCheckProperties, error)
+	Get() (nsxModel.CorfuCertificateExpiryCheckProperties, error)
 }
 
 type corfu_cert_expiry_checkClient struct {
-	connector           client.Connector
-	interfaceDefinition core.InterfaceDefinition
-	errorsBindingMap    map[string]bindings.BindingType
+	connector           vapiProtocolClient_.Connector
+	interfaceDefinition vapiCore_.InterfaceDefinition
+	errorsBindingMap    map[string]vapiBindings_.BindingType
 }
 
-func NewCorfu_cert_expiry_checkClient(connector client.Connector) *corfu_cert_expiry_checkClient {
-	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.node.services.datastore.corfu_cert_expiry_check")
-	methodIdentifiers := map[string]core.MethodIdentifier{
-		"disable": core.NewMethodIdentifier(interfaceIdentifier, "disable"),
-		"enable":  core.NewMethodIdentifier(interfaceIdentifier, "enable"),
-		"get":     core.NewMethodIdentifier(interfaceIdentifier, "get"),
+func NewCorfu_cert_expiry_checkClient(connector vapiProtocolClient_.Connector) *corfu_cert_expiry_checkClient {
+	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.node.services.datastore.corfu_cert_expiry_check")
+	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
+		"disable": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "disable"),
+		"enable":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "enable"),
+		"get":     vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
 	}
-	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]bindings.BindingType)
+	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
 
 	cIface := corfu_cert_expiry_checkClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &cIface
 }
 
-func (cIface *corfu_cert_expiry_checkClient) GetErrorBindingType(errorName string) bindings.BindingType {
+func (cIface *corfu_cert_expiry_checkClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
 	if entry, ok := cIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return errors.ERROR_BINDINGS_MAP[errorName]
+	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (cIface *corfu_cert_expiry_checkClient) Disable() (model.CorfuCertificateExpiryCheckProperties, error) {
+func (cIface *corfu_cert_expiry_checkClient) Disable() (nsxModel.CorfuCertificateExpiryCheckProperties, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(corfuCertExpiryCheckDisableInputType(), typeConverter)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput model.CorfuCertificateExpiryCheckProperties
-		return emptyOutput, bindings.VAPIerrorsToError(inputError)
-	}
 	operationRestMetaData := corfuCertExpiryCheckDisableRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	cIface.connector.SetConnectionMetadata(connectionMetadata)
+	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
+	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
+
+	sv := vapiBindings_.NewStructValueBuilder(corfuCertExpiryCheckDisableInputType(), typeConverter)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput nsxModel.CorfuCertificateExpiryCheckProperties
+		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+	}
+
 	methodResult := cIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.datastore.corfu_cert_expiry_check", "disable", inputDataValue, executionContext)
-	var emptyOutput model.CorfuCertificateExpiryCheckProperties
+	var emptyOutput nsxModel.CorfuCertificateExpiryCheckProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), corfuCertExpiryCheckDisableOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), CorfuCertExpiryCheckDisableOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(model.CorfuCertificateExpiryCheckProperties), nil
+		return output.(nsxModel.CorfuCertificateExpiryCheckProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), cIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (cIface *corfu_cert_expiry_checkClient) Enable() (model.CorfuCertificateExpiryCheckProperties, error) {
+func (cIface *corfu_cert_expiry_checkClient) Enable() (nsxModel.CorfuCertificateExpiryCheckProperties, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(corfuCertExpiryCheckEnableInputType(), typeConverter)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput model.CorfuCertificateExpiryCheckProperties
-		return emptyOutput, bindings.VAPIerrorsToError(inputError)
-	}
 	operationRestMetaData := corfuCertExpiryCheckEnableRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	cIface.connector.SetConnectionMetadata(connectionMetadata)
+	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
+	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
+
+	sv := vapiBindings_.NewStructValueBuilder(corfuCertExpiryCheckEnableInputType(), typeConverter)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput nsxModel.CorfuCertificateExpiryCheckProperties
+		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
+	}
+
 	methodResult := cIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.datastore.corfu_cert_expiry_check", "enable", inputDataValue, executionContext)
-	var emptyOutput model.CorfuCertificateExpiryCheckProperties
+	var emptyOutput nsxModel.CorfuCertificateExpiryCheckProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), corfuCertExpiryCheckEnableOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), CorfuCertExpiryCheckEnableOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(model.CorfuCertificateExpiryCheckProperties), nil
+		return output.(nsxModel.CorfuCertificateExpiryCheckProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), cIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (cIface *corfu_cert_expiry_checkClient) Get() (model.CorfuCertificateExpiryCheckProperties, error) {
+func (cIface *corfu_cert_expiry_checkClient) Get() (nsxModel.CorfuCertificateExpiryCheckProperties, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(corfuCertExpiryCheckGetInputType(), typeConverter)
+	operationRestMetaData := corfuCertExpiryCheckGetRestMetadata()
+	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
+	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
+
+	sv := vapiBindings_.NewStructValueBuilder(corfuCertExpiryCheckGetInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput model.CorfuCertificateExpiryCheckProperties
-		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+		var emptyOutput nsxModel.CorfuCertificateExpiryCheckProperties
+		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := corfuCertExpiryCheckGetRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	cIface.connector.SetConnectionMetadata(connectionMetadata)
+
 	methodResult := cIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.datastore.corfu_cert_expiry_check", "get", inputDataValue, executionContext)
-	var emptyOutput model.CorfuCertificateExpiryCheckProperties
+	var emptyOutput nsxModel.CorfuCertificateExpiryCheckProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), corfuCertExpiryCheckGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), CorfuCertExpiryCheckGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(model.CorfuCertificateExpiryCheckProperties), nil
+		return output.(nsxModel.CorfuCertificateExpiryCheckProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), cIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

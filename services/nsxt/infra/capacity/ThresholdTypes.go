@@ -1,4 +1,5 @@
-// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
+// Copyright (c) 2019-2024 Broadcom. All Rights Reserved.
+// The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,28 +12,28 @@
 package capacity
 
 import (
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func thresholdGetInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func thresholdGetInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func thresholdGetOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.CapacityThresholdListBindingType)
+func ThresholdGetOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewReferenceType(nsx_policyModel.CapacityThresholdListBindingType)
 }
 
-func thresholdGetRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func thresholdGetRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
@@ -40,7 +41,7 @@ func thresholdGetRestMetadata() protocol.OperationRestMetadata {
 	bodyFieldsMap := map[string]string{}
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -61,34 +62,34 @@ func thresholdGetRestMetadata() protocol.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func thresholdPatchInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func thresholdPatchInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["capacity_threshold"] = bindings.NewReferenceType(model.CapacityThresholdBindingType)
+	fields["capacity_threshold"] = vapiBindings_.NewReferenceType(nsx_policyModel.CapacityThresholdBindingType)
 	fieldNameMap["capacity_threshold"] = "CapacityThreshold"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func thresholdPatchOutputType() bindings.BindingType {
-	return bindings.NewVoidType()
+func ThresholdPatchOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewVoidType()
 }
 
-func thresholdPatchRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func thresholdPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["capacity_threshold"] = bindings.NewReferenceType(model.CapacityThresholdBindingType)
+	fields["capacity_threshold"] = vapiBindings_.NewReferenceType(nsx_policyModel.CapacityThresholdBindingType)
 	fieldNameMap["capacity_threshold"] = "CapacityThreshold"
-	paramsTypeMap["capacity_threshold"] = bindings.NewReferenceType(model.CapacityThresholdBindingType)
+	paramsTypeMap["capacity_threshold"] = vapiBindings_.NewReferenceType(nsx_policyModel.CapacityThresholdBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -101,7 +102,7 @@ func thresholdPatchRestMetadata() protocol.OperationRestMetadata {
 		"capacity_threshold",
 		"PATCH",
 		"/policy/api/v1/infra/capacity/threshold",
-		"",
+		"application/json",
 		resultHeaders,
 		204,
 		"",
@@ -109,34 +110,34 @@ func thresholdPatchRestMetadata() protocol.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func thresholdUpdateInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func thresholdUpdateInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["capacity_threshold_list"] = bindings.NewReferenceType(model.CapacityThresholdListBindingType)
+	fields["capacity_threshold_list"] = vapiBindings_.NewReferenceType(nsx_policyModel.CapacityThresholdListBindingType)
 	fieldNameMap["capacity_threshold_list"] = "CapacityThresholdList"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func thresholdUpdateOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.CapacityThresholdListBindingType)
+func ThresholdUpdateOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewReferenceType(nsx_policyModel.CapacityThresholdListBindingType)
 }
 
-func thresholdUpdateRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func thresholdUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["capacity_threshold_list"] = bindings.NewReferenceType(model.CapacityThresholdListBindingType)
+	fields["capacity_threshold_list"] = vapiBindings_.NewReferenceType(nsx_policyModel.CapacityThresholdListBindingType)
 	fieldNameMap["capacity_threshold_list"] = "CapacityThresholdList"
-	paramsTypeMap["capacity_threshold_list"] = bindings.NewReferenceType(model.CapacityThresholdListBindingType)
+	paramsTypeMap["capacity_threshold_list"] = vapiBindings_.NewReferenceType(nsx_policyModel.CapacityThresholdListBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -149,7 +150,7 @@ func thresholdUpdateRestMetadata() protocol.OperationRestMetadata {
 		"capacity_threshold_list",
 		"PUT",
 		"/policy/api/v1/infra/capacity/threshold",
-		"",
+		"application/json",
 		resultHeaders,
 		200,
 		"",

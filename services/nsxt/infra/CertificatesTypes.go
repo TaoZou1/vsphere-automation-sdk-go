@@ -1,4 +1,5 @@
-// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
+// Copyright (c) 2019-2024 Broadcom. All Rights Reserved.
+// The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,10 +12,10 @@
 package infra
 
 import (
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
@@ -24,36 +25,36 @@ const Certificates_LIST_TYPE_CLUSTER_API_CERTIFICATE = "cluster_api_certificate"
 // Possible value for ``type`` of method Certificates#list.
 const Certificates_LIST_TYPE_API_CERTIFICATE = "api_certificate"
 
-func certificatesDeleteInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func certificatesDeleteInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["certificate_id"] = bindings.NewStringType()
+	fields["certificate_id"] = vapiBindings_.NewStringType()
 	fieldNameMap["certificate_id"] = "CertificateId"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func certificatesDeleteOutputType() bindings.BindingType {
-	return bindings.NewVoidType()
+func CertificatesDeleteOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewVoidType()
 }
 
-func certificatesDeleteRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func certificatesDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["certificate_id"] = bindings.NewStringType()
+	fields["certificate_id"] = vapiBindings_.NewStringType()
 	fieldNameMap["certificate_id"] = "CertificateId"
-	paramsTypeMap["certificate_id"] = bindings.NewStringType()
-	paramsTypeMap["certificateId"] = bindings.NewStringType()
+	paramsTypeMap["certificate_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["certificateId"] = vapiBindings_.NewStringType()
 	pathParams["certificate_id"] = "certificateId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -74,42 +75,42 @@ func certificatesDeleteRestMetadata() protocol.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func certificatesGetInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func certificatesGetInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["certificate_id"] = bindings.NewStringType()
-	fields["details"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["certificate_id"] = vapiBindings_.NewStringType()
+	fields["details"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
 	fieldNameMap["certificate_id"] = "CertificateId"
 	fieldNameMap["details"] = "Details"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func certificatesGetOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.TlsCertificateBindingType)
+func CertificatesGetOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewReferenceType(nsx_policyModel.TlsCertificateBindingType)
 }
 
-func certificatesGetRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func certificatesGetRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["certificate_id"] = bindings.NewStringType()
-	fields["details"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["certificate_id"] = vapiBindings_.NewStringType()
+	fields["details"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
 	fieldNameMap["certificate_id"] = "CertificateId"
 	fieldNameMap["details"] = "Details"
-	paramsTypeMap["certificate_id"] = bindings.NewStringType()
-	paramsTypeMap["details"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	paramsTypeMap["certificateId"] = bindings.NewStringType()
+	paramsTypeMap["certificate_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["details"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	paramsTypeMap["certificateId"] = vapiBindings_.NewStringType()
 	pathParams["certificate_id"] = "certificateId"
 	queryParams["details"] = "details"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -130,17 +131,17 @@ func certificatesGetRestMetadata() protocol.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func certificatesListInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func certificatesListInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["details"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["node_id"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
-	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["details"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["node_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["details"] = "Details"
 	fieldNameMap["included_fields"] = "IncludedFields"
@@ -149,31 +150,31 @@ func certificatesListInputType() bindings.StructType {
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
 	fieldNameMap["type"] = "Type_"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func certificatesListOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.TlsCertificateListBindingType)
+func CertificatesListOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewReferenceType(nsx_policyModel.TlsCertificateListBindingType)
 }
 
-func certificatesListRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func certificatesListRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["details"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["node_id"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
-	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["type"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["details"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["node_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["details"] = "Details"
 	fieldNameMap["included_fields"] = "IncludedFields"
@@ -182,14 +183,14 @@ func certificatesListRestMetadata() protocol.OperationRestMetadata {
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
 	fieldNameMap["type"] = "Type_"
-	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
-	paramsTypeMap["type"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["node_id"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["details"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["details"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["type"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["node_id"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
 	queryParams["cursor"] = "cursor"
 	queryParams["sort_ascending"] = "sort_ascending"
 	queryParams["included_fields"] = "included_fields"
@@ -200,7 +201,7 @@ func certificatesListRestMetadata() protocol.OperationRestMetadata {
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -221,41 +222,41 @@ func certificatesListRestMetadata() protocol.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func certificatesPatchInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func certificatesPatchInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["certificate_id"] = bindings.NewStringType()
-	fields["tls_trust_data"] = bindings.NewReferenceType(model.TlsTrustDataBindingType)
+	fields["certificate_id"] = vapiBindings_.NewStringType()
+	fields["tls_trust_data"] = vapiBindings_.NewReferenceType(nsx_policyModel.TlsTrustDataBindingType)
 	fieldNameMap["certificate_id"] = "CertificateId"
 	fieldNameMap["tls_trust_data"] = "TlsTrustData"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func certificatesPatchOutputType() bindings.BindingType {
-	return bindings.NewVoidType()
+func CertificatesPatchOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewVoidType()
 }
 
-func certificatesPatchRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func certificatesPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["certificate_id"] = bindings.NewStringType()
-	fields["tls_trust_data"] = bindings.NewReferenceType(model.TlsTrustDataBindingType)
+	fields["certificate_id"] = vapiBindings_.NewStringType()
+	fields["tls_trust_data"] = vapiBindings_.NewReferenceType(nsx_policyModel.TlsTrustDataBindingType)
 	fieldNameMap["certificate_id"] = "CertificateId"
 	fieldNameMap["tls_trust_data"] = "TlsTrustData"
-	paramsTypeMap["certificate_id"] = bindings.NewStringType()
-	paramsTypeMap["tls_trust_data"] = bindings.NewReferenceType(model.TlsTrustDataBindingType)
-	paramsTypeMap["certificateId"] = bindings.NewStringType()
+	paramsTypeMap["certificate_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["tls_trust_data"] = vapiBindings_.NewReferenceType(nsx_policyModel.TlsTrustDataBindingType)
+	paramsTypeMap["certificateId"] = vapiBindings_.NewStringType()
 	pathParams["certificate_id"] = "certificateId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -268,7 +269,7 @@ func certificatesPatchRestMetadata() protocol.OperationRestMetadata {
 		"tls_trust_data",
 		"PATCH",
 		"/policy/api/v1/infra/certificates/{certificateId}",
-		"",
+		"application/json",
 		resultHeaders,
 		204,
 		"",
@@ -276,41 +277,41 @@ func certificatesPatchRestMetadata() protocol.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func certificatesUpdateInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func certificatesUpdateInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["certificate_id"] = bindings.NewStringType()
-	fields["tls_trust_data"] = bindings.NewReferenceType(model.TlsTrustDataBindingType)
+	fields["certificate_id"] = vapiBindings_.NewStringType()
+	fields["tls_trust_data"] = vapiBindings_.NewReferenceType(nsx_policyModel.TlsTrustDataBindingType)
 	fieldNameMap["certificate_id"] = "CertificateId"
 	fieldNameMap["tls_trust_data"] = "TlsTrustData"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func certificatesUpdateOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.TlsCertificateBindingType)
+func CertificatesUpdateOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewReferenceType(nsx_policyModel.TlsCertificateBindingType)
 }
 
-func certificatesUpdateRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func certificatesUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["certificate_id"] = bindings.NewStringType()
-	fields["tls_trust_data"] = bindings.NewReferenceType(model.TlsTrustDataBindingType)
+	fields["certificate_id"] = vapiBindings_.NewStringType()
+	fields["tls_trust_data"] = vapiBindings_.NewReferenceType(nsx_policyModel.TlsTrustDataBindingType)
 	fieldNameMap["certificate_id"] = "CertificateId"
 	fieldNameMap["tls_trust_data"] = "TlsTrustData"
-	paramsTypeMap["certificate_id"] = bindings.NewStringType()
-	paramsTypeMap["tls_trust_data"] = bindings.NewReferenceType(model.TlsTrustDataBindingType)
-	paramsTypeMap["certificateId"] = bindings.NewStringType()
+	paramsTypeMap["certificate_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["tls_trust_data"] = vapiBindings_.NewReferenceType(nsx_policyModel.TlsTrustDataBindingType)
+	paramsTypeMap["certificateId"] = vapiBindings_.NewStringType()
 	pathParams["certificate_id"] = "certificateId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -323,7 +324,7 @@ func certificatesUpdateRestMetadata() protocol.OperationRestMetadata {
 		"tls_trust_data",
 		"PUT",
 		"/policy/api/v1/infra/certificates/{certificateId}",
-		"",
+		"application/json",
 		resultHeaders,
 		200,
 		"",

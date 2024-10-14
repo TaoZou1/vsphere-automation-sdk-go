@@ -11,7 +11,7 @@
 package content
 
 import (
-	"github.com/vmware/vsphere-automation-sdk-go/services/vsphere/content/library"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/content/library"
 )
 
 //

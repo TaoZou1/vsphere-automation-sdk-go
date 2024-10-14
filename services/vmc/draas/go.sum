@@ -5,10 +5,10 @@ github.com/gibson042/canonicaljson-go v1.0.3/go.mod h1:DsLpJTThXyGNO+KZlI85C1/KD
 github.com/google/uuid v1.2.0 h1:qJYtXnJRWmpe7m/3XlyhrsLrEURqHRM2kxzoxXqyUDs=
 github.com/google/uuid v1.2.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/gorilla/mux v1.8.0/go.mod h1:DVbg23sWSpFRCP0SfiEN6jmj59UnW/n46BH5rLB71So=
-gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/lib v0.5.0 h1:y/Pc/vyQnQtrYLrNi0tM10deNhx4YIwMHvJvWsF9TiE=
-gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/lib v0.5.0/go.mod h1:/xka9ZUqcs+BO9kyhbmPlYDYvm94ghqUcmAT6YLkDhQ=
-gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime v0.5.0 h1:VFplWwvw6Hr0DtEAT89yLKfalLvdw7dpQKD9T0vSjU0=
-gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime v0.5.0/go.mod h1:pnw/OafcjjUNFYco+p2nzJIsFOshc04jbJRDWLD6olY=
+github.com/vmware/vsphere-automation-sdk-go/lib v0.5.0 h1:y/Pc/vyQnQtrYLrNi0tM10deNhx4YIwMHvJvWsF9TiE=
+github.com/vmware/vsphere-automation-sdk-go/lib v0.5.0/go.mod h1:/xka9ZUqcs+BO9kyhbmPlYDYvm94ghqUcmAT6YLkDhQ=
+github.com/vmware/vsphere-automation-sdk-go/runtime v0.5.0 h1:VFplWwvw6Hr0DtEAT89yLKfalLvdw7dpQKD9T0vSjU0=
+github.com/vmware/vsphere-automation-sdk-go/runtime v0.5.0/go.mod h1:pnw/OafcjjUNFYco+p2nzJIsFOshc04jbJRDWLD6olY=
 golang.org/x/net v0.0.0-20210510120150-4163338589ed h1:p9UgmWI9wKpfYmgaV/IZKGdXc5qEK45tDwwwDyjS26I=
 golang.org/x/net v0.0.0-20210510120150-4163338589ed/go.mod h1:9nx3DQGgdP8bBQD5qxJ1jj9UTztislL4KSBs9R2vV5Y=
 golang.org/x/sys v0.0.0-20201119102817-f84b799fce68/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=

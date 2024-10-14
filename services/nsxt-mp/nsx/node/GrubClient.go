@@ -1,4 +1,4 @@
-// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,166 +9,171 @@
 package node
 
 import (
-	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = core.SupportedByRuntimeVersion1
+const _ = vapiCore_.SupportedByRuntimeVersion2
 
 type GrubClient interface {
 
 	// Return node GRUB properties.
 	// @return com.vmware.nsx.model.NodeGrubProperties
+	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get() (model.NodeGrubProperties, error)
+	Get() (nsxModel.NodeGrubProperties, error)
 
 	// Update node GRUB properties. **Note:** To update user properties like password, user is expected to use ``/node/grub/<grub-username>``
 	//
 	// @param nodeGrubPropertiesParam (required)
 	// @return com.vmware.nsx.model.NodeGrubProperties
+	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(nodeGrubPropertiesParam model.NodeGrubProperties) (model.NodeGrubProperties, error)
+	Update(nodeGrubPropertiesParam nsxModel.NodeGrubProperties) (nsxModel.NodeGrubProperties, error)
 
 	// Updates the GRUB user properties.
 	//
 	// @param grubUsernameParam GRUB username (required)
 	// @param nodeGrubUserPropertiesParam (required)
 	// @return com.vmware.nsx.model.NodeGrubUserProperties
+	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update0(grubUsernameParam string, nodeGrubUserPropertiesParam model.NodeGrubUserProperties) (model.NodeGrubUserProperties, error)
+	Update0(grubUsernameParam string, nodeGrubUserPropertiesParam nsxModel.NodeGrubUserProperties) (nsxModel.NodeGrubUserProperties, error)
 }
 
 type grubClient struct {
-	connector           client.Connector
-	interfaceDefinition core.InterfaceDefinition
-	errorsBindingMap    map[string]bindings.BindingType
+	connector           vapiProtocolClient_.Connector
+	interfaceDefinition vapiCore_.InterfaceDefinition
+	errorsBindingMap    map[string]vapiBindings_.BindingType
 }
 
-func NewGrubClient(connector client.Connector) *grubClient {
-	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.node.grub")
-	methodIdentifiers := map[string]core.MethodIdentifier{
-		"get":      core.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"update":   core.NewMethodIdentifier(interfaceIdentifier, "update"),
-		"update_0": core.NewMethodIdentifier(interfaceIdentifier, "update_0"),
+func NewGrubClient(connector vapiProtocolClient_.Connector) *grubClient {
+	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.node.grub")
+	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
+		"get":      vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"update":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
+		"update_0": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update_0"),
 	}
-	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]bindings.BindingType)
+	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
 
 	gIface := grubClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &gIface
 }
 
-func (gIface *grubClient) GetErrorBindingType(errorName string) bindings.BindingType {
+func (gIface *grubClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
 	if entry, ok := gIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return errors.ERROR_BINDINGS_MAP[errorName]
+	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (gIface *grubClient) Get() (model.NodeGrubProperties, error) {
+func (gIface *grubClient) Get() (nsxModel.NodeGrubProperties, error) {
 	typeConverter := gIface.connector.TypeConverter()
 	executionContext := gIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(grubGetInputType(), typeConverter)
+	operationRestMetaData := grubGetRestMetadata()
+	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
+	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
+
+	sv := vapiBindings_.NewStructValueBuilder(grubGetInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput model.NodeGrubProperties
-		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+		var emptyOutput nsxModel.NodeGrubProperties
+		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := grubGetRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	gIface.connector.SetConnectionMetadata(connectionMetadata)
+
 	methodResult := gIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.grub", "get", inputDataValue, executionContext)
-	var emptyOutput model.NodeGrubProperties
+	var emptyOutput nsxModel.NodeGrubProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), grubGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), GrubGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(model.NodeGrubProperties), nil
+		return output.(nsxModel.NodeGrubProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), gIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (gIface *grubClient) Update(nodeGrubPropertiesParam model.NodeGrubProperties) (model.NodeGrubProperties, error) {
+func (gIface *grubClient) Update(nodeGrubPropertiesParam nsxModel.NodeGrubProperties) (nsxModel.NodeGrubProperties, error) {
 	typeConverter := gIface.connector.TypeConverter()
 	executionContext := gIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(grubUpdateInputType(), typeConverter)
+	operationRestMetaData := grubUpdateRestMetadata()
+	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
+	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
+
+	sv := vapiBindings_.NewStructValueBuilder(grubUpdateInputType(), typeConverter)
 	sv.AddStructField("NodeGrubProperties", nodeGrubPropertiesParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput model.NodeGrubProperties
-		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+		var emptyOutput nsxModel.NodeGrubProperties
+		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := grubUpdateRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	gIface.connector.SetConnectionMetadata(connectionMetadata)
+
 	methodResult := gIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.grub", "update", inputDataValue, executionContext)
-	var emptyOutput model.NodeGrubProperties
+	var emptyOutput nsxModel.NodeGrubProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), grubUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), GrubUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(model.NodeGrubProperties), nil
+		return output.(nsxModel.NodeGrubProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), gIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
-func (gIface *grubClient) Update0(grubUsernameParam string, nodeGrubUserPropertiesParam model.NodeGrubUserProperties) (model.NodeGrubUserProperties, error) {
+func (gIface *grubClient) Update0(grubUsernameParam string, nodeGrubUserPropertiesParam nsxModel.NodeGrubUserProperties) (nsxModel.NodeGrubUserProperties, error) {
 	typeConverter := gIface.connector.TypeConverter()
 	executionContext := gIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(grubUpdate0InputType(), typeConverter)
+	operationRestMetaData := grubUpdate0RestMetadata()
+	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
+	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
+
+	sv := vapiBindings_.NewStructValueBuilder(grubUpdate0InputType(), typeConverter)
 	sv.AddStructField("GrubUsername", grubUsernameParam)
 	sv.AddStructField("NodeGrubUserProperties", nodeGrubUserPropertiesParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput model.NodeGrubUserProperties
-		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+		var emptyOutput nsxModel.NodeGrubUserProperties
+		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := grubUpdate0RestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	gIface.connector.SetConnectionMetadata(connectionMetadata)
+
 	methodResult := gIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.grub", "update_0", inputDataValue, executionContext)
-	var emptyOutput model.NodeGrubUserProperties
+	var emptyOutput nsxModel.NodeGrubUserProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), grubUpdate0OutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), GrubUpdate0OutputType())
 		if errorInOutput != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(model.NodeGrubUserProperties), nil
+		return output.(nsxModel.NodeGrubUserProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), gIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}

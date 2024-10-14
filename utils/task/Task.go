@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/vmware/vsphere-automation-sdk-go/utils/session"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/session"
 )
 
 type task struct {

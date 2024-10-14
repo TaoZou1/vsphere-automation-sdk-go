@@ -1,4 +1,5 @@
-// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
+// Copyright (c) 2019-2024 Broadcom. All Rights Reserved.
+// The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,64 +12,70 @@
 package ip_pools
 
 import (
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func ipSubnetsDeleteInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func ipSubnetsDeleteInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["ip_pool_id"] = bindings.NewStringType()
-	fields["ip_subnet_id"] = bindings.NewStringType()
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["ip_pool_id"] = vapiBindings_.NewStringType()
+	fields["ip_subnet_id"] = vapiBindings_.NewStringType()
+	fields["ignore_ip_allocations"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["ip_pool_id"] = "IpPoolId"
 	fieldNameMap["ip_subnet_id"] = "IpSubnetId"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	fieldNameMap["ignore_ip_allocations"] = "IgnoreIpAllocations"
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func ipSubnetsDeleteOutputType() bindings.BindingType {
-	return bindings.NewVoidType()
+func IpSubnetsDeleteOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewVoidType()
 }
 
-func ipSubnetsDeleteRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func ipSubnetsDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["ip_pool_id"] = bindings.NewStringType()
-	fields["ip_subnet_id"] = bindings.NewStringType()
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["ip_pool_id"] = vapiBindings_.NewStringType()
+	fields["ip_subnet_id"] = vapiBindings_.NewStringType()
+	fields["ignore_ip_allocations"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["ip_pool_id"] = "IpPoolId"
 	fieldNameMap["ip_subnet_id"] = "IpSubnetId"
-	paramsTypeMap["ip_pool_id"] = bindings.NewStringType()
-	paramsTypeMap["project_id"] = bindings.NewStringType()
-	paramsTypeMap["ip_subnet_id"] = bindings.NewStringType()
-	paramsTypeMap["org_id"] = bindings.NewStringType()
-	paramsTypeMap["orgId"] = bindings.NewStringType()
-	paramsTypeMap["projectId"] = bindings.NewStringType()
-	paramsTypeMap["ipPoolId"] = bindings.NewStringType()
-	paramsTypeMap["ipSubnetId"] = bindings.NewStringType()
+	fieldNameMap["ignore_ip_allocations"] = "IgnoreIpAllocations"
+	paramsTypeMap["ip_pool_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["ip_subnet_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["ignore_ip_allocations"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["ipPoolId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["ipSubnetId"] = vapiBindings_.NewStringType()
 	pathParams["ip_pool_id"] = "ipPoolId"
 	pathParams["ip_subnet_id"] = "ipSubnetId"
 	pathParams["project_id"] = "projectId"
 	pathParams["org_id"] = "orgId"
+	queryParams["ignore_ip_allocations"] = "ignore_ip_allocations"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -89,57 +96,57 @@ func ipSubnetsDeleteRestMetadata() protocol.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func ipSubnetsGetInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func ipSubnetsGetInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["ip_pool_id"] = bindings.NewStringType()
-	fields["ip_subnet_id"] = bindings.NewStringType()
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["ip_pool_id"] = vapiBindings_.NewStringType()
+	fields["ip_subnet_id"] = vapiBindings_.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["ip_pool_id"] = "IpPoolId"
 	fieldNameMap["ip_subnet_id"] = "IpSubnetId"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func ipSubnetsGetOutputType() bindings.BindingType {
-	return bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.IpAddressPoolSubnetBindingType)}, bindings.REST)
+func IpSubnetsGetOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsx_policyModel.IpAddressPoolSubnetBindingType)})
 }
 
-func ipSubnetsGetRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func ipSubnetsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["ip_pool_id"] = bindings.NewStringType()
-	fields["ip_subnet_id"] = bindings.NewStringType()
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["ip_pool_id"] = vapiBindings_.NewStringType()
+	fields["ip_subnet_id"] = vapiBindings_.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["ip_pool_id"] = "IpPoolId"
 	fieldNameMap["ip_subnet_id"] = "IpSubnetId"
-	paramsTypeMap["ip_pool_id"] = bindings.NewStringType()
-	paramsTypeMap["project_id"] = bindings.NewStringType()
-	paramsTypeMap["ip_subnet_id"] = bindings.NewStringType()
-	paramsTypeMap["org_id"] = bindings.NewStringType()
-	paramsTypeMap["orgId"] = bindings.NewStringType()
-	paramsTypeMap["projectId"] = bindings.NewStringType()
-	paramsTypeMap["ipPoolId"] = bindings.NewStringType()
-	paramsTypeMap["ipSubnetId"] = bindings.NewStringType()
+	paramsTypeMap["ip_pool_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["ip_subnet_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["ipPoolId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["ipSubnetId"] = vapiBindings_.NewStringType()
 	pathParams["ip_pool_id"] = "ipPoolId"
 	pathParams["ip_subnet_id"] = "ipSubnetId"
 	pathParams["project_id"] = "projectId"
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -160,18 +167,18 @@ func ipSubnetsGetRestMetadata() protocol.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func ipSubnetsListInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func ipSubnetsListInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["ip_pool_id"] = bindings.NewStringType()
-	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
-	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["ip_pool_id"] = vapiBindings_.NewStringType()
+	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["ip_pool_id"] = "IpPoolId"
@@ -181,32 +188,32 @@ func ipSubnetsListInputType() bindings.StructType {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func ipSubnetsListOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.IpAddressPoolSubnetListResultBindingType)
+func IpSubnetsListOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewReferenceType(nsx_policyModel.IpAddressPoolSubnetListResultBindingType)
 }
 
-func ipSubnetsListRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func ipSubnetsListRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["ip_pool_id"] = bindings.NewStringType()
-	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
-	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["ip_pool_id"] = vapiBindings_.NewStringType()
+	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["ip_pool_id"] = "IpPoolId"
@@ -216,18 +223,18 @@ func ipSubnetsListRestMetadata() protocol.OperationRestMetadata {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	paramsTypeMap["ip_pool_id"] = bindings.NewStringType()
-	paramsTypeMap["project_id"] = bindings.NewStringType()
-	paramsTypeMap["org_id"] = bindings.NewStringType()
-	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
-	paramsTypeMap["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	paramsTypeMap["orgId"] = bindings.NewStringType()
-	paramsTypeMap["projectId"] = bindings.NewStringType()
-	paramsTypeMap["ipPoolId"] = bindings.NewStringType()
+	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["ip_pool_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["ipPoolId"] = vapiBindings_.NewStringType()
 	pathParams["ip_pool_id"] = "ipPoolId"
 	pathParams["project_id"] = "projectId"
 	pathParams["org_id"] = "orgId"
@@ -239,7 +246,7 @@ func ipSubnetsListRestMetadata() protocol.OperationRestMetadata {
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -260,62 +267,62 @@ func ipSubnetsListRestMetadata() protocol.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func ipSubnetsPatchInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func ipSubnetsPatchInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["ip_pool_id"] = bindings.NewStringType()
-	fields["ip_subnet_id"] = bindings.NewStringType()
-	fields["ip_address_pool_subnet"] = bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.IpAddressPoolSubnetBindingType)}, bindings.REST)
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["ip_pool_id"] = vapiBindings_.NewStringType()
+	fields["ip_subnet_id"] = vapiBindings_.NewStringType()
+	fields["ip_address_pool_subnet"] = vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsx_policyModel.IpAddressPoolSubnetBindingType)})
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["ip_pool_id"] = "IpPoolId"
 	fieldNameMap["ip_subnet_id"] = "IpSubnetId"
 	fieldNameMap["ip_address_pool_subnet"] = "IpAddressPoolSubnet"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func ipSubnetsPatchOutputType() bindings.BindingType {
-	return bindings.NewVoidType()
+func IpSubnetsPatchOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewVoidType()
 }
 
-func ipSubnetsPatchRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func ipSubnetsPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["ip_pool_id"] = bindings.NewStringType()
-	fields["ip_subnet_id"] = bindings.NewStringType()
-	fields["ip_address_pool_subnet"] = bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.IpAddressPoolSubnetBindingType)}, bindings.REST)
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["ip_pool_id"] = vapiBindings_.NewStringType()
+	fields["ip_subnet_id"] = vapiBindings_.NewStringType()
+	fields["ip_address_pool_subnet"] = vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsx_policyModel.IpAddressPoolSubnetBindingType)})
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["ip_pool_id"] = "IpPoolId"
 	fieldNameMap["ip_subnet_id"] = "IpSubnetId"
 	fieldNameMap["ip_address_pool_subnet"] = "IpAddressPoolSubnet"
-	paramsTypeMap["ip_pool_id"] = bindings.NewStringType()
-	paramsTypeMap["ip_address_pool_subnet"] = bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.IpAddressPoolSubnetBindingType)}, bindings.REST)
-	paramsTypeMap["project_id"] = bindings.NewStringType()
-	paramsTypeMap["ip_subnet_id"] = bindings.NewStringType()
-	paramsTypeMap["org_id"] = bindings.NewStringType()
-	paramsTypeMap["orgId"] = bindings.NewStringType()
-	paramsTypeMap["projectId"] = bindings.NewStringType()
-	paramsTypeMap["ipPoolId"] = bindings.NewStringType()
-	paramsTypeMap["ipSubnetId"] = bindings.NewStringType()
+	paramsTypeMap["ip_pool_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["ip_subnet_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["ip_address_pool_subnet"] = vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsx_policyModel.IpAddressPoolSubnetBindingType)})
+	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["ipPoolId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["ipSubnetId"] = vapiBindings_.NewStringType()
 	pathParams["ip_pool_id"] = "ipPoolId"
 	pathParams["ip_subnet_id"] = "ipSubnetId"
 	pathParams["project_id"] = "projectId"
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -328,7 +335,7 @@ func ipSubnetsPatchRestMetadata() protocol.OperationRestMetadata {
 		"ip_address_pool_subnet",
 		"PATCH",
 		"/policy/api/v1/orgs/{orgId}/projects/{projectId}/infra/ip-pools/{ipPoolId}/ip-subnets/{ipSubnetId}",
-		"",
+		"application/json",
 		resultHeaders,
 		204,
 		"",
@@ -336,62 +343,62 @@ func ipSubnetsPatchRestMetadata() protocol.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func ipSubnetsUpdateInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func ipSubnetsUpdateInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["ip_pool_id"] = bindings.NewStringType()
-	fields["ip_subnet_id"] = bindings.NewStringType()
-	fields["ip_address_pool_subnet"] = bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.IpAddressPoolSubnetBindingType)}, bindings.REST)
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["ip_pool_id"] = vapiBindings_.NewStringType()
+	fields["ip_subnet_id"] = vapiBindings_.NewStringType()
+	fields["ip_address_pool_subnet"] = vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsx_policyModel.IpAddressPoolSubnetBindingType)})
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["ip_pool_id"] = "IpPoolId"
 	fieldNameMap["ip_subnet_id"] = "IpSubnetId"
 	fieldNameMap["ip_address_pool_subnet"] = "IpAddressPoolSubnet"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func ipSubnetsUpdateOutputType() bindings.BindingType {
-	return bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.IpAddressPoolSubnetBindingType)}, bindings.REST)
+func IpSubnetsUpdateOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsx_policyModel.IpAddressPoolSubnetBindingType)})
 }
 
-func ipSubnetsUpdateRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func ipSubnetsUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["ip_pool_id"] = bindings.NewStringType()
-	fields["ip_subnet_id"] = bindings.NewStringType()
-	fields["ip_address_pool_subnet"] = bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.IpAddressPoolSubnetBindingType)}, bindings.REST)
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["ip_pool_id"] = vapiBindings_.NewStringType()
+	fields["ip_subnet_id"] = vapiBindings_.NewStringType()
+	fields["ip_address_pool_subnet"] = vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsx_policyModel.IpAddressPoolSubnetBindingType)})
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["ip_pool_id"] = "IpPoolId"
 	fieldNameMap["ip_subnet_id"] = "IpSubnetId"
 	fieldNameMap["ip_address_pool_subnet"] = "IpAddressPoolSubnet"
-	paramsTypeMap["ip_pool_id"] = bindings.NewStringType()
-	paramsTypeMap["ip_address_pool_subnet"] = bindings.NewDynamicStructType([]bindings.ReferenceType{bindings.NewReferenceType(model.IpAddressPoolSubnetBindingType)}, bindings.REST)
-	paramsTypeMap["project_id"] = bindings.NewStringType()
-	paramsTypeMap["ip_subnet_id"] = bindings.NewStringType()
-	paramsTypeMap["org_id"] = bindings.NewStringType()
-	paramsTypeMap["orgId"] = bindings.NewStringType()
-	paramsTypeMap["projectId"] = bindings.NewStringType()
-	paramsTypeMap["ipPoolId"] = bindings.NewStringType()
-	paramsTypeMap["ipSubnetId"] = bindings.NewStringType()
+	paramsTypeMap["ip_pool_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["ip_subnet_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["ip_address_pool_subnet"] = vapiBindings_.NewDynamicStructType([]vapiBindings_.ReferenceType{vapiBindings_.NewReferenceType(nsx_policyModel.IpAddressPoolSubnetBindingType)})
+	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["ipPoolId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["ipSubnetId"] = vapiBindings_.NewStringType()
 	pathParams["ip_pool_id"] = "ipPoolId"
 	pathParams["ip_subnet_id"] = "ipSubnetId"
 	pathParams["project_id"] = "projectId"
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -404,7 +411,7 @@ func ipSubnetsUpdateRestMetadata() protocol.OperationRestMetadata {
 		"ip_address_pool_subnet",
 		"PUT",
 		"/policy/api/v1/orgs/{orgId}/projects/{projectId}/infra/ip-pools/{ipPoolId}/ip-subnets/{ipSubnetId}",
-		"",
+		"application/json",
 		resultHeaders,
 		200,
 		"",

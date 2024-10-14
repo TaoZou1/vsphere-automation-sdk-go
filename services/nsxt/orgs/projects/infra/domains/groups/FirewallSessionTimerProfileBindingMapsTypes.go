@@ -1,4 +1,5 @@
-// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
+// Copyright (c) 2019-2024 Broadcom. All Rights Reserved.
+// The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,63 +12,63 @@
 package groups
 
 import (
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func firewallSessionTimerProfileBindingMapsDeleteInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func firewallSessionTimerProfileBindingMapsDeleteInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["domain_id"] = bindings.NewStringType()
-	fields["group_id"] = bindings.NewStringType()
-	fields["firewall_session_timer_profile_binding_map_id"] = bindings.NewStringType()
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["domain_id"] = vapiBindings_.NewStringType()
+	fields["group_id"] = vapiBindings_.NewStringType()
+	fields["firewall_session_timer_profile_binding_map_id"] = vapiBindings_.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["firewall_session_timer_profile_binding_map_id"] = "FirewallSessionTimerProfileBindingMapId"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func firewallSessionTimerProfileBindingMapsDeleteOutputType() bindings.BindingType {
-	return bindings.NewVoidType()
+func FirewallSessionTimerProfileBindingMapsDeleteOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewVoidType()
 }
 
-func firewallSessionTimerProfileBindingMapsDeleteRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func firewallSessionTimerProfileBindingMapsDeleteRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["domain_id"] = bindings.NewStringType()
-	fields["group_id"] = bindings.NewStringType()
-	fields["firewall_session_timer_profile_binding_map_id"] = bindings.NewStringType()
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["domain_id"] = vapiBindings_.NewStringType()
+	fields["group_id"] = vapiBindings_.NewStringType()
+	fields["firewall_session_timer_profile_binding_map_id"] = vapiBindings_.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["firewall_session_timer_profile_binding_map_id"] = "FirewallSessionTimerProfileBindingMapId"
-	paramsTypeMap["domain_id"] = bindings.NewStringType()
-	paramsTypeMap["project_id"] = bindings.NewStringType()
-	paramsTypeMap["group_id"] = bindings.NewStringType()
-	paramsTypeMap["org_id"] = bindings.NewStringType()
-	paramsTypeMap["firewall_session_timer_profile_binding_map_id"] = bindings.NewStringType()
-	paramsTypeMap["orgId"] = bindings.NewStringType()
-	paramsTypeMap["projectId"] = bindings.NewStringType()
-	paramsTypeMap["domainId"] = bindings.NewStringType()
-	paramsTypeMap["groupId"] = bindings.NewStringType()
-	paramsTypeMap["firewallSessionTimerProfileBindingMapId"] = bindings.NewStringType()
+	paramsTypeMap["domain_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["group_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["firewall_session_timer_profile_binding_map_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["domainId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["groupId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["firewallSessionTimerProfileBindingMapId"] = vapiBindings_.NewStringType()
 	pathParams["group_id"] = "groupId"
 	pathParams["firewall_session_timer_profile_binding_map_id"] = "firewallSessionTimerProfileBindingMapId"
 	pathParams["project_id"] = "projectId"
@@ -75,7 +76,7 @@ func firewallSessionTimerProfileBindingMapsDeleteRestMetadata() protocol.Operati
 	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -96,56 +97,56 @@ func firewallSessionTimerProfileBindingMapsDeleteRestMetadata() protocol.Operati
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func firewallSessionTimerProfileBindingMapsGetInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func firewallSessionTimerProfileBindingMapsGetInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["domain_id"] = bindings.NewStringType()
-	fields["group_id"] = bindings.NewStringType()
-	fields["firewall_session_timer_profile_binding_map_id"] = bindings.NewStringType()
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["domain_id"] = vapiBindings_.NewStringType()
+	fields["group_id"] = vapiBindings_.NewStringType()
+	fields["firewall_session_timer_profile_binding_map_id"] = vapiBindings_.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["firewall_session_timer_profile_binding_map_id"] = "FirewallSessionTimerProfileBindingMapId"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func firewallSessionTimerProfileBindingMapsGetOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.PolicyFirewallSessionTimerProfileBindingMapBindingType)
+func FirewallSessionTimerProfileBindingMapsGetOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewReferenceType(nsx_policyModel.PolicyFirewallSessionTimerProfileBindingMapBindingType)
 }
 
-func firewallSessionTimerProfileBindingMapsGetRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func firewallSessionTimerProfileBindingMapsGetRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["domain_id"] = bindings.NewStringType()
-	fields["group_id"] = bindings.NewStringType()
-	fields["firewall_session_timer_profile_binding_map_id"] = bindings.NewStringType()
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["domain_id"] = vapiBindings_.NewStringType()
+	fields["group_id"] = vapiBindings_.NewStringType()
+	fields["firewall_session_timer_profile_binding_map_id"] = vapiBindings_.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["firewall_session_timer_profile_binding_map_id"] = "FirewallSessionTimerProfileBindingMapId"
-	paramsTypeMap["domain_id"] = bindings.NewStringType()
-	paramsTypeMap["project_id"] = bindings.NewStringType()
-	paramsTypeMap["group_id"] = bindings.NewStringType()
-	paramsTypeMap["org_id"] = bindings.NewStringType()
-	paramsTypeMap["firewall_session_timer_profile_binding_map_id"] = bindings.NewStringType()
-	paramsTypeMap["orgId"] = bindings.NewStringType()
-	paramsTypeMap["projectId"] = bindings.NewStringType()
-	paramsTypeMap["domainId"] = bindings.NewStringType()
-	paramsTypeMap["groupId"] = bindings.NewStringType()
-	paramsTypeMap["firewallSessionTimerProfileBindingMapId"] = bindings.NewStringType()
+	paramsTypeMap["domain_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["group_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["firewall_session_timer_profile_binding_map_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["domainId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["groupId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["firewallSessionTimerProfileBindingMapId"] = vapiBindings_.NewStringType()
 	pathParams["group_id"] = "groupId"
 	pathParams["firewall_session_timer_profile_binding_map_id"] = "firewallSessionTimerProfileBindingMapId"
 	pathParams["project_id"] = "projectId"
@@ -153,7 +154,7 @@ func firewallSessionTimerProfileBindingMapsGetRestMetadata() protocol.OperationR
 	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -174,19 +175,19 @@ func firewallSessionTimerProfileBindingMapsGetRestMetadata() protocol.OperationR
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func firewallSessionTimerProfileBindingMapsListInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func firewallSessionTimerProfileBindingMapsListInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["domain_id"] = bindings.NewStringType()
-	fields["group_id"] = bindings.NewStringType()
-	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
-	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["domain_id"] = vapiBindings_.NewStringType()
+	fields["group_id"] = vapiBindings_.NewStringType()
+	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
@@ -197,33 +198,33 @@ func firewallSessionTimerProfileBindingMapsListInputType() bindings.StructType {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func firewallSessionTimerProfileBindingMapsListOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.PolicyFirewallSessionTimerProfileBindingMapListResultBindingType)
+func FirewallSessionTimerProfileBindingMapsListOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewReferenceType(nsx_policyModel.PolicyFirewallSessionTimerProfileBindingMapListResultBindingType)
 }
 
-func firewallSessionTimerProfileBindingMapsListRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func firewallSessionTimerProfileBindingMapsListRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["domain_id"] = bindings.NewStringType()
-	fields["group_id"] = bindings.NewStringType()
-	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
-	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["domain_id"] = vapiBindings_.NewStringType()
+	fields["group_id"] = vapiBindings_.NewStringType()
+	fields["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	fields["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	fields["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
@@ -234,20 +235,20 @@ func firewallSessionTimerProfileBindingMapsListRestMetadata() protocol.Operation
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	paramsTypeMap["domain_id"] = bindings.NewStringType()
-	paramsTypeMap["project_id"] = bindings.NewStringType()
-	paramsTypeMap["group_id"] = bindings.NewStringType()
-	paramsTypeMap["org_id"] = bindings.NewStringType()
-	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
-	paramsTypeMap["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	paramsTypeMap["orgId"] = bindings.NewStringType()
-	paramsTypeMap["projectId"] = bindings.NewStringType()
-	paramsTypeMap["domainId"] = bindings.NewStringType()
-	paramsTypeMap["groupId"] = bindings.NewStringType()
+	paramsTypeMap["domain_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["cursor"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["sort_ascending"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["group_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["included_fields"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["sort_by"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["include_mark_for_delete_objects"] = vapiBindings_.NewOptionalType(vapiBindings_.NewBooleanType())
+	paramsTypeMap["page_size"] = vapiBindings_.NewOptionalType(vapiBindings_.NewIntegerType())
+	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["domainId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["groupId"] = vapiBindings_.NewStringType()
 	pathParams["group_id"] = "groupId"
 	pathParams["project_id"] = "projectId"
 	pathParams["org_id"] = "orgId"
@@ -260,7 +261,7 @@ func firewallSessionTimerProfileBindingMapsListRestMetadata() protocol.Operation
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -281,61 +282,61 @@ func firewallSessionTimerProfileBindingMapsListRestMetadata() protocol.Operation
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func firewallSessionTimerProfileBindingMapsPatchInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func firewallSessionTimerProfileBindingMapsPatchInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["domain_id"] = bindings.NewStringType()
-	fields["group_id"] = bindings.NewStringType()
-	fields["firewall_session_timer_profile_binding_map_id"] = bindings.NewStringType()
-	fields["policy_firewall_session_timer_profile_binding_map"] = bindings.NewReferenceType(model.PolicyFirewallSessionTimerProfileBindingMapBindingType)
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["domain_id"] = vapiBindings_.NewStringType()
+	fields["group_id"] = vapiBindings_.NewStringType()
+	fields["firewall_session_timer_profile_binding_map_id"] = vapiBindings_.NewStringType()
+	fields["policy_firewall_session_timer_profile_binding_map"] = vapiBindings_.NewReferenceType(nsx_policyModel.PolicyFirewallSessionTimerProfileBindingMapBindingType)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["firewall_session_timer_profile_binding_map_id"] = "FirewallSessionTimerProfileBindingMapId"
 	fieldNameMap["policy_firewall_session_timer_profile_binding_map"] = "PolicyFirewallSessionTimerProfileBindingMap"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func firewallSessionTimerProfileBindingMapsPatchOutputType() bindings.BindingType {
-	return bindings.NewVoidType()
+func FirewallSessionTimerProfileBindingMapsPatchOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewVoidType()
 }
 
-func firewallSessionTimerProfileBindingMapsPatchRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func firewallSessionTimerProfileBindingMapsPatchRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["domain_id"] = bindings.NewStringType()
-	fields["group_id"] = bindings.NewStringType()
-	fields["firewall_session_timer_profile_binding_map_id"] = bindings.NewStringType()
-	fields["policy_firewall_session_timer_profile_binding_map"] = bindings.NewReferenceType(model.PolicyFirewallSessionTimerProfileBindingMapBindingType)
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["domain_id"] = vapiBindings_.NewStringType()
+	fields["group_id"] = vapiBindings_.NewStringType()
+	fields["firewall_session_timer_profile_binding_map_id"] = vapiBindings_.NewStringType()
+	fields["policy_firewall_session_timer_profile_binding_map"] = vapiBindings_.NewReferenceType(nsx_policyModel.PolicyFirewallSessionTimerProfileBindingMapBindingType)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["firewall_session_timer_profile_binding_map_id"] = "FirewallSessionTimerProfileBindingMapId"
 	fieldNameMap["policy_firewall_session_timer_profile_binding_map"] = "PolicyFirewallSessionTimerProfileBindingMap"
-	paramsTypeMap["domain_id"] = bindings.NewStringType()
-	paramsTypeMap["project_id"] = bindings.NewStringType()
-	paramsTypeMap["group_id"] = bindings.NewStringType()
-	paramsTypeMap["org_id"] = bindings.NewStringType()
-	paramsTypeMap["policy_firewall_session_timer_profile_binding_map"] = bindings.NewReferenceType(model.PolicyFirewallSessionTimerProfileBindingMapBindingType)
-	paramsTypeMap["firewall_session_timer_profile_binding_map_id"] = bindings.NewStringType()
-	paramsTypeMap["orgId"] = bindings.NewStringType()
-	paramsTypeMap["projectId"] = bindings.NewStringType()
-	paramsTypeMap["domainId"] = bindings.NewStringType()
-	paramsTypeMap["groupId"] = bindings.NewStringType()
-	paramsTypeMap["firewallSessionTimerProfileBindingMapId"] = bindings.NewStringType()
+	paramsTypeMap["domain_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["policy_firewall_session_timer_profile_binding_map"] = vapiBindings_.NewReferenceType(nsx_policyModel.PolicyFirewallSessionTimerProfileBindingMapBindingType)
+	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["group_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["firewall_session_timer_profile_binding_map_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["domainId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["groupId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["firewallSessionTimerProfileBindingMapId"] = vapiBindings_.NewStringType()
 	pathParams["group_id"] = "groupId"
 	pathParams["firewall_session_timer_profile_binding_map_id"] = "firewallSessionTimerProfileBindingMapId"
 	pathParams["project_id"] = "projectId"
@@ -343,7 +344,7 @@ func firewallSessionTimerProfileBindingMapsPatchRestMetadata() protocol.Operatio
 	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -356,7 +357,7 @@ func firewallSessionTimerProfileBindingMapsPatchRestMetadata() protocol.Operatio
 		"policy_firewall_session_timer_profile_binding_map",
 		"PATCH",
 		"/policy/api/v1/orgs/{orgId}/projects/{projectId}/infra/domains/{domainId}/groups/{groupId}/firewall-session-timer-profile-binding-maps/{firewallSessionTimerProfileBindingMapId}",
-		"",
+		"application/json",
 		resultHeaders,
 		204,
 		"",
@@ -364,61 +365,61 @@ func firewallSessionTimerProfileBindingMapsPatchRestMetadata() protocol.Operatio
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func firewallSessionTimerProfileBindingMapsUpdateInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func firewallSessionTimerProfileBindingMapsUpdateInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["domain_id"] = bindings.NewStringType()
-	fields["group_id"] = bindings.NewStringType()
-	fields["firewall_session_timer_profile_binding_map_id"] = bindings.NewStringType()
-	fields["policy_firewall_session_timer_profile_binding_map"] = bindings.NewReferenceType(model.PolicyFirewallSessionTimerProfileBindingMapBindingType)
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["domain_id"] = vapiBindings_.NewStringType()
+	fields["group_id"] = vapiBindings_.NewStringType()
+	fields["firewall_session_timer_profile_binding_map_id"] = vapiBindings_.NewStringType()
+	fields["policy_firewall_session_timer_profile_binding_map"] = vapiBindings_.NewReferenceType(nsx_policyModel.PolicyFirewallSessionTimerProfileBindingMapBindingType)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["firewall_session_timer_profile_binding_map_id"] = "FirewallSessionTimerProfileBindingMapId"
 	fieldNameMap["policy_firewall_session_timer_profile_binding_map"] = "PolicyFirewallSessionTimerProfileBindingMap"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func firewallSessionTimerProfileBindingMapsUpdateOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.PolicyFirewallSessionTimerProfileBindingMapBindingType)
+func FirewallSessionTimerProfileBindingMapsUpdateOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewReferenceType(nsx_policyModel.PolicyFirewallSessionTimerProfileBindingMapBindingType)
 }
 
-func firewallSessionTimerProfileBindingMapsUpdateRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func firewallSessionTimerProfileBindingMapsUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["domain_id"] = bindings.NewStringType()
-	fields["group_id"] = bindings.NewStringType()
-	fields["firewall_session_timer_profile_binding_map_id"] = bindings.NewStringType()
-	fields["policy_firewall_session_timer_profile_binding_map"] = bindings.NewReferenceType(model.PolicyFirewallSessionTimerProfileBindingMapBindingType)
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["domain_id"] = vapiBindings_.NewStringType()
+	fields["group_id"] = vapiBindings_.NewStringType()
+	fields["firewall_session_timer_profile_binding_map_id"] = vapiBindings_.NewStringType()
+	fields["policy_firewall_session_timer_profile_binding_map"] = vapiBindings_.NewReferenceType(nsx_policyModel.PolicyFirewallSessionTimerProfileBindingMapBindingType)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["firewall_session_timer_profile_binding_map_id"] = "FirewallSessionTimerProfileBindingMapId"
 	fieldNameMap["policy_firewall_session_timer_profile_binding_map"] = "PolicyFirewallSessionTimerProfileBindingMap"
-	paramsTypeMap["domain_id"] = bindings.NewStringType()
-	paramsTypeMap["project_id"] = bindings.NewStringType()
-	paramsTypeMap["group_id"] = bindings.NewStringType()
-	paramsTypeMap["org_id"] = bindings.NewStringType()
-	paramsTypeMap["policy_firewall_session_timer_profile_binding_map"] = bindings.NewReferenceType(model.PolicyFirewallSessionTimerProfileBindingMapBindingType)
-	paramsTypeMap["firewall_session_timer_profile_binding_map_id"] = bindings.NewStringType()
-	paramsTypeMap["orgId"] = bindings.NewStringType()
-	paramsTypeMap["projectId"] = bindings.NewStringType()
-	paramsTypeMap["domainId"] = bindings.NewStringType()
-	paramsTypeMap["groupId"] = bindings.NewStringType()
-	paramsTypeMap["firewallSessionTimerProfileBindingMapId"] = bindings.NewStringType()
+	paramsTypeMap["domain_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["policy_firewall_session_timer_profile_binding_map"] = vapiBindings_.NewReferenceType(nsx_policyModel.PolicyFirewallSessionTimerProfileBindingMapBindingType)
+	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["group_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["firewall_session_timer_profile_binding_map_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["domainId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["groupId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["firewallSessionTimerProfileBindingMapId"] = vapiBindings_.NewStringType()
 	pathParams["group_id"] = "groupId"
 	pathParams["firewall_session_timer_profile_binding_map_id"] = "firewallSessionTimerProfileBindingMapId"
 	pathParams["project_id"] = "projectId"
@@ -426,7 +427,7 @@ func firewallSessionTimerProfileBindingMapsUpdateRestMetadata() protocol.Operati
 	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -439,7 +440,7 @@ func firewallSessionTimerProfileBindingMapsUpdateRestMetadata() protocol.Operati
 		"policy_firewall_session_timer_profile_binding_map",
 		"PUT",
 		"/policy/api/v1/orgs/{orgId}/projects/{projectId}/infra/domains/{domainId}/groups/{groupId}/firewall-session-timer-profile-binding-maps/{firewallSessionTimerProfileBindingMapId}",
-		"",
+		"application/json",
 		resultHeaders,
 		200,
 		"",

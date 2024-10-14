@@ -1,4 +1,5 @@
-// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
+// Copyright (c) 2019-2024 Broadcom. All Rights Reserved.
+// The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,68 +12,68 @@
 package interfaces
 
 import (
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func dadStateGetInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func dadStateGetInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["tier1_id"] = bindings.NewStringType()
-	fields["locale_service_id"] = bindings.NewStringType()
-	fields["interface_id"] = bindings.NewStringType()
-	fields["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["tier1_id"] = vapiBindings_.NewStringType()
+	fields["locale_service_id"] = vapiBindings_.NewStringType()
+	fields["interface_id"] = vapiBindings_.NewStringType()
+	fields["enforcement_point_path"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["locale_service_id"] = "LocaleServiceId"
 	fieldNameMap["interface_id"] = "InterfaceId"
 	fieldNameMap["enforcement_point_path"] = "EnforcementPointPath"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func dadStateGetOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.InterfaceDADStateBindingType)
+func DadStateGetOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewReferenceType(nsx_policyModel.InterfaceDADStateBindingType)
 }
 
-func dadStateGetRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func dadStateGetRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["tier1_id"] = bindings.NewStringType()
-	fields["locale_service_id"] = bindings.NewStringType()
-	fields["interface_id"] = bindings.NewStringType()
-	fields["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["tier1_id"] = vapiBindings_.NewStringType()
+	fields["locale_service_id"] = vapiBindings_.NewStringType()
+	fields["interface_id"] = vapiBindings_.NewStringType()
+	fields["enforcement_point_path"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["locale_service_id"] = "LocaleServiceId"
 	fieldNameMap["interface_id"] = "InterfaceId"
 	fieldNameMap["enforcement_point_path"] = "EnforcementPointPath"
-	paramsTypeMap["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["locale_service_id"] = bindings.NewStringType()
-	paramsTypeMap["interface_id"] = bindings.NewStringType()
-	paramsTypeMap["project_id"] = bindings.NewStringType()
-	paramsTypeMap["tier1_id"] = bindings.NewStringType()
-	paramsTypeMap["org_id"] = bindings.NewStringType()
-	paramsTypeMap["orgId"] = bindings.NewStringType()
-	paramsTypeMap["projectId"] = bindings.NewStringType()
-	paramsTypeMap["tier1Id"] = bindings.NewStringType()
-	paramsTypeMap["localeServiceId"] = bindings.NewStringType()
-	paramsTypeMap["interfaceId"] = bindings.NewStringType()
+	paramsTypeMap["locale_service_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["interface_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["tier1_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["enforcement_point_path"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["tier1Id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["localeServiceId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["interfaceId"] = vapiBindings_.NewStringType()
 	pathParams["tier1_id"] = "tier1Id"
 	pathParams["interface_id"] = "interfaceId"
 	pathParams["locale_service_id"] = "localeServiceId"
@@ -81,7 +82,7 @@ func dadStateGetRestMetadata() protocol.OperationRestMetadata {
 	queryParams["enforcement_point_path"] = "enforcement_point_path"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

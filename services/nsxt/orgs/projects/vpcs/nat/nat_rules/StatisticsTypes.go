@@ -1,4 +1,5 @@
-// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
+// Copyright (c) 2019-2024 Broadcom. All Rights Reserved.
+// The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,27 +12,27 @@
 package nat_rules
 
 import (
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
 // Possible value for ``action`` of method Statistics#list.
 const Statistics_LIST_ACTION_AGGREGATE = "aggregate"
 
-func statisticsListInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func statisticsListInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["vpc_id"] = bindings.NewStringType()
-	fields["nat_id"] = bindings.NewStringType()
-	fields["nat_rule_id"] = bindings.NewStringType()
-	fields["action"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["container_cluster_path"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["vpc_id"] = vapiBindings_.NewStringType()
+	fields["nat_id"] = vapiBindings_.NewStringType()
+	fields["nat_rule_id"] = vapiBindings_.NewStringType()
+	fields["action"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["container_cluster_path"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["enforcement_point_path"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["vpc_id"] = "VpcId"
@@ -40,31 +41,31 @@ func statisticsListInputType() bindings.StructType {
 	fieldNameMap["action"] = "Action"
 	fieldNameMap["container_cluster_path"] = "ContainerClusterPath"
 	fieldNameMap["enforcement_point_path"] = "EnforcementPointPath"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func statisticsListOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.PolicyNatRuleStatisticsListResultBindingType)
+func StatisticsListOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewReferenceType(nsx_policyModel.PolicyNatRuleStatisticsListResultBindingType)
 }
 
-func statisticsListRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func statisticsListRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
-	fields["vpc_id"] = bindings.NewStringType()
-	fields["nat_id"] = bindings.NewStringType()
-	fields["nat_rule_id"] = bindings.NewStringType()
-	fields["action"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["container_cluster_path"] = bindings.NewOptionalType(bindings.NewStringType())
-	fields["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["org_id"] = vapiBindings_.NewStringType()
+	fields["project_id"] = vapiBindings_.NewStringType()
+	fields["vpc_id"] = vapiBindings_.NewStringType()
+	fields["nat_id"] = vapiBindings_.NewStringType()
+	fields["nat_rule_id"] = vapiBindings_.NewStringType()
+	fields["action"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["container_cluster_path"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	fields["enforcement_point_path"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["vpc_id"] = "VpcId"
@@ -73,19 +74,19 @@ func statisticsListRestMetadata() protocol.OperationRestMetadata {
 	fieldNameMap["action"] = "Action"
 	fieldNameMap["container_cluster_path"] = "ContainerClusterPath"
 	fieldNameMap["enforcement_point_path"] = "EnforcementPointPath"
-	paramsTypeMap["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["container_cluster_path"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["action"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["project_id"] = bindings.NewStringType()
-	paramsTypeMap["vpc_id"] = bindings.NewStringType()
-	paramsTypeMap["org_id"] = bindings.NewStringType()
-	paramsTypeMap["nat_rule_id"] = bindings.NewStringType()
-	paramsTypeMap["nat_id"] = bindings.NewStringType()
-	paramsTypeMap["orgId"] = bindings.NewStringType()
-	paramsTypeMap["projectId"] = bindings.NewStringType()
-	paramsTypeMap["vpcId"] = bindings.NewStringType()
-	paramsTypeMap["natId"] = bindings.NewStringType()
-	paramsTypeMap["natRuleId"] = bindings.NewStringType()
+	paramsTypeMap["project_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["vpc_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["org_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["container_cluster_path"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["nat_rule_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["action"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["enforcement_point_path"] = vapiBindings_.NewOptionalType(vapiBindings_.NewStringType())
+	paramsTypeMap["nat_id"] = vapiBindings_.NewStringType()
+	paramsTypeMap["orgId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["projectId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["vpcId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["natId"] = vapiBindings_.NewStringType()
+	paramsTypeMap["natRuleId"] = vapiBindings_.NewStringType()
 	pathParams["nat_rule_id"] = "natRuleId"
 	pathParams["vpc_id"] = "vpcId"
 	pathParams["nat_id"] = "natId"
@@ -96,7 +97,7 @@ func statisticsListRestMetadata() protocol.OperationRestMetadata {
 	queryParams["enforcement_point_path"] = "enforcement_point_path"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,

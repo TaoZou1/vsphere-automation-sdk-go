@@ -1,4 +1,5 @@
-// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
+// Copyright (c) 2019-2024 Broadcom. All Rights Reserved.
+// The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -11,28 +12,28 @@
 package infra
 
 import (
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
-	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
+	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	vapiData_ "github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	vapiProtocol_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	nsx_policyModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt/model"
 	"reflect"
 )
 
-func securityGlobalConfigGetInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func securityGlobalConfigGetInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func securityGlobalConfigGetOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.InfraSecurityConfigBindingType)
+func SecurityGlobalConfigGetOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewReferenceType(nsx_policyModel.InfraSecurityConfigBindingType)
 }
 
-func securityGlobalConfigGetRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func securityGlobalConfigGetRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
@@ -40,7 +41,7 @@ func securityGlobalConfigGetRestMetadata() protocol.OperationRestMetadata {
 	bodyFieldsMap := map[string]string{}
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -61,34 +62,34 @@ func securityGlobalConfigGetRestMetadata() protocol.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
-func securityGlobalConfigUpdateInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
+func securityGlobalConfigUpdateInputType() vapiBindings_.StructType {
+	fields := make(map[string]vapiBindings_.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["infra_security_config"] = bindings.NewReferenceType(model.InfraSecurityConfigBindingType)
+	fields["infra_security_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.InfraSecurityConfigBindingType)
 	fieldNameMap["infra_security_config"] = "InfraSecurityConfig"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+	var validators = []vapiBindings_.Validator{}
+	return vapiBindings_.NewStructType("operation-input", fields, reflect.TypeOf(vapiData_.StructValue{}), fieldNameMap, validators)
 }
 
-func securityGlobalConfigUpdateOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.InfraSecurityConfigBindingType)
+func SecurityGlobalConfigUpdateOutputType() vapiBindings_.BindingType {
+	return vapiBindings_.NewReferenceType(nsx_policyModel.InfraSecurityConfigBindingType)
 }
 
-func securityGlobalConfigUpdateRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
+func securityGlobalConfigUpdateRestMetadata() vapiProtocol_.OperationRestMetadata {
+	fields := map[string]vapiBindings_.BindingType{}
 	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
+	paramsTypeMap := map[string]vapiBindings_.BindingType{}
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["infra_security_config"] = bindings.NewReferenceType(model.InfraSecurityConfigBindingType)
+	fields["infra_security_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.InfraSecurityConfigBindingType)
 	fieldNameMap["infra_security_config"] = "InfraSecurityConfig"
-	paramsTypeMap["infra_security_config"] = bindings.NewReferenceType(model.InfraSecurityConfigBindingType)
+	paramsTypeMap["infra_security_config"] = vapiBindings_.NewReferenceType(nsx_policyModel.InfraSecurityConfigBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
-	return protocol.NewOperationRestMetadata(
+	return vapiProtocol_.NewOperationRestMetadata(
 		fields,
 		fieldNameMap,
 		paramsTypeMap,
@@ -101,7 +102,7 @@ func securityGlobalConfigUpdateRestMetadata() protocol.OperationRestMetadata {
 		"infra_security_config",
 		"PUT",
 		"/policy/api/v1/infra/security-global-config",
-		"",
+		"application/json",
 		resultHeaders,
 		200,
 		"",

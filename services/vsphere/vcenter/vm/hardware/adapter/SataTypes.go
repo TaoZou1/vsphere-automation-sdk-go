@@ -14,9 +14,9 @@ package adapter
 
 import (
 	"reflect"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/bindings"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/data"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/protocol"
 )
 
 // Resource type for the virtual SATA adapter device.

@@ -1,4 +1,4 @@
-// Copyright © 2019-2021 VMware, Inc. All Rights Reserved.
+// Copyright © 2019-2023 VMware, Inc. All Rights Reserved.
 // SPDX-License-Identifier: BSD-2-Clause
 
 // Auto generated code. DO NOT EDIT.
@@ -9,28 +9,29 @@
 package services
 
 import (
-	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
-	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
-	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
+	vapiStdErrors_ "github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	vapiBindings_ "github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	vapiCore_ "github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	vapiProtocolClient_ "github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	nsxModel "github.com/vmware/vsphere-automation-sdk-go/services/nsxt-mp/nsx/model"
 )
 
-const _ = core.SupportedByRuntimeVersion1
+const _ = vapiCore_.SupportedByRuntimeVersion2
 
 type AuthClient interface {
 
 	// Read auth service properties.
 	// @return com.vmware.nsx.model.NodeAuthServiceProperties
+	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get() (model.NodeAuthServiceProperties, error)
+	Get() (nsxModel.NodeAuthServiceProperties, error)
 
 	// Restart the auth service
+	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -40,14 +41,16 @@ type AuthClient interface {
 
 	// Start the auth service
 	// @return com.vmware.nsx.model.NodeServiceStatusProperties
+	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Start() (model.NodeServiceStatusProperties, error)
+	Start() (nsxModel.NodeServiceStatusProperties, error)
 
 	// Stop the auth service
+	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -59,68 +62,70 @@ type AuthClient interface {
 	//
 	// @param nodeAuthServicePropertiesParam (required)
 	// @return com.vmware.nsx.model.NodeAuthServiceProperties
+	//
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(nodeAuthServicePropertiesParam model.NodeAuthServiceProperties) (model.NodeAuthServiceProperties, error)
+	Update(nodeAuthServicePropertiesParam nsxModel.NodeAuthServiceProperties) (nsxModel.NodeAuthServiceProperties, error)
 }
 
 type authClient struct {
-	connector           client.Connector
-	interfaceDefinition core.InterfaceDefinition
-	errorsBindingMap    map[string]bindings.BindingType
+	connector           vapiProtocolClient_.Connector
+	interfaceDefinition vapiCore_.InterfaceDefinition
+	errorsBindingMap    map[string]vapiBindings_.BindingType
 }
 
-func NewAuthClient(connector client.Connector) *authClient {
-	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.node.services.auth")
-	methodIdentifiers := map[string]core.MethodIdentifier{
-		"get":     core.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"restart": core.NewMethodIdentifier(interfaceIdentifier, "restart"),
-		"start":   core.NewMethodIdentifier(interfaceIdentifier, "start"),
-		"stop":    core.NewMethodIdentifier(interfaceIdentifier, "stop"),
-		"update":  core.NewMethodIdentifier(interfaceIdentifier, "update"),
+func NewAuthClient(connector vapiProtocolClient_.Connector) *authClient {
+	interfaceIdentifier := vapiCore_.NewInterfaceIdentifier("com.vmware.nsx.node.services.auth")
+	methodIdentifiers := map[string]vapiCore_.MethodIdentifier{
+		"get":     vapiCore_.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"restart": vapiCore_.NewMethodIdentifier(interfaceIdentifier, "restart"),
+		"start":   vapiCore_.NewMethodIdentifier(interfaceIdentifier, "start"),
+		"stop":    vapiCore_.NewMethodIdentifier(interfaceIdentifier, "stop"),
+		"update":  vapiCore_.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
-	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-	errorsBindingMap := make(map[string]bindings.BindingType)
+	interfaceDefinition := vapiCore_.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorsBindingMap := make(map[string]vapiBindings_.BindingType)
 
 	aIface := authClient{interfaceDefinition: interfaceDefinition, errorsBindingMap: errorsBindingMap, connector: connector}
 	return &aIface
 }
 
-func (aIface *authClient) GetErrorBindingType(errorName string) bindings.BindingType {
+func (aIface *authClient) GetErrorBindingType(errorName string) vapiBindings_.BindingType {
 	if entry, ok := aIface.errorsBindingMap[errorName]; ok {
 		return entry
 	}
-	return errors.ERROR_BINDINGS_MAP[errorName]
+	return vapiStdErrors_.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (aIface *authClient) Get() (model.NodeAuthServiceProperties, error) {
+func (aIface *authClient) Get() (nsxModel.NodeAuthServiceProperties, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	executionContext := aIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(authGetInputType(), typeConverter)
+	operationRestMetaData := authGetRestMetadata()
+	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
+	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
+
+	sv := vapiBindings_.NewStructValueBuilder(authGetInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput model.NodeAuthServiceProperties
-		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+		var emptyOutput nsxModel.NodeAuthServiceProperties
+		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := authGetRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	aIface.connector.SetConnectionMetadata(connectionMetadata)
+
 	methodResult := aIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.auth", "get", inputDataValue, executionContext)
-	var emptyOutput model.NodeAuthServiceProperties
+	var emptyOutput nsxModel.NodeAuthServiceProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), authGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), AuthGetOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(model.NodeAuthServiceProperties), nil
+		return output.(nsxModel.NodeAuthServiceProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), aIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
@@ -129,52 +134,54 @@ func (aIface *authClient) Get() (model.NodeAuthServiceProperties, error) {
 func (aIface *authClient) Restart() error {
 	typeConverter := aIface.connector.TypeConverter()
 	executionContext := aIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(authRestartInputType(), typeConverter)
+	operationRestMetaData := authRestartRestMetadata()
+	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
+	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
+
+	sv := vapiBindings_.NewStructValueBuilder(authRestartInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return bindings.VAPIerrorsToError(inputError)
+		return vapiBindings_.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := authRestartRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	aIface.connector.SetConnectionMetadata(connectionMetadata)
+
 	methodResult := aIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.auth", "restart", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), aIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return bindings.VAPIerrorsToError(errorInError)
+			return vapiBindings_.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (aIface *authClient) Start() (model.NodeServiceStatusProperties, error) {
+func (aIface *authClient) Start() (nsxModel.NodeServiceStatusProperties, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	executionContext := aIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(authStartInputType(), typeConverter)
+	operationRestMetaData := authStartRestMetadata()
+	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
+	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
+
+	sv := vapiBindings_.NewStructValueBuilder(authStartInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput model.NodeServiceStatusProperties
-		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+		var emptyOutput nsxModel.NodeServiceStatusProperties
+		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := authStartRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	aIface.connector.SetConnectionMetadata(connectionMetadata)
+
 	methodResult := aIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.auth", "start", inputDataValue, executionContext)
-	var emptyOutput model.NodeServiceStatusProperties
+	var emptyOutput nsxModel.NodeServiceStatusProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), authStartOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), AuthStartOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(model.NodeServiceStatusProperties), nil
+		return output.(nsxModel.NodeServiceStatusProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), aIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
@@ -183,53 +190,55 @@ func (aIface *authClient) Start() (model.NodeServiceStatusProperties, error) {
 func (aIface *authClient) Stop() error {
 	typeConverter := aIface.connector.TypeConverter()
 	executionContext := aIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(authStopInputType(), typeConverter)
+	operationRestMetaData := authStopRestMetadata()
+	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
+	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
+
+	sv := vapiBindings_.NewStructValueBuilder(authStopInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		return bindings.VAPIerrorsToError(inputError)
+		return vapiBindings_.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := authStopRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	aIface.connector.SetConnectionMetadata(connectionMetadata)
+
 	methodResult := aIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.auth", "stop", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), aIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return bindings.VAPIerrorsToError(errorInError)
+			return vapiBindings_.VAPIerrorsToError(errorInError)
 		}
 		return methodError.(error)
 	}
 }
 
-func (aIface *authClient) Update(nodeAuthServicePropertiesParam model.NodeAuthServiceProperties) (model.NodeAuthServiceProperties, error) {
+func (aIface *authClient) Update(nodeAuthServicePropertiesParam nsxModel.NodeAuthServiceProperties) (nsxModel.NodeAuthServiceProperties, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	executionContext := aIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(authUpdateInputType(), typeConverter)
+	operationRestMetaData := authUpdateRestMetadata()
+	executionContext.SetConnectionMetadata(vapiCore_.RESTMetadataKey, operationRestMetaData)
+	executionContext.SetConnectionMetadata(vapiCore_.ResponseTypeKey, vapiCore_.NewResponseType(true, false))
+
+	sv := vapiBindings_.NewStructValueBuilder(authUpdateInputType(), typeConverter)
 	sv.AddStructField("NodeAuthServiceProperties", nodeAuthServicePropertiesParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput model.NodeAuthServiceProperties
-		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+		var emptyOutput nsxModel.NodeAuthServiceProperties
+		return emptyOutput, vapiBindings_.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := authUpdateRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	aIface.connector.SetConnectionMetadata(connectionMetadata)
+
 	methodResult := aIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.auth", "update", inputDataValue, executionContext)
-	var emptyOutput model.NodeAuthServiceProperties
+	var emptyOutput nsxModel.NodeAuthServiceProperties
 	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), authUpdateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), AuthUpdateOutputType())
 		if errorInOutput != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(model.NodeAuthServiceProperties), nil
+		return output.(nsxModel.NodeAuthServiceProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), aIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
+			return emptyOutput, vapiBindings_.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
